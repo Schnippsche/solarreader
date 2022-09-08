@@ -1,0 +1,146 @@
+{
+  "description": "specs for statistics",
+  "devicefields": [],
+  "databasefields": [
+    {
+      "tablename": "Statistik",
+      "columnname": "Bezeichnung",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "WhTag"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Wert",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "wattperday"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Woche",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "WEEK"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Monat",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "MONTH"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Wochentag",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "WEEKDAY"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Heute_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "TODAYTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Gestern_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "YESTERDAYTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "DiesesJahr_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "THISYEARTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "LetztesJahr_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "LASTYEARTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "DieserMonat_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "THISMONTHTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "LetzterMonat_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "LASTMONTHTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "DieseWoche_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "THISWEEKTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "LetzteWoche_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "LASTWEEKTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "TagImMonat",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DAYINMONTH"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "TagImJahr",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DAYINYEAR"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "HeuteVJ_TS",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "TODAYLASTYEARTIMESTAMP{NANOSECONDS}"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Jahr",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "YEAR"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "Stunde",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "HOUR"
+    },
+    {
+      "tablename": "Statistik",
+      "columnname": "timestamp",
+      "columntype": "NUMBER",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "CURRENTTIMESTAMP{SECONDS}"
+    }
+  ]
+}

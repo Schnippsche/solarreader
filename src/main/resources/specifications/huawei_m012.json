@@ -1,0 +1,985 @@
+{
+  "description": "specs for huawei inverter with sdongle",
+  "devicefields": [
+    {
+      "name": "model_name",
+      "offset": 30000,
+      "count": 15,
+      "register": 3,
+      "note": "Model Name",
+      "type": "STRING"
+    },
+    {
+      "name": "sn",
+      "offset": 30015,
+      "count": 10,
+      "register": 3,
+      "note": "SN",
+      "type": "STRING"
+    },
+    {
+      "name": "pn",
+      "offset": 30025,
+      "count": 10,
+      "register": 3,
+      "note": "PN",
+      "type": "STRING"
+    },
+    {
+      "name": "model_id",
+      "offset": 30070,
+      "count": 1,
+      "register": 3,
+      "note": "Model ID",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "string_number",
+      "offset": 30071,
+      "count": 1,
+      "register": 3,
+      "note": "String Number",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "mppt_number",
+      "offset": 30072,
+      "count": 1,
+      "register": 3,
+      "note": "MPPT Number",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "rated_power",
+      "unit": "kW",
+      "offset": 30073,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Rated power (Pn)",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "maximum_active_power",
+      "unit": "kW",
+      "offset": 30075,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Maximum active power (Pmax)",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "maximum_apparent_power",
+      "unit": "kVA",
+      "offset": 30077,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Maximum apparent power (Smax)",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "maximum_reactive_power_fed",
+      "unit": "kVar",
+      "offset": 30079,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Maximum reactive power (Qmax, fed to the power grid)",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "maximum_reactive_power_absorbed",
+      "unit": "kVar",
+      "offset": 30081,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Maximum reactive power (Qmax, absorbed from the power grid)",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "standalone_teleindication",
+      "offset": 32000,
+      "count": 1,
+      "register": 3,
+      "note": "Bit 0: standby",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "operating_status",
+      "offset": 32002,
+      "count": 1,
+      "register": 3,
+      "note": "",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "alarm_1",
+      "offset": 32008,
+      "count": 1,
+      "register": 3,
+      "note": "Alarm 1",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "alarm_2",
+      "offset": 32009,
+      "count": 1,
+      "register": 3,
+      "note": "Alarm 2",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "alarm_3",
+      "offset": 32010,
+      "count": 1,
+      "register": 3,
+      "note": "Alarm 3",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv1_voltage",
+      "unit": "V",
+      "offset": 32016,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "PV1 Voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv1_current",
+      "unit": "A",
+      "offset": 32017,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "PV1 Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv2_voltage",
+      "unit": "V",
+      "offset": 32018,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "PV2 Voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv2_current",
+      "unit": "A",
+      "offset": 32019,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "PV2 Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv3_voltage",
+      "unit": "V",
+      "offset": 32020,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "PV3 Voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv3_current",
+      "unit": "A",
+      "offset": 32021,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "PV3 Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv4_voltage",
+      "unit": "V",
+      "offset": 32022,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "PV4 Voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "pv4_current",
+      "unit": "A",
+      "offset": 32023,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "PV4 Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "input_power",
+      "unit": "kW",
+      "offset": 32064,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Input power",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "uab",
+      "unit": "V",
+      "offset": 32066,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Uab",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "ubc",
+      "unit": "V",
+      "offset": 32067,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Ubc",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "uca",
+      "unit": "V",
+      "offset": 32068,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Uca",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "ua",
+      "unit": "V",
+      "offset": 32069,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Ua",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "ub",
+      "unit": "V",
+      "offset": 32070,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Ub",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "uc",
+      "unit": "V",
+      "offset": 32071,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Uc",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "ia",
+      "unit": "A",
+      "offset": 32072,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Ia",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "ib",
+      "unit": "A",
+      "offset": 32074,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Ib",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "ic",
+      "unit": "A",
+      "offset": 32076,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Ic",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "active_power_peak_currentday",
+      "unit": "kW",
+      "offset": 32078,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Active power peak of current day",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "active_power",
+      "unit": "kW",
+      "offset": 32080,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Active power",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "reactive_power",
+      "unit": "kVar",
+      "offset": 32082,
+      "count": 2,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Reactive power",
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "name": "power_factor",
+      "offset": 32084,
+      "count": 1,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Power factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "frequency",
+      "unit": "Hz",
+      "offset": 32085,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "Frequency",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "inverter_efficiency",
+      "unit": "%",
+      "offset": 32086,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "Inverter efficiency",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "cabinet_temperature",
+      "unit": "℃",
+      "offset": 32087,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Cabinet temperature",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "insulation_resistance",
+      "unit": "MΩ",
+      "offset": 32088,
+      "count": 1,
+      "register": 3,
+      "factor": 0.001,
+      "note": "Insulation resistance",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "device_status",
+      "offset": 32089,
+      "count": 1,
+      "register": 3,
+      "note": "Device status",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "fault_code",
+      "offset": 32090,
+      "count": 1,
+      "register": 3,
+      "note": "Fault code",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "startup_time",
+      "offset": 32091,
+      "count": 2,
+      "register": 3,
+      "note": "Epoch seconds, local time",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "shutdown_time",
+      "offset": 32093,
+      "count": 2,
+      "register": 3,
+      "note": "Epoch seconds, local time",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "e_total",
+      "unit": "kWh",
+      "offset": 32106,
+      "count": 2,
+      "register": 3,
+      "factor": 0.01,
+      "note": "E-Total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "e_day",
+      "unit": "kWh",
+      "offset": 32114,
+      "count": 2,
+      "register": 3,
+      "factor": 0.01,
+      "note": "E-Day",
+      "type": "U32_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Modell"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "OutputMode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OutputMode"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Seriennummer",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Seriennummer"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Firmware"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung1",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom1",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung2",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom2",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung3",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung3"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom3",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom3"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung4",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung4"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom4",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom4"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung5",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung5"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom5",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom5"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung6",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung6"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom6",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom6"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Frequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Powerfactor",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Powerfactor"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Effizienz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Effizienz"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Status"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtMonat",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtMonat"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtJahr",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtJahr"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung7",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung7"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom7",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom7"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Spannung8",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung8"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Strom8",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom8"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "WR_Fehler",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "State1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT1_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT1_Leistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT2_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT2_Leistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT3_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT3_Leistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT4_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT4_Leistung"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "model_name",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "model_name"
+    },
+    {
+      "name": "sn",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sn"
+    },
+    {
+      "name": "pn",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pn"
+    },
+    {
+      "name": "model_id",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "model_id"
+    },
+    {
+      "name": "string_number",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "string_number"
+    },
+    {
+      "name": "mppt_number",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "mppt_number"
+    },
+    {
+      "name": "rated_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "rated_power"
+    },
+    {
+      "name": "maximum_active_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "maximum_active_power"
+    },
+    {
+      "name": "maximum_apparent_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "maximum_apparent_power"
+    },
+    {
+      "name": "maximum_reactive_power_fed",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "maximum_reactive_power_fed"
+    },
+    {
+      "name": "maximum_reactive_power_absorbed",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "maximum_reactive_power_absorbed"
+    },
+    {
+      "name": "standalone_teleindication",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "standalone_teleindication"
+    },
+    {
+      "name": "operating_status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "operating_status"
+    },
+    {
+      "name": "alarm_1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "alarm_1"
+    },
+    {
+      "name": "alarm_2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "alarm_2"
+    },
+    {
+      "name": "alarm_3",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "alarm_3"
+    },
+    {
+      "name": "pv1_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv1_voltage"
+    },
+    {
+      "name": "pv1_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv1_current"
+    },
+    {
+      "name": "pv2_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv2_voltage"
+    },
+    {
+      "name": "pv2_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv2_current"
+    },
+    {
+      "name": "pv3_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv3_voltage"
+    },
+    {
+      "name": "pv3_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv3_current"
+    },
+    {
+      "name": "pv4_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv4_voltage"
+    },
+    {
+      "name": "pv4_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv4_current"
+    },
+    {
+      "name": "input_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "input_power"
+    },
+    {
+      "name": "uab",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "uab"
+    },
+    {
+      "name": "ubc",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ubc"
+    },
+    {
+      "name": "uca",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "uca"
+    },
+    {
+      "name": "ua",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ua"
+    },
+    {
+      "name": "ub",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ub"
+    },
+    {
+      "name": "uc",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "uc"
+    },
+    {
+      "name": "ia",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ia"
+    },
+    {
+      "name": "ib",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ib"
+    },
+    {
+      "name": "ic",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ic"
+    },
+    {
+      "name": "active_power_peak_currentday",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "active_power_peak_currentday"
+    },
+    {
+      "name": "active_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "active_power"
+    },
+    {
+      "name": "reactive_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "reactive_power"
+    },
+    {
+      "name": "power_factor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "power_factor"
+    },
+    {
+      "name": "frequency",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "frequency"
+    },
+    {
+      "name": "inverter_efficiency",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "inverter_efficiency"
+    },
+    {
+      "name": "cabinet_temperature",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "cabinet_temperature"
+    },
+    {
+      "name": "insulation_resistance",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "insulation_resistance"
+    },
+    {
+      "name": "device_status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "device_status"
+    },
+    {
+      "name": "fault_code",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "fault_code"
+    },
+    {
+      "name": "startup_time",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "startup_time"
+    },
+    {
+      "name": "shutdown_time",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "shutdown_time"
+    },
+    {
+      "name": "e_total",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "e_total"
+    },
+    {
+      "name": "e_day",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "e_day"
+    }
+  ]
+}

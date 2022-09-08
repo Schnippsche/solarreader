@@ -1,0 +1,292 @@
+{
+  "description": "specs for sdm230",
+  "devicefields": [
+    {
+      "name": "AC_Spannung",
+      "offset": 0,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom",
+      "offset": 6,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung",
+      "offset": 12,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Scheinleistung",
+      "offset": 18,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Blindleistung",
+      "offset": 24,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "PF_Leistung",
+      "offset": 30,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Phasenverschiebung",
+      "offset": 36,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Frequenz",
+      "offset": 70,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Wh_Bezug",
+      "offset": 72,
+      "count": 2,
+      "register": 4,
+      "factor": 1000,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Wh_Einspeisung",
+      "offset": 74,
+      "count": 2,
+      "register": 4,
+      "factor": 1000,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "GesamterLeistungsbedarf",
+      "offset": 84,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Bezug",
+      "offset": 88,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Einspeisung",
+      "offset": 92,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "WattstundenGesamt",
+      "offset": 342,
+      "count": 2,
+      "register": 4,
+      "factor": 1000,
+      "type": "FLOAT_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "SDM230"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "SDM230"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Scheinleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Blindleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistungsfaktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_Leistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Phasenverschiebung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Phasenverschiebung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Frequenz"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtBezug",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Bezug"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtEinspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Einspeisung"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "GesamtLeistungsbedarf",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GesamterLeistungsbedarf"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Bezug",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bezug"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Einspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "WattstundenGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "AC_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung"
+    },
+    {
+      "name": "AC_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom"
+    },
+    {
+      "name": "AC_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "name": "AC_Scheinleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Scheinleistung"
+    },
+    {
+      "name": "AC_Blindleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Blindleistung"
+    },
+    {
+      "name": "PF_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_Leistung"
+    },
+    {
+      "name": "AC_Phasenverschiebung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Phasenverschiebung"
+    },
+    {
+      "name": "Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Frequenz"
+    },
+    {
+      "name": "Wh_Bezug",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Bezug"
+    },
+    {
+      "name": "Wh_Einspeisung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Einspeisung"
+    },
+    {
+      "name": "GesamterLeistungsbedarf",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GesamterLeistungsbedarf"
+    },
+    {
+      "name": "Bezug",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bezug"
+    },
+    {
+      "name": "Einspeisung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung"
+    },
+    {
+      "name": "WattstundenGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    }
+  ]
+}

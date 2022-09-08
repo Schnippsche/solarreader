@@ -1,0 +1,419 @@
+{
+  "description": "specs for sdm630",
+  "devicefields": [
+    {
+      "name": "AC_Spannung_R",
+      "offset": 0,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "offset": 2,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "offset": 4,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_R",
+      "offset": 6,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_S",
+      "offset": 8,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_T",
+      "offset": 10,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung_R",
+      "offset": 12,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung_S",
+      "offset": 14,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung_T",
+      "offset": 16,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "PF_R",
+      "offset": 30,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "PF_S",
+      "offset": 32,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "PF_T",
+      "offset": 34,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung",
+      "offset": 42,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom",
+      "offset": 48,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung",
+      "offset": 52,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "PF_Leistung",
+      "offset": 62,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Frequenz",
+      "offset": 70,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Wh_Bezug",
+      "offset": 72,
+      "count": 2,
+      "register": 4,
+      "factor": 1000,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Wh_Einspeisung",
+      "offset": 74,
+      "count": 2,
+      "register": 4,
+      "factor": 1000,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "GesamterLeistungsbedarf",
+      "offset": 84,
+      "count": 2,
+      "register": 4,
+      "type": "FLOAT_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "SDM630"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "630"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "objekt"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistungsfaktor_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistungsfaktor_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistungsfaktor_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "PF_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_Leistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Frequenz"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtBezug",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Bezug"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtEinspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Einspeisung"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "GesamterLeistungsbedarf",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GesamterLeistungsbedarf"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "AC_Spannung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "name": "AC_Strom_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "name": "AC_Strom_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "name": "AC_Strom_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "name": "AC_Leistung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_R"
+    },
+    {
+      "name": "AC_Leistung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_S"
+    },
+    {
+      "name": "AC_Leistung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_T"
+    },
+    {
+      "name": "PF_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_R"
+    },
+    {
+      "name": "PF_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_S"
+    },
+    {
+      "name": "PF_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_T"
+    },
+    {
+      "name": "AC_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung"
+    },
+    {
+      "name": "AC_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom"
+    },
+    {
+      "name": "AC_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "name": "PF_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PF_Leistung"
+    },
+    {
+      "name": "Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Frequenz"
+    },
+    {
+      "name": "Wh_Bezug",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Bezug"
+    },
+    {
+      "name": "Wh_Einspeisung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Einspeisung"
+    },
+    {
+      "name": "GesamterLeistungsbedarf",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GesamterLeistungsbedarf"
+    }
+  ]
+}

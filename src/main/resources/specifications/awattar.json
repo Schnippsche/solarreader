@@ -1,0 +1,319 @@
+{
+  "description": "specs for awattar",
+  "devicefields": [
+    {
+      "name": "marketprice_hour_0",
+      "unit": "Eur/MWh",
+      "offset": 0,
+      "count": 1,
+      "note": "price fur current date at hour 0",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_1",
+      "unit": "Eur/MWh",
+      "offset": 1,
+      "count": 1,
+      "note": "price fur current date at hour 1",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_2",
+      "unit": "Eur/MWh",
+      "offset": 2,
+      "count": 1,
+      "note": "price fur current date at hour 2",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_3",
+      "unit": "Eur/MWh",
+      "offset": 3,
+      "count": 1,
+      "note": "price fur current date at hour 3",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_4",
+      "unit": "Eur/MWh",
+      "offset": 4,
+      "count": 1,
+      "note": "price fur current date at hour 4",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_5",
+      "unit": "Eur/MWh",
+      "offset": 5,
+      "count": 1,
+      "note": "price fur current date at hour 5",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_6",
+      "unit": "Eur/MWh",
+      "offset": 6,
+      "count": 1,
+      "note": "price fur current date at hour 6",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_7",
+      "unit": "Eur/MWh",
+      "offset": 7,
+      "count": 1,
+      "note": "price fur current date at hour 7",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_8",
+      "unit": "Eur/MWh",
+      "offset": 8,
+      "count": 1,
+      "note": "price fur current date at hour 8",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_9",
+      "unit": "Eur/MWh",
+      "offset": 9,
+      "count": 1,
+      "note": "price fur current date at hour 9",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_10",
+      "unit": "Eur/MWh",
+      "offset": 10,
+      "count": 1,
+      "note": "price fur current date at hour 10",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_11",
+      "unit": "Eur/MWh",
+      "offset": 11,
+      "count": 1,
+      "note": "price fur current date at hour 11",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_12",
+      "unit": "Eur/MWh",
+      "offset": 12,
+      "count": 1,
+      "note": "price fur current date at hour 12",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_13",
+      "unit": "Eur/MWh",
+      "offset": 13,
+      "count": 1,
+      "note": "price fur current date at hour 13",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_14",
+      "unit": "Eur/MWh",
+      "offset": 14,
+      "count": 1,
+      "note": "price fur current date at hour 14",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_15",
+      "unit": "Eur/MWh",
+      "offset": 15,
+      "count": 1,
+      "note": "price fur current date at hour 15",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_16",
+      "unit": "Eur/MWh",
+      "offset": 16,
+      "count": 1,
+      "note": "price fur current date at hour 16",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_17",
+      "unit": "Eur/MWh",
+      "offset": 17,
+      "count": 1,
+      "note": "price fur current date at hour 17",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_18",
+      "unit": "Eur/MWh",
+      "offset": 18,
+      "count": 1,
+      "note": "price fur current date at hour 18",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_19",
+      "unit": "Eur/MWh",
+      "offset": 19,
+      "count": 1,
+      "note": "price fur current date at hour 19",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_20",
+      "unit": "Eur/MWh",
+      "offset": 20,
+      "count": 1,
+      "note": "price fur current date at hour 20",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_21",
+      "unit": "Eur/MWh",
+      "offset": 21,
+      "count": 1,
+      "note": "price fur current date at hour 21",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_22",
+      "unit": "Eur/MWh",
+      "offset": 22,
+      "count": 1,
+      "note": "price fur current date at hour 22",
+      "type": "NUMBER"
+    },
+    {
+      "name": "marketprice_hour_23",
+      "unit": "Eur/MWh",
+      "offset": 23,
+      "count": 1,
+      "note": "price fur current date at hour 23",
+      "type": "NUMBER"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "marketprice_hour_0",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_0"
+    },
+    {
+      "name": "marketprice_hour_1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_1"
+    },
+    {
+      "name": "marketprice_hour_2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_2"
+    },
+    {
+      "name": "marketprice_hour_3",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_3"
+    },
+    {
+      "name": "marketprice_hour_4",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_4"
+    },
+    {
+      "name": "marketprice_hour_5",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_5"
+    },
+    {
+      "name": "marketprice_hour_6",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_6"
+    },
+    {
+      "name": "marketprice_hour_7",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_7"
+    },
+    {
+      "name": "marketprice_hour_8",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_8"
+    },
+    {
+      "name": "marketprice_hour_9",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_9"
+    },
+    {
+      "name": "marketprice_hour_10",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_10"
+    },
+    {
+      "name": "marketprice_hour_11",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_11"
+    },
+    {
+      "name": "marketprice_hour_12",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_23"
+    },
+    {
+      "name": "marketprice_hour_13",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_13"
+    },
+    {
+      "name": "marketprice_hour_14",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_14"
+    },
+    {
+      "name": "marketprice_hour_15",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_15"
+    },
+    {
+      "name": "marketprice_hour_16",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_16"
+    },
+    {
+      "name": "marketprice_hour_17",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_17"
+    },
+    {
+      "name": "marketprice_hour_18",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_18"
+    },
+    {
+      "name": "marketprice_hour_19",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_19"
+    },
+    {
+      "name": "marketprice_hour_20",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_20"
+    },
+    {
+      "name": "marketprice_hour_21",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_21"
+    },
+    {
+      "name": "marketprice_hour_22",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_22"
+    },
+    {
+      "name": "marketprice_hour_23",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "marketprice_hour_23"
+    }
+  ]
+}

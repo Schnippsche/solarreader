@@ -1,0 +1,17 @@
+{
+	"sProcessing": "Please wait",
+	"sLengthMenu": "_MENU_ Show entries",
+	"sZeroRecords": "No entries available.",
+	"sInfo": "_START_ to _END_ of _TOTAL_ entries",
+	"sInfoEmpty": "0 to 0 of 0 entries",
+	"sInfoFiltered": "(filtered from _MAX_ entries)",
+	"sInfoPostFix": "",
+	"sSearch": "Search",
+	"sUrl": "",
+	"oPaginate": {
+		"sFirst":    "First",
+		"sPrevious": "Back",
+		"sNext":     "Next",
+		"sLast":     "Last"
+	}
+}

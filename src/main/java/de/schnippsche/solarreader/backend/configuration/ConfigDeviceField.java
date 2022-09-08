@@ -1,0 +1,24 @@
+package de.schnippsche.solarreader.backend.configuration;
+
+public enum ConfigDeviceField
+{
+  DEVICE_IP,
+  DEVICE_PORT,
+  DEVICE_ADDRESS,
+  COM_PORT,
+  SERIALNUMBER,
+  HF2211_ENABLED,
+  HF2211_IP,
+  HF2211_PORT,
+  TOPIC,
+  BATTERIEPACKS,
+  BAUDRATE,
+  STOPBITS,
+  DATABITS,
+  PARITY,
+  FLOWCONTROLIN,
+  FLOWCONTROLOUT,
+  ECHO,
+  OPENDELAY,
+  ENCODING
+}

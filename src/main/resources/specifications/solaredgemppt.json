@@ -1,0 +1,358 @@
+{
+  "description": "Multiple MPPT (Maximum Power Point Tracker) Inverter Extension Model for Solaredge with firmware version 4.13xx or later",
+  "devicefields": [
+    {
+      "name": "MPPT_ID",
+      "unit": "",
+      "offset": 40121,
+      "count": 1,
+      "register": 3,
+      "note": "Value \u003d 160 Multiple MPPT Inverter Extension Model",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_L",
+      "unit": "",
+      "offset": 40122,
+      "count": 1,
+      "register": 3,
+      "note": "Model length",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCA_SF",
+      "unit": "",
+      "offset": 40123,
+      "count": 1,
+      "register": 3,
+      "note": "Current Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCV_SF",
+      "unit": "",
+      "offset": 40124,
+      "count": 1,
+      "register": 3,
+      "note": "Voltage Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCW_SF",
+      "unit": "",
+      "offset": 40125,
+      "count": 1,
+      "register": 3,
+      "note": "Power Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_Evt",
+      "unit": "",
+      "offset": 40127,
+      "count": 2,
+      "register": 3,
+      "note": "Global Events",
+      "type": "BINARY"
+    },
+    {
+      "name": "MPPT_N",
+      "unit": "",
+      "offset": 40129,
+      "count": 1,
+      "register": 3,
+      "note": "Number of Synergy units (2 or 3)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT0_ID",
+      "unit": "",
+      "offset": 40131,
+      "count": 1,
+      "register": 3,
+      "note": "Synergy Unit #0",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT0_IDStr",
+      "unit": "",
+      "offset": 40132,
+      "count": 8,
+      "register": 3,
+      "note": "Input ID String",
+      "type": "STRING"
+    },
+    {
+      "name": "MPPT_UNIT0_DCA",
+      "unit": "",
+      "offset": 40140,
+      "count": 1,
+      "register": 3,
+      "note": "DC Current (A)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT0_DCV",
+      "unit": "",
+      "offset": 40141,
+      "count": 1,
+      "register": 3,
+      "note": "DC Voltage (V)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT0_DCW",
+      "unit": "",
+      "offset": 40142,
+      "count": 1,
+      "register": 3,
+      "note": "DC Power (W)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT0_Tmp",
+      "unit": "",
+      "offset": 40147,
+      "count": 1,
+      "register": 3,
+      "note": "Temperature (oC)",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT1_ID",
+      "unit": "",
+      "offset": 40151,
+      "count": 1,
+      "register": 3,
+      "note": "Synergy Unit #1",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT1_IDStr",
+      "unit": "",
+      "offset": 40152,
+      "count": 8,
+      "register": 3,
+      "note": "Input ID String",
+      "type": "STRING"
+    },
+    {
+      "name": "MPPT_UNIT1_DCA",
+      "unit": "",
+      "offset": 40160,
+      "count": 1,
+      "register": 3,
+      "note": "DC Current (A)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT1_DCV",
+      "unit": "",
+      "offset": 40161,
+      "count": 1,
+      "register": 3,
+      "note": "DC Voltage (V)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT1_DCW",
+      "unit": "",
+      "offset": 40162,
+      "count": 1,
+      "register": 3,
+      "note": "DC Power (W)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT1_Tmp",
+      "unit": "",
+      "offset": 40167,
+      "count": 1,
+      "register": 3,
+      "note": "Temperature (oC)",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT2_ID",
+      "unit": "",
+      "offset": 40171,
+      "count": 1,
+      "register": 3,
+      "note": "Synergy Unit #1",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT2_IDStr",
+      "unit": "",
+      "offset": 40172,
+      "count": 8,
+      "register": 3,
+      "note": "Input ID String",
+      "type": "STRING"
+    },
+    {
+      "name": "MPPT_UNIT2_DCA",
+      "unit": "",
+      "offset": 40180,
+      "count": 1,
+      "register": 3,
+      "note": "DC Current (A)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT2_DCV",
+      "unit": "",
+      "offset": 40181,
+      "count": 1,
+      "register": 3,
+      "note": "DC Voltage (V)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT2_DCW",
+      "unit": "",
+      "offset": 40182,
+      "count": 1,
+      "register": 3,
+      "note": "DC Power (W)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_UNIT2_Tmp",
+      "unit": "",
+      "offset": 40187,
+      "count": 1,
+      "register": 3,
+      "note": "Temperature (oC)",
+      "type": "I16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [],
+  "mqttFields": [
+    {
+      "name": "MPPT_ID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_ID"
+    },
+    {
+      "name": "MPPT_L",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_L"
+    },
+    {
+      "name": "MPPT_DCA_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_DCA_SF"
+    },
+    {
+      "name": "MPPT_DCV_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_DCV_SF"
+    },
+    {
+      "name": "MPPT_DCW_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_DCW_SF"
+    },
+    {
+      "name": "MPPT_Evt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_Evt"
+    },
+    {
+      "name": "MPPT_N",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_N"
+    },
+    {
+      "name": "MPPT_UNIT0_ID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT0_ID"
+    },
+    {
+      "name": "MPPT_UNIT0_IDStr",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT0_IDStr"
+    },
+    {
+      "name": "MPPT_UNIT0_DCA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT0_DCA"
+    },
+    {
+      "name": "MPPT_UNIT0_DCV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT0_DCV"
+    },
+    {
+      "name": "MPPT_UNIT0_DCW",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT0_DCW"
+    },
+    {
+      "name": "MPPT_UNIT0_Tmp",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT0_Tmp"
+    },
+    {
+      "name": "MPPT_UNIT1_ID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT1_ID"
+    },
+    {
+      "name": "MPPT_UNIT1_IDStr",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT1_IDStr"
+    },
+    {
+      "name": "MPPT_UNIT1_DCA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT1_DCA"
+    },
+    {
+      "name": "MPPT_UNIT1_DCV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT1_DCV"
+    },
+    {
+      "name": "MPPT_UNIT1_DCW",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT1_DCW"
+    },
+    {
+      "name": "MPPT_UNIT1_Tmp",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT1_Tmp"
+    },
+    {
+      "name": "MPPT_UNIT2_ID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT2_ID"
+    },
+    {
+      "name": "MPPT_UNIT2_IDStr",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT2_IDStr"
+    },
+    {
+      "name": "MPPT_UNIT2_DCA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT2_DCA"
+    },
+    {
+      "name": "MPPT_UNIT2_DCV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT2_DCV"
+    },
+    {
+      "name": "MPPT_UNIT2_DCW",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT2_DCW"
+    },
+    {
+      "name": "MPPT_UNIT2_Tmp",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_UNIT2_Tmp"
+    }
+  ]
+}

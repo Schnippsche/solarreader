@@ -1,0 +1,631 @@
+{
+  "description": "specs for solarprognose",
+  "devicefields": [
+    {
+      "name": "prognose_hour_0",
+      "unit": "kw",
+      "offset": 0,
+      "count": 1,
+      "note": "prognose fur current date at hour 0",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_1",
+      "unit": "kw",
+      "offset": 1,
+      "count": 1,
+      "note": "prognose fur current date at hour 1",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_2",
+      "unit": "kw",
+      "offset": 2,
+      "count": 1,
+      "note": "prognose fur current date at hour 2",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_3",
+      "unit": "kw",
+      "offset": 3,
+      "count": 1,
+      "note": "prognose fur current date at hour 3",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_4",
+      "unit": "kw",
+      "offset": 4,
+      "count": 1,
+      "note": "prognose fur current date at hour 4",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_5",
+      "unit": "kw",
+      "offset": 5,
+      "count": 1,
+      "note": "prognose fur current date at hour 5",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_6",
+      "unit": "kw",
+      "offset": 6,
+      "count": 1,
+      "note": "prognose fur current date at hour 6",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_7",
+      "unit": "kw",
+      "offset": 7,
+      "count": 1,
+      "note": "prognose fur current date at hour 7",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_8",
+      "unit": "kw",
+      "offset": 8,
+      "count": 1,
+      "note": "prognose fur current date at hour 8",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_9",
+      "unit": "kw",
+      "offset": 9,
+      "count": 1,
+      "note": "prognose fur current date at hour 9",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_10",
+      "unit": "kw",
+      "offset": 10,
+      "count": 1,
+      "note": "prognose fur current date at hour 10",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_11",
+      "unit": "kw",
+      "offset": 11,
+      "count": 1,
+      "note": "prognose fur current date at hour 11",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_12",
+      "unit": "kw",
+      "offset": 12,
+      "count": 1,
+      "note": "prognose fur current date at hour 12",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_13",
+      "unit": "kw",
+      "offset": 13,
+      "count": 1,
+      "note": "prognose fur current date at hour 13",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_14",
+      "unit": "kw",
+      "offset": 14,
+      "count": 1,
+      "note": "prognose fur current date at hour 14",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_15",
+      "unit": "kw",
+      "offset": 15,
+      "count": 1,
+      "note": "prognose fur current date at hour 15",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_16",
+      "unit": "kw",
+      "offset": 16,
+      "count": 1,
+      "note": "prognose fur current date at hour 16",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_17",
+      "unit": "kw",
+      "offset": 17,
+      "count": 1,
+      "note": "prognose fur current date at hour 17",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_18",
+      "unit": "kw",
+      "offset": 18,
+      "count": 1,
+      "note": "prognose fur current date at hour 18",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_19",
+      "unit": "kw",
+      "offset": 19,
+      "count": 1,
+      "note": "prognose fur current date at hour 19",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_20",
+      "unit": "kw",
+      "offset": 20,
+      "count": 1,
+      "note": "prognose fur current date at hour 20",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_21",
+      "unit": "kw",
+      "offset": 21,
+      "count": 1,
+      "note": "prognose fur current date at hour 21",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_22",
+      "unit": "kw",
+      "offset": 22,
+      "count": 1,
+      "note": "prognose fur current date at hour 22",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_hour_23",
+      "unit": "kw",
+      "offset": 23,
+      "count": 1,
+      "note": "prognose fur current date at hour 23",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_0",
+      "unit": "kwh",
+      "offset": 0,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 0",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_1",
+      "unit": "kwh",
+      "offset": 1,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 1",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_2",
+      "unit": "kwh",
+      "offset": 2,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 2",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_3",
+      "unit": "kwh",
+      "offset": 3,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 3",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_4",
+      "unit": "kwh",
+      "offset": 4,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 4",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_5",
+      "unit": "kwh",
+      "offset": 5,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 5",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_6",
+      "unit": "kwh",
+      "offset": 6,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 6",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_7",
+      "unit": "kwh",
+      "offset": 7,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 7",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_8",
+      "unit": "kwh",
+      "offset": 8,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 8",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_9",
+      "unit": "kwh",
+      "offset": 9,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 9",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_10",
+      "unit": "kwh",
+      "offset": 10,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 10",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_11",
+      "unit": "kwh",
+      "offset": 11,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 11",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_12",
+      "unit": "kwh",
+      "offset": 12,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 12",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_13",
+      "unit": "kwh",
+      "offset": 13,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 13",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_14",
+      "unit": "kwh",
+      "offset": 14,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 14",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_15",
+      "unit": "kwh",
+      "offset": 15,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 15",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_16",
+      "unit": "kwh",
+      "offset": 16,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 16",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_17",
+      "unit": "kwh",
+      "offset": 17,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 17",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_18",
+      "unit": "kwh",
+      "offset": 18,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 18",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_19",
+      "unit": "kwh",
+      "offset": 19,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 19",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_20",
+      "unit": "kwh",
+      "offset": 20,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 20",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_21",
+      "unit": "kwh",
+      "offset": 21,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 21",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_22",
+      "unit": "kwh",
+      "offset": 22,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 22",
+      "type": "NUMBER"
+    },
+    {
+      "name": "prognose_accumulated_hour_23",
+      "unit": "kwh",
+      "offset": 23,
+      "count": 1,
+      "note": "accumulated prognose fur current date from hour 0 to hour 23",
+      "type": "NUMBER"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "prognose_hour_0",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_0"
+    },
+    {
+      "name": "prognose_hour_1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_1"
+    },
+    {
+      "name": "prognose_hour_2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_2"
+    },
+    {
+      "name": "prognose_hour_3",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_3"
+    },
+    {
+      "name": "prognose_hour_4",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_4"
+    },
+    {
+      "name": "prognose_hour_5",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_5"
+    },
+    {
+      "name": "prognose_hour_6",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_6"
+    },
+    {
+      "name": "prognose_hour_7",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_7"
+    },
+    {
+      "name": "prognose_hour_8",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_8"
+    },
+    {
+      "name": "prognose_hour_9",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_9"
+    },
+    {
+      "name": "prognose_hour_10",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_10"
+    },
+    {
+      "name": "prognose_hour_11",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_11"
+    },
+    {
+      "name": "prognose_hour_12",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_12"
+    },
+    {
+      "name": "prognose_hour_13",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_13"
+    },
+    {
+      "name": "prognose_hour_14",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_14"
+    },
+    {
+      "name": "prognose_hour_15",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_15"
+    },
+    {
+      "name": "prognose_hour_16",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_16"
+    },
+    {
+      "name": "prognose_hour_17",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_17"
+    },
+    {
+      "name": "prognose_hour_18",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_18"
+    },
+    {
+      "name": "prognose_hour_19",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_19"
+    },
+    {
+      "name": "prognose_hour_20",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_20"
+    },
+    {
+      "name": "prognose_hour_21",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_21"
+    },
+    {
+      "name": "prognose_hour_22",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_22"
+    },
+    {
+      "name": "prognose_hour_23",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_hour_23"
+    },
+    {
+      "name": "prognose_accumulated_hour_0",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_0"
+    },
+    {
+      "name": "prognose_accumulated_hour_1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_1"
+    },
+    {
+      "name": "prognose_accumulated_hour_2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_2"
+    },
+    {
+      "name": "prognose_accumulated_hour_3",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_3"
+    },
+    {
+      "name": "prognose_accumulated_hour_4",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_4"
+    },
+    {
+      "name": "prognose_accumulated_hour_5",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_5"
+    },
+    {
+      "name": "prognose_accumulated_hour_6",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_6"
+    },
+    {
+      "name": "prognose_accumulated_hour_7",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_7"
+    },
+    {
+      "name": "prognose_accumulated_hour_8",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_8"
+    },
+    {
+      "name": "prognose_accumulated_hour_9",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_9"
+    },
+    {
+      "name": "prognose_accumulated_hour_10",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_10"
+    },
+    {
+      "name": "prognose_accumulated_hour_11",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_11"
+    },
+    {
+      "name": "prognose_accumulated_hour_12",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_12"
+    },
+    {
+      "name": "prognose_accumulated_hour_13",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_13"
+    },
+    {
+      "name": "prognose_accumulated_hour_14",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_14"
+    },
+    {
+      "name": "prognose_accumulated_hour_15",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_15"
+    },
+    {
+      "name": "prognose_accumulated_hour_16",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_16"
+    },
+    {
+      "name": "prognose_accumulated_hour_17",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_17"
+    },
+    {
+      "name": "prognose_accumulated_hour_18",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_18"
+    },
+    {
+      "name": "prognose_accumulated_hour_19",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_19"
+    },
+    {
+      "name": "prognose_accumulated_hour_20",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_20"
+    },
+    {
+      "name": "prognose_accumulated_hour_21",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_21"
+    },
+    {
+      "name": "prognose_accumulated_hour_22",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_22"
+    },
+    {
+      "name": "prognose_accumulated_hour_23",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "prognose_accumulated_hour_23"
+    }
+  ]
+}

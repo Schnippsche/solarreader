@@ -1,0 +1,734 @@
+{
+  "description": "specs for easun_smg",
+  "devicefields": [
+    {
+      "name": "Fehler",
+      "offset": 100,
+      "count": 2,
+      "register": 3,
+      "note": "Fault code",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Warnungen",
+      "offset": 108,
+      "count": 2,
+      "register": 3,
+      "note": "Obtain warning code",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Seriennummer",
+      "offset": 186,
+      "count": 12,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "Regler_Mode",
+      "offset": 201,
+      "count": 1,
+      "register": 3,
+      "note": "Working Mode",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzspannung",
+      "unit": "V",
+      "offset": 202,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Effective mains voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzfrequenz",
+      "unit": "Hz",
+      "offset": 203,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "Mains Frequency",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzleistung",
+      "unit": "W",
+      "offset": 204,
+      "count": 1,
+      "register": 3,
+      "note": "Average mains power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsspannung",
+      "unit": "V",
+      "offset": 205,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Affective inverter voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsstrom",
+      "unit": "A",
+      "offset": 206,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Affective inverter current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsfrequenz",
+      "unit": "Hz",
+      "offset": 207,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "Inverter frequency",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsleistung",
+      "unit": "W",
+      "offset": 208,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Average inverter power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangslast",
+      "unit": "W",
+      "offset": 209,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Inverter charging power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Out_Spannung",
+      "unit": "V",
+      "offset": 210,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Output effective voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Out_Strom",
+      "unit": "A",
+      "offset": 211,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Output effective Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Out_Frequenz",
+      "unit": "Hz",
+      "offset": 212,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "note": "Output frequency",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Out_Leistung",
+      "unit": "W",
+      "offset": 213,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Output active power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Out_Leistung_Effektiv",
+      "unit": "VA",
+      "offset": 214,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Output apparent power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Batteriespannung",
+      "unit": "V",
+      "offset": 215,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Battery average voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Batterie_Strom",
+      "unit": "A",
+      "offset": 216,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Battery average Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Batterie_Leistung",
+      "unit": "W",
+      "offset": 217,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Battery average power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Solarspannung",
+      "unit": "V",
+      "offset": 219,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "PV average voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Solarstrom",
+      "unit": "A",
+      "offset": 220,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "PV average Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Leistung",
+      "unit": "W",
+      "offset": 223,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "PV average power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Ladeleistung",
+      "unit": "W",
+      "offset": 224,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "PV charging average power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Temperatur",
+      "unit": "C",
+      "offset": 227,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Inverter Temperature",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SOC",
+      "unit": "%",
+      "offset": 229,
+      "count": 1,
+      "register": 3,
+      "factor": 1,
+      "note": "Battery percentage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "BatteryAverageCurrent",
+      "unit": "A",
+      "offset": 232,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Positive number means charging, negative number means discharging",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "InverterChargingAverage",
+      "unit": "A",
+      "offset": 233,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "PVCargingAverage",
+      "unit": "A",
+      "offset": 234,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "Mode",
+      "offset": 300,
+      "count": 1,
+      "register": 3,
+      "note": "Output Mode",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "DeviceStatus",
+      "offset": 301,
+      "count": 1,
+      "register": 3,
+      "note": "Output priority",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Bat_Charge_priority",
+      "unit": "V",
+      "offset": 326,
+      "count": 1,
+      "register": 3,
+      "note": "Battery discharge recovery point in mains mode",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Modus",
+      "offset": 331,
+      "count": 1,
+      "register": 3,
+      "note": "Battery charging priority",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Charge_max",
+      "unit": "A",
+      "offset": 332,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Maximum charging current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Mains_max",
+      "unit": "A",
+      "offset": 333,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "note": "Maximum mains charging current",
+      "type": "U16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "EASUN SMG"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Fehler",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Fehler"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Warnungen",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Warnungen"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Seriennummer",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Seriennummer"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "ReglerMode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Regler_Mode"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsspannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsstrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsstrom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsfrequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangslast",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangslast"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Out_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Spannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Out_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Strom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Out_Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Frequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Out_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Leistung"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Strom"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Leistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "SOC",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SOC"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "OutputMode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Mode"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Priority",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DeviceStatus"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Bat_Charge_priority",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bat_Charge_priority"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Geraetestatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Modus"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Charge_max",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Charge_max"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Mains_max",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Mains_max"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "Fehler",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Fehler"
+    },
+    {
+      "name": "Warnungen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Warnungen"
+    },
+    {
+      "name": "Seriennummer",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Seriennummer"
+    },
+    {
+      "name": "Regler_Mode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Regler_Mode"
+    },
+    {
+      "name": "Netzspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "name": "Netzfrequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "name": "Netzleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzleistung"
+    },
+    {
+      "name": "AC_Ausgangsspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "name": "AC_Ausgangsstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsstrom"
+    },
+    {
+      "name": "AC_Ausgangsfrequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "name": "AC_Ausgangsleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsleistung"
+    },
+    {
+      "name": "AC_Ausgangslast",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangslast"
+    },
+    {
+      "name": "Out_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Spannung"
+    },
+    {
+      "name": "Out_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Strom"
+    },
+    {
+      "name": "Out_Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Frequenz"
+    },
+    {
+      "name": "Out_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Leistung"
+    },
+    {
+      "name": "Out_Leistung_Effektiv",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Out_Leistung_Effektiv"
+    },
+    {
+      "name": "Batteriespannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "name": "Batterie_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Strom"
+    },
+    {
+      "name": "Batterie_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Leistung"
+    },
+    {
+      "name": "Solarspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "name": "Solarstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "name": "PV_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung"
+    },
+    {
+      "name": "PV_Ladeleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "name": "SOC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SOC"
+    },
+    {
+      "name": "BatteryAverageCurrent",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BatteryAverageCurrent"
+    },
+    {
+      "name": "InverterChargingAverage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "InverterChargingAverage"
+    },
+    {
+      "name": "PVCargingAverage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PVCargingAverage"
+    },
+    {
+      "name": "Mode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Mode"
+    },
+    {
+      "name": "DeviceStatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DeviceStatus"
+    },
+    {
+      "name": "Bat_Charge_priority",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bat_Charge_priority"
+    },
+    {
+      "name": "Modus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Modus"
+    },
+    {
+      "name": "Charge_max",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Charge_max"
+    },
+    {
+      "name": "Mains_max",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Mains_max"
+    }
+  ]
+}

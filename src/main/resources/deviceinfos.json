@@ -1,0 +1,212 @@
+{
+  "deviceInfoVersion": "1.0",
+  "lastUpdate": "2022-06-13T10:18:10.662",
+  "deviceInfos": [
+    {
+      "uuid": "3edfbfd2-83f6-4821-880f-3976ed59ca16",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "HF2211"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "Growatt Wechselrichter",
+      "deviceClass": "Growatt"
+    },
+    {
+      "uuid": "404667c5-efaf-4494-982f-528a14361a9e",
+      "prompts": [
+        "SERIELL"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "247",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "GoodWe Serie ET,EH,BH,BT",
+      "deviceClass": "GoodweET"
+    },
+    {
+      "uuid": "6745a4cb-723f-4a86-8c5b-4a6e9a2f41dd",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "247",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "GoodWe Serie ES,EM,BS,SBP,XS",
+      "deviceClass": "GoodweWR"
+    },
+    {
+      "uuid": "24a54b61-b9c2-4ea8-9f98-69e04927c0db",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "HF2211"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "Easun SMG II",
+      "deviceClass": "EasunSmg"
+    },
+    {
+      "uuid": "751e0405-5e2e-4d88-b5c6-77b0c9a1cff2",
+      "prompts": [
+        "SERIELL"
+      ],
+      "defaults": {
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "Phocos PH1800",
+      "deviceClass": "Phocos"
+    },
+    {
+      "uuid": "2a1f853e-6561-49e4-b5c9-7e053948e31e",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "HF2211"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "Schueco SG",
+      "deviceClass": "Schueco"
+    },
+    {
+      "uuid": "f0afd244-2563-4d0e-8b92-5dbd281d75dd",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "SDM230 Energy Meter",
+      "deviceClass": "Sdm230"
+    },
+    {
+      "uuid": "4dcb95a4-3c49-43d1-b317-04461eaf9994",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "HF2211"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "19200",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "SDM630 Energy Meter",
+      "deviceClass": "Sdm630"
+    },
+    {
+      "uuid": "64c0a88a-361a-47c4-8344-1759a7ad2fae",
+      "prompts": [
+        "ADDRESS",
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "DEVICE_PORT": "502"
+      },
+      "deviceName": "Solaredge 3 Phase",
+      "deviceClass": "Solaredge"
+    },
+    {
+      "uuid": "1797c970-0a9f-4134-9d86-5337720a01f4",
+      "prompts": [
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_PORT": "1883"
+      },
+      "deviceName": "Sonoff POW R2 Sonoff TH16, TH10, GOSUND SP1, SP111, SP211",
+      "deviceClass": "SonOff"
+    },
+    {
+      "uuid": "9d2de25c-161c-4e5d-bd28-1622007a4bb5",
+      "prompts": [
+        "ADDRESS",
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "DEVICE_PORT": "502"
+      },
+      "deviceName": "Huawei Wechselrichter mit sDongle [ -M0, -M1, -M2 Modelle]",
+      "deviceClass": "Huawei_M012"
+    }
+  ]
+}

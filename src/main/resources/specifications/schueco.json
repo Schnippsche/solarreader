@@ -1,0 +1,216 @@
+{
+  "description": "specs for schueco",
+  "devicefields": [
+    {
+      "name": "status",
+      "unit": "",
+      "offset": 5,
+      "count": 3,
+      "type": "U8"
+    },
+    {
+      "name": "solarspannung",
+      "unit": "A",
+      "offset": 9,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "solarstrom",
+      "unit": "V",
+      "offset": 15,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "solarleistung",
+      "unit": "W",
+      "offset": 21,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "netzspannung",
+      "unit": "A",
+      "offset": 27,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "netzstrom",
+      "unit": "V",
+      "offset": 33,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "wattleistung",
+      "unit": "W",
+      "offset": 39,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "geraetetemperatur",
+      "unit": "C",
+      "offset": 45,
+      "count": 3,
+      "factor": 1,
+      "type": "U8"
+    },
+    {
+      "name": "tagesenergie",
+      "unit": "W",
+      "offset": 49,
+      "count": 5,
+      "factor": 1,
+      "type": "U8"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "-"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Schueco"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "objekt"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "netzspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "netzstrom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "wattleistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarleistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Device_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "status"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "geraetetemperatur"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "tagesenergie"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "status"
+    },
+    {
+      "name": "solarspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarspannung"
+    },
+    {
+      "name": "solarstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarstrom"
+    },
+    {
+      "name": "solarleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarleistung"
+    },
+    {
+      "name": "netzspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "netzspannung"
+    },
+    {
+      "name": "netzstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "netzstrom"
+    },
+    {
+      "name": "wattleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "wattleistung"
+    },
+    {
+      "name": "geraetetemperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "geraetetemperatur"
+    },
+    {
+      "name": "tagesenergie",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "tagesenergie"
+    }
+  ]
+}

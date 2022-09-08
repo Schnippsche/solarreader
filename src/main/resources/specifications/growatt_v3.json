@@ -1,0 +1,1815 @@
+{
+  "description": "specs for growatt_v3",
+  "devicefields": [
+    {
+      "name": "MPPT",
+      "unit": "",
+      "offset": 44,
+      "count": 1,
+      "register": 3,
+      "note": "MPPT / Phase",
+      "type": "BINARY"
+    },
+    {
+      "name": "Status",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 4,
+      "note": "Inverter run state",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Leistung",
+      "unit": "W",
+      "offset": 1,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Input power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Spannung1",
+      "unit": "V",
+      "offset": 3,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "PV1 voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Strom1",
+      "unit": "A",
+      "offset": 4,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "PV1 input current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Leistung1",
+      "unit": "W",
+      "offset": 5,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "PV1 input watt",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Spannung2",
+      "unit": "V",
+      "offset": 7,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "PV2 voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Strom2",
+      "unit": "A",
+      "offset": 8,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "PV2 input current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Leistung2",
+      "unit": "W",
+      "offset": 9,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "PV2 input watt",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung",
+      "unit": "W",
+      "offset": 35,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Output power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Frequenz",
+      "unit": "Hz",
+      "offset": 37,
+      "count": 1,
+      "register": 4,
+      "factor": 0.01,
+      "note": "Grid frequency",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "unit": "V",
+      "offset": 38,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three/single phase grid voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_R",
+      "unit": "A",
+      "offset": 39,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three/single phase grid output current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung_R",
+      "unit": "VA",
+      "offset": 40,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three/single phase grid output watt",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "unit": "V",
+      "offset": 42,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three phase grid voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_S",
+      "unit": "A",
+      "offset": 43,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three phase grid output current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung_S",
+      "unit": "VA",
+      "offset": 44,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three phase grid output power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "unit": "V",
+      "offset": 46,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three phase grid voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_T",
+      "unit": "A",
+      "offset": 47,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three phase grid output current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Leistung_T",
+      "unit": "VA",
+      "offset": 48,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Three phase grid output power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "WattstundenGesamtHeute",
+      "unit": "kWH",
+      "offset": 53,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Today generate energy",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "WattstundenGesamt",
+      "unit": "kWH",
+      "offset": 55,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Total generate energy",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV1_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 59,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV1Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV1_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 61,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV1Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV2_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 63,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV2Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV2_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 65,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV2Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV3_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 67,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV3Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV3_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 69,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV3Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV4_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 71,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV4Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV4_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 73,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV4Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV5_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 75,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV5Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV5_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 77,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV5Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV6_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 79,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV6Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV6_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 81,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV6Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV7_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 83,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV7Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV7_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 85,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV7Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV8_Leistung_Heute",
+      "unit": "kWH",
+      "offset": 87,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV8Energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV8_Leistung_Gesamt",
+      "unit": "kWH",
+      "offset": 89,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "PV8Energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Temperatur",
+      "unit": "C",
+      "offset": 93,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Inverter temperature",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "DeratingMode",
+      "unit": "",
+      "offset": 104,
+      "count": 1,
+      "register": 4,
+      "note": "DeratingMode",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "FehlerCode",
+      "unit": "",
+      "offset": 105,
+      "count": 1,
+      "register": 4,
+      "note": "Inverter fault code",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Warnungen",
+      "unit": "",
+      "offset": 110,
+      "count": 2,
+      "register": 4,
+      "note": "Warning bit",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Ladeleistung",
+      "unit": "",
+      "offset": 116,
+      "count": 2,
+      "register": 4,
+      "note": "AC charge Power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Priority",
+      "offset": 118,
+      "count": 1,
+      "register": 4,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "BatteryType",
+      "offset": 119,
+      "count": 1,
+      "register": 4,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SystemWorkMode",
+      "unit": "",
+      "offset": 1000,
+      "count": 1,
+      "register": 4,
+      "note": "System work mode",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "EntladeLeistung",
+      "unit": "W",
+      "offset": 1009,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Discharge power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "LadeLeistung",
+      "unit": "W",
+      "offset": 1011,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Charge power",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Batteriespannung",
+      "unit": "V",
+      "offset": 1013,
+      "count": 1,
+      "register": 4,
+      "factor": 0.1,
+      "note": "Battery voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SOC",
+      "unit": "%",
+      "offset": 1014,
+      "count": 1,
+      "register": 4,
+      "note": "State of charge Capacity",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Gesamtverbrauch",
+      "unit": "W",
+      "offset": 1021,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "AC power to user total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Gesamteinspeisung",
+      "unit": "W",
+      "offset": 1029,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "AC power to user total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "LoadLeistungGesamt",
+      "unit": "W",
+      "offset": 1037,
+      "count": 2,
+      "register": 4,
+      "factor": 0.1,
+      "note": "INV power to local load total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Energieerzeugung_Heute",
+      "unit": "kWH",
+      "offset": 1044,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Energy to user today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "EnergieerzeugungGesamt",
+      "unit": "kWH",
+      "offset": 1046,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Energy to user total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Energieeinspeisung_Heute",
+      "unit": "kWH",
+      "offset": 1048,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Energy to grid today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "EnergieeinspeisungGesamt",
+      "unit": "kWH",
+      "offset": 1050,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Energy to grid total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "EntladenHeute",
+      "unit": "kWH",
+      "offset": 1052,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Discharge energy1 today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "GeladenHeute",
+      "unit": "kWH",
+      "offset": 1056,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Charge1 energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Local_load_energy_today",
+      "unit": "kWH",
+      "offset": 1060,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Local load energy today",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Local_load_energy_total",
+      "unit": "kWH",
+      "offset": 1062,
+      "count": 2,
+      "register": 4,
+      "factor": 100,
+      "note": "Local load energy total",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "BMS_Status",
+      "unit": "",
+      "offset": 1083,
+      "count": 1,
+      "register": 4,
+      "note": "Status from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "BMS_ErrorCode",
+      "unit": "",
+      "offset": 1085,
+      "count": 1,
+      "register": 4,
+      "note": "Errorinfomation from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "BMS_SOC",
+      "unit": "",
+      "offset": 1086,
+      "count": 1,
+      "register": 4,
+      "note": "SOC from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "BMS_SOH",
+      "unit": "",
+      "offset": 1096,
+      "count": 1,
+      "register": 4,
+      "note": "SOH from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung1",
+      "unit": "V",
+      "offset": 1108,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell1_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung2",
+      "unit": "V",
+      "offset": 1109,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell2_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung3",
+      "unit": "V",
+      "offset": 1110,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell3_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung4",
+      "unit": "V",
+      "offset": 1111,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell4_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung5",
+      "unit": "V",
+      "offset": 1112,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell5_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung6",
+      "unit": "V",
+      "offset": 1113,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell6_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung7",
+      "unit": "V",
+      "offset": 1114,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell7_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung8",
+      "unit": "V",
+      "offset": 1115,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell8_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung9",
+      "unit": "V",
+      "offset": 1116,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell9_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung10",
+      "unit": "V",
+      "offset": 1117,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell10_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung11",
+      "unit": "V",
+      "offset": 1118,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell11_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung12",
+      "unit": "V",
+      "offset": 1119,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell12_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung13",
+      "unit": "V",
+      "offset": 1120,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell13_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung14",
+      "unit": "V",
+      "offset": 1121,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell14_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung15",
+      "unit": "V",
+      "offset": 1122,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell15_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Zellenspannung16",
+      "unit": "V",
+      "offset": 1123,
+      "count": 1,
+      "register": 4,
+      "factor": 0.001,
+      "note": "Cell16_Voltage from BMS",
+      "type": "U16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "firmware"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Growatt"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "V3"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "V3"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Anz.MPPT",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MPPT_UBYTE0"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Anz.Phasen",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MPPT_UBYTE1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "String1_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "String2_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "String1_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "String2_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "String1_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "String2_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Frequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "FehlerCode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "FehlerCode"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Warnungen",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Warnungen"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Status"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "AnzahlStrings",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MPPT_UBYTE0"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "AnzahlPhasen",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MPPT_UBYTE1"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "EntladenHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EntladenHeute"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "GeladenHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GeladenHeute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV1_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV1_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV2_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV2_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV3_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV3_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV4_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV4_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV5_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV5_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV5_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV5_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV6_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV6_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV6_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV6_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV7_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV7_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV7_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV7_Leistung_Gesamt"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV8_Leistung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV8_Leistung_Heute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV8_Leistung_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV8_Leistung_Gesamt"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Ladeleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ladeleistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "SystemWorkMode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SystemWorkMode"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "EntladeLeistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EntladeLeistung"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "LadeLeistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "LadeLeistung"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Batteriespannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "SOC",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SOC"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Gesamtverbrauch",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gesamtverbrauch"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Gesamteinspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gesamteinspeisung"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "LoadLeistungGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "LoadLeistungGesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Energieerzeugung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Energieerzeugung_Heute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "EnergieerzeugungGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EnergieerzeugungGesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "EnergieeinspeisungGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EnergieeinspeisungGesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Energieeinspeisung_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Energieeinspeisung_Heute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "GeladenHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GeladenHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Local_load_energy_today",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Local_load_energy_today"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Local_load_energy_total",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Local_load_energy_total"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "BMS_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_Status"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "BMS_ErrorCode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_ErrorCode"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "BMS_SOC",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_SOC"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "BMS_SOH",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_SOH"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung1"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung2"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung3",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung3"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung4",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung4"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung5",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung5"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung6",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung6"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung7",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung7"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung8",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung8"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung9",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung9"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung10",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung10"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung11",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung11"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung12",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung12"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung13",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung13"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung14",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung14"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung15",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung15"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Zellenspannung16",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung16"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "MPPT",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT"
+    },
+    {
+      "name": "Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Status"
+    },
+    {
+      "name": "PV_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung"
+    },
+    {
+      "name": "PV_Spannung1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung1"
+    },
+    {
+      "name": "PV_Strom1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom1"
+    },
+    {
+      "name": "PV_Leistung1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung1"
+    },
+    {
+      "name": "PV_Spannung2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Spannung2"
+    },
+    {
+      "name": "PV_Strom2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Strom2"
+    },
+    {
+      "name": "PV_Leistung2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Leistung2"
+    },
+    {
+      "name": "AC_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "name": "AC_Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Frequenz"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "name": "AC_Strom_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "name": "AC_Leistung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_R"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "name": "AC_Strom_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "name": "AC_Leistung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_S"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "name": "AC_Strom_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "name": "AC_Leistung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_T"
+    },
+    {
+      "name": "WattstundenGesamtHeute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "name": "WattstundenGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    },
+    {
+      "name": "PV1_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Leistung_Heute"
+    },
+    {
+      "name": "PV1_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Leistung_Gesamt"
+    },
+    {
+      "name": "PV2_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Leistung_Heute"
+    },
+    {
+      "name": "PV2_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Leistung_Gesamt"
+    },
+    {
+      "name": "PV3_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Leistung_Heute"
+    },
+    {
+      "name": "PV3_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Leistung_Gesamt"
+    },
+    {
+      "name": "PV4_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Leistung_Heute"
+    },
+    {
+      "name": "PV4_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Leistung_Gesamt"
+    },
+    {
+      "name": "PV5_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV5_Leistung_Heute"
+    },
+    {
+      "name": "PV5_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV5_Leistung_Gesamt"
+    },
+    {
+      "name": "PV6_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV6_Leistung_Heute"
+    },
+    {
+      "name": "PV6_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV6_Leistung_Gesamt"
+    },
+    {
+      "name": "PV7_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV7_Leistung_Heute"
+    },
+    {
+      "name": "PV7_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV7_Leistung_Gesamt"
+    },
+    {
+      "name": "PV8_Leistung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV8_Leistung_Heute"
+    },
+    {
+      "name": "PV8_Leistung_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV8_Leistung_Gesamt"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "name": "DeratingMode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DeratingMode"
+    },
+    {
+      "name": "FehlerCode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "FehlerCode"
+    },
+    {
+      "name": "Warnungen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Warnungen"
+    },
+    {
+      "name": "Ladeleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ladeleistung"
+    },
+    {
+      "name": "Priority",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Priority"
+    },
+    {
+      "name": "BatteryType",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BatteryType"
+    },
+    {
+      "name": "SystemWorkMode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SystemWorkMode"
+    },
+    {
+      "name": "EntladeLeistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EntladeLeistung"
+    },
+    {
+      "name": "LadeLeistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "LadeLeistung"
+    },
+    {
+      "name": "Batteriespannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "name": "SOC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SOC"
+    },
+    {
+      "name": "Gesamtverbrauch",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gesamtverbrauch"
+    },
+    {
+      "name": "Gesamteinspeisung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gesamteinspeisung"
+    },
+    {
+      "name": "LoadLeistungGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "LoadLeistungGesamt"
+    },
+    {
+      "name": "Energieerzeugung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Energieerzeugung_Heute"
+    },
+    {
+      "name": "EnergieerzeugungGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EnergieerzeugungGesamt"
+    },
+    {
+      "name": "Energieeinspeisung_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Energieeinspeisung_Heute"
+    },
+    {
+      "name": "EnergieeinspeisungGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EnergieeinspeisungGesamt"
+    },
+    {
+      "name": "EntladenHeute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EntladenHeute"
+    },
+    {
+      "name": "GeladenHeute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "GeladenHeute"
+    },
+    {
+      "name": "Local_load_energy_today",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Local_load_energy_today"
+    },
+    {
+      "name": "Local_load_energy_total",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Local_load_energy_total"
+    },
+    {
+      "name": "BMS_Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_Status"
+    },
+    {
+      "name": "BMS_ErrorCode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_ErrorCode"
+    },
+    {
+      "name": "BMS_SOC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_SOC"
+    },
+    {
+      "name": "BMS_SOH",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BMS_SOH"
+    },
+    {
+      "name": "Zellenspannung1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung1"
+    },
+    {
+      "name": "Zellenspannung2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung2"
+    },
+    {
+      "name": "Zellenspannung3",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung3"
+    },
+    {
+      "name": "Zellenspannung4",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung4"
+    },
+    {
+      "name": "Zellenspannung5",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung5"
+    },
+    {
+      "name": "Zellenspannung6",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung6"
+    },
+    {
+      "name": "Zellenspannung7",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung7"
+    },
+    {
+      "name": "Zellenspannung8",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung8"
+    },
+    {
+      "name": "Zellenspannung9",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung9"
+    },
+    {
+      "name": "Zellenspannung10",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung10"
+    },
+    {
+      "name": "Zellenspannung11",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung11"
+    },
+    {
+      "name": "Zellenspannung12",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung12"
+    },
+    {
+      "name": "Zellenspannung13",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung13"
+    },
+    {
+      "name": "Zellenspannung14",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung14"
+    },
+    {
+      "name": "Zellenspannung15",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung15"
+    },
+    {
+      "name": "Zellenspannung16",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Zellenspannung16"
+    }
+  ]
+}

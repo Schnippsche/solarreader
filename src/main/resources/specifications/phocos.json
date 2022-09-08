@@ -1,0 +1,664 @@
+{
+  "description": "specs for phocos",
+  "devicefields": [
+    {
+      "name": "Maschinentype",
+      "offset": 10001,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Laderegler_aktiv",
+      "offset": 10101,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Max_Ampere",
+      "offset": 10108,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Batterie_Ah",
+      "offset": 10111,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Regler_Mode",
+      "offset": 15201,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_Status",
+      "offset": 15202,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Regler_Status",
+      "offset": 15203,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Solarspannung",
+      "offset": 15205,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Batteriespannung",
+      "offset": 15206,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Ladereglerstrom",
+      "offset": 15207,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Ladereglerleistung",
+      "offset": 15208,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Temperatur",
+      "offset": 15209,
+      "count": 1,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "Bat_Relay",
+      "offset": 15211,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Relay",
+      "offset": 15212,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Fehler",
+      "offset": 15213,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Warnungen",
+      "offset": 15214,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Wh_Gesamt_high",
+      "offset": 15217,
+      "count": 1,
+      "register": 3,
+      "factor": 1000,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Wh_Gesamt",
+      "offset": 15218,
+      "count": 1,
+      "register": 3,
+      "factor": 100,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "WR_Status",
+      "offset": 25201,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Bat_Spannung",
+      "offset": 25205,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsspannung",
+      "offset": 25206,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzspannung",
+      "offset": 25207,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsstrom",
+      "offset": 25210,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzstrom",
+      "offset": 25211,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "STRING"
+    },
+    {
+      "name": "Last_Strom",
+      "offset": 25212,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsleistung",
+      "offset": 25213,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzleistung",
+      "offset": 25214,
+      "count": 1,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "AC_Ausgangslast",
+      "offset": 25215,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Last_Prozent",
+      "offset": 25216,
+      "count": 1,
+      "register": 3,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Ausgangsfrequenz",
+      "offset": 25225,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzfrequenz",
+      "offset": 25226,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "Batterieleistung",
+      "offset": 25273,
+      "count": 1,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "Batterie_Strom",
+      "offset": 25274,
+      "count": 1,
+      "register": 3,
+      "type": "STRING"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Phocos"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Phocos"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Maschinentype",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Maschinentype"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Laderegler_aktiv",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Laderegler_aktiv"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Max_Ampere",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Max_Ampere"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Batterie_Ah",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Ah"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Regler_Mode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Regler_Mode"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "MPPT_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_Status"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Regler_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Regler_Status"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Solarspannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Batteriespannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Ladereglerstrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ladereglerstrom"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Ladereglerleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ladereglerleistung"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Temperatur",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Bat_Relay",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bat_Relay"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Relay",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Relay"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Fehler",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Fehler"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Warnungen",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Warnungen"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Wh_Gesamt_high",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Gesamt_high"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Gesamt"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "WR_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WR_Status"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Bat_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bat_Spannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsspannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Netzspannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsstrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsstrom"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Netzstrom",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzstrom"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Last_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Last_Strom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsleistung"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Netzleistung",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangslast",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangslast"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Last_Prozent",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Last_Prozent"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangsfrequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Netzfrequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Batterieleistung",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterieleistung"
+    },
+    {
+      "tablename": "XXXXX",
+      "columnname": "Batterie_Strom",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Strom"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "Maschinentype",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Maschinentype"
+    },
+    {
+      "name": "Laderegler_aktiv",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Laderegler_aktiv"
+    },
+    {
+      "name": "Max_Ampere",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Max_Ampere"
+    },
+    {
+      "name": "Batterie_Ah",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Ah"
+    },
+    {
+      "name": "Regler_Mode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Regler_Mode"
+    },
+    {
+      "name": "MPPT_Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT_Status"
+    },
+    {
+      "name": "Regler_Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Regler_Status"
+    },
+    {
+      "name": "Solarspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "name": "Batteriespannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "name": "Ladereglerstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ladereglerstrom"
+    },
+    {
+      "name": "Ladereglerleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ladereglerleistung"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "name": "Bat_Relay",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bat_Relay"
+    },
+    {
+      "name": "PV_Relay",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Relay"
+    },
+    {
+      "name": "Fehler",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Fehler"
+    },
+    {
+      "name": "Warnungen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Warnungen"
+    },
+    {
+      "name": "Wh_Gesamt_high",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Gesamt_high"
+    },
+    {
+      "name": "Wh_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Gesamt"
+    },
+    {
+      "name": "WR_Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WR_Status"
+    },
+    {
+      "name": "Bat_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bat_Spannung"
+    },
+    {
+      "name": "AC_Ausgangsspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "name": "Netzspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "name": "AC_Ausgangsstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsstrom"
+    },
+    {
+      "name": "Netzstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzstrom"
+    },
+    {
+      "name": "Last_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Last_Strom"
+    },
+    {
+      "name": "AC_Ausgangsleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsleistung"
+    },
+    {
+      "name": "Netzleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzleistung"
+    },
+    {
+      "name": "AC_Ausgangslast",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangslast"
+    },
+    {
+      "name": "Last_Prozent",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Last_Prozent"
+    },
+    {
+      "name": "AC_Ausgangsfrequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "name": "Netzfrequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "name": "Batterieleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterieleistung"
+    },
+    {
+      "name": "Batterie_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Strom"
+    }
+  ]
+}

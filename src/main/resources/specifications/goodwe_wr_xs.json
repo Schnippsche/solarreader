@@ -1,0 +1,702 @@
+{
+  "description": "specs for goodwe_wr_xs",
+  "devicefields": [
+    {
+      "name": "Seriennummer",
+      "offset": 512,
+      "count": 8,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "Modell",
+      "offset": 528,
+      "count": 5,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "WattstundenGesamt",
+      "offset": 546,
+      "count": 2,
+      "register": 3,
+      "factor": 100,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Gesamtertragszeit",
+      "offset": 548,
+      "count": 2,
+      "register": 3,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT1_Spannung",
+      "offset": 550,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT2_Spannung",
+      "offset": 551,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT1_Strom",
+      "offset": 552,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT2_Strom",
+      "offset": 553,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "offset": 554,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "offset": 555,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "offset": 556,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_R",
+      "offset": 557,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_S",
+      "offset": 558,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "AC_Strom_T",
+      "offset": 559,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzfrequenz_R",
+      "offset": 560,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzfrequenz_S",
+      "offset": 561,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Netzfrequenz_T",
+      "offset": 563,
+      "count": 1,
+      "register": 3,
+      "factor": 0.01,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "WattstundenGesamtHeute",
+      "offset": 566,
+      "count": 1,
+      "register": 3,
+      "factor": 100,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV1_Spannung",
+      "offset": 768,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV2_Spannung",
+      "offset": 769,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV1_Strom",
+      "offset": 770,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV2_Strom",
+      "offset": 771,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "WR_Mode",
+      "offset": 782,
+      "count": 1,
+      "register": 3,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "WR_Temperatur",
+      "offset": 783,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Error_Status",
+      "offset": 784,
+      "count": 2,
+      "register": 3,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Einspeisung_total",
+      "offset": 786,
+      "count": 2,
+      "register": 3,
+      "factor": 100,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "Firmware",
+      "offset": 790,
+      "count": 3,
+      "register": 3,
+      "type": "STRING"
+    },
+    {
+      "name": "EinspeisungHeute",
+      "offset": 800,
+      "count": 1,
+      "register": 3,
+      "factor": 100,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV_Mode",
+      "offset": 832,
+      "count": 1,
+      "register": 3,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "Einspeisung",
+      "offset": 850,
+      "count": 2,
+      "register": 3,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "PV3_Spannung",
+      "offset": 855,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV4_Spannung",
+      "offset": 856,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV3_Strom",
+      "offset": 857,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "PV4_Strom",
+      "offset": 858,
+      "count": 1,
+      "register": 3,
+      "factor": 0.1,
+      "type": "U16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Service",
+      "columnname": "Seriennummer",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Seriennummer"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Goodwe"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Gesamtertragszeit",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gesamtertragszeit"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT1_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT1_Spannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT2_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT2_Spannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT1_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT1_Strom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT2_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT2_Strom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz_T"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_GesamtHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV1_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Spannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV2_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Spannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV1_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Strom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV2_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Strom"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "WR_Mode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WR_Mode"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WR_Temperatur"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Error_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Error_Status"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_EinspeisungGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung_total"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Firmware"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_NetzeinspeisungHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EinspeisungHeute"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Mode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Mode"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Einspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV3_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Spannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV4_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Spannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV3_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Strom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV4_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Strom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT1_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MPPT1_Spannung * MPPT1_Strom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "MPPT2_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MPPT2_Spannung * MPPT2_Strom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "PV_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "(MPPT1_Spannung * MPPT1_Strom) + (MPPT2_Spannung * MPPT2_Strom)"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "Seriennummer",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Seriennummer"
+    },
+    {
+      "name": "Modell",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Modell"
+    },
+    {
+      "name": "WattstundenGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    },
+    {
+      "name": "Gesamtertragszeit",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gesamtertragszeit"
+    },
+    {
+      "name": "MPPT1_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT1_Spannung"
+    },
+    {
+      "name": "MPPT2_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT2_Spannung"
+    },
+    {
+      "name": "MPPT1_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT1_Strom"
+    },
+    {
+      "name": "MPPT2_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT2_Strom"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "name": "AC_Strom_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "name": "AC_Strom_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "name": "AC_Strom_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    },
+    {
+      "name": "Netzfrequenz_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz_R"
+    },
+    {
+      "name": "Netzfrequenz_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz_S"
+    },
+    {
+      "name": "Netzfrequenz_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz_T"
+    },
+    {
+      "name": "WattstundenGesamtHeute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "name": "PV1_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Spannung"
+    },
+    {
+      "name": "PV2_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Spannung"
+    },
+    {
+      "name": "PV1_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV1_Strom"
+    },
+    {
+      "name": "PV2_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV2_Strom"
+    },
+    {
+      "name": "WR_Mode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WR_Mode"
+    },
+    {
+      "name": "WR_Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WR_Temperatur"
+    },
+    {
+      "name": "Error_Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Error_Status"
+    },
+    {
+      "name": "Einspeisung_total",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung_total"
+    },
+    {
+      "name": "Firmware",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Firmware"
+    },
+    {
+      "name": "EinspeisungHeute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "EinspeisungHeute"
+    },
+    {
+      "name": "PV_Mode",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Mode"
+    },
+    {
+      "name": "Einspeisung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung"
+    },
+    {
+      "name": "PV3_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Spannung"
+    },
+    {
+      "name": "PV4_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Spannung"
+    },
+    {
+      "name": "PV3_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV3_Strom"
+    },
+    {
+      "name": "PV4_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV4_Strom"
+    }
+  ]
+}

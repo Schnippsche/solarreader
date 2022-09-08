@@ -1,0 +1,905 @@
+{
+  "description": "specs for sunspec",
+  "devicefields": [
+    {
+      "name": "C_SunSpec_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 2,
+      "register": 3,
+      "note": "Value \u003d \u0027SunS\u0027 (0x53756e53). Uniquely identifies this as a SunSpec MODBUS Map",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "C_SunSpec_DID",
+      "unit": "",
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "note": "Value \u003d 0x0001. Uniquely identifies this as a SunSpec Common Model Block",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "C_SunSpec_Length",
+      "unit": "",
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "note": "65 \u003d Length of block in 16-bit registers",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "C_Manufacturer",
+      "unit": "",
+      "offset": 4,
+      "count": 16,
+      "register": 3,
+      "note": "Value Registered with SunSpec \u003d \u0027SolarEdge \u0027",
+      "type": "STRING"
+    },
+    {
+      "name": "C_Model",
+      "unit": "",
+      "offset": 20,
+      "count": 16,
+      "register": 3,
+      "note": "SolarEdge Specific Value",
+      "type": "STRING"
+    },
+    {
+      "name": "C_Version",
+      "unit": "",
+      "offset": 44,
+      "count": 8,
+      "register": 3,
+      "note": "SolarEdge Specific Value",
+      "type": "STRING"
+    },
+    {
+      "name": "C_SerialNumber",
+      "unit": "",
+      "offset": 52,
+      "count": 16,
+      "register": 3,
+      "note": "SolarEdge Unique Value",
+      "type": "STRING"
+    },
+    {
+      "name": "C_DeviceAddress",
+      "unit": "",
+      "offset": 68,
+      "count": 1,
+      "register": 3,
+      "note": "MODBUS Unit ID",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "C_SunSpec_DID",
+      "unit": "",
+      "offset": 69,
+      "count": 1,
+      "register": 3,
+      "note": "101 \u003d single phase 102 \u003d split phase 103 \u003d three phase",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "C_SunSpec_Length",
+      "unit": "Registers",
+      "offset": 70,
+      "count": 1,
+      "register": 3,
+      "note": "50 \u003d Length of model block",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Current",
+      "unit": "A",
+      "offset": 71,
+      "count": 1,
+      "register": 3,
+      "note": "AC Total Current value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_CurrentA",
+      "unit": "A",
+      "offset": 72,
+      "count": 1,
+      "register": 3,
+      "note": "AC Phase A Current value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_CurrentB",
+      "unit": "A",
+      "offset": 73,
+      "count": 1,
+      "register": 3,
+      "note": "AC Phase B Current value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_CurrentC",
+      "unit": "A",
+      "offset": 74,
+      "count": 1,
+      "register": 3,
+      "note": "AC Phase C Current value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Current_SF",
+      "unit": "",
+      "offset": 75,
+      "count": 1,
+      "register": 3,
+      "note": "AC Current scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VoltageAB",
+      "unit": "V",
+      "offset": 76,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage Phase AB value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VoltageBC",
+      "unit": "V",
+      "offset": 77,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage Phase BC value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VoltageCA",
+      "unit": "V",
+      "offset": 78,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage Phase CA value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VoltageAN",
+      "unit": "V",
+      "offset": 79,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage Phase A to N value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VoltageBN",
+      "unit": "V",
+      "offset": 80,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage Phase B to N value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VoltageCN",
+      "unit": "V",
+      "offset": 81,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage Phase C to N value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Voltage_SF",
+      "unit": "",
+      "offset": 82,
+      "count": 1,
+      "register": 3,
+      "note": "AC Voltage scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Power",
+      "unit": "W",
+      "offset": 83,
+      "count": 1,
+      "register": 3,
+      "note": "AC Power value",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Power_SF",
+      "unit": "",
+      "offset": 84,
+      "count": 1,
+      "register": 3,
+      "note": "AC Power scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Frequency",
+      "unit": "Hz",
+      "offset": 85,
+      "count": 1,
+      "register": 3,
+      "note": "AC Frequency value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Frequency_SF",
+      "unit": "",
+      "offset": 86,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VA",
+      "unit": "VA",
+      "offset": 87,
+      "count": 1,
+      "register": 3,
+      "note": "Apparent Power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VA_SF",
+      "unit": "",
+      "offset": 88,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VAR",
+      "unit": "VAR",
+      "offset": 89,
+      "count": 1,
+      "register": 3,
+      "note": "Reactive Power",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_VAR_SF",
+      "unit": "",
+      "offset": 90,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_PF",
+      "unit": "%",
+      "offset": 91,
+      "count": 1,
+      "register": 3,
+      "note": "Power Factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_PF_SF",
+      "unit": "",
+      "offset": 92,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Energy_WH",
+      "unit": "Wh",
+      "offset": 93,
+      "count": 2,
+      "register": 3,
+      "note": "AC Lifetime Energy production",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "I_AC_Energy_WH_SF",
+      "unit": "",
+      "offset": 95,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_DC_Current",
+      "unit": "A",
+      "offset": 96,
+      "count": 1,
+      "register": 3,
+      "note": "DC Current value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_DC_Current_SF",
+      "unit": "",
+      "offset": 97,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_DC_Voltage",
+      "unit": "V",
+      "offset": 98,
+      "count": 1,
+      "register": 3,
+      "note": "DC Voltage value",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_DC_Voltage_SF",
+      "unit": "",
+      "offset": 99,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_DC_Power",
+      "unit": "W",
+      "offset": 100,
+      "count": 1,
+      "register": 3,
+      "note": "DC Power value",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_DC_Power_SF",
+      "unit": "",
+      "offset": 101,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_Temp_Sink",
+      "unit": "C",
+      "offset": 103,
+      "count": 1,
+      "register": 3,
+      "note": "Heat Sink Temperature",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_Temp_SF",
+      "unit": "",
+      "offset": 106,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_Status",
+      "unit": "",
+      "offset": 107,
+      "count": 1,
+      "register": 3,
+      "note": "Operating State",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "I_Status_Vendor",
+      "unit": "",
+      "offset": 108,
+      "count": 1,
+      "register": 3,
+      "note": "Vendor-defined operating state and error codes. For error description, meaning and troubleshooting, refer to the SolarEdge Installation Guide.",
+      "type": "U16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_Manufacturer"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_Model"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Seriennummer",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SerialNumber"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_Version"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "WR_Typ",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SunSpec_DID"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_STROM_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Current_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Gesamtstrom",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_Current * I_AC_Current_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_CurrentA * I_AC_Current_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_CurrentB * I_AC_Current_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_CurrentC * I_AC_Current_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_R-S",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VoltageAB * I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_S-T",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VoltageBC * I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_T-R",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VoltageCA * I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VoltageAN * I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VoltageBN * I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VoltageCN * I_AC_Voltage_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Power_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_Power * I_AC_Power_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Frequenz_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Frequency_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_Frequency * I_AC_Frequency_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Scheinleistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VA_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VA * I_AC_VA_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_Power * I_AC_Power_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Blindleistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VAR_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_VAR * I_AC_VAR_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_WR_Leistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_PF_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung_Prozent",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_PF * I_AC_PF_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wh_Gesamt_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Energy_WH_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_AC_Energy_WH * I_AC_Energy_WH_SF"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Strom_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Current_SF"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_DC_Current * I_DC_Current_SF"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Spannung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Voltage_SF"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_DC_Voltage * I_DC_Voltage_SF"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Leistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Power_SF"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_DC_Power * I_DC_Power_SF"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Temp_SF"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "I_Temp_Sink * I_Temp_SF"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Status"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Status_Vendor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Status_Vendor"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "C_SunSpec_ID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SunSpec_ID"
+    },
+    {
+      "name": "C_SunSpec_DID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SunSpec_DID"
+    },
+    {
+      "name": "C_SunSpec_Length",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SunSpec_Length"
+    },
+    {
+      "name": "C_Manufacturer",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_Manufacturer"
+    },
+    {
+      "name": "C_Model",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_Model"
+    },
+    {
+      "name": "C_Version",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_Version"
+    },
+    {
+      "name": "C_SerialNumber",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SerialNumber"
+    },
+    {
+      "name": "C_DeviceAddress",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_DeviceAddress"
+    },
+    {
+      "name": "C_SunSpec_DID",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SunSpec_DID"
+    },
+    {
+      "name": "C_SunSpec_Length",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C_SunSpec_Length"
+    },
+    {
+      "name": "I_AC_Current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Current"
+    },
+    {
+      "name": "I_AC_CurrentA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_CurrentA"
+    },
+    {
+      "name": "I_AC_CurrentB",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_CurrentB"
+    },
+    {
+      "name": "I_AC_CurrentC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_CurrentC"
+    },
+    {
+      "name": "I_AC_Current_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Current_SF"
+    },
+    {
+      "name": "I_AC_VoltageAB",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VoltageAB"
+    },
+    {
+      "name": "I_AC_VoltageBC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VoltageBC"
+    },
+    {
+      "name": "I_AC_VoltageCA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VoltageCA"
+    },
+    {
+      "name": "I_AC_VoltageAN",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VoltageAN"
+    },
+    {
+      "name": "I_AC_VoltageBN",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VoltageBN"
+    },
+    {
+      "name": "I_AC_VoltageCN",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VoltageCN"
+    },
+    {
+      "name": "I_AC_Voltage_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Voltage_SF"
+    },
+    {
+      "name": "I_AC_Power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Power"
+    },
+    {
+      "name": "I_AC_Power_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Power_SF"
+    },
+    {
+      "name": "I_AC_Frequency",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Frequency"
+    },
+    {
+      "name": "I_AC_Frequency_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Frequency_SF"
+    },
+    {
+      "name": "I_AC_VA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VA"
+    },
+    {
+      "name": "I_AC_VA_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VA_SF"
+    },
+    {
+      "name": "I_AC_VAR",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VAR"
+    },
+    {
+      "name": "I_AC_VAR_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_VAR_SF"
+    },
+    {
+      "name": "I_AC_PF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_PF"
+    },
+    {
+      "name": "I_AC_PF_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_PF_SF"
+    },
+    {
+      "name": "I_AC_Energy_WH",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Energy_WH"
+    },
+    {
+      "name": "I_AC_Energy_WH_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_AC_Energy_WH_SF"
+    },
+    {
+      "name": "I_DC_Current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Current"
+    },
+    {
+      "name": "I_DC_Current_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Current_SF"
+    },
+    {
+      "name": "I_DC_Voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Voltage"
+    },
+    {
+      "name": "I_DC_Voltage_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Voltage_SF"
+    },
+    {
+      "name": "I_DC_Power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Power"
+    },
+    {
+      "name": "I_DC_Power_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_DC_Power_SF"
+    },
+    {
+      "name": "I_Temp_Sink",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Temp_Sink"
+    },
+    {
+      "name": "I_Temp_SF",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Temp_SF"
+    },
+    {
+      "name": "I_Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Status"
+    },
+    {
+      "name": "I_Status_Vendor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I_Status_Vendor"
+    }
+  ]
+}
