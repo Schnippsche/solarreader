@@ -83,7 +83,7 @@ To show the GUI type "locahost:8080" in your browser (or the ip of your computer
 ### Using the precompiled binaries
 
 Precompiled release packages are [available](https://github.com/Schnippsche/Solarreader/releases). Download
-the jar and optional the start script for your platform.
+the jar and optional the [start script](https://github.com/Schnippsche/solarreader/tree/main/src/scripts) for your platform 
 
 ### Building from source
 
