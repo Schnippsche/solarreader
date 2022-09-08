@@ -1,6 +1,6 @@
 #!/bin/sh
  JAVA=java
- JAVA_OPTS="-Dtinylog.writer.level=debug -Djava.io.tmpdir=./tmp -Dport=8080 -Dsolarreader.maxthreads=5"
+ JAVA_OPTS="-Dtinylog.writer.level=info -Djava.io.tmpdir=./tmp -Dport=8080 -Dsolarreader.maxthreads=5"
 if [ -e "./solarreader.pid" ]; then
   echo "Solarreader appears to be already running - solarreader.pid file exists. If Solarreader is not running, please delete the file manually."
 else
