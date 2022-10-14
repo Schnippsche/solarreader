@@ -30,13 +30,13 @@ You'll need:
 To install openjdk, type the following in your terminal:
 
 ```bash
-$> sudo apt install default-jdk
+sudo apt install default-jdk
 ```
 
 After installation, verifiy it with the following command:
 
 ```bash
-$> java -version
+java -version
 ```
 
 Note for Linux users: Serial port access is limited to certain users and groups in Linux. To enable user access, you
@@ -46,10 +46,10 @@ Don't worry if some of the commands fail. All of these groups may not exist on e
 must only be done once for each user):
 
 ```bash
-$> sudo usermod -a -G uucp pi
-$> sudo usermod -a -G dialout pi
-$> sudo usermod -a -G lock pi
-$> sudo usermod -a -G tty pi
+sudo usermod -a -G uucp pi
+sudo usermod -a -G dialout pi
+sudo usermod -a -G lock pi
+sudo usermod -a -G tty pi
 ```
 
 Replace the username parameter with your current username. (If you are not sure what your username is, type whoami and
@@ -59,10 +59,10 @@ Note for Synology users and RS485-USB adapters with FTDI chipset:
 Activate the build-in FTDI drivers with following commands:
 
 ```bash
-$> sudo insmod /lib/modules/usbserial.ko
-$> sudo insmod /lib/modules/ftdi_sio.ko
-$> sudo chmod 777 /lib/modules/usbserial.ko
-$> sudo chmod 777 /lib/modules/ftdi_sio.ko
+sudo insmod /lib/modules/usbserial.ko
+sudo insmod /lib/modules/ftdi_sio.ko
+sudo chmod 777 /lib/modules/usbserial.ko
+sudo chmod 777 /lib/modules/ftdi_sio.ko
 ```
 You have to do that after every reboot, so it is recommended to put it in a start script.
 

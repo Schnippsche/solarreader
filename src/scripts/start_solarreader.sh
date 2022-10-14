@@ -4,6 +4,9 @@
 if [ -e "./solarreader.pid" ]; then
   echo "Solarreader appears to be already running - solarreader.pid file exists. If Solarreader is not running, please delete the file manually."
 else
+  # create tmp dir
+  mkdir -p tmp
+  # starts jar
   nohup $JAVA $JAVA_OPTS -jar solarreader-1.0.jar 2>&1 &
   echo $! > ./solarreader.pid
 fi
