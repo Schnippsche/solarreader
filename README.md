@@ -106,5 +106,5 @@ the [ChangeLog](https://github.com/Schnippsche/Solarreader/blob/main/CHANGELOG.m
 You can build solarreader.jar with all tests with:
 
 ```bash
-$> mvn clean package
+mvn clean package
 ```
