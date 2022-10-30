@@ -14,6 +14,7 @@ public class DeviceInfo
   private final HashMap<ConfigDeviceField, String> defaults;
   private String deviceName;
   private String deviceClass;
+  private String deviceSpecification;
 
   public DeviceInfo(String deviceName, String deviceClass)
   {
@@ -22,6 +23,7 @@ public class DeviceInfo
     this.uuid = UUID.randomUUID().toString();
     this.deviceName = deviceName;
     this.deviceClass = deviceClass;
+    this.deviceSpecification = null;
   }
 
   public DeviceInfo()
@@ -75,6 +77,15 @@ public class DeviceInfo
   public void setDeviceClass(String deviceClass)
   {
     this.deviceClass = deviceClass;
+  }
+
+  public String getDeviceSpecification()
+  {
+    return deviceSpecification;
+  }
+  public void setDeviceSpecification(String deviceSpecification)
+  {
+    this.deviceSpecification = deviceSpecification;
   }
 
 }

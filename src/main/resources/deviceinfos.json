@@ -42,7 +42,8 @@
         "DATABITS": "8"
       },
       "deviceName": "GoodWe Serie ET,EH,BH,BT",
-      "deviceClass": "GoodweET"
+      "deviceClass": "GoodweET",
+      "deviceSpecification": "goodwe_et"
     },
     {
       "uuid": "6745a4cb-723f-4a86-8c5b-4a6e9a2f41dd",
@@ -85,7 +86,8 @@
         "DATABITS": "8"
       },
       "deviceName": "Easun SMG II",
-      "deviceClass": "EasunSmg"
+      "deviceClass": "EasunSmg",
+      "deviceSpecification": "easun_smg"
     },
     {
       "uuid": "751e0405-5e2e-4d88-b5c6-77b0c9a1cff2",
@@ -104,7 +106,8 @@
         "DATABITS": "8"
       },
       "deviceName": "Phocos PH1800",
-      "deviceClass": "Phocos"
+      "deviceClass": "SimpleModbus",
+      "deviceSpecification": "phocos"
     },
     {
       "uuid": "2a1f853e-6561-49e4-b5c9-7e053948e31e",
@@ -126,7 +129,8 @@
         "DATABITS": "8"
       },
       "deviceName": "Schueco SG",
-      "deviceClass": "Schueco"
+      "deviceClass": "Schueco",
+      "deviceSpecification": "schueco"
     },
     {
       "uuid": "f0afd244-2563-4d0e-8b92-5dbd281d75dd",
@@ -147,7 +151,8 @@
         "DATABITS": "8"
       },
       "deviceName": "SDM230 Energy Meter",
-      "deviceClass": "Sdm230"
+      "deviceClass": "SimpleModbus",
+      "deviceSpecification": "sdm230"
     },
     {
       "uuid": "4dcb95a4-3c49-43d1-b317-04461eaf9994",
@@ -169,7 +174,8 @@
         "DATABITS": "8"
       },
       "deviceName": "SDM630 Energy Meter",
-      "deviceClass": "Sdm630"
+      "deviceClass": "SimpleModbus",
+      "deviceSpecification": "sdm630"
     },
     {
       "uuid": "64c0a88a-361a-47c4-8344-1759a7ad2fae",
@@ -206,7 +212,48 @@
         "DEVICE_PORT": "502"
       },
       "deviceName": "Huawei Wechselrichter mit sDongle [ -M0, -M1, -M2 Modelle]",
-      "deviceClass": "Huawei_M012"
+      "deviceClass": "Huawei_M012",
+      "deviceSpecification": "huawei_m012"
+    },
+    {
+      "uuid": "ffcba860-7a94-4819-8a40-3b6edf401f6a",
+      "prompts": [
+        "SERIELL"
+      ],
+      "defaults": {
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "eHZ Einrichtung Stromzähler",
+      "deviceClass": "Ehz",
+      "deviceSpecification": "ehz1"
+    },
+    {
+      "uuid": "c13a6fe1-152c-48f7-8293-0cedb8da06bf",
+      "prompts": [
+        "SERIELL"
+      ],
+      "defaults": {
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "eHZ Zweirichtung Stromzähler",
+      "deviceClass": "Ehz",
+      "deviceSpecification": "ehz2"
     }
   ]
 }

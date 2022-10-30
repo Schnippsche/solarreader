@@ -1,0 +1,148 @@
+{
+  "description": "specs for eHZ two way Energiemeter eDL40",
+  "devicefields": [
+    {
+      "name": "OBIS180",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100010800.{24}(.{8})0177",
+      "note": "reg exp for OBIS 1.8.0"
+    },
+    {
+      "name": "OBIS181",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100010801.{18}(.{8})0177",
+      "note": "reg exp for OBIS 1.8.1"
+    },
+    {
+      "name": "OBIS182",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100010802.{18}(.{8})0177",
+      "note": "reg exp for OBIS 1.8.2"
+    },
+    {
+      "name": "OBIS280",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100020800.{24}(.{8})0177",
+      "note": "reg exp for OBIS 2.8.0"
+    },
+    {
+      "name": "OBIS281",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100020801.{18}(.{8})0177",
+      "note": "reg exp for OBIS 2.8.1"
+    },
+    {
+      "name": "OBIS282",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100020802.{18}(.{8})0177",
+      "note": "reg exp for OBIS 2.8.2"
+    },
+    {
+      "name": "OBIS1670",
+      "count": 4,
+      "offset": 2,
+      "factor": 1,
+      "type": "NUMBER",
+      "unit": "070100100700.{16}(.{8})0177",
+      "note": "reg exp for OBIS 16.7.0"
+    },
+    {
+      "name": "ZAEHLERNUMMER",
+      "count": 4,
+      "offset": 2,
+      "type": "NUMBER",
+      "unit": "070100000009ff.{20}(.{6})0177"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "eHZ stromzaehler"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "Zaehlernummer",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ZAEHLERNUMMER"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "BezugszaehlerGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS180"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "Bezugszaehler1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS181"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "Bezugszaehler2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS182"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "LieferzaehlerGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS280"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "Lieferzaehler1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS281"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "Lieferzaehler2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS282"
+    },
+    {
+      "tablename": "stromzaehler",
+      "columnname": "LeistungMomentan",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS1670"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Verbrauch",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "OBIS1670 - OBIS181"
+    }
+  ]
+}

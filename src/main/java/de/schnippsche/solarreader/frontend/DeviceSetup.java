@@ -191,6 +191,7 @@ public class DeviceSetup
     DeviceInfo deviceInfo = Config.getInstance().getAppInfo().getDeviceInfo(currentDevice.getDeviceInfoId());
     currentDevice.setDeviceName(deviceInfo.getDeviceName());
     currentDevice.setDeviceClass(deviceInfo.getDeviceClass());
+    currentDevice.setDeviceSpecification((deviceInfo.getDeviceSpecification()));
     currentDevice.setDescription(formValues.getOrDefault("description", ""));
     return showStep2();
   }

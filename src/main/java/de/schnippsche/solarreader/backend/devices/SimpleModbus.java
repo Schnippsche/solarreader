@@ -8,13 +8,16 @@ import de.schnippsche.solarreader.backend.utils.DeviceFieldCompressor;
 import de.schnippsche.solarreader.backend.utils.ModbusWrapper;
 
 import java.util.List;
-
-public class Sdm630 extends AbstractLockedDevice
+/**
+ * class for similar modbus devices with no extra code
+ */
+public class SimpleModbus extends AbstractLockedDevice
 {
+
   private ModbusWrapper modbusWrapper;
   private List<DeviceFieldBlock> deviceFieldBlocks;
 
-  public Sdm630(ConfigDevice configDevice)
+  public SimpleModbus(ConfigDevice configDevice)
   {
     super(configDevice);
   }
@@ -22,11 +25,10 @@ public class Sdm630 extends AbstractLockedDevice
   @Override protected void initialize()
   {
     modbusWrapper = new ModbusWrapper(getConfigDevice());
-    specification = jsonTool.readSpecification("sdm630");
+    specification = jsonTool.readSpecification(getConfigDevice().getDeviceSpecification());
     deviceFieldBlocks = new DeviceFieldCompressor().convertDeviceFieldsIntoBlocks(specification.getDevicefields(), 32);
   }
 
-  // 34 = SDM630  Energy Meter (RS485 Anschluss) BAUDRATE = 19200!
   @Override protected boolean readLockedDeviceValues()
   {
     List<ResultField> readResultFields = modbusWrapper.readAllBlocks(deviceFieldBlocks);
@@ -36,7 +38,7 @@ public class Sdm630 extends AbstractLockedDevice
 
   @Override protected void correctValues()
   {
-    // nothing
+    // Nothing
   }
 
   @Override protected void createTables()

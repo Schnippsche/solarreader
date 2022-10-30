@@ -7,6 +7,6 @@ else
   # create tmp dir
   mkdir -p tmp
   # starts jar
-  nohup $JAVA $JAVA_OPTS -jar solarreader-1.0.jar 2>&1 &
+  nohup $JAVA $JAVA_OPTS -jar solarreader.jar 2>&1 &
   echo $! > ./solarreader.pid
 fi

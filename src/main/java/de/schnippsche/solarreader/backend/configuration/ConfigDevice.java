@@ -15,6 +15,7 @@ public class ConfigDevice
   private String deviceInfoId;
   private String deviceName;
   private String deviceClass;
+  private String deviceSpecification;
   private String description;
   private Activity activity;
 
@@ -25,6 +26,7 @@ public class ConfigDevice
     deviceClass = "";
     deviceInfoId = "";
     description = "";
+    deviceSpecification = null;
     activity = new Activity();
     params = new HashMap<>(); // // do not use enum map because converting to json sucks!
     configExport = new ConfigExport();
@@ -38,6 +40,7 @@ public class ConfigDevice
     setParams(deviceInfo.getDefaults());
     deviceInfoId = deviceInfo.getUuid();
     configExport = new ConfigExport();
+    deviceSpecification = deviceInfo.getDeviceSpecification();
   }
 
   public boolean containsField(ConfigDeviceField configDeviceField)
@@ -144,7 +147,14 @@ public class ConfigDevice
   {
     this.deviceInfoId = deviceInfoId;
   }
-
+  public String getDeviceSpecification()
+  {
+    return deviceSpecification;
+  }
+  public void setDeviceSpecification(String deviceSpecification)
+  {
+    this.deviceSpecification = deviceSpecification;
+  }
   @Override public boolean equals(Object o)
   {
     if (this == o)
