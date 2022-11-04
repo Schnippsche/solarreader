@@ -66,7 +66,7 @@ sudo chmod 777 /lib/modules/ftdi_sio.ko
 ```
 You have to do that after every reboot, so it is recommended to put it in a start script.
 
-Download the archive and unzip the files. Then run the startup.sh (Linux) or startup.bat (Windows).
+Download the archive and unzip the files. Then run the start_solarreader.sh (Linux) or start_solarreader.bat (Windows).
 To show the GUI type "locahost:8080" in your browser (or the ip of your computer)
 
 ## Supported devices
@@ -78,6 +78,7 @@ To show the GUI type "locahost:8080" in your browser (or the ip of your computer
 - SDM630 smart meter
 - Goodwe inverter
 - Phocos inverter
+- Hichi IR Reader for eHZ Energiemeter and other compatible
 - many more planned and in progress... Feel free to contribute and share it with the community!
 
 ### Using the precompiled binaries
