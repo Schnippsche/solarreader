@@ -7,7 +7,8 @@
       "prompts": [
         "SERIELL",
         "ADDRESS",
-        "HF2211"
+        "HF2211",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "1",
@@ -27,7 +28,8 @@
     {
       "uuid": "404667c5-efaf-4494-982f-528a14361a9e",
       "prompts": [
-        "SERIELL"
+        "SERIELL",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "247",
@@ -49,7 +51,8 @@
       "uuid": "6745a4cb-723f-4a86-8c5b-4a6e9a2f41dd",
       "prompts": [
         "SERIELL",
-        "ADDRESS"
+        "ADDRESS",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "247",
@@ -71,7 +74,8 @@
       "prompts": [
         "SERIELL",
         "ADDRESS",
-        "HF2211"
+        "HF2211",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "1",
@@ -92,7 +96,8 @@
     {
       "uuid": "751e0405-5e2e-4d88-b5c6-77b0c9a1cff2",
       "prompts": [
-        "SERIELL"
+        "SERIELL",
+        "COMPORT"
       ],
       "defaults": {
         "ENCODING": "rtu",
@@ -114,7 +119,8 @@
       "prompts": [
         "SERIELL",
         "ADDRESS",
-        "HF2211"
+        "HF2211",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "1",
@@ -136,7 +142,8 @@
       "uuid": "f0afd244-2563-4d0e-8b92-5dbd281d75dd",
       "prompts": [
         "SERIELL",
-        "ADDRESS"
+        "ADDRESS",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "1",
@@ -159,7 +166,8 @@
       "prompts": [
         "SERIELL",
         "ADDRESS",
-        "HF2211"
+        "HF2211",
+        "COMPORT"
       ],
       "defaults": {
         "DEVICE_ADDRESS": "1",
@@ -191,15 +199,16 @@
       "deviceClass": "Solaredge"
     },
     {
-      "uuid": "1797c970-0a9f-4134-9d86-5337720a01f4",
+      "uuid": "29d87b4b-2a37-4aa4-8504-1bb97f43cab0",
       "prompts": [
         "LAN"
       ],
       "defaults": {
-        "DEVICE_PORT": "1883"
+        "DEVICE_PORT": "80"
       },
-      "deviceName": "Sonoff POW R2 Sonoff TH16, TH10, GOSUND SP1, SP111, SP211",
-      "deviceClass": "SonOff"
+      "deviceName": "Tasmota Geräte (z.B. SonOff, Shelly)",
+      "deviceClass": "Tasmota",
+      "deviceSpecification": "tasmota"
     },
     {
       "uuid": "9d2de25c-161c-4e5d-bd28-1622007a4bb5",
@@ -218,7 +227,8 @@
     {
       "uuid": "ffcba860-7a94-4819-8a40-3b6edf401f6a",
       "prompts": [
-        "SERIELL"
+        "SERIELL",
+        "COMPORT"
       ],
       "defaults": {
         "ENCODING": "rtu",
@@ -231,14 +241,15 @@
         "STOPBITS": "1",
         "DATABITS": "8"
       },
-      "deviceName": "eHZ Einrichtung Stromzähler",
+      "deviceName": "eHZ Einrichtung Stromzähler USB",
       "deviceClass": "Ehz",
       "deviceSpecification": "ehz1"
     },
     {
       "uuid": "c13a6fe1-152c-48f7-8293-0cedb8da06bf",
       "prompts": [
-        "SERIELL"
+        "SERIELL",
+        "COMPORT"
       ],
       "defaults": {
         "ENCODING": "rtu",
@@ -251,9 +262,106 @@
         "STOPBITS": "1",
         "DATABITS": "8"
       },
-      "deviceName": "eHZ Zweirichtung Stromzähler",
+      "deviceName": "eHZ Zweirichtung Stromzähler USB",
       "deviceClass": "Ehz",
       "deviceSpecification": "ehz2"
+    },
+    {
+      "uuid": "0be0ad45-952d-45a1-9de4-32ad03297ef5",
+      "prompts": [
+        "HIDRAW"
+      ],
+      "defaults": {
+      },
+      "deviceName": "Steca Solarix PLI 5000",
+      "deviceClass": "Steca",
+      "deviceSpecification": "steca"
+    },
+    {
+      "uuid": "c9881a6e-6375-44e8-bb2c-4216a33ec28f",
+      "prompts": [
+        "HIDRAW"
+      ],
+      "defaults": {
+      },
+      "deviceName": "InfiniSolar PIP Serie 3k",
+      "deviceClass": "Steca",
+      "deviceSpecification": "powermeter"
+    },
+    {
+      "uuid": "118039ca-8e39-410c-a484-fe375d16b826",
+      "prompts": [
+        "HIDRAW"
+      ],
+      "defaults": {
+      },
+      "deviceName": "Voltronic Axpert Serie",
+      "deviceClass": "Steca",
+      "deviceSpecification": "powermeter"
+    },
+    {
+      "uuid": "28313f09-964c-4a75-98fc-20daac4e4134",
+      "prompts": [
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "3",
+        "DEVICE_PORT": "502"
+      },
+      "deviceName": "SMA Wechselrichter Sunny Island",
+      "deviceClass": "SimpleModbus",
+      "deviceSpecification": "sma"
+    },
+    {
+      "uuid": "e53b7df4-4136-4a63-9b1f-57f41f37feeb",
+      "prompts": [
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "3",
+        "DEVICE_PORT": "502"
+      },
+      "deviceName": "SMA Wechselrichter Sunny Tripower",
+      "deviceClass": "SimpleModbus",
+      "deviceSpecification": "sma"
+    },
+    {
+      "uuid": "67bc315c-df43-492c-aafe-44c1e89d063d",
+      "prompts": [
+        "ADDRESS",
+        "LAN_MODBUS"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "240",
+        "DEVICE_PORT": "502"
+      },
+      "deviceName": "Fronius Inverter / Smartmeter",
+      "deviceClass": "Fronius",
+      "deviceSpecification": "fronius"
+    },
+    {
+      "uuid": "3edfbfe2-87f6-4831-860f-3977ed59cb16",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "HF2211",
+        "COMPORT"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "2400",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "Powmr Pow-hvm1.5H-12v",
+      "deviceClass": "Steca",
+      "deviceSpecification": "powmrpowhvm"
     }
   ]
 }

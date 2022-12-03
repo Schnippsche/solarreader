@@ -148,35 +148,31 @@ public class JsonTools
   {
     // First look at the folder; if there is a user defined file then load this instead the standard
     Path userPath = Paths.get(resource + DOT_JSON);
+    Specification specification = null;
     if (Files.exists(userPath))
     {
-      Logger.info("use user defined specification");
-      try (Reader reader = Files.newBufferedReader(userPath))
-      {
-        return Config.getInstance().getGson().fromJson(reader, Specification.class);
-      } catch (IOException e)
-      {
-        Logger.error(e);
-        return new Specification();
-      }
-    }
-    InputStream inputStream = JsonTools.class.getClassLoader()
-                                             .getResourceAsStream(SPECIFICATION_FOLDER + resource + DOT_JSON);
-
-    if (inputStream != null)
-    {
-      try (Reader reader = new InputStreamReader(inputStream))
-      {
-        return Config.getInstance().getGson().fromJson(reader, Specification.class);
-      } catch (IOException e)
-      {
-        Logger.error(e);
-      }
+      Logger.info("use user defined specification {}", resource);
+      specification = getObjectFromFile(userPath, Specification.class);
     } else
     {
-      Logger.error("can't find resource {}", SPECIFICATION_FOLDER + resource + DOT_JSON);
+      InputStream inputStream =
+        JsonTools.class.getClassLoader().getResourceAsStream(SPECIFICATION_FOLDER + resource + DOT_JSON);
+
+      if (inputStream != null)
+      {
+        try (Reader reader = new InputStreamReader(inputStream))
+        {
+          specification = Config.getInstance().getGson().fromJson(reader, Specification.class);
+        } catch (IOException e)
+        {
+          Logger.error("can't load resource {}:{}", resource, e.getMessage());
+        }
+      } else
+      {
+        Logger.error("can't find resource {}", SPECIFICATION_FOLDER + resource + DOT_JSON);
+      }
     }
-    return new Specification();
+    return specification == null ? new Specification() : specification;
   }
 
 }

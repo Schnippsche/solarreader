@@ -6,7 +6,7 @@ if [ -e "./solarreader.pid" ]; then
 else
   # create tmp dir
   mkdir -p tmp
-  # starts jar
+  # starts the jar, if you use an explicit version like solarreader-1.2.jar you must change the name here
   nohup $JAVA $JAVA_OPTS -jar solarreader.jar >/dev/null 2>&1 &
   echo $! > ./solarreader.pid
 fi

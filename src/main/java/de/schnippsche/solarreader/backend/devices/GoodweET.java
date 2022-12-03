@@ -1,5 +1,6 @@
 package de.schnippsche.solarreader.backend.devices;
 
+import com.ghgande.j2mod.modbus.ModbusException;
 import com.ghgande.j2mod.modbus.facade.AbstractModbusMaster;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractLockedDevice;
@@ -53,6 +54,10 @@ public class GoodweET extends AbstractLockedDevice
       {
         Logger.debug(field);
       }
+    } catch (ModbusException e)
+    {
+      Logger.error("can't read from {}", modbusWrapper.getInfoText());
+      return false;
     } catch (Exception e)
     {
       Logger.error(e);
@@ -99,11 +104,6 @@ public class GoodweET extends AbstractLockedDevice
       errorBit.setType(FieldType.STRING);
     }
     setWattTotalResultField("WattStundenGesamtHeute");
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }

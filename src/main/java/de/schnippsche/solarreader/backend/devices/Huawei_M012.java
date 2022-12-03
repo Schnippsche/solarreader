@@ -1,5 +1,6 @@
 package de.schnippsche.solarreader.backend.devices;
 
+import com.ghgande.j2mod.modbus.ModbusException;
 import com.ghgande.j2mod.modbus.facade.AbstractModbusMaster;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractDevice;
@@ -28,10 +29,6 @@ public class Huawei_M012 extends AbstractDevice
     deviceFieldBlocks = new DeviceFieldCompressor().convertDeviceFieldsIntoBlocks(specification.getDevicefields(), 100);
   }
 
-  @Override protected void correctValues()
-  {
-  }
-
   // 62 = Huawei Wechselrichter mit sDongle [ -M0, -M1, -M2 Modelle]
   @Override protected boolean readDeviceValues()
   {
@@ -52,6 +49,10 @@ public class Huawei_M012 extends AbstractDevice
       {
         Logger.debug(field);
       }
+    } catch (ModbusException e)
+    {
+      Logger.error("can't read from {}", modbusWrapper.getInfoText());
+      return false;
     } catch (Exception e)
     {
       Logger.error(e);
@@ -64,11 +65,6 @@ public class Huawei_M012 extends AbstractDevice
     }
 
     return true;
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }

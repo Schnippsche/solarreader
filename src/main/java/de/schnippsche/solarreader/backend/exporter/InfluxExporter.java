@@ -43,7 +43,8 @@ public class InfluxExporter implements Exporter
 
   public String getInfluxVersion()
   {
-    String testUrl = String.format("http%s://%s:%s/", (configDatabase.isUseSsl()) ? "s" : "", configDatabase.getHost(), configDatabase.getPort());
+    String testUrl =
+      String.format("http%s://%s:%s/", (configDatabase.isUseSsl()) ? "s" : "", configDatabase.getHost(), configDatabase.getPort());
     Request request = new Request.Builder().url(testUrl).build();
     Call call = NetworkConnection.HTTPCLIENT.newCall(request);
     try (Response response = call.execute())
@@ -110,6 +111,19 @@ public class InfluxExporter implements Exporter
     StringBuilder builder = new StringBuilder();
     long currentTimestamp = Config.getInstance().getStandardValues().getTimestampSeconds();
     boolean valid = false;
+    // tables with same name must be summarized in rows
+    for (int t1 = 0; t1 < tableList.size(); t1++)
+    {
+      for (int t2 = 0; t2 < tableList.size(); t2++)
+      {
+        if (t1 != t2 && tableList.get(t1).getTableName().equals(tableList.get(t2).getTableName()))
+        {
+          tableList.get(t1).getTableRows().addAll(tableList.get(t2).getTableRows());
+          tableList.get(t2).getTableRows().clear();
+        }
+      }
+    }
+    //
     for (Table table : tableList)
     {
       for (TableRow row : table.getTableRows())
@@ -174,13 +188,13 @@ public class InfluxExporter implements Exporter
 
   private Request buildInfluxV1Request(String parameter)
   {
-    this.url = String.format("http%s://%s:%s/write?db=%s&precision=s", (configDatabase.isUseSsl()) ? "s" : "", configDatabase.getHost(), configDatabase.getPort(), configDatabase.getDbName());
+    this.url =
+      String.format("http%s://%s:%s/write?db=%s&precision=s", (configDatabase.isUseSsl()) ? "s" : "", configDatabase.getHost(), configDatabase.getPort(), configDatabase.getDbName());
     Logger.debug("sendPost to Url {}, Params={}", url, parameter);
     RequestBody formBody = RequestBody.create(parameter, NetworkConnection.MEDIA_TYPE_STRING);
     Request.Builder requestBuilder = new Request.Builder().url(url).addHeader("User-Agent", "Solarreader");
-    if (configDatabase.getUser() != null && !configDatabase.getUser()
-                                                           .isEmpty() && configDatabase.getPassword() != null && !configDatabase.getPassword()
-                                                                                                                                .isEmpty())
+    if (configDatabase.getUser() != null && !configDatabase.getUser().isEmpty() && configDatabase.getPassword() != null
+        && !configDatabase.getPassword().isEmpty())
     {
       Logger.debug("do Authorization with user {} and pass {}", configDatabase.getUser(), configDatabase.getPassword());
       requestBuilder.addHeader("Authorization", Credentials.basic(configDatabase.getUser(), configDatabase.getPassword()));
@@ -190,22 +204,20 @@ public class InfluxExporter implements Exporter
 
   private Request buildInfluxV2Request(String parameter)
   {
-    this.url = String.format("http%s://%s:%s/api/v2/write?bucket=%s&precision=s&org=%s", (configDatabase.isUseSsl()) ? "s" : "", configDatabase.getHost(), configDatabase.getPort(), configDatabase.getDbName(), configDatabase.getUser());
+    this.url =
+      String.format("http%s://%s:%s/api/v2/write?bucket=%s&precision=s&org=%s", (configDatabase.isUseSsl()) ? "s" : "", configDatabase.getHost(), configDatabase.getPort(), configDatabase.getDbName(), configDatabase.getUser());
     Logger.debug("sendPost to Url {}, Params={}", url, parameter);
     RequestBody formBody = RequestBody.create(parameter, NetworkConnection.MEDIA_TYPE_STRING);
-    Request.Builder requestBuilder = new Request.Builder().url(url)
-                                                          .addHeader("User-Agent", "Solarreader")
-                                                          .addHeader("Authorization", "Token " + configDatabase.getPassword());
+    Request.Builder requestBuilder = new Request.Builder().url(url).addHeader("User-Agent", "Solarreader")
+                                                          .addHeader("Authorization",
+                                                            "Token " + configDatabase.getPassword());
     return requestBuilder.post(formBody).build();
   }
 
   private String getColumnsWithoutTimestamp(TableRow tableRow)
   {
-    return tableRow.getColumns()
-                   .stream()
-                   .filter(c -> !TIMESTAMP.equalsIgnoreCase(c.getName()))
-                   .map(c -> c.getName() + "=" + c.getTypedValue())
-                   .collect(Collectors.joining(","));
+    return tableRow.getColumns().stream().filter(c -> !TIMESTAMP.equalsIgnoreCase(c.getName()))
+                   .map(c -> c.getName() + "=" + c.getTypedValue()).collect(Collectors.joining(","));
   }
 
   private TableColumn getTimestampColumn(TableRow tableRow)

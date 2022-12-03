@@ -16,6 +16,7 @@ public class DeviceField implements Comparable<DeviceField>
   private BigDecimal factor;
   private String note;
   private FieldType type;
+  private String command;
 
   public DeviceField()
   {
@@ -109,6 +110,16 @@ public class DeviceField implements Comparable<DeviceField>
     this.type = type;
   }
 
+  public String getCommand()
+  {
+    return command;
+  }
+
+  public void setCommand(String command)
+  {
+    this.command = command;
+  }
+
   public ResultField createResultField(Object value)
   {
     if (value != null)
@@ -144,7 +155,7 @@ public class DeviceField implements Comparable<DeviceField>
 
   @Override public String toString()
   {
-    return String.format("Field{name='%s', unit='%s', offset=%d, count=%d, register=%d, factor=%s, type='%s', note='%s'}", name, unit, offset, count, register, factor, type, note);
+    return String.format("Field{name='%s', unit='%s', offset=%d, count=%d, register=%d, factor=%s, type='%s', note='%s', command='%s'}", name, unit, offset, count, register, factor, type, note, command);
   }
 
   @Override public int compareTo(DeviceField other)

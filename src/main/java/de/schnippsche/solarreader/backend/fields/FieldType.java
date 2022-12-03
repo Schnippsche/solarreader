@@ -22,5 +22,7 @@ public enum FieldType
   FLOAT_LITTLE_ENDIAN, // Float 32 IEEE754 Little Endian
   DOUBLE_BIG_ENDIAN, // Float 64 IEEE754 Big Endian
   DOUBLE_LITTLE_ENDIAN, // Float 64 IEEE754 Little Endian
-  SCALEFACTOR_BIG_ENDIAN // like I16_BIG_ENDIAN but automatically calculated from 10 ^ value
+  SCALEFACTOR_BIG_ENDIAN, // like I16_BIG_ENDIAN but automatically calculated from 10 ^ value,
+  U64_BIG_ENDIAN, // Unsigned 64 bit, MSB 0, LSB = 7 BIG ENDIAN 1 2 3 4 5 6 7 8
+  I64_BIG_ENDIAN // Signed 64 bit, MSB 0, LSB = 7 BIG ENDIAN 1 2 3 4 5 6 7 8
 }

@@ -1,0 +1,116 @@
+{
+  "description": "specs for common (1)",
+  "devicefields": [
+    {
+      "name": "COMMON_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Well-known value. Uniquely identifies this as a sunspec model common (1)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "COMMON_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of sunspec model common (1)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "COMMON_Mn",
+      "unit": "",
+      "offset": 2,
+      "count": 16,
+      "register": 3,
+      "note": "Manufacturer",
+      "type": "STRING"
+    },
+    {
+      "name": "COMMON_Md",
+      "unit": "",
+      "offset": 18,
+      "count": 16,
+      "register": 3,
+      "note": "Model",
+      "type": "STRING"
+    },
+    {
+      "name": "COMMON_Opt",
+      "unit": "",
+      "offset": 34,
+      "count": 8,
+      "register": 3,
+      "note": "Options",
+      "type": "STRING"
+    },
+    {
+      "name": "COMMON_Vr",
+      "unit": "",
+      "offset": 42,
+      "count": 8,
+      "register": 3,
+      "note": "SW version of inverter",
+      "type": "STRING"
+    },
+    {
+      "name": "COMMON_SN",
+      "unit": "",
+      "offset": 50,
+      "count": 16,
+      "register": 3,
+      "note": "Serialnumber of the inverter",
+      "type": "STRING"
+    },
+    {
+      "name": "COMMON_DA",
+      "unit": "",
+      "offset": 66,
+      "count": 1,
+      "register": 3,
+      "note": "Modbus Device Address",
+      "type": "U16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_Mn"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_Md"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Seriennummer",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_SN"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_Vr"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Seriennummer",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_SN"
+    }
+  ],
+  "mqttFields": [
+  ]
+}

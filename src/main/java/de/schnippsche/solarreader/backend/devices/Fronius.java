@@ -4,21 +4,23 @@ import com.ghgande.j2mod.modbus.ModbusException;
 import com.ghgande.j2mod.modbus.facade.AbstractModbusMaster;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractDevice;
+import de.schnippsche.solarreader.backend.fields.DeviceField;
+import de.schnippsche.solarreader.backend.fields.DeviceFieldBlock;
+import de.schnippsche.solarreader.backend.fields.FieldType;
 import de.schnippsche.solarreader.backend.fields.ResultField;
-import de.schnippsche.solarreader.backend.fields.TableFieldType;
+import de.schnippsche.solarreader.backend.utils.DeviceFieldCompressor;
 import de.schnippsche.solarreader.backend.utils.ModbusWrapper;
 import de.schnippsche.solarreader.backend.utils.Specification;
 import org.tinylog.Logger;
 
+import java.util.List;
+
 public class Fronius extends AbstractDevice
 {
-  private static final String SOLAREDGEMETER = "fronius";
+  private static final int MODBUS_CACHE_SIZE = 64;
   private ModbusWrapper modbusWrapper;
   private Integer offset;
-  private Specification mpptSpecification;
-  private Specification meterModel0Specification;
-  private Specification meterModel1Specification;
-  private Specification meterModel2Specification;
+  private List<DeviceFieldBlock> deviceFieldBlocks;
 
   public Fronius(ConfigDevice configDevice)
   {
@@ -30,11 +32,11 @@ public class Fronius extends AbstractDevice
     modbusWrapper = new ModbusWrapper(getConfigDevice());
     offset = null;
   }
+
   //  Solaredge Sunspec
   //  @Override
   protected boolean readDeviceValues()
   {
-
     AbstractModbusMaster modbusMaster = modbusWrapper.getModbusMaster();
     if (modbusMaster == null)
     {
@@ -46,25 +48,27 @@ public class Fronius extends AbstractDevice
       Logger.info("try to connect to {}", modbusWrapper.getInfoText());
       modbusMaster.connect();
       Logger.info("connected");
-      if (checkOffsetOnFirstRun() == null)
+      checkOffsetAndModelOnFirstRun();
+      if (offset == null)
       {
         return false;
       }
 
-      resultFields.addAll(modbusWrapper.readFields(specification.getDevicefields()));
-      readMppt();
-      readMeterModels();
+      resultFields.addAll(modbusWrapper.readFieldBlocks(deviceFieldBlocks));
       // log for debugging
       for (ResultField field : resultFields)
       {
-        Logger.debug(field);
+        Logger.info(field);
       }
 
+    } catch (ModbusException e)
+    {
+      Logger.error("can't read from {}:{}", modbusWrapper.getInfoText(), e.getMessage());
+      return false;
     } catch (Exception e)
     {
-      Logger.error(e);
+      Logger.error(e.getMessage());
       return false;
-
     } finally
     {
       modbusMaster.disconnect();
@@ -74,105 +78,123 @@ public class Fronius extends AbstractDevice
     return true;
   }
 
-  private Integer checkOffsetOnFirstRun() throws ModbusException
+  private void checkOffsetAndModelOnFirstRun() throws ModbusException
   {
+    // do it only once
     if (offset != null)
     {
-      return offset;
+      return;
     }
-    String offset0 = modbusWrapper.readRegisterAsString(3, 0, 2);
-    String offset1 = modbusWrapper.readRegisterAsString(3, 1, 2);
-    if ("SunS".equals(offset0))
+
+    if ("SunS".equals(modbusWrapper.readRegisterAsString(3, 40000, 2)))
     {
-      Logger.info("Sunspec ID found at offset 0");
-      offset = 0;
-    } else if ("SunS".equals(offset1))
+      offset = 40002;
+      Logger.info("Sunspec ID found at offset 40000");
+    } else if ("SunS".equals(modbusWrapper.readRegisterAsString(3, 40001, 2)))
     {
-      Logger.info("Sunspec ID found at offset 1");
-      offset = 1;
+      offset = 40003;
+      Logger.info("Sunspec ID found at offset 40001");
     } else
     {
       Logger.error("No Sunspec ID found");
-      offset = null;
-      return offset;
     }
-    specification = jsonTool.readSpecification("fronius");
-    specification.getDevicefields().forEach(df -> df.setOffset(df.getOffset() + offset));
-    // check if mppt is present or meter modules
-    int start0 = 121 + offset;
-    int value = modbusWrapper.readRegister(3, start0, 1)[0].getValue();
-    if (value == 160)
+    // Iterate over all register
+    specification = new Specification();
+    int blockId;
+    int blockLen;
+    do
     {
-      mpptSpecification = jsonTool.readSpecification("solaredgemppt");
-      mpptSpecification.getDevicefields().forEach(df -> df.setOffset(df.getOffset() + offset));
-    } else if (value == 1) // Meter module 0 present
-    {
-      meterModel0Specification = jsonTool.readSpecification(SOLAREDGEMETER);
-      changeMeterSpecification(meterModel0Specification, start0, "M1_");
-    }
-    int start1 = 295 + offset;
-    value = modbusWrapper.readRegister(3, start1, 1)[0].getValue();
-    if (value == 1) // Meter module 1 present
-    {
-      meterModel1Specification = jsonTool.readSpecification(SOLAREDGEMETER);
-      changeMeterSpecification(meterModel1Specification, start1, "M1_");
-    }
-    int start2 = 469 + offset;
-    value = modbusWrapper.readRegister(3, start2, 1)[0].getValue();
-    if (value == 1) // Meter module 1 present
-    {
-      meterModel2Specification = jsonTool.readSpecification(SOLAREDGEMETER);
-      changeMeterSpecification(meterModel2Specification, start2, "M2_");
-    }
-    // Check Meter modules if present
-    return offset;
+      blockId = modbusWrapper.readRegisterAsNumber(3, offset, 1, FieldType.U16_BIG_ENDIAN).intValue();
+      blockLen = modbusWrapper.readRegisterAsNumber(3, offset + 1, 1, FieldType.U16_BIG_ENDIAN).intValue();
+      loadDeviceFieldsForBlock(blockId);
+      offset += blockLen + 2;
+    } while (blockId != 0xFFFF && blockLen > 0);
+    // Convert into blocks for better read performance
+    deviceFieldBlocks =
+      new DeviceFieldCompressor().convertDeviceFieldsIntoBlocks(specification.getDevicefields(), MODBUS_CACHE_SIZE);
   }
 
-  private void changeMeterSpecification(Specification oldSpecification, int startOffset, String prefix)
+  protected void loadDeviceFieldsForBlock(int blockId)
   {
-    oldSpecification.getDevicefields().forEach(df ->
+    switch (blockId)
     {
-      df.setOffset(df.getOffset() + startOffset);
-      df.setName(prefix + df.getName());
-    });
-    oldSpecification.getDatabasefields()
-                    .stream()
-                    .filter(tf -> TableFieldType.RESULTFIELD == tf.getSourcetype())
-                    .forEach(tf -> tf.setSourcevalue(prefix + tf.getSourcevalue()));
+      case 1:
+        readResourceBlock("fronius_common", offset);
+        break;
+      case 101:
+      case 102:
+      case 103:
+        readResourceBlock("fronius_inverter_int", offset);
+        readResourceBlock("fronius", 0);
+        break;
+      case 111:
+      case 112:
+      case 113:
+        readResourceBlock("fronius_inverter_float", offset);
+        readResourceBlock("fronius", 0);
+        break;
+      case 120:
+        readResourceBlock("fronius_nameplate", offset);
+        break;
+      case 121:
+        readResourceBlock("fronius_settings", offset);
+        break;
+      case 122:
+        readResourceBlock("fronius_status", offset);
+        break;
+      case 123:
+        readResourceBlock("fronius_controls", offset);
+        break;
+      case 124:
+        readResourceBlock("fronius_storage", offset);
+        break;
+      case 160:
+        readResourceBlock("fronius_mppt", offset);
+        break;
+      case 201:
+      case 202:
+      case 203:
+        readResourceBlock("fronius_acmeter_int", offset);
+        break;
+      case 211:
+      case 212:
+      case 213:
+        readResourceBlock("fronius_acmeter_float", offset);
+        break;
+      case 302:
+        readResourceBlock("fronius_irradiance", offset);
+        break;
+      case 303:
+        readResourceBlock("fronius_backofmodule", offset);
+        break;
+      case 307:
+        readResourceBlock("fronius_meteorological", offset);
+        break;
+      case 403:
+        readResourceBlock("fronius_stringcombiner", offset);
+        break;
+      case 0xFFFF:
+        // End block
+        break;
+      default:
+        Logger.error("unknown sunspec block {}", blockId);
+    }
+
   }
 
-  private void readMppt()
+  private void readResourceBlock(String resource, int startOffset)
   {
-    if (mpptSpecification != null)
+    Specification spec = jsonTool.readSpecification(resource);
+    if (startOffset != 0)
     {
-      resultFields.addAll(modbusWrapper.readFields(mpptSpecification.getDevicefields()));
+      for (DeviceField deviceField : spec.getDevicefields())
+      {
+        deviceField.setOffset(deviceField.getOffset() + startOffset);
+      }
     }
-  }
-
-  private void readMeterModels()
-  {
-    if (meterModel0Specification != null)
-    {
-      resultFields.addAll(modbusWrapper.readFields(meterModel0Specification.getDevicefields()));
-    }
-    if (meterModel1Specification != null)
-    {
-      resultFields.addAll(modbusWrapper.readFields(meterModel1Specification.getDevicefields()));
-    }
-    if (meterModel2Specification != null)
-    {
-      resultFields.addAll(modbusWrapper.readFields(meterModel2Specification.getDevicefields()));
-    }
-  }
-
-  @Override protected void correctValues()
-  {
-    //
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
+    specification.getDevicefields().addAll(spec.getDevicefields());
+    specification.getDatabasefields().addAll(spec.getDatabasefields());
+    specification.getMqttFields().addAll(spec.getMqttFields());
   }
 
 }

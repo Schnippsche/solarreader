@@ -21,11 +21,18 @@ public class DeviceWorker extends AbstractExportWorker
     getActivity().setActive(true);
     List<Table> tables = device.doWork();
     //
-    addDatabaseExporter(device.getConfigDevice().getConfigExport(), tables);
-    addMqttExporter(device.getConfigDevice().getConfigExport(), device.getValidResultFields(), device.getSpecification()
-                                                                                                     .getMqttFields());
-    exportAll();
-    tables.clear();
+    if (tables != null && !tables.isEmpty())
+    {
+      addDatabaseExporter(device.getConfigDevice().getConfigExport(), tables);
+      if (device.getSpecification() != null)
+      {
+        addMqttExporter(device.getConfigDevice()
+                              .getConfigExport(), device.getValidResultFields(), device.getSpecification()
+                                                                                       .getMqttFields());
+      }
+      exportAll();
+      tables.clear();
+    }
     getActivity().finish();
   }
 

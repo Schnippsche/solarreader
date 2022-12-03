@@ -1,692 +1,99 @@
 {
-  "description": "specs for fronius",
+  "description": "specs for fronius register as int",
   "devicefields": [
     {
-      "name": "SID",
-      "offset": 0,
+      "offset": 211,
+      "count": 1,
+      "register": 3,
+      "name": "FRONIUS_F_Delete_Data",
+      "note": "Delete stored ratings of the current inverter by writing 0xFFFF.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 212,
+      "count": 1,
+      "register": 3,
+      "name": "FRONIUS_F_Store_Data",
+      "note": "Rating data of all inverters connected to the Fronius Datamanager are persistently stored by writing 0xFFFF.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 213,
+      "count": 1,
+      "register": 3,
+      "name": "FRONIUS_F_Active_State_Code",
+      "note": "Current active state code of inverter - Description can be found in inverter manual",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 214,
+      "count": 1,
+      "register": 3,
+      "name": "FRONIUS_F_Reset_All_Event_Flags",
+      "note": "Write 0xFFFF to reset all event flags and active state code.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 215,
+      "count": 1,
+      "register": 3,
+      "name": "FRONIUS_F_ModelType",
+      "note": "Type of SunSpec models used for inverter and meter data. Write 1 or 2 and then immediately 6 to acknowledge setting.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 216,
+      "count": 1,
+      "register": 3,
+      "name": "FRONIUS_F_Storage_Restrictions_View_Mode",
+      "note": "Type of Restrictions reported in BasicStorageControl Model (IC124). Local restrictions are those that are set by Modbus Interface. Global restrictions are those that are set system wide.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 499,
       "count": 2,
       "register": 3,
+      "name": "FRONIUS_F_Site_Power",
+      "note": "Total power (site sum) of all connected inverters.",
       "type": "U32_BIG_ENDIAN",
-      "unit": "",
-      "note": "Value = 'SunS' (0x53756e53). Uniquely identifies this as a SunSpec MODBUS Map"
+      "unit": "W"
     },
     {
-      "name": "DID",
-      "offset": 2,
-      "count": 1,
+      "offset": 501,
+      "count": 4,
       "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Value = 0x0001. Uniquely identifies this as a SunSpec Common Model Block"
+      "name": "FRONIUS_F_Site_Energy_Day",
+      "note": "Total energy for current day of all connected inverters.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "Wh"
     },
     {
-      "name": "L",
-      "offset": 3,
-      "count": 1,
+      "offset": 505,
+      "count": 4,
       "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "65 = Length of block in 16-bit registers"
+      "name": "FRONIUS_F_Site_Energy_Year",
+      "note": "Total energy for last year of all connected inverters.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "Wh"
     },
     {
-      "name": "Mn",
-      "offset": 4,
-      "count": 16,
+      "offset": 509,
+      "count": 4,
       "register": 3,
-      "type": "STRING",
-      "unit": "",
-      "note": "Smart Meter Manufacturer, e.g. Fronius"
-    },
-    {
-      "name": "Md",
-      "offset": 20,
-      "count": 16,
-      "register": 3,
-      "type": "STRING",
-      "unit": "",
-      "note": "Smart Meter Model e.g. Smart Meter 63A"
-    },
-    {
-      "name": "Opt",
-      "offset": 36,
-      "count": 8,
-      "register": 3,
-      "type": "STRING",
-      "unit": "",
-      "note": "Smart Meter Name"
-    } ,
-    {
-      "name": "Vr",
-      "offset": 44,
-      "count": 8,
-      "register": 3,
-      "type": "STRING",
-      "unit": "",
-      "note": "SolarEdge Specific Value"
-    },
-    {
-      "name": "SN",
-      "offset": 52,
-      "count": 16,
-      "register": 3,
-      "type": "STRING",
-      "unit": "",
-      "note": "SolarEdge Unique Value"
-    },
-    {
-      "name": "DeviceAddress",
-      "offset": 68,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "MODBUS Device Address"
-    },
-    {
-      "name": "C_SunSpec_DID",
-      "offset": 69,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "101 = single phase 102 = split phase 103 = three phase"
-    },
-    {
-      "name": "C_SunSpec_Length",
-      "offset": 70,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "Registers",
-      "note": "50 = Length of model block"
-    },
-    {
-      "name": "I_AC_Current",
-      "offset": 71,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "A",
-      "note": "AC Total Current value"
-    },
-    {
-      "name": "I_AC_CurrentA",
-      "offset": 72,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "A",
-      "note": "AC Phase A Current value"
-    },
-    {
-      "name": "I_AC_CurrentB",
-      "offset": 73,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "A",
-      "note": "AC Phase B Current value"
-    },
-    {
-      "name": "I_AC_CurrentC",
-      "offset": 74,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "A",
-      "note": "AC Phase C Current value"
-    },
-    {
-      "name": "I_AC_Current_SF",
-      "offset": 75,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "AC Current scale factor"
-    },
-    {
-      "name": "I_AC_VoltageAB",
-      "offset": 76,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "AC Voltage Phase AB value"
-    },
-    {
-      "name": "I_AC_VoltageBC",
-      "offset": 77,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "AC Voltage Phase BC value"
-    },
-    {
-      "name": "I_AC_VoltageCA",
-      "offset": 78,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "AC Voltage Phase CA value"
-    },
-    {
-      "name": "I_AC_VoltageAN",
-      "offset": 79,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "AC Voltage Phase A to N value"
-    },
-    {
-      "name": "I_AC_VoltageBN",
-      "offset": 80,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "AC Voltage Phase B to N value"
-    },
-    {
-      "name": "I_AC_VoltageCN",
-      "offset": 81,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "AC Voltage Phase C to N value"
-    },
-    {
-      "name": "I_AC_Voltage_SF",
-      "offset": 82,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "AC Voltage scale factor"
-    },
-    {
-      "name": "I_AC_Power",
-      "offset": 83,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "W",
-      "note": "AC Power value"
-    },
-    {
-      "name": "I_AC_Power_SF",
-      "offset": 84,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "AC Power scale factor"
-    },
-    {
-      "name": "I_AC_Frequency",
-      "offset": 85,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "Hz",
-      "note": "AC Frequency value"
-    },
-    {
-      "name": "I_AC_Frequency_SF",
-      "offset": 86,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_AC_VA",
-      "offset": 87,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "VA",
-      "note": "Apparent Power"
-    },
-    {
-      "name": "I_AC_VA_SF",
-      "offset": 88,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_AC_VAR",
-      "offset": 89,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "VAR",
-      "note": "Reactive Power"
-    },
-    {
-      "name": "I_AC_VAR_SF",
-      "offset": 90,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_AC_PF",
-      "offset": 91,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "%",
-      "note": "Power Factor"
-    },
-    {
-      "name": "I_AC_PF_SF",
-      "offset": 92,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_AC_Energy_WH",
-      "offset": 93,
-      "count": 2,
-      "register": 3,
-      "type": "U32_BIG_ENDIAN",
-      "unit": "Wh",
-      "note": "AC Lifetime Energy production"
-    },
-    {
-      "name": "I_AC_Energy_WH_SF",
-      "offset": 95,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_DC_Current",
-      "offset": 96,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "A",
-      "note": "DC Current value"
-    },
-    {
-      "name": "I_DC_Current_SF",
-      "offset": 97,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_DC_Voltage",
-      "offset": 98,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "V",
-      "note": "DC Voltage value"
-    },
-    {
-      "name": "I_DC_Voltage_SF",
-      "offset": 99,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_DC_Power",
-      "offset": 100,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "W",
-      "note": "DC Power value"
-    },
-    {
-      "name": "I_DC_Power_SF",
-      "offset": 101,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_Temp_Sink",
-      "offset": 103,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "C",
-      "note": "Heat Sink Temperature"
-    },
-    {
-      "name": "I_Temp_SF",
-      "offset": 106,
-      "count": 1,
-      "register": 3,
-      "type": "I16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Scale factor"
-    },
-    {
-      "name": "I_Status",
-      "offset": 107,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Operating State"
-    },
-    {
-      "name": "I_Status_Vendor",
-      "offset": 108,
-      "count": 1,
-      "register": 3,
-      "type": "U16_BIG_ENDIAN",
-      "unit": "",
-      "note": "Vendor-defined operating state and error codes. For error description, meaning and troubleshooting, refer to the SolarEdge Installation Guide."
+      "name": "FRONIUS_F_Site_Energy_Total",
+      "note": "Total energy of all connected inverters.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "Wh"
     }
   ],
   "databasefields": [
-    {
-      "tablename": "Info",
-      "columnname": "Produkt",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "C_Manufacturer"
-    },
-    {
-      "tablename": "Info",
-      "columnname": "Modell",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "C_Model"
-    },
-    {
-      "tablename": "Info",
-      "columnname": "Seriennummer",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "SN"
-    },
-    {
-      "tablename": "Info",
-      "columnname": "Firmware",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "C_Version"
-    },
-    {
-      "tablename": "Info",
-      "columnname": "WR_Typ",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "C_SunSpec_DID"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_STROM_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_Current_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Gesamtstrom",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_Current * I_AC_Current_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Strom_R",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_CurrentA * I_AC_Current_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Strom_S",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_CurrentB * I_AC_Current_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Strom_T",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_CurrentC * I_AC_Current_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_R-S",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VoltageAB * I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_S-T",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VoltageBC * I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_T-R",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VoltageCA * I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_R",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VoltageAN * I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_S",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VoltageBN * I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Spannung_T",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VoltageCN * I_AC_Voltage_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Leistung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_Power_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Leistung",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_Power * I_AC_Power_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Frequenz_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_Frequency_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Frequenz",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_Frequency * I_AC_Frequency_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Scheinleistung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_VA_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Scheinleistung",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VA * I_AC_VA_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Wirkleistung",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_Power * I_AC_Power_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Blindleistung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_VAR_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Blindleistung",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_VAR * I_AC_VAR_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_WR_Leistung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_PF_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Leistung_Prozent",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_PF * I_AC_PF_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Wh_Gesamt_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_AC_Energy_WH_SF"
-    },
-    {
-      "tablename": "AC",
-      "columnname": "AC_Wh_Gesamt",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_AC_Energy_WH * I_AC_Energy_WH_SF"
-    },
-    {
-      "tablename": "PV",
-      "columnname": "DC_Strom_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_DC_Current_SF"
-    },
-    {
-      "tablename": "PV",
-      "columnname": "DC_Strom",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_DC_Current * I_DC_Current_SF"
-    },
-    {
-      "tablename": "PV",
-      "columnname": "DC_Spannung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_DC_Voltage_SF"
-    },
-    {
-      "tablename": "PV",
-      "columnname": "DC_Spannung",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_DC_Voltage * I_DC_Voltage_SF"
-    },
-    {
-      "tablename": "PV",
-      "columnname": "DC_Leistung_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_DC_Power_SF"
-    },
-    {
-      "tablename": "PV",
-      "columnname": "DC_Leistung",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_DC_Power * I_DC_Power_SF"
-    },
-    {
-      "tablename": "Service",
-      "columnname": "Temperatur_Faktor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_Temp_SF"
-    },
-    {
-      "tablename": "Service",
-      "columnname": "Temperatur",
-      "columntype": "NUMBER",
-      "sourcetype": "CALCULATED",
-      "sourcevalue": "I_Temp_Sink * I_Temp_SF"
-    },
-    {
-      "tablename": "Service",
-      "columnname": "Status",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_Status"
-    },
-    {
-      "tablename": "Service",
-      "columnname": "Status_Vendor",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "I_Status_Vendor"
-    }
+  ],
+  "mqttFields": [
   ]
 }

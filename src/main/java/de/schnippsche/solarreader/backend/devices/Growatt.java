@@ -60,11 +60,14 @@ public class Growatt extends AbstractLockedDevice
       {
         Logger.debug(field);
       }
+    } catch (ModbusException e)
+    {
+      Logger.error("can't read from {}", modbusWrapper.getInfoText());
+      return false;
     } catch (Exception e)
     {
       Logger.error(e);
       return false;
-
     } finally
     {
       modbusMaster.disconnect();
@@ -178,11 +181,6 @@ public class Growatt extends AbstractLockedDevice
       }
     }
     setWattTotalResultField("WattStundenGesamtHeute");
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }

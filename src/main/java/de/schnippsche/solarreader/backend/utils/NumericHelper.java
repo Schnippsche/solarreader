@@ -9,10 +9,37 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.regex.Pattern;
 
+/**
+ * Helper class for some numeric and String functions
+ */
 public class NumericHelper
 {
   private static final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
+  /**
+   * get a substring from a string in a safe way, pretending IndexOutOfBoundsException
+   *
+   * @param line       the complete String
+   * @param beginIndex the beginning index, inclusive
+   * @param length     the length of the string
+   * @return the specified substring
+   */
+  public String getSafeSubstring(String line, int beginIndex, int length)
+  {
+    if (beginIndex >= line.length())
+    {
+      return "";
+    }
+    int maxLen = (beginIndex + length >= line.length()) ? line.length() - beginIndex : length;
+    return line.substring(beginIndex, beginIndex + maxLen);
+  }
+
+  /**
+   * test if this object value can be convert to a numeric value
+   *
+   * @param value the value to test
+   * @return true if this matches the numeric value pattern
+   */
   public boolean isNumericValue(Object value)
   {
     if (value == null)
@@ -22,6 +49,12 @@ public class NumericHelper
     return pattern.matcher(value.toString()).matches();
   }
 
+  /**
+   * get an Integer value
+   *
+   * @param value the object
+   * @return Integer value
+   */
   public Integer getInteger(Object value)
   {
     if (value == null)
@@ -42,6 +75,12 @@ public class NumericHelper
     }
   }
 
+  /**
+   * get a BigDecimal value of a string
+   *
+   * @param value the string
+   * @return BigDecimal value
+   */
   public BigDecimal getBigDecimal(String value)
   {
     if (value == null || value.isEmpty())
@@ -72,6 +111,12 @@ public class NumericHelper
     return result == null ? defaultValue : result;
   }
 
+  /**
+   * get a Long value
+   *
+   * @param value the value
+   * @return Long value
+   */
   public Long getLong(Object value)
   {
     if (value == null)
@@ -93,6 +138,12 @@ public class NumericHelper
     }
   }
 
+  /**
+   * convert a byte array to a hexadecimal string
+   *
+   * @param bytes the byte array
+   * @return String hexadecimal
+   */
   public String byteArrayToHexString(byte[] bytes)
   {
     if (bytes == null || bytes.length == 0)
@@ -131,18 +182,28 @@ public class NumericHelper
    */
   public Object convertByteArray(byte[] bytes, FieldType type) throws NumberFormatException
   {
-
+    StringBuilder builder = new StringBuilder();
     switch (type)
     {
       case STRING:
-        StringBuilder builder = new StringBuilder();
-        for (byte aByte : bytes)
+       for (byte aByte : bytes)
         {
           if (aByte >= 32)
           {
             builder.append((char) aByte);
+          } else if (aByte == 0)
+          {
+            break;
           }
-          if (aByte == 0)
+        }
+        return builder.toString().trim();
+      case STRING_LITTLE_ENDIAN:
+        for (int i = bytes.length - 1; i >= 0; i--)
+        {
+          if (bytes[i] >= 32)
+          {
+            builder.append((char) bytes[i]);
+          } else if (bytes[i] == 0)
           {
             break;
           }
@@ -170,48 +231,72 @@ public class NumericHelper
         return BigDecimal.valueOf(shiftSigned(bytes[1], 8) | shiftUnsigned(bytes[0], 0));
       case U32_BIG_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return BigDecimal.valueOf(shiftUnsigned(bytes[0], 24) | shiftUnsigned(bytes[1], 16) | shiftUnsigned(bytes[2], 8) | shiftUnsigned(bytes[3], 0));
+        return BigDecimal.valueOf(shiftUnsigned(bytes[0], 24) | shiftUnsigned(bytes[1], 16) | shiftUnsigned(bytes[2], 8)
+                                  | shiftUnsigned(bytes[3], 0));
       case U32_MIXED_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return BigDecimal.valueOf(shiftUnsigned(bytes[1], 24) | shiftUnsigned(bytes[0], 16) | shiftUnsigned(bytes[3], 8) | shiftUnsigned(bytes[2], 0));
+        return BigDecimal.valueOf(shiftUnsigned(bytes[1], 24) | shiftUnsigned(bytes[0], 16) | shiftUnsigned(bytes[3], 8)
+                                  | shiftUnsigned(bytes[2], 0));
       case U32_LITTLE_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return BigDecimal.valueOf(shiftUnsigned(bytes[3], 24) | shiftUnsigned(bytes[2], 16) | shiftUnsigned(bytes[1], 8) | shiftUnsigned(bytes[0], 0));
+        return BigDecimal.valueOf(shiftUnsigned(bytes[3], 24) | shiftUnsigned(bytes[2], 16) | shiftUnsigned(bytes[1], 8)
+                                  | shiftUnsigned(bytes[0], 0));
       case I32_BIG_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return BigDecimal.valueOf(shiftSigned(bytes[0], 24) | shiftUnsigned(bytes[1], 16) | shiftUnsigned(bytes[2], 8) | shiftUnsigned(bytes[3], 0));
+        return BigDecimal.valueOf(shiftSigned(bytes[0], 24) | shiftUnsigned(bytes[1], 16) | shiftUnsigned(bytes[2], 8)
+                                  | shiftUnsigned(bytes[3], 0));
       case I32_MIXED_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return BigDecimal.valueOf(shiftSigned(bytes[1], 24) | shiftUnsigned(bytes[0], 16) | shiftUnsigned(bytes[3], 8) | shiftUnsigned(bytes[2], 0));
+        return BigDecimal.valueOf(shiftSigned(bytes[1], 24) | shiftUnsigned(bytes[0], 16) | shiftUnsigned(bytes[3], 8)
+                                  | shiftUnsigned(bytes[2], 0));
       case I32_LITTLE_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return BigDecimal.valueOf(shiftSigned(bytes[3], 24) | shiftUnsigned(bytes[2], 16) | shiftUnsigned(bytes[1], 8) | shiftUnsigned(bytes[0], 0));
+        return BigDecimal.valueOf(shiftSigned(bytes[3], 24) | shiftUnsigned(bytes[2], 16) | shiftUnsigned(bytes[1], 8)
+                                  | shiftUnsigned(bytes[0], 0));
       case FLOAT_BIG_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes)
-                                                       .order(ByteOrder.BIG_ENDIAN)
+        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)
                                                        .getFloat()), MathContext.DECIMAL32);
       case FLOAT_LITTLE_ENDIAN:
         checkMinimumByteCount(bytes, 4);
-        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes)
-                                                       .order(ByteOrder.LITTLE_ENDIAN)
+        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN)
                                                        .getFloat()), MathContext.DECIMAL32);
       case DOUBLE_BIG_ENDIAN:
         checkMinimumByteCount(bytes, 8);
-        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes)
-                                                       .order(ByteOrder.BIG_ENDIAN)
+        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)
                                                        .getDouble()), MathContext.DECIMAL64);
       case DOUBLE_LITTLE_ENDIAN:
         checkMinimumByteCount(bytes, 8);
-        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes)
-                                                       .order(ByteOrder.LITTLE_ENDIAN)
+        return new BigDecimal(String.valueOf(ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN)
                                                        .getDouble()), MathContext.DECIMAL64);
+      case I64_BIG_ENDIAN:
+        checkMinimumByteCount(bytes, 8);
+        return BigDecimal.valueOf(shiftSigned(bytes[0], 56) | shiftUnsigned(bytes[1], 48) | shiftUnsigned(bytes[2], 40)
+                                  | shiftUnsigned(bytes[3], 32) | shiftUnsigned(bytes[4], 24)
+                                  | shiftUnsigned(bytes[5], 16) | shiftUnsigned(bytes[6], 8)
+                                  | shiftUnsigned(bytes[7], 0));
+      case U64_BIG_ENDIAN:
+        checkMinimumByteCount(bytes, 8);
+        return BigDecimal.valueOf(
+          shiftUnsigned(bytes[0], 56) | shiftUnsigned(bytes[1], 48) | shiftUnsigned(bytes[2], 40)
+          | shiftUnsigned(bytes[3], 32) | shiftUnsigned(bytes[4], 24) | shiftUnsigned(bytes[5], 16)
+          | shiftUnsigned(bytes[6], 8) | shiftUnsigned(bytes[7], 0));
+      case SCALEFACTOR_BIG_ENDIAN:
+        checkMinimumByteCount(bytes, 2);
+        int n = (int) (shiftSigned(bytes[0], 8) | shiftUnsigned(bytes[1], 0));
+        return BigDecimal.TEN.pow(n, MathContext.DECIMAL64);
       default:
         Logger.warn("type '{}' is not allowed for byte array conversion!", type);
     }
     return BigDecimal.ZERO;
   }
 
+  /**
+   * convert a hexadecimal String into a byte array
+   *
+   * @param hex the hexadecimal string
+   * @return byte array
+   */
   public byte[] convertHexToByteArray(String hex)
   {
     if (hex.length() % 2 > 0)
@@ -226,6 +311,13 @@ public class NumericHelper
     return r;
   }
 
+  /**
+   * checks if the size of a byte array is smaller than byteCount bytes
+   *
+   * @param bytes     the byte array
+   * @param byteCount the minimum byte counter
+   * @throws NumberFormatException if the array size is smaller than byteCount bytes
+   */
   private void checkMinimumByteCount(byte[] bytes, int byteCount) throws NumberFormatException
   {
     if (bytes.length < byteCount)
@@ -234,11 +326,25 @@ public class NumericHelper
     }
   }
 
+  /**
+   * shift a signed byteValue to the left
+   *
+   * @param byteValue the signed byte value
+   * @param length    the shift length
+   * @return the shifted long value
+   */
   private long shiftSigned(byte byteValue, int length)
   {
     return ((long) byteValue) << length;
   }
 
+  /**
+   * shift an unsigned byteValue to the left
+   *
+   * @param byteValue the unsigned byte value
+   * @param length    the shift length
+   * @return the shifted long value
+   */
   private long shiftUnsigned(byte byteValue, int length)
   {
     return (0xFFL & byteValue) << length;

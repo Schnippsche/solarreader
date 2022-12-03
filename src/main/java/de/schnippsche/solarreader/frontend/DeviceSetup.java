@@ -2,17 +2,19 @@ package de.schnippsche.solarreader.frontend;
 
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortInvalidPortException;
+import com.ghgande.j2mod.modbus.facade.ModbusTCPMaster;
 import de.schnippsche.solarreader.SolarMain;
 import de.schnippsche.solarreader.backend.configuration.*;
 import de.schnippsche.solarreader.backend.connections.NetworkConnection;
+import de.schnippsche.solarreader.backend.connections.SimpleHidrawConnection;
 import de.schnippsche.solarreader.backend.connections.SimpleSerialConnection;
 import de.schnippsche.solarreader.backend.utils.NumericHelper;
 import de.schnippsche.solarreader.backend.utils.Pair;
 import de.schnippsche.solarreader.frontend.elements.HtmlOptionList;
 import okhttp3.Call;
+import org.hid4java.HidDevice;
 import org.tinylog.Logger;
 
-import java.io.IOException;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,6 +23,14 @@ import java.util.Map;
 
 public class DeviceSetup
 {
+  private static final String COMPORTALTERNATIV = "comportalternativ";
+  private static final String CONNECTION_ERROR = "{devicesetup.connection.error}";
+  private static final String DEVICE_IP = "device_ip";
+  private static final String DEVICE_PORT = "device_port";
+  private static final String HF2211PORT = "hf2211port";
+  private static final String HF2211IP = "hf2211ip";
+  private static final String EMPTY = "";
+
   private static ConfigDevice currentDevice;
   private final Map<String, String> formValues;
   private final NumericHelper numericHelper;
@@ -45,6 +55,8 @@ public class DeviceSetup
         break;
       case "reloadcomports":
         return reloadComports();
+      case "reloadhidraws":
+        return reloadHidraws();
       case "testconnection":
         return testConnection();
       default:
@@ -55,7 +67,7 @@ public class DeviceSetup
 
   public synchronized String getModalCode()
   {
-    String step = formValues.getOrDefault("step", "");
+    String step = formValues.getOrDefault("step", EMPTY);
     int page = numericHelper.getInteger(formValues.getOrDefault("page", "0"));
     switch (step)
     {
@@ -73,9 +85,9 @@ public class DeviceSetup
         return confirmDelete();
       case "deletedevice":
         Config.getInstance().removeDevice(currentDevice);
-        return "";
+        return EMPTY;
       default:
-        return "";
+        return EMPTY;
     }
   }
 
@@ -92,7 +104,7 @@ public class DeviceSetup
       case 4:
         return saveStep4();
       default:
-        return "";
+        return EMPTY;
     }
   }
 
@@ -109,7 +121,7 @@ public class DeviceSetup
       case 4:
         return showStep4();
       default:
-        return "";
+        return EMPTY;
     }
   }
 
@@ -123,13 +135,11 @@ public class DeviceSetup
 
   private String showStep1()
   {
-    String deviceOptions = Config.getInstance()
-                                 .getAppInfo()
-                                 .getDeviceOptionList()
-                                 .getOptions(currentDevice.getDeviceInfoId());
+    String deviceOptions =
+      Config.getInstance().getAppInfo().getDeviceOptionList().getOptions(currentDevice.getDeviceInfoId());
     devicemaps.put("[deviceoptions]", deviceOptions);
     devicemaps.put("[description]", currentDevice.getDescription());
-    devicemaps.put("[enabledelete]", currentDevice.getDescription().isEmpty() ? "d-none" : "");
+    devicemaps.put("[enabledelete]", currentDevice.getDescription().isEmpty() ? "d-none" : EMPTY);
     return new HtmlElement(SolarMain.TEMPLATES_PATH + "devicemodal1.tpl").getHtmlCode(devicemaps);
   }
 
@@ -142,33 +152,39 @@ public class DeviceSetup
     {
       currentDevice.setParams(deviceInfo.getDefaults());
     }
-    String checked = currentDevice.getParamOrDefault(ConfigDeviceField.HF2211_ENABLED, "")
-                                  .equalsIgnoreCase("true") ? "checked" : "";
+    String checked = currentDevice.getParamOrDefault(ConfigDeviceField.HF2211_ENABLED, EMPTY)
+                                  .equalsIgnoreCase("true") ? "checked" : EMPTY;
     devicemaps.put("[hf2211enabled]", checked);
-    devicemaps.put("[HF2211IP]", currentDevice.getParamOrDefault(ConfigDeviceField.HF2211_IP, ""));
-    devicemaps.put("[HF2211PORT]", currentDevice.getParamOrDefault(ConfigDeviceField.HF2211_PORT, ""));
-    devicemaps.put("[DEVICEIP]", currentDevice.getParamOrDefault(ConfigDeviceField.DEVICE_IP, ""));
-    devicemaps.put("[DEVICEPORT]", currentDevice.getParamOrDefault(ConfigDeviceField.DEVICE_PORT, ""));
-    devicemaps.put("[DEVICEADDRESS]", currentDevice.getParamOrDefault(ConfigDeviceField.DEVICE_ADDRESS, ""));
-    devicemaps.put("[BAUDRATE]", currentDevice.getParamOrDefault(ConfigDeviceField.BAUDRATE, ""));
-    devicemaps.put("[SERIALNUMBER]", currentDevice.getParamOrDefault(ConfigDeviceField.SERIALNUMBER, ""));
-    devicemaps.put("[COMPORTALTERNATIV]", currentDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, ""));
-    List<Pair> comports = new SimpleSerialConnection().getAvailablePorts();
-    String options = new HtmlOptionList(comports).getOptions(currentDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, ""));
-    devicemaps.put("[comportoptions]", options);
-    String divaddress = (deviceInfoFields.contains(DeviceInfoField.ADDRESS)) ? new HtmlElement(SolarMain.TEMPLATES_PATH + "divaddress.tpl").getHtmlCode(devicemaps) : "";
-    String divbaudrate = (deviceInfoFields.contains(DeviceInfoField.BAUDRATE)) ? new HtmlElement(SolarMain.TEMPLATES_PATH + "divbaudrate.tpl").getHtmlCode(devicemaps) : "";
-    String divhf2211 = (deviceInfoFields.contains(DeviceInfoField.HF2211)) ? new HtmlElement(SolarMain.TEMPLATES_PATH + "divhf2211.tpl").getHtmlCode(devicemaps) : "";
-    String divlan = (deviceInfoFields.contains(DeviceInfoField.LAN)) ? new HtmlElement(SolarMain.TEMPLATES_PATH + "divlan.tpl").getHtmlCode(devicemaps) : "";
-    String divserial = (deviceInfoFields.contains(DeviceInfoField.SERIALNUMBER)) ? new HtmlElement(SolarMain.TEMPLATES_PATH + "divserial.tpl").getHtmlCode(devicemaps) : "";
-    String divusb = (deviceInfoFields.contains(DeviceInfoField.SERIELL)) ? new HtmlElement(SolarMain.TEMPLATES_PATH + "divusb.tpl").getHtmlCode(devicemaps) : "";
+    devicemaps.put("[HF2211IP]", currentDevice.getParamOrDefault(ConfigDeviceField.HF2211_IP, EMPTY));
+    devicemaps.put("[HF2211PORT]", currentDevice.getParamOrDefault(ConfigDeviceField.HF2211_PORT, EMPTY));
+    devicemaps.put("[DEVICEIP]", currentDevice.getParamOrDefault(ConfigDeviceField.DEVICE_IP, EMPTY));
+    devicemaps.put("[DEVICEPORT]", currentDevice.getParamOrDefault(ConfigDeviceField.DEVICE_PORT, EMPTY));
+    devicemaps.put("[DEVICEADDRESS]", currentDevice.getParamOrDefault(ConfigDeviceField.DEVICE_ADDRESS, EMPTY));
+    devicemaps.put("[BAUDRATE]", currentDevice.getParamOrDefault(ConfigDeviceField.BAUDRATE, EMPTY));
+    devicemaps.put("[SERIALNUMBER]", currentDevice.getParamOrDefault(ConfigDeviceField.SERIALNUMBER, EMPTY));
+    devicemaps.put("[COMPORTALTERNATIV]", currentDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, EMPTY));
+    devicemaps.put("[comportoptions]", getAvailableUsbPorts());
+    String divaddress = (deviceInfoFields.contains(DeviceInfoField.ADDRESS)) ? new HtmlElement(
+      SolarMain.TEMPLATES_PATH + "divaddress.tpl").getHtmlCode(devicemaps) : EMPTY;
+    String divbaudrate = (deviceInfoFields.contains(DeviceInfoField.BAUDRATE)) ? new HtmlElement(
+      SolarMain.TEMPLATES_PATH + "divbaudrate.tpl").getHtmlCode(devicemaps) : EMPTY;
+    String divhf2211 = (deviceInfoFields.contains(DeviceInfoField.HF2211)) ? new HtmlElement(
+      SolarMain.TEMPLATES_PATH + "divhf2211.tpl").getHtmlCode(devicemaps) : EMPTY;
+    String divlan =
+      (deviceInfoFields.contains(DeviceInfoField.LAN) || deviceInfoFields.contains(DeviceInfoField.LAN_MQTT)
+       || deviceInfoFields.contains(DeviceInfoField.LAN_MODBUS)) ? new HtmlElement(
+        SolarMain.TEMPLATES_PATH + "divlan.tpl").getHtmlCode(devicemaps) : EMPTY;
+    String divserial = (deviceInfoFields.contains(DeviceInfoField.SERIALNUMBER)) ? new HtmlElement(
+      SolarMain.TEMPLATES_PATH + "divserial.tpl").getHtmlCode(devicemaps) : EMPTY;
+    String divusb = (deviceInfoFields.contains(DeviceInfoField.SERIELL)
+                     || deviceInfoFields.contains(DeviceInfoField.HIDRAW)) ? new HtmlElement(
+      SolarMain.TEMPLATES_PATH + "divusb.tpl").getHtmlCode(devicemaps) : EMPTY;
     devicemaps.put("[divaddress]", divaddress);
     devicemaps.put("[divbaudrate]", divbaudrate);
     devicemaps.put("[divhf2211]", divhf2211);
     devicemaps.put("[divlan]", divlan);
     devicemaps.put("[divserial]", divserial);
     devicemaps.put("[divusb]", divusb);
-
     return new HtmlElement(SolarMain.TEMPLATES_PATH + "devicemodal2.tpl").getHtmlCode(devicemaps);
   }
 
@@ -187,12 +203,12 @@ public class DeviceSetup
 
   private String saveStep1()
   {
-    currentDevice.setDeviceInfoId(formValues.getOrDefault("deviceselect", ""));
+    currentDevice.setDeviceInfoId(formValues.getOrDefault("deviceselect", EMPTY));
     DeviceInfo deviceInfo = Config.getInstance().getAppInfo().getDeviceInfo(currentDevice.getDeviceInfoId());
     currentDevice.setDeviceName(deviceInfo.getDeviceName());
     currentDevice.setDeviceClass(deviceInfo.getDeviceClass());
     currentDevice.setDeviceSpecification((deviceInfo.getDeviceSpecification()));
-    currentDevice.setDescription(formValues.getOrDefault("description", ""));
+    currentDevice.setDescription(formValues.getOrDefault("description", EMPTY));
     return showStep2();
   }
 
@@ -200,18 +216,14 @@ public class DeviceSetup
   {
     currentDevice.setParam(ConfigDeviceField.SERIALNUMBER, formValues.get("serial"));
     currentDevice.setParam(ConfigDeviceField.DEVICE_ADDRESS, formValues.get("device_address"));
-    currentDevice.setParam(ConfigDeviceField.DEVICE_IP, formValues.get("device_ip"));
-    currentDevice.setParam(ConfigDeviceField.DEVICE_PORT, formValues.get("device_port"));
+    currentDevice.setParam(ConfigDeviceField.DEVICE_IP, formValues.get(DEVICE_IP));
+    currentDevice.setParam(ConfigDeviceField.DEVICE_PORT, formValues.get(DEVICE_PORT));
     currentDevice.setParam(ConfigDeviceField.HF2211_ENABLED, Boolean.toString(formValues.containsKey("usehf2211")));
-    currentDevice.setParam(ConfigDeviceField.HF2211_IP, formValues.get("hf2211ip"));
-    currentDevice.setParam(ConfigDeviceField.HF2211_PORT, formValues.get("hf2211port"));
-
-    if (!formValues.getOrDefault("comportalternativ", "").isEmpty())
+    currentDevice.setParam(ConfigDeviceField.HF2211_IP, formValues.get(HF2211IP));
+    currentDevice.setParam(ConfigDeviceField.HF2211_PORT, formValues.get(HF2211PORT));
+    if (!formValues.getOrDefault(COMPORTALTERNATIV, EMPTY).isEmpty())
     {
-      currentDevice.setParam(ConfigDeviceField.COM_PORT, formValues.get("comportalternativ"));
-    } else
-    {
-      currentDevice.setParam(ConfigDeviceField.COM_PORT, formValues.getOrDefault("com_port", ""));
+      currentDevice.setParam(ConfigDeviceField.COM_PORT, formValues.get(COMPORTALTERNATIV));
     }
 
     return showStep3();
@@ -234,7 +246,7 @@ public class DeviceSetup
     dialogHelper.saveConfiguration();
     // mark for reload all devices
     Config.getInstance().setDeviceConfigurationChanged();
-    return "";
+    return EMPTY;
   }
 
   private AjaxResult checkStep(String page)
@@ -243,13 +255,10 @@ public class DeviceSetup
     switch (page)
     {
       case "1":
-        final String newName = formValues.getOrDefault("description", "");
-        long present = Config.getInstance()
-                             .getConfigDevices()
-                             .stream()
-                             .filter(cd -> cd.getDescription().equalsIgnoreCase(newName))
-                             .filter(cd -> !cd.getUuid().equals(currentDevice.getUuid()))
-                             .count();
+        final String newName = formValues.getOrDefault("description", EMPTY);
+        long present =
+          Config.getInstance().getConfigDevices().stream().filter(cd -> cd.getDescription().equalsIgnoreCase(newName))
+                .filter(cd -> !cd.getUuid().equals(currentDevice.getUuid())).count();
         if (present > 0)
         {
           return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder("{devicesetup.name.exists}"));
@@ -281,7 +290,7 @@ public class DeviceSetup
     if (!ok)
     {
       Logger.error("can't connect to port {}, error code {}", testPort, tempPort.getLastErrorCode());
-      return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder("{devicesetup.connection.error}"));
+      return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder(CONNECTION_ERROR));
     }
 
     return new AjaxResult(true);
@@ -289,9 +298,45 @@ public class DeviceSetup
 
   private AjaxResult reloadComports()
   {
-    List<Pair> comports = new SimpleSerialConnection().getAvailablePorts();
-    String options = new HtmlOptionList(comports).getOptions(currentDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, ""));
-    return new AjaxResult(true, options);
+    return new AjaxResult(true, getAvailableUsbPorts());
+  }
+
+  private String getAvailableUsbPorts()
+  {
+    Map<String, List<Pair>> comports = new HashMap<>();
+    DeviceInfo deviceInfo = Config.getInstance().getAppInfo().getDeviceInfo(currentDevice.getDeviceInfoId());
+    final HashSet<DeviceInfoField> deviceInfoFields = deviceInfo.getPrompts();
+    String chosen1 = null;
+    String chosen2 = null;
+    if (deviceInfoFields.contains(DeviceInfoField.COMPORT))
+    {
+      List<Pair> ports = new SimpleSerialConnection(currentDevice).getAvailablePorts();
+      if (!ports.isEmpty())
+      {
+        comports.put("USB", ports);
+      }
+      chosen1 = currentDevice.getParam(ConfigDeviceField.COM_PORT);
+    }
+    if (deviceInfoFields.contains(DeviceInfoField.HIDRAW))
+    {
+      List<Pair> ports = new SimpleHidrawConnection(currentDevice).getAvailableHidraws();
+      if (!ports.isEmpty())
+      {
+        comports.put("HIDRAW", new SimpleHidrawConnection(currentDevice).getAvailableHidraws());
+      }
+      chosen2 = currentDevice.getParam(ConfigDeviceField.HIDRAW_PATH);
+    }
+
+    String chosen = (chosen1 != null ? chosen1 : chosen2);
+    return new HtmlOptionList(comports).getOptions(chosen);
+  }
+
+  private AjaxResult reloadHidraws()
+  {
+    List<Pair> hidraws = new SimpleHidrawConnection(currentDevice).getAvailableHidraws();
+    String hidrawOptions =
+      new HtmlOptionList(hidraws).getOptions(currentDevice.getParamOrDefault(ConfigDeviceField.HIDRAW_PATH, EMPTY));
+    return new AjaxResult(true, hidrawOptions);
   }
 
   private AjaxResult testConnection()
@@ -302,27 +347,59 @@ public class DeviceSetup
       // hf2211 enabled ? Test IP connection
       if (formValues.containsKey("usehf2211"))
       {
-        return checkLan(formValues.get("hf2211ip"), formValues.get("hf2211port"));
-      } else if (!formValues.getOrDefault("device_ip", "").isEmpty())
+        return checkLan(formValues.get(HF2211IP), formValues.get(HF2211PORT));
+      } else if (!formValues.getOrDefault(DEVICE_IP, EMPTY).isEmpty())
       {
-        return checkLan(formValues.get("device_ip"), formValues.get("device_port"));
+        DeviceInfo deviceInfo = Config.getInstance().getAppInfo().getDeviceInfo(currentDevice.getDeviceInfoId());
+        final HashSet<DeviceInfoField> deviceInfoFields = deviceInfo.getPrompts();
+        if (deviceInfoFields.contains(DeviceInfoField.LAN))
+        {
+          return checkLan(formValues.get(DEVICE_IP), formValues.get(DEVICE_PORT));
+        } else if (deviceInfoFields.contains(DeviceInfoField.LAN_MODBUS))
+        {
+          return checkLanModbus();
+        } else if (deviceInfoFields.contains(DeviceInfoField.LAN_MQTT))
+        {
+          return checkLanMqtt();
+        }
       }
-      if (!formValues.getOrDefault("comportalternativ", "").isEmpty())
+      testPort = formValues.getOrDefault(COMPORTALTERNATIV, EMPTY);
+      if (!testPort.isEmpty())
       {
-        testPort = formValues.get("comportalternativ");
-      } else
-      {
-        testPort = formValues.getOrDefault("com_port", "");
+        return checkComport(testPort);
       }
-      return checkComport(testPort);
+      testPort = formValues.getOrDefault("com_port", EMPTY);
+      // com port or hidraw?
+      if (testPort != null && !testPort.isEmpty())
+      {
+        final String port = testPort;
+        List<Pair> usbPorts = new SimpleSerialConnection(currentDevice).getAvailablePorts();
+        if (usbPorts.stream().anyMatch(u -> u.getKey().equals(port)))
+        {
+          currentDevice.setParam(ConfigDeviceField.COM_PORT, port);
+          return checkComport(testPort);
+        }
+        // must be hidraw
+        HidDevice hiddevice = new SimpleHidrawConnection(currentDevice).getDeviceFromPath(port);
+        if (hiddevice == null)
+        {
+          return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder(CONNECTION_ERROR));
+        }
+        currentDevice.setParam(ConfigDeviceField.HIDRAW_PRODUCT_ID, String.valueOf(hiddevice.getProductId()));
+        currentDevice.setParam(ConfigDeviceField.HIDRAW_VENDOR_ID, String.valueOf(hiddevice.getVendorId()));
+        currentDevice.setParam(ConfigDeviceField.HIDRAW_SERIAL, hiddevice.getSerialNumber());
+        currentDevice.setParam(ConfigDeviceField.HIDRAW_PATH, port);
+        return new AjaxResult(true);
+      }
     } catch (Exception ex)
     {
       Logger.error("can't connect to device, reason: {}", ex);
-      return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder("{devicesetup.connection.error}"));
     }
+    return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder(CONNECTION_ERROR));
+
   }
 
-  private AjaxResult checkLan(String ip, String port) throws IOException
+  private AjaxResult checkLan(String ip, String port)
   {
     Logger.debug("check lan with ip {} and port {}", ip, port);
     String testUrl = String.format("http://%s:%s/", ip, port);
@@ -330,8 +407,45 @@ public class DeviceSetup
     Call call = NetworkConnection.HTTPCLIENT.newCall(request);
     try (okhttp3.Response response = call.execute())
     {
+      Logger.debug(response.message());
       return new AjaxResult(true);
+    } catch (Exception e)
+    {
+      Logger.error("couldn't established LAN connection to {}: {}", testUrl, e.getMessage());
     }
+    return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder(CONNECTION_ERROR));
+  }
+
+  private AjaxResult checkLanModbus()
+  {
+    String ip = formValues.get(DEVICE_IP);
+    String port = formValues.get(DEVICE_PORT);
+    try
+    {
+      ModbusTCPMaster modbusMaster = new ModbusTCPMaster(ip, Integer.parseInt(port));
+      modbusMaster.connect();
+      modbusMaster.disconnect();
+      return new AjaxResult(true);
+    } catch (Exception e)
+    {
+      Logger.error("couldn't established Modbus connection to {}, port {}: {}", ip, port, e.getMessage());
+    }
+    return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder(CONNECTION_ERROR));
+  }
+
+  private AjaxResult checkLanMqtt()
+  {
+    String ip = formValues.get(DEVICE_IP);
+    String port = formValues.get(DEVICE_PORT);
+    try
+    {
+      // TODO: Check MQTT connection
+      return new AjaxResult(true);
+    } catch (Exception e)
+    {
+      Logger.error("couldn't established Modbus connection:{}" + e.getMessage());
+    }
+    return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder(CONNECTION_ERROR));
   }
 
 }

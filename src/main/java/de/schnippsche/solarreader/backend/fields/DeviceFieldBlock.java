@@ -80,8 +80,15 @@ public class DeviceFieldBlock
         bytes[counter++] = irb[0];
         bytes[counter++] = irb[1];
       }
-      Object value = numericHelper.convertByteArray(bytes, deviceField.getType());
-      result.add(deviceField.createResultField(value));
+      try
+      {
+        Object value = numericHelper.convertByteArray(bytes, deviceField.getType());
+        result.add(deviceField.createResultField(value));
+      }
+      catch (NumberFormatException e)
+      {
+        result.add(new ResultField(deviceField, ResultFieldStatus.INVALIDNUMBER, null));
+      }
     }
 
     return result;

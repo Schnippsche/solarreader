@@ -1,0 +1,270 @@
+{
+  "description": "specs for mppt (160)",
+  "devicefields": [
+    {
+      "name": "MPPT_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Well-known value. Uniquely identifies this as a sunspec model mppt (160)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of sunspec model mppt (160)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCA_SF",
+      "unit": "",
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "note": "Current Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCV_SF",
+      "unit": "",
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "note": "Voltage Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCW_SF",
+      "unit": "",
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "note": "Power Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_DCWH_SF",
+      "unit": "",
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "note": "Energy Scale Factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_Evt",
+      "unit": "",
+      "offset": 6,
+      "count": 2,
+      "register": 3,
+      "note": "Global Events",
+      "type": "BINARY"
+    },
+    {
+      "name": "MPPT_N",
+      "unit": "",
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "note": "Number of Modules",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_TmsPer",
+      "unit": "",
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "note": "Timestamp Period",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1ID",
+      "unit": "",
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "note": "Input ID",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1IDStr",
+      "unit": "",
+      "offset": 11,
+      "count": 8,
+      "register": 3,
+      "note": "Input ID Sting",
+      "type": "STRING"
+    },
+    {
+      "name": "MPPT_module1DCA",
+      "unit": "A",
+      "offset": 19,
+      "count": 1,
+      "register": 3,
+      "note": "DC Current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1DCV",
+      "unit": "V",
+      "offset": 20,
+      "count": 1,
+      "register": 3,
+      "note": "DC Voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1DCW",
+      "unit": "W",
+      "offset": 21,
+      "count": 1,
+      "register": 3,
+      "note": "DC Power",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1DCWH",
+      "unit": "Wh",
+      "offset": 22,
+      "count": 2,
+      "register": 3,
+      "note": "Lifetime Energy",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1Tms",
+      "unit": "Secs",
+      "offset": 24,
+      "count": 2,
+      "register": 3,
+      "note": "Timestamp",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1Tmp",
+      "unit": "C",
+      "offset": 26,
+      "count": 1,
+      "register": 3,
+      "note": "Temperature",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module1DCSt",
+      "unit": "",
+      "offset": 27,
+      "count": 1,
+      "register": 3,
+      "note": "Operating State",
+      "type": "BINARY"
+    },
+    {
+      "name": "MPPT_module1DCEvt",
+      "unit": "",
+      "offset": 28,
+      "count": 2,
+      "register": 3,
+      "note": "Module Events",
+      "type": "BINARY"
+    },
+    {
+      "name": "MPPT_module2ID",
+      "unit": "",
+      "offset": 30,
+      "count": 1,
+      "register": 3,
+      "note": "Input ID",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2IDStr",
+      "unit": "",
+      "offset": 31,
+      "count": 8,
+      "register": 3,
+      "note": "Input ID Sting",
+      "type": "STRING"
+    },
+    {
+      "name": "MPPT_module2DCA",
+      "unit": "A",
+      "offset": 39,
+      "count": 1,
+      "register": 3,
+      "note": "DC Current",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2DCV",
+      "unit": "V",
+      "offset": 40,
+      "count": 1,
+      "register": 3,
+      "note": "DC Voltage",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2DCW",
+      "unit": "W",
+      "offset": 41,
+      "count": 1,
+      "register": 3,
+      "note": "DC Power",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2DCWH",
+      "unit": "Wh",
+      "offset": 42,
+      "count": 2,
+      "register": 3,
+      "note": "Lifetime Energy",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2Tms",
+      "unit": "Secs",
+      "offset": 44,
+      "count": 2,
+      "register": 3,
+      "note": "Timestamp",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2Tmp",
+      "unit": "C",
+      "offset": 46,
+      "count": 1,
+      "register": 3,
+      "note": "Temperature",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "MPPT_module2DCSt",
+      "unit": "",
+      "offset": 47,
+      "count": 1,
+      "register": 3,
+      "note": "Operating State",
+      "type": "BINARY"
+    },
+    {
+      "name": "MPPT_module2DCEvt",
+      "unit": "",
+      "offset": 48,
+      "count": 2,
+      "register": 3,
+      "note": "Module Events",
+      "type": "BINARY"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "description": "specs for Back of Module Temperature Model (303)",
+  "devicefields": [
+    {
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_ID",
+      "note": "Uniquely identifies this as a SunSpec Irradiance Modbus Register Model",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_L",
+      "note": "Length of Register Model",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Registers"
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_GHI",
+      "note": "Global Horizontal Irradiance",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W / m2"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

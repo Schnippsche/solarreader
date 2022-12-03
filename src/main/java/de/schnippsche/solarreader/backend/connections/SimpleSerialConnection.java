@@ -1,11 +1,16 @@
 package de.schnippsche.solarreader.backend.connections;
 
 import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortDataListener;
+import com.fazecast.jSerialComm.SerialPortInvalidPortException;
+import com.ghgande.j2mod.modbus.net.AbstractSerialConnection;
+import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
+import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.utils.NumericHelper;
 import de.schnippsche.solarreader.backend.utils.Pair;
+import de.schnippsche.solarreader.backend.utils.QCommand;
 import org.tinylog.Logger;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,12 +19,15 @@ import java.util.List;
 /**
  * The type Serial connection.
  */
-public class SimpleSerialConnection
+public class SimpleSerialConnection implements Connection<String, QCommand>
 {
   private final NumericHelper numericHelper;
+  private final ConfigDevice configDevice;
+  private SerialPort serialPort;
 
-  public SimpleSerialConnection()
+  public SimpleSerialConnection(ConfigDevice configDevice)
   {
+    this.configDevice = configDevice;
     numericHelper = new NumericHelper();
   }
 
@@ -36,12 +44,22 @@ public class SimpleSerialConnection
     return comports;
   }
 
+  public void addDataListener(SerialPortDataListener dataListener)
+  {
+    serialPort.addDataListener(dataListener);
+  }
+
+  public void removeDataListener()
+  {
+    serialPort.removeDataListener();
+  }
+
   /**
    * Send bytes
    *
    * @param bytes the bytes
    */
-  public void send(SerialPort serialPort, byte[] bytes)
+  public void send(byte[] bytes)
   {
     Logger.debug("try to send {} bytes to serial port {}, hex bytes are {}", bytes.length, serialPort.getSystemPortName(), numericHelper.byteArrayToHexString(bytes));
     int result = serialPort.writeBytes(bytes, bytes.length);
@@ -53,7 +71,7 @@ public class SimpleSerialConnection
    *
    * @param string the string
    */
-  public void sendCommand(SerialPort serialPort, String string)
+  public void send(String string)
   {
     Logger.debug("try to send command '{}' to serial port {}...", string.trim(), serialPort.getSystemPortName());
     byte[] bytes = string.getBytes(StandardCharsets.ISO_8859_1);
@@ -61,18 +79,49 @@ public class SimpleSerialConnection
     Logger.debug("sended {} bytes to serial port {}", result, serialPort.getSystemPortName());
   }
 
+  public String send(QCommand command)
+  {
+    Logger.info("try to send command {} to device ...", command.getCommand());
+    byte[] bytes = command.getByteCommand();
+    int bytesWritten = serialPort.writeBytes(bytes, bytes.length);
+    if (bytesWritten <= 0)
+    {
+      Logger.error("could not write, reason = {}", serialPort.getLastErrorCode());
+      return null;
+    }
+    String line = readString();
+    Logger.debug("read line {}", line);
+    return line;
+  }
+
   /**
    * Open.
    */
-  public void open(SerialPort serialPort)
+  public boolean open()
   {
-    Logger.debug("open serial port {}", serialPort.getSystemPortName());
+    String port = configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
+    try
+    {
+      serialPort = SerialPort.getCommPort(port);
+    } catch (SerialPortInvalidPortException e)
+    {
+      Logger.error("can't open serial port {} ", port);
+      return false;
+    }
+    serialPort.setBaudRate(configDevice.getIntParamOrDefault(ConfigDeviceField.BAUDRATE, 9600));
+    serialPort.setParity(configDevice.getIntParamOrDefault(ConfigDeviceField.PARITY, SerialPort.NO_PARITY)); // NO PARITY
+    serialPort.setNumDataBits(configDevice.getIntParamOrDefault(ConfigDeviceField.DATABITS, 8)); // 8
+    serialPort.setNumStopBits(configDevice.getIntParamOrDefault(ConfigDeviceField.STOPBITS, AbstractSerialConnection.ONE_STOP_BIT)); // 1
+    serialPort.setFlowControl(configDevice.getIntParamOrDefault(ConfigDeviceField.FLOWCONTROLIN, SerialPort.FLOW_CONTROL_DISABLED));
+    Logger.debug("open serial port {} with baud rate {}", serialPort.getSystemPortName(), serialPort.getBaudRate());
     boolean ok = serialPort.openPort(200);
     if (!ok)
     {
       Logger.error("can't open Port {} , error {}", serialPort.getSystemPortName(), serialPort.getLastErrorCode());
+      return false;
     }
     serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 3000, 1000);
+    return true;
   }
 
   /**
@@ -81,12 +130,13 @@ public class SimpleSerialConnection
    * @param maxByte the max byte
    * @return the byte [ ]
    */
-  public byte[] readBytes(SerialPort serialPort, int maxByte)
+  public byte[] readBytes(int maxByte)
   {
     Logger.debug("try to read {} bytes from {}", maxByte, serialPort.getSystemPortName());
     byte[] readBuffer = new byte[maxByte];
     int numRead = serialPort.readBytes(readBuffer, readBuffer.length);
-    Logger.debug("read from {} returns {} bytes {}", serialPort.getSystemPortName(), numRead, numRead > 0 ? numericHelper.byteArrayToHexString(readBuffer) : "");
+    Logger.debug("read from {} returns {} bytes {}", serialPort.getSystemPortName(), numRead,
+      numRead > 0 ? numericHelper.byteArrayToHexString(readBuffer) : "");
     if (numRead >= 0)
     {
       return Arrays.copyOfRange(readBuffer, 0, numRead);
@@ -100,9 +150,9 @@ public class SimpleSerialConnection
    *
    * @return the byte [ ]
    */
-  public byte[] readBytes(SerialPort serialPort)
+  public byte[] readBytes()
   {
-    return readBytes(serialPort, 1024);
+    return readBytes(1024);
   }
 
   /**
@@ -110,46 +160,26 @@ public class SimpleSerialConnection
    *
    * @return the string
    */
-  public String readString(SerialPort serialPort)
+  public String readString()
   {
-    return new String(readBytes(serialPort), StandardCharsets.ISO_8859_1).trim();
+    return new String(readBytes(), StandardCharsets.ISO_8859_1).trim();
   }
 
-  /**
-   * Read string .
-   *
-   * @param maxLen the max len
-   * @return the string
-   */
-  public String readString(SerialPort serialPort, int maxLen)
-  {
-    return new String(readBytes(serialPort, maxLen), StandardCharsets.ISO_8859_1);
-  }
   /**
    * reads a String with beginning CR and LF at the end
    *
    * @param maxStringLength the maximum String length
    * @return String without CR and LF
    */
-  public String readCrStringLf(SerialPort serialPort, int maxStringLength)
+  public String readCrStringLf(int maxStringLength)
   {
-    return new String(readBytes(serialPort, maxStringLength + 2), StandardCharsets.ISO_8859_1).trim();
-  }
-  /**
-   * Read string .
-   *
-   * @param charset the charset
-   * @return the string
-   */
-  public String readString(SerialPort serialPort, Charset charset)
-  {
-    return new String(readBytes(serialPort), charset);
+    return new String(readBytes(maxStringLength + 2), StandardCharsets.ISO_8859_1).trim();
   }
 
   /**
    * Close.
    */
-  public void close(SerialPort serialPort)
+  public void close()
   {
     if (serialPort != null)
     {

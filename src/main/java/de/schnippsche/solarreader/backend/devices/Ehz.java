@@ -1,6 +1,5 @@
 package de.schnippsche.solarreader.backend.devices;
 
-import com.fazecast.jSerialComm.SerialPort;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.connections.SimpleSerialConnection;
@@ -28,23 +27,20 @@ public class Ehz extends AbstractLockedDevice
   {
     specification = jsonTool.readSpecification(getConfigDevice().getDeviceSpecification());
     usbDevice = getConfigDevice().getParam(ConfigDeviceField.COM_PORT);
-    this.simpleSerialConnection = new SimpleSerialConnection();
-  }
-  @Override protected void correctValues()
-  {
-    // Nothing special
+    this.simpleSerialConnection = new SimpleSerialConnection(getConfigDevice());
   }
 
   @Override protected boolean readLockedDeviceValues()
   {
-    SerialPort serialPort = null;
     try
     {
-      serialPort = SerialPort.getCommPort(usbDevice);
       Logger.debug("usbDevice:", usbDevice);
-      simpleSerialConnection.open(serialPort);
+      if (!simpleSerialConnection.open())
+      {
+        return false;
+      }
       MessageBeginListener beginListener = new MessageBeginListener();
-      serialPort.addDataListener(beginListener);
+      simpleSerialConnection.addDataListener(beginListener);
       long start = System.currentTimeMillis();
       while (System.currentTimeMillis() - start < 5000 && !beginListener.isOk())
       {
@@ -79,15 +75,13 @@ public class Ehz extends AbstractLockedDevice
       return false;
     } finally
     {
-      if (serialPort != null)
-      {
-        serialPort.removeDataListener();
-        serialPort.closePort();
-      }
+      simpleSerialConnection.removeDataListener();
+      simpleSerialConnection.close();
     }
     return false;
 
   }
+
   private void extractFields(String receive)
   {
     for (DeviceField deviceField : this.specification.getDevicefields())
@@ -112,11 +106,6 @@ public class Ehz extends AbstractLockedDevice
         Logger.debug("not found!");
       }
     }
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }

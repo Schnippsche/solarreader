@@ -95,7 +95,7 @@ public class TableField
       return false;
     }
     TableField that = (TableField) o;
-    return tablename.equals(that.tablename) && columnname.equals(that.columnname);
+    return Objects.equals(tablename, that.tablename) && Objects.equals(columnname, that.columnname);
   }
 
   @Override public int hashCode()

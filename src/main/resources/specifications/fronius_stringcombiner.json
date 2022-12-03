@@ -1,0 +1,369 @@
+{
+  "description": "specs for string combiner (403)",
+  "devicefields": [
+    {
+      "name": "STRINGCOMBINER_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Uniquely identifies this as a SunSpec String Combiner Modbus Register Model",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of Register Model",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_DCA_SF",
+      "unit": "",
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "note": "Current scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_DCAhr_SF",
+      "unit": "",
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "note": "Amp-hour scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_DCV_SF",
+      "unit": "",
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "note": "Voltage scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_DCAMax",
+      "unit": "A",
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "note": "Maximum DC Current Rating",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_N",
+      "unit": "",
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "note": "Number of Inputs",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_Evt",
+      "unit": "",
+      "offset": 7,
+      "count": 2,
+      "register": 3,
+      "note": "Bitmask value.  Events",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_EvtVnd",
+      "unit": "",
+      "offset": 9,
+      "count": 2,
+      "register": 3,
+      "note": "Bitmask value.  Vendor defined events",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_DCA",
+      "unit": "A",
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "note": "Total measured current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_DCAhr",
+      "unit": "Ah",
+      "offset": 12,
+      "count": 2,
+      "register": 3,
+      "note": "Total metered Amp-hours",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_DCV",
+      "unit": "V",
+      "offset": 14,
+      "count": 1,
+      "register": 3,
+      "note": "Output Voltage",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_Tmp",
+      "unit": "°C",
+      "offset": 15,
+      "count": 1,
+      "register": 3,
+      "note": "Internal operating temperature",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCA_SF",
+      "unit": "",
+      "offset": 16,
+      "count": 1,
+      "register": 3,
+      "note": "Current scale factor for inputs",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCAhr_SF",
+      "unit": "",
+      "offset": 17,
+      "count": 1,
+      "register": 3,
+      "note": "Amp-hour scale factor for inputs",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InID",
+      "unit": "",
+      "offset": 18,
+      "count": 1,
+      "register": 3,
+      "note": "Uniquely identifies this input set",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvt",
+      "unit": "",
+      "offset": 19,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvtVnd",
+      "unit": "",
+      "offset": 21,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Vendor Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCA",
+      "unit": "A",
+      "offset": 23,
+      "count": 1,
+      "register": 3,
+      "note": "String Input Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCAhr",
+      "unit": "Ah",
+      "offset": 24,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Amp-Hours",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InID",
+      "unit": "",
+      "offset": 26,
+      "count": 1,
+      "register": 3,
+      "note": "Uniquely identifies this input set",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvt",
+      "unit": "",
+      "offset": 27,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvtVnd",
+      "unit": "",
+      "offset": 29,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Vendor Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCA",
+      "unit": "A",
+      "offset": 31,
+      "count": 1,
+      "register": 3,
+      "note": "String Input Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCAhr",
+      "unit": "Ah",
+      "offset": 32,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Amp-Hours",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InID",
+      "unit": "",
+      "offset": 34,
+      "count": 1,
+      "register": 3,
+      "note": "Uniquely identifies this input set",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvt",
+      "unit": "",
+      "offset": 35,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvtVnd",
+      "unit": "",
+      "offset": 37,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Vendor Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCA",
+      "unit": "A",
+      "offset": 39,
+      "count": 1,
+      "register": 3,
+      "note": "String Input Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCAhr",
+      "unit": "Ah",
+      "offset": 40,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Amp-Hours",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InID",
+      "unit": "",
+      "offset": 42,
+      "count": 1,
+      "register": 3,
+      "note": "Uniquely identifies this input set",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvt",
+      "unit": "",
+      "offset": 43,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvtVnd",
+      "unit": "",
+      "offset": 45,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Vendor Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCA",
+      "unit": "A",
+      "offset": 47,
+      "count": 1,
+      "register": 3,
+      "note": "String Input Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCAhr",
+      "unit": "Ah",
+      "offset": 48,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Amp-Hours",
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InID",
+      "unit": "",
+      "offset": 50,
+      "count": 1,
+      "register": 3,
+      "note": "Uniquely identifies this input set",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvt",
+      "unit": "",
+      "offset": 51,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InEvtVnd",
+      "unit": "",
+      "offset": 53,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Vendor Event Flags",
+      "type": "BINARY"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCA",
+      "unit": "A",
+      "offset": 55,
+      "count": 1,
+      "register": 3,
+      "note": "String Input Current",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "STRINGCOMBINER_InDCAhr",
+      "unit": "Ah",
+      "offset": 56,
+      "count": 2,
+      "register": 3,
+      "note": "String Input Amp-Hours",
+      "type": "U32_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

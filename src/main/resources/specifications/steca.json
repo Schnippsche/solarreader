@@ -1,0 +1,465 @@
+{
+  "description": "specs for steca",
+  "devicefields": [
+    {
+      "command": "QMOD",
+      "name": "Modus",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "note": "modus",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Netzspannung",
+      "unit": "V",
+      "offset": 0,
+      "count": 5,
+      "note": "Grid voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Netzfrequenz",
+      "unit": "Hz",
+      "offset": 6,
+      "count": 4,
+      "note": "Grid frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Ausgangsspannung",
+      "unit": "V",
+      "offset": 11,
+      "count": 5,
+      "note": "AC output voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Ausgangsfrequenz",
+      "unit": "Hz",
+      "offset": 17,
+      "count": 4,
+      "note": "AC output frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Scheinleistung",
+      "unit": "VA",
+      "offset": 22,
+      "count": 4,
+      "note": "AC output apparent power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Wirkleistung",
+      "unit": "W",
+      "offset": 27,
+      "count": 4,
+      "note": "AC output active power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Ausgangslast",
+      "unit": "%",
+      "offset": 32,
+      "count": 3,
+      "note": "Output load percent",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Busspannung",
+      "unit": "V",
+      "offset": 36,
+      "count": 3,
+      "note": "BUS voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batteriespannung",
+      "unit": "V",
+      "offset": 40,
+      "count": 5,
+      "note": "Battery voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batterieladestrom",
+      "unit": "A",
+      "offset": 46,
+      "count": 3,
+      "note": "Battery charging current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batteriekapazitaet",
+      "unit": "%",
+      "offset": 50,
+      "count": 3,
+      "note": "Battery capacity",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Temperatur",
+      "unit": "C",
+      "offset": 54,
+      "count": 4,
+      "note": "Inverter heat sink temperature",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solarstrom",
+      "unit": "A",
+      "offset": 59,
+      "count": 4,
+      "note": "PV Input current for battery",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solarspannung",
+      "unit": "V",
+      "offset": 64,
+      "count": 5,
+      "note": "PV Input voltage 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batteriespannung",
+      "unit": "V",
+      "offset": 70,
+      "count": 5,
+      "note": "Battery voltage from SCC",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batterieentladestrom",
+      "unit": "A",
+      "offset": 76,
+      "count": 5,
+      "note": "Battery discharge current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Prioritaetsstatus",
+      "unit": "",
+      "offset": 82,
+      "count": 1,
+      "note": "SBU Prioritaetsstatus, 1=ja, 0=nein",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Laststatus",
+      "unit": "",
+      "offset": 85,
+      "count": 1,
+      "note": "Last status, 0=Last aus, 1=Last an",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Ladestatus",
+      "unit": "",
+      "offset": 87,
+      "count": 1,
+      "note": "Lade status, 0=laedt, 1=laedt nicht",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solarladestatus",
+      "unit": "",
+      "offset": 88,
+      "count": 1,
+      "note": "Solar-Ladestatus, 1=laedt, 0=laedt nicht",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Ladestatus",
+      "unit": "",
+      "offset": 89,
+      "count": 1,
+      "note": "AC Ladestatus, 1=laedt, 0=laedt nicht",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Reserviert",
+      "unit": "",
+      "offset": 91,
+      "count": 2,
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Eeprom_Version",
+      "unit": "",
+      "offset": 94,
+      "count": 2,
+      "note": "EEPROM version",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "PV_Ladeleistung",
+      "unit": "W",
+      "offset": 97,
+      "count": 5,
+      "note": "PV Charging power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Ladezielkennzeichen",
+      "unit": "",
+      "offset": 103,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Eingeschaltet",
+      "unit": "",
+      "offset": 104,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "5000"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Steca"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Scheinleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangslast",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ausgangslast"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Prioritaetsstatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Prioritaetsstatus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Ladestatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ladestatus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Solarladestatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarladestatus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Ladeleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Tagesenergie"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "name": "Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "name": "Datum",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "name": "Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "name": "Scheinleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Scheinleistung"
+    },
+    {
+      "name": "Wirkleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung"
+    },
+    {
+      "name": "Ausgangslast",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ausgangslast"
+    },
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "name": "Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "name": "Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung"
+    },
+    {
+      "name": "Prioritaetsstatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Prioritaetsstatus"
+    },
+    {
+      "name": "Ladestatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ladestatus"
+    },
+    {
+      "name": "Solarladestatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarladestatus"
+    },
+    {
+      "name": "Ladeleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    }
+  ]
+}

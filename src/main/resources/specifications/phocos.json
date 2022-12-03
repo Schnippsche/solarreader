@@ -263,91 +263,91 @@
       "sourcevalue": "Phocos"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX1",
       "columnname": "Maschinentype",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Maschinentype"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX2",
       "columnname": "Laderegler_aktiv",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Laderegler_aktiv"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX3",
       "columnname": "Max_Ampere",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Max_Ampere"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX4",
       "columnname": "Batterie_Ah",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Batterie_Ah"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX5",
       "columnname": "Regler_Mode",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Regler_Mode"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX6",
       "columnname": "MPPT_Status",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "MPPT_Status"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX7",
       "columnname": "Regler_Status",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Regler_Status"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX8",
       "columnname": "Solarspannung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Solarspannung"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX9",
       "columnname": "Batteriespannung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Batteriespannung"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX10",
       "columnname": "Ladereglerstrom",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Ladereglerstrom"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX11",
       "columnname": "Ladereglerleistung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Ladereglerleistung"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX12",
       "columnname": "Temperatur",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Temperatur"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX13",
       "columnname": "Bat_Relay",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
@@ -361,42 +361,42 @@
       "sourcevalue": "PV_Relay"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX14",
       "columnname": "Fehler",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Fehler"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX15",
       "columnname": "Warnungen",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Warnungen"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX16",
       "columnname": "Wh_Gesamt_high",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Wh_Gesamt_high"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX17",
       "columnname": "Wh_Gesamt",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Wh_Gesamt"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX18",
       "columnname": "WR_Status",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "WR_Status"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX19",
       "columnname": "Bat_Spannung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
@@ -410,7 +410,7 @@
       "sourcevalue": "AC_Ausgangsspannung"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX20",
       "columnname": "Netzspannung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
@@ -424,14 +424,14 @@
       "sourcevalue": "AC_Ausgangsstrom"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX21",
       "columnname": "Netzstrom",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Netzstrom"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX22",
       "columnname": "Last_Strom",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
@@ -445,7 +445,7 @@
       "sourcevalue": "AC_Ausgangsleistung"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX23",
       "columnname": "Netzleistung",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
@@ -459,7 +459,7 @@
       "sourcevalue": "AC_Ausgangslast"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX24",
       "columnname": "Last_Prozent",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
@@ -473,21 +473,21 @@
       "sourcevalue": "AC_Ausgangsfrequenz"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX25",
       "columnname": "Netzfrequenz",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Netzfrequenz"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX26",
       "columnname": "Batterieleistung",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Batterieleistung"
     },
     {
-      "tablename": "XXXXX",
+      "tablename": "XXXXX27",
       "columnname": "Batterie_Strom",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",

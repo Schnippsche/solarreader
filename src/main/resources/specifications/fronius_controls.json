@@ -1,0 +1,243 @@
+{
+  "description": "specs for controls (123)",
+  "devicefields": [
+    {
+      "name": "CONTROLS_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Well-known value. Uniquely identifies this as a sunspec model controls (123)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of sunspec model controls (123)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_Conn_WinTms",
+      "unit": "Secs",
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "note": "Time window for connect/disconnect.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_Conn_RvrtTms",
+      "unit": "Secs",
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "note": "Timeout period for connect/disconnect.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_Conn",
+      "unit": "",
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "note": "Enumerated valued.  Connection control.",
+      "type": "BINARY"
+    },
+    {
+      "name": "CONTROLS_WMaxLimPct",
+      "unit": "% WMax",
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "note": "Set power output to specified level.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_WMaxLimPct_WinTms",
+      "unit": "Secs",
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "note": "Time window for power limit change.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_WMaxLimPct_RvrtTms",
+      "unit": "Secs",
+      "offset": 7,
+      "count": 1,
+      "register": 3,
+      "note": "Timeout period for power limit.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_WMaxLimPct_RmpTms",
+      "unit": "Secs",
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "note": "Ramp time for moving from current setpoint to new setpoint.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_WMaxLim_Ena",
+      "unit": "",
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "note": "Enumerated valued.  Throttle enable/disable control.",
+      "type": "BINARY"
+    },
+    {
+      "name": "CONTROLS_OutPFSet",
+      "unit": "cos()",
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "note": "Set power factor to specific value - cosine of angle.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_OutPFSet_WinTms",
+      "unit": "Secs",
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "note": "Time window for power factor change.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_OutPFSet_RvrtTms",
+      "unit": "Secs",
+      "offset": 12,
+      "count": 1,
+      "register": 3,
+      "note": "Timeout period for power factor.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_OutPFSet_RmpTms",
+      "unit": "Secs",
+      "offset": 13,
+      "count": 1,
+      "register": 3,
+      "note": "Ramp time for moving from current setpoint to new setpoint.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_OutPFSet_Ena",
+      "unit": "",
+      "offset": 14,
+      "count": 1,
+      "register": 3,
+      "note": "Enumerated valued.  Fixed power factor enable/disable control.",
+      "type": "BINARY"
+    },
+    {
+      "name": "CONTROLS_VArWMaxPct",
+      "unit": "% WMax",
+      "offset": 15,
+      "count": 1,
+      "register": 3,
+      "note": "Reactive power in percent of WMax.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArMaxPct",
+      "unit": "% VArMax",
+      "offset": 16,
+      "count": 1,
+      "register": 3,
+      "note": "Reactive power in percent of VArMax.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArAvalPct",
+      "unit": "% VArAval",
+      "offset": 17,
+      "count": 1,
+      "register": 3,
+      "note": "Reactive power in percent of VArAval.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArPct_WinTms",
+      "unit": "Secs",
+      "offset": 18,
+      "count": 1,
+      "register": 3,
+      "note": "Time window for VAR limit change.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArPct_RvrtTms",
+      "unit": "Secs",
+      "offset": 19,
+      "count": 1,
+      "register": 3,
+      "note": "Timeout period for VAR limit.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArPct_RmpTms",
+      "unit": "Secs",
+      "offset": 20,
+      "count": 1,
+      "register": 3,
+      "note": "Ramp time for moving from current setpoint to new setpoint.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArPct_Mod",
+      "unit": "",
+      "offset": 21,
+      "count": 1,
+      "register": 3,
+      "note": "Enumerated value. VAR percent limit mode.",
+      "type": "BINARY"
+    },
+    {
+      "name": "CONTROLS_VArPct_Ena",
+      "unit": "",
+      "offset": 22,
+      "count": 1,
+      "register": 3,
+      "note": "Enumerated valued.  Percent limit VAr enable/disable control.",
+      "type": "BINARY"
+    },
+    {
+      "name": "CONTROLS_WMaxLimPct_SF",
+      "unit": "",
+      "offset": 23,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for power output percent.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_OutPFSet_SF",
+      "unit": "",
+      "offset": 24,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for power factor.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "CONTROLS_VArPct_SF",
+      "unit": "",
+      "offset": 25,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for reactive power percent.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

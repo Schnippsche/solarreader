@@ -7,6 +7,8 @@ import de.schnippsche.solarreader.backend.serializes.gson.LocalDateSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalDateTimeSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalTimeSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.TimeUnitSerializer;
+import de.schnippsche.solarreader.backend.serializes.sonoff.StatusSNS;
+import de.schnippsche.solarreader.backend.serializes.sonoff.StatusSNSDeserializer;
 import de.schnippsche.solarreader.backend.utils.JsonTools;
 import de.schnippsche.solarreader.backend.worker.ThreadHelper;
 import org.tinylog.Logger;
@@ -97,6 +99,7 @@ public class Config
       builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
       builder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
       builder.registerTypeAdapter(TimeUnit.class, new TimeUnitSerializer());
+      builder.registerTypeAdapter(StatusSNS.class, new StatusSNSDeserializer()); // Test
       gson = builder.create();
     }
     return gson;
@@ -206,8 +209,12 @@ public class Config
 
   public Object getLockObject(ConfigDevice configDevice)
   {
-    String comPort = configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
-    return lockObjects.getOrDefault(comPort, new Object());
+    String lockObject = configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
+    if (lockObject.isEmpty())
+    {
+      lockObject = configDevice.getParamOrDefault(ConfigDeviceField.HIDRAW_PATH, "");
+    }
+    return lockObjects.getOrDefault(lockObject, new Object());
   }
 
   public void writeConfiguration() throws IOException

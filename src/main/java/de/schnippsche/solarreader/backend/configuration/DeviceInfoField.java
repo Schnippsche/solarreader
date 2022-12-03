@@ -8,5 +8,9 @@ public enum DeviceInfoField
   BATTERIEPACKS,
   SERIALNUMBER,
   ADDRESS,
-  BAUDRATE
+  BAUDRATE,
+  HIDRAW,
+  COMPORT,
+  LAN_MODBUS,
+  LAN_MQTT
 }

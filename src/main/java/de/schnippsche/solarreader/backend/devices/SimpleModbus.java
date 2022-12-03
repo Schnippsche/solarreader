@@ -36,14 +36,4 @@ public class SimpleModbus extends AbstractLockedDevice
     return !readResultFields.isEmpty();
   }
 
-  @Override protected void correctValues()
-  {
-    // Nothing
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
-  }
-
 }

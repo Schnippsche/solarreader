@@ -4,6 +4,7 @@ import de.schnippsche.solarreader.backend.fields.DeviceField;
 import de.schnippsche.solarreader.backend.fields.MqttField;
 import de.schnippsche.solarreader.backend.fields.TableField;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Specification
@@ -16,6 +17,9 @@ public class Specification
   public Specification()
   {
     this.description = "";
+    this.devicefields = new ArrayList<>();
+    this.databasefields = new ArrayList<>();
+    this.mqttFields = new ArrayList<>();
   }
 
   public String getDescription()

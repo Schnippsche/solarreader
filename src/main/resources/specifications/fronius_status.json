@@ -1,0 +1,207 @@
+{
+  "description": "specs for status block (122)",
+  "devicefields": [
+    {
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_ID",
+      "note": "Well-known value. Uniquely identifies this as a sunspec model status (122)",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_L",
+      "note": "Length of sunspec model status (122)",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Registers"
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_PVConn",
+      "note": "PV inverter present/available status. Enumerated value.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_StorConn",
+      "note": "Storage inverter present/available status. Enumerated value.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_ECPConn",
+      "note": "ECP connection status: disconnected=0  connected=1.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 5,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_ActWh",
+      "note": "AC lifetime active (real) energy output.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 9,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_ActVAh",
+      "note": "AC lifetime apparent energy output.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 13,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_ActVArhQ1",
+      "note": "AC lifetime reactive energy output in quadrant 1.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 17,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_ActVArhQ2",
+      "note": "AC lifetime reactive energy output in quadrant 2.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 21,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_ActVArhQ3",
+      "note": "AC lifetime negative energy output  in quadrant 3.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 25,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_ActVArhQ4",
+      "note": "AC lifetime reactive energy output  in quadrant 4.",
+      "type": "U64_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 29,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_VArAval",
+      "note": "Amount of VARs available without impacting watts output.",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "var"
+    },
+    {
+      "offset": 30,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_VArAval_SF",
+      "note": "Scale factor for available VARs.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 31,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_WAval",
+      "note": "Amount of Watts available.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "var"
+    },
+    {
+      "offset": 32,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_WAval_SF",
+      "note": "Scale factor for available Watts.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 33,
+      "count": 2,
+      "register": 3,
+      "name": "STATUS_StSetLimMsk",
+      "note": "Bit Mask indicating setpoint limit(s) reached.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 35,
+      "count": 2,
+      "register": 3,
+      "name": "STATUS_StActCtl",
+      "note": "Bit Mask indicating which inverter controls are currently active.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 37,
+      "count": 4,
+      "register": 3,
+      "name": "STATUS_TmSrc",
+      "note": "Source of time synchronization.",
+      "type": "STRING",
+      "unit": ""
+    },
+    {
+      "offset": 41,
+      "count": 2,
+      "register": 3,
+      "name": "STATUS_Tms",
+      "note": "Seconds since 01-01-2000 00:00 UTC",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Secs"
+    },
+    {
+      "offset": 43,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_RtSt",
+      "note": "Bit Mask indicating active ride-through status.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 44,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_Ris",
+      "note": "Isolation resistance.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "ohms"
+    },
+    {
+      "offset": 45,
+      "count": 1,
+      "register": 3,
+      "name": "STATUS_Ris_SF",
+      "note": "Scale factor for isolation resistance.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "description": "specs for Back of Meteorological Model (307)",
+  "devicefields": [
+    {
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_ID",
+      "note": "Uniquely identifies this as a SunSpec Base Meteorological Modbus Register Model",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_L",
+      "note": "Length of Register Model",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Registers"
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_TmpAmb",
+      "note": "Ambient Temperature",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "°C"
+    },
+    {
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_RH",
+      "note": "Relative Humidity",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "%"
+    },
+    {
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_Pres",
+      "note": "Barometric Pressure",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Hpa"
+    },
+    {
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_WndSpd",
+      "note": "Wind Speed",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "m/s"
+    },
+    {
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_WndDir",
+      "note": "Wind Direction",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "deg"
+    },
+    {
+      "offset": 7,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_Rain",
+      "note": "Rainfall",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "mm"
+    },
+    {
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_Snw",
+      "note": "Snow Depth",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "mm"
+    },
+    {
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_PPT",
+      "note": "Precipitation Type (WMO 4680 SYNOP code reference)",
+      "type": "I16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_ElecFld",
+      "note": "Electric Field",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Vm"
+    },
+    {
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_SurWet",
+      "note": "Surface Wetness",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "kO"
+    },
+    {
+      "offset": 12,
+      "count": 1,
+      "register": 3,
+      "name": "METEOROLOGICAL_SoilWet",
+      "note": "Soil Wetness",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "%"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

@@ -1,0 +1,467 @@
+{
+  "description": "specs for inverter (11x) as float",
+  "devicefields": [
+    {
+      "name": "INVERTER_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Well-known value. Uniquely identifies this as a sunspec model inverter (11x)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of sunspec model inverter (11x)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_A",
+      "unit": "A",
+      "offset": 2,
+      "count": 2,
+      "register": 3,
+      "note": "AC Current",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_AphA",
+      "unit": "A",
+      "offset": 4,
+      "count": 2,
+      "register": 3,
+      "note": "Phase A Current",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_AphB",
+      "unit": "A",
+      "offset": 6,
+      "count": 2,
+      "register": 3,
+      "note": "Phase B Current",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_AphC",
+      "unit": "A",
+      "offset": 8,
+      "count": 2,
+      "register": 3,
+      "note": "Phase C Current",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PPVphAB",
+      "unit": "V",
+      "offset": 10,
+      "count": 2,
+      "register": 3,
+      "note": "Phase Voltage AB",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PPVphBC",
+      "unit": "V",
+      "offset": 12,
+      "count": 2,
+      "register": 3,
+      "note": "Phase Voltage BC",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PPVphCA",
+      "unit": "V",
+      "offset": 14,
+      "count": 2,
+      "register": 3,
+      "note": "Phase Voltage CA",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PhVphA",
+      "unit": "V",
+      "offset": 16,
+      "count": 2,
+      "register": 3,
+      "note": "Phase Voltage AN",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PhVphB",
+      "unit": "V",
+      "offset": 18,
+      "count": 2,
+      "register": 3,
+      "note": "Phase Voltage BN",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PhVphC",
+      "unit": "V",
+      "offset": 20,
+      "count": 2,
+      "register": 3,
+      "note": "Phase Voltage CN",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_W",
+      "unit": "W",
+      "offset": 22,
+      "count": 2,
+      "register": 3,
+      "note": "AC Power",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_Hz",
+      "unit": "Hz",
+      "offset": 24,
+      "count": 2,
+      "register": 3,
+      "note": "Line Frequency",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_VA",
+      "unit": "VA",
+      "offset": 26,
+      "count": 2,
+      "register": 3,
+      "note": "AC Apparent Power",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_VAr",
+      "unit": "var",
+      "offset": 28,
+      "count": 2,
+      "register": 3,
+      "note": "AC Reactive Power",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_PF",
+      "unit": "Pct",
+      "offset": 30,
+      "count": 2,
+      "register": 3,
+      "note": "AC Power Factor",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_WH",
+      "unit": "Wh",
+      "offset": 32,
+      "count": 2,
+      "register": 3,
+      "note": "AC Energy",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_DCA",
+      "unit": "A",
+      "offset": 34,
+      "count": 2,
+      "register": 3,
+      "note": "DC Current",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_DCV",
+      "unit": "V",
+      "offset": 36,
+      "count": 2,
+      "register": 3,
+      "note": "DC Voltage",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_DCW",
+      "unit": "W",
+      "offset": 38,
+      "count": 2,
+      "register": 3,
+      "note": "DC Power",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_TmpCab",
+      "unit": "C",
+      "offset": 40,
+      "count": 2,
+      "register": 3,
+      "note": "Cabinet Temperature",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_TmpSnk",
+      "unit": "C",
+      "offset": 42,
+      "count": 2,
+      "register": 3,
+      "note": "Heat Sink Temperature",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_TmpTrns",
+      "unit": "C",
+      "offset": 44,
+      "count": 2,
+      "register": 3,
+      "note": "Transformer Temperature",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_TmpOt",
+      "unit": "C",
+      "offset": 46,
+      "count": 2,
+      "register": 3,
+      "note": "Other Temperature",
+      "type": "FLOAT_BIG_ENDIAN"
+    },
+    {
+      "name": "INVERTER_St",
+      "unit": "",
+      "offset": 48,
+      "count": 1,
+      "register": 3,
+      "note": "Enumerated value.  Operating state",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_StVnd",
+      "unit": "",
+      "offset": 49,
+      "count": 1,
+      "register": 3,
+      "note": "Vendor specific operating state code",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_Evt1",
+      "unit": "",
+      "offset": 50,
+      "count": 2,
+      "register": 3,
+      "note": "Bitmask value. Event fields",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_Evt2",
+      "unit": "",
+      "offset": 52,
+      "count": 2,
+      "register": 3,
+      "note": "Reserved for future use",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_EvtVnd1",
+      "unit": "",
+      "offset": 54,
+      "count": 2,
+      "register": 3,
+      "note": "Vendor defined events",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_EvtVnd2",
+      "unit": "",
+      "offset": 56,
+      "count": 2,
+      "register": 3,
+      "note": "Vendor defined events",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_EvtVnd3",
+      "unit": "",
+      "offset": 58,
+      "count": 2,
+      "register": 3,
+      "note": "Vendor defined events",
+      "type": "BINARY"
+    },
+    {
+      "name": "INVERTER_EvtVnd4",
+      "unit": "",
+      "offset": 60,
+      "count": 2,
+      "register": 3,
+      "note": "Vendor defined events",
+      "type": "BINARY"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "AC",
+      "columnname": "AC_Gesamtstrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_A"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_AphA"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_AphB"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_AphC"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_R-S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PPVphAB"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_S-T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PPVphBC"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_T-R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PPVphCA"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PhVphA"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PhVphB"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PhVphC"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_W"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_Hz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_VA"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_W"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_VAr"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung_Prozent",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_WH"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCA"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCV"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCW"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_TmpCab"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_St"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Status_Vendor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_StVnd"
+    }
+  ],
+  "mqttFields": [
+  ]
+}

@@ -344,6 +344,13 @@
       "sourcevalue": "EASUN SMG"
     },
     {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "SMG"
+    },
+    {
       "tablename": "Service",
       "columnname": "Fehler",
       "columntype": "NUMBER",

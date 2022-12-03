@@ -1,0 +1,297 @@
+{
+  "description": "specs for settings (121)",
+  "devicefields": [
+    {
+      "name": "SETTINGS_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Well-known value. Uniquely identifies this as a sunspec model settings (121)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of sunspec model settings (121)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_WMax",
+      "unit": "W",
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "note": "Setting for maximum power output. Default to WRtg.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VRef",
+      "unit": "V",
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "note": "Voltage at the PCC.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VRefOfs",
+      "unit": "V",
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "note": "Offset  from PCC to inverter.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VMax",
+      "unit": "V",
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for maximum voltage.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VMin",
+      "unit": "V",
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for minimum voltage.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VAMax",
+      "unit": "VA",
+      "offset": 7,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for maximum apparent power. Default to VARtg.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VArMaxQ1",
+      "unit": "var",
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "note": "Setting for maximum reactive power in quadrant 1. Default to VArRtgQ1.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VArMaxQ2",
+      "unit": "var",
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "note": "Setting for maximum reactive power in quadrant 2. Default to VArRtgQ2.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VArMaxQ3",
+      "unit": "var",
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "note": "Setting for maximum reactive power in quadrant 3. Default to VArRtgQ3.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VArMaxQ4",
+      "unit": "var",
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "note": "Setting for maximum reactive power in quadrant 4. Default to VArRtgQ4.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_WGra",
+      "unit": "% WMax/sec",
+      "offset": 12,
+      "count": 1,
+      "register": 3,
+      "note": "Default ramp rate of change of active power due to command or internal action.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_PFMinQ1",
+      "unit": "cos()",
+      "offset": 13,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for minimum power factor value in quadrant 1. Default to PFRtgQ1.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_PFMinQ2",
+      "unit": "cos()",
+      "offset": 14,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for minimum power factor value in quadrant 2. Default to PFRtgQ2.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_PFMinQ3",
+      "unit": "cos()",
+      "offset": 15,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for minimum power factor value in quadrant 3. Default to PFRtgQ3.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_PFMinQ4",
+      "unit": "cos()",
+      "offset": 16,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for minimum power factor value in quadrant 4. Default to PFRtgQ4.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VArAct",
+      "unit": "",
+      "offset": 17,
+      "count": 1,
+      "register": 3,
+      "note": "VAR action on change between charging and discharging: 1\u003dswitch 2\u003dmaintain VAR characterization.",
+      "type": "BINARY"
+    },
+    {
+      "name": "SETTINGS_ClcTotVA",
+      "unit": "",
+      "offset": 18,
+      "count": 1,
+      "register": 3,
+      "note": "Calculation method for total apparent power. 1\u003dvector 2\u003darithmetic.",
+      "type": "BINARY"
+    },
+    {
+      "name": "SETTINGS_MaxRmpRte",
+      "unit": "% WGra",
+      "offset": 19,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for maximum ramp rate as percentage of nominal maximum ramp rate. This setting will limit the rate that watts delivery to the grid can increase or decrease in response to intermittent PV generation.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_ECPNomHz",
+      "unit": "Hz",
+      "offset": 20,
+      "count": 1,
+      "register": 3,
+      "note": "Setpoint for nominal frequency at the ECP.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_ConnPh",
+      "unit": "",
+      "offset": 21,
+      "count": 1,
+      "register": 3,
+      "note": "Identity of connected phase for single phase inverters. A\u003d1 B\u003d2 C\u003d3.",
+      "type": "BINARY"
+    },
+    {
+      "name": "SETTINGS_WMax_SF",
+      "unit": "",
+      "offset": 22,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for real power.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VRef_SF",
+      "unit": "",
+      "offset": 23,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for voltage at the PCC.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VRefOfs_SF",
+      "unit": "",
+      "offset": 24,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for offset voltage.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VMinMax_SF",
+      "unit": "",
+      "offset": 25,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for min/max voltages.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VAMax_SF",
+      "unit": "",
+      "offset": 26,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for apparent power.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_VArMax_SF",
+      "unit": "",
+      "offset": 27,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for reactive power.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_WGra_SF",
+      "unit": "",
+      "offset": 28,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for default ramp rate.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_PFMin_SF",
+      "unit": "",
+      "offset": 29,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for minimum power factor.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_MaxRmpRte_SF",
+      "unit": "",
+      "offset": 30,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for maximum ramp percentage.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "SETTINGS_ECPNomHz_SF",
+      "unit": "",
+      "offset": 31,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for nominal frequency.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

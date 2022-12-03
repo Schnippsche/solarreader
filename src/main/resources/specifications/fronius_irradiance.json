@@ -1,0 +1,72 @@
+{
+  "description": "specs for irradiance model (302)",
+  "devicefields": [
+    {
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_ID",
+      "note": "Uniquely identifies this as a SunSpec Irradiance Modbus Register Model",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_L",
+      "note": "Length of Register Model",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Registers"
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_GHI",
+      "note": "Global Horizontal Irradiance",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W / m2"
+    },
+    {
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_POAI",
+      "note": "Plane-of-Array Irradiance",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W / m2"
+    },
+    {
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_DFI",
+      "note": "Diffuse Irradiance",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W / m2"
+    },
+    {
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_DNI",
+      "note": "Direct Normal Irradiance",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W / m2"
+    },
+    {
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "name": "IRRADIANCE_OTI",
+      "note": "Other Irradiance",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W / m2"
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "description": "specs for storage (124)",
+  "devicefields": [
+    {
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_ID",
+      "note": "Well-known value. Uniquely identifies this as a sunspec model storage (124)",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_L",
+      "note": "Length of sunspec model storage (124)",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Registers"
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_WChaMax",
+      "note": "Setpoint for maximum charge.Additional Fronius description:Reference Value for maximum Charge and Discharge.Multiply this value by InWRte to define maximum charging and OutWRte to define maximum discharging.Every rate between this two limits is allowed.The inverter is not fully capable of transferring power as reported by this reference value.Note that InWRte and OutWRte can be negative to define ranges for charging and discharging only",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "W"
+    },
+    {
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_WChaGra",
+      "note": "Setpoint for maximum charging rate. Default is MaxChaRte.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "% WChaMax/sec"
+    },
+    {
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_WDisChaGra",
+      "note": "Setpoint for maximum discharge rate. Default is MaxDisChaRte.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "% WChaMax/sec"
+    },
+    {
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_StorCtl_Mod",
+      "note": "Activate hold/discharge/charge storage control mode. Bitfield value.Additional Fronius description:Active hold/discharge/charge storage control mode.Set the charge field to enable charging and the discharge field to enable discharging.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_VAChaMax",
+      "note": "Setpoint for maximum charging VA.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "VA"
+    },
+    {
+      "offset": 7,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_MinRsvPct",
+      "note": "Setpoint for minimum reserve for storage as a percentage of the nominal maximum storage.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "% WChaMax"
+    },
+    {
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_ChaState",
+      "note": "Currently available energy as a percent of the capacity rating.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "% AhrRtg"
+    },
+    {
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_StorAval",
+      "note": "State of charge (ChaState) minus storage reserve (MinRsvPct) times capacity rating (AhrRtg).",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "AH"
+    },
+    {
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InBatV",
+      "note": "Internal battery voltage.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_ChaSt",
+      "note": "Charge status of storage device. Enumerated value.",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 12,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_OutWRte",
+      "note": "Percent of max discharge rate.Additional Fronius description:Defines maximum Discharge rate. If not used than the default is 100 and WChaMax defines max. Discharge rate.See WChaMax for details",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "% WDisChaMax"
+    },
+    {
+      "offset": 13,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InWRte",
+      "note": "Percent of max charging rate.Additional Fronius description:Defines maximum Charge rate. If not used than the default is 100 and WChaMax defines max. Charge rate.See WChaMax for details",
+      "type": "I16_BIG_ENDIAN",
+      "unit": " % WChaMax"
+    },
+    {
+      "offset": 14,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InOutWRte_WinTms",
+      "note": "Time window for charge/discharge rate change.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Secs"
+    },
+    {
+      "offset": 15,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InOutWRte_RvrtTms",
+      "note": "Timeout period for charge/discharge rate.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Secs"
+    },
+    {
+      "offset": 16,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InOutWRte_RmpTms",
+      "note": "Ramp time for moving from current setpoint to new setpoint.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Secs"
+    },
+    {
+      "offset": 17,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_ChaGriSet",
+      "note": "",
+      "type": "BINARY",
+      "unit": ""
+    },
+    {
+      "offset": 18,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_WChaMax_SF",
+      "note": "Scale factor for maximum charge.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 19,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_WChaDisChaGra_SF",
+      "note": "Scale factor for maximum charge and discharge rate.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 20,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_VAChaMax_SF",
+      "note": "Scale factor for maximum charging VA.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 21,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_MinRsvPct_SF",
+      "note": "Scale factor for minimum reserve percentage.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 22,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_ChaState_SF",
+      "note": "Scale factor for available energy percent.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 23,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_StorAval_SF",
+      "note": "Scale factor for state of charge.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 24,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InBatV_SF",
+      "note": "Scale factor for battery voltage.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 25,
+      "count": 1,
+      "register": 3,
+      "name": "STORAGE_InOutWRte_SF",
+      "note": "Scale factor for percent charge/discharge rate.",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    }
+  ],
+  "databasefields": [
+  ],
+  "mqttFields": [
+  ]
+}

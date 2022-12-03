@@ -59,7 +59,10 @@ public class Solaredge extends AbstractLockedDevice
       {
         Logger.debug(field);
       }
-
+    } catch (ModbusException e)
+    {
+      Logger.error("can't read from {}", modbusWrapper.getInfoText());
+      return false;
     } catch (Exception e)
     {
       Logger.error(e);
@@ -163,16 +166,6 @@ public class Solaredge extends AbstractLockedDevice
     {
       resultFields.addAll(modbusWrapper.readFields(meterModel2Specification.getDevicefields()));
     }
-  }
-
-  @Override protected void correctValues()
-  {
-    //
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }

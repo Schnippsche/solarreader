@@ -14,6 +14,7 @@ import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.fields.*;
 import org.tinylog.Logger;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,14 +36,15 @@ public class ModbusWrapper
       int port = configDevice.getIntParamOrDefault(ConfigDeviceField.HF2211_PORT, 502);
       modbusMaster = new ModbusTCPMaster(ip, port);
       infoText = String.format("url %s, port %s", ip, port);
-    } else if (configDevice.containsField(ConfigDeviceField.COM_PORT) && !configDevice.getParam(ConfigDeviceField.COM_PORT)
-                                                                                      .isEmpty())
+    } else if (configDevice.containsField(ConfigDeviceField.COM_PORT)
+               && !configDevice.getParam(ConfigDeviceField.COM_PORT).isEmpty())
     {
       SerialParameters serialParameters = createParameter(configDevice);
       Logger.debug(serialParameters);
       modbusMaster = new ModbusSerialMaster(serialParameters);
       infoText = String.format("portName %s", serialParameters.getPortName());
-    } else if (configDevice.containsField(ConfigDeviceField.DEVICE_IP) && configDevice.containsField(ConfigDeviceField.DEVICE_PORT))
+    } else if (configDevice.containsField(ConfigDeviceField.DEVICE_IP)
+               && configDevice.containsField(ConfigDeviceField.DEVICE_PORT))
     {
       String ip = configDevice.getParam(ConfigDeviceField.DEVICE_IP);
       int port = configDevice.getIntParamOrDefault(ConfigDeviceField.DEVICE_PORT, 502);
@@ -106,6 +108,7 @@ public class ModbusWrapper
 
   public ResultField readField(DeviceField deviceField)
   {
+    byte[] result = null;
     try
     {
       InputRegister[] register = readRegister(deviceField);
@@ -114,16 +117,16 @@ public class ModbusWrapper
         throw new ModbusIOException("register is empty");
       }
 
-      byte[] result = convertRegisterToByteArray(register);
+      result = convertRegisterToByteArray(register);
       Object value = numericHelper.convertByteArray(result, deviceField.getType());
       return deviceField.createResultField(value);
-
     } catch (NumberFormatException e)
     {
-      Logger.error("Can't convert bytes into type {}", deviceField.getType());
+      Logger.warn("Can't convert bytes from field {} into type {}: {}", deviceField.getName(), deviceField.getType(), numericHelper.byteArrayToHexString(result));
+      return new ResultField(deviceField, ResultFieldStatus.INVALIDNUMBER, null);
     } catch (Exception e)
     {
-      Logger.error("Can't read device Field {}: {}", deviceField.getName(), e.getMessage());
+      Logger.error("Can't read device field {}: {}", deviceField.getName(), e.getMessage());
     }
     return new ResultField(deviceField, ResultFieldStatus.READERROR, null);
   }
@@ -221,6 +224,10 @@ public class ModbusWrapper
       {
         Logger.debug(field);
       }
+    } catch (ModbusException e)
+    {
+      Logger.error(e.getMessage());
+      return Collections.emptyList();
     } catch (Exception e)
     {
       Logger.error(e);
@@ -245,6 +252,30 @@ public class ModbusWrapper
   {
     byte[] bytes = convertRegisterToByteArray(register);
     return String.valueOf(numericHelper.convertByteArray(bytes, FieldType.STRING));
+  }
+
+  /**
+   * convert an array of InputRegister into a BigDecimal
+   *
+   * @param register  array of InputRegister
+   * @param fieldType for the numeric value representation
+   * @return BigDecimal
+   */
+  public BigDecimal registerToNumber(InputRegister[] register, FieldType fieldType)
+  {
+    byte[] bytes = convertRegisterToByteArray(register);
+    try
+    {
+      Object object = numericHelper.convertByteArray(bytes, fieldType);
+      if (object instanceof BigDecimal)
+      {
+        return (BigDecimal) object;
+      }
+    } catch (NumberFormatException e)
+    {
+      Logger.warn("Can't convert bytes from '{}' into type {}", numericHelper.byteArrayToHexString(bytes), fieldType);
+    }
+    return BigDecimal.ZERO;
   }
 
   public byte[] convertRegisterToByteArray(InputRegister[] inputRegisters)
@@ -281,6 +312,11 @@ public class ModbusWrapper
   public String readRegisterAsString(int functionCode, int offset, int count) throws ModbusException
   {
     return registerToString(readRegister(functionCode, offset, count));
+  }
+
+  public BigDecimal readRegisterAsNumber(int functionCode, int offset, int count, FieldType fieldType) throws ModbusException
+  {
+    return registerToNumber(readRegister(functionCode, offset, count), fieldType);
   }
 
 }

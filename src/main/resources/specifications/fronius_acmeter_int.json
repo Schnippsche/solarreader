@@ -1,0 +1,850 @@
+{
+  "description": "specs for ac meter (20x) as int",
+  "devicefields": [
+    {
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_ID",
+      "note": "Well-known value. Uniquely identifies this as a sunspec model ac_meter (20x)",
+      "type": "U16_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_L",
+      "note": "Length of sunspec model ac_meter (20x)",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "Registers"
+    },
+    {
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_A",
+      "note": "Total AC Current",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "A"
+    },
+    {
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_AphA",
+      "note": "Phase A Current",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "A"
+    },
+    {
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_AphB",
+      "note": "Phase B Current",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "A"
+    },
+    {
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_AphC",
+      "note": "Phase C Current",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "A"
+    },
+    {
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_A_SF",
+      "note": "Current scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 7,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhV",
+      "note": "Line to Neutral AC Voltage (average of active phases)",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhVphA",
+      "note": "Phase Voltage AN",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhVphB",
+      "note": "Phase Voltage BN",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhVphC",
+      "note": "Phase Voltage CN",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PPV",
+      "note": "Line to Line AC Voltage (average of active phases)",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 12,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhVphAB",
+      "note": "Phase Voltage AB",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 13,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhVphBC",
+      "note": "Phase Voltage BC",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 14,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PhVphCA",
+      "note": "Phase Voltage CA",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "V"
+    },
+    {
+      "offset": 15,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_V_SF",
+      "note": "Voltage scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 16,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_Hz",
+      "note": "Frequency",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Hz"
+    },
+    {
+      "offset": 17,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_Hz_SF",
+      "note": "Frequency scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 18,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_W",
+      "note": "Total Real Power",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "W"
+    },
+    {
+      "offset": 19,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_WphA",
+      "note": "Watts phase A",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "W"
+    },
+    {
+      "offset": 20,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_WphB",
+      "note": "Watts phase B",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "W"
+    },
+    {
+      "offset": 21,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_WphC",
+      "note": "Watts phase C",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "W"
+    },
+    {
+      "offset": 22,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_W_SF",
+      "note": "Real Power scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 23,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VA",
+      "note": "AC Apparent Power",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "VA"
+    },
+    {
+      "offset": 24,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VAphA",
+      "note": "VA phase A",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "VA"
+    },
+    {
+      "offset": 25,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VAphB",
+      "note": "VA phase B",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "VA"
+    },
+    {
+      "offset": 26,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VAphC",
+      "note": "VA phase C",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "VA"
+    },
+    {
+      "offset": 27,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VA_SF",
+      "note": "Apparent Power scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 28,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VAR",
+      "note": "Reactive Power",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "var"
+    },
+    {
+      "offset": 29,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VARphA",
+      "note": "VAR phase A",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "var"
+    },
+    {
+      "offset": 30,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VARphB",
+      "note": "VAR phase B",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "var"
+    },
+    {
+      "offset": 31,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VARphC",
+      "note": "VAR phase C",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "var"
+    },
+    {
+      "offset": 32,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_VAR_SF",
+      "note": "Reactive Power scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 33,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PF",
+      "note": "Power Factor",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Pct"
+    },
+    {
+      "offset": 34,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PFphA",
+      "note": "PF phase A",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Pct"
+    },
+    {
+      "offset": 35,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PFphB",
+      "note": "PF phase B",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Pct"
+    },
+    {
+      "offset": 36,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PFphC",
+      "note": "PF phase C",
+      "type": "I16_BIG_ENDIAN",
+      "unit": "Pct"
+    },
+    {
+      "offset": 37,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_PF_SF",
+      "note": "Power Factor scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 38,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhExp",
+      "note": "Total Real Energy Exported",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 40,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhExpPhA",
+      "note": "Total Watt-hours Exported phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 42,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhExpPhB",
+      "note": "Total Watt-hours Exported phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 44,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhExpPhC",
+      "note": "Total Watt-hours Exported phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 46,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhImp",
+      "note": "Total Real Energy Imported",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 48,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhImpPhA",
+      "note": "Total Watt-hours Imported phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 50,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhImpPhB",
+      "note": "Total Watt-hours Imported phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 52,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotWhImpPhC",
+      "note": "Total Watt-hours Imported phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "Wh"
+    },
+    {
+      "offset": 54,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_TotWh_SF",
+      "note": "Real Energy scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 55,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhExp",
+      "note": "Total Apparent Energy Exported",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 57,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhExpPhA",
+      "note": "Total VA-hours Exported phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 59,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhExpPhB",
+      "note": "Total VA-hours Exported phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 61,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhExpPhC",
+      "note": "Total VA-hours Exported phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 63,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhImp",
+      "note": "Total Apparent Energy Imported",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 65,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhImpPhA",
+      "note": "Total VA-hours Imported phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 67,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhImpPhB",
+      "note": "Total VA-hours Imported phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 69,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVAhImpPhC",
+      "note": "Total VA-hours Imported phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "VAh"
+    },
+    {
+      "offset": 71,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_TotVAh_SF",
+      "note": "Apparent Energy scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 72,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ1",
+      "note": "Total Reactive Energy Imported Quadrant 1",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 74,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ1PhA",
+      "note": "Total VAr-hours Imported Q1 phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 76,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ1PhB",
+      "note": "Total VAr-hours Imported Q1 phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 78,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ1PhC",
+      "note": "Total VAr-hours Imported Q1 phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 80,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ2",
+      "note": "Total Reactive Power Imported Quadrant 2",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 82,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ2PhA",
+      "note": "Total VAr-hours Imported Q2 phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 84,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ2PhB",
+      "note": "Total VAr-hours Imported Q2 phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 86,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhImpQ2PhC",
+      "note": "Total VAr-hours Imported Q2 phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 88,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ3",
+      "note": "Total Reactive Power Exported Quadrant 3",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 90,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ3PhA",
+      "note": "Total VAr-hours Exported Q3 phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 92,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ3PhB",
+      "note": "Total VAr-hours Exported Q3 phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 94,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ3PhC",
+      "note": "Total VAr-hours Exported Q3 phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 96,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ4",
+      "note": "Total Reactive Power Exported Quadrant 4",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 98,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ4PhA",
+      "note": "Total VAr-hours Exported Q4 Imported phase A",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 100,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ4PhB",
+      "note": "Total VAr-hours Exported Q4 Imported phase B",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 102,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_TotVArhExpQ4PhC",
+      "note": "Total VAr-hours Exported Q4 Imported phase C",
+      "type": "U32_BIG_ENDIAN",
+      "unit": "varh"
+    },
+    {
+      "offset": 104,
+      "count": 1,
+      "register": 3,
+      "name": "ACMETER_TotVArh_SF",
+      "note": "Reactive Energy scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN",
+      "unit": ""
+    },
+    {
+      "offset": 105,
+      "count": 2,
+      "register": 3,
+      "name": "ACMETER_Evt",
+      "note": "Meter Event Flags",
+      "type": "BINARY",
+      "unit": ""
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "AC",
+      "columnname": "AC_STROM_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_A_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Gesamtstrom",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_A * ACMETER_A_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_AphA * ACMETER_A_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_AphB * ACMETER_A_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_AphC * ACMETER_A_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_R-S",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PhVphAB * ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_S-T",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PhVphBC * ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_T-R",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PhVphCA * ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PhVphA * ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PhVphB * ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PhVphC * ACMETER_V_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_W_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_W * ACMETER_W_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Frequenz_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_Hz_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_Hz * ACMETER_Hz_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Scheinleistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_VA_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_VA * ACMETER_VA_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_W * ACMETER_W_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Blindleistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_VAR_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_VAR * ACMETER_VAR_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_WR_Leistung_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PF_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Leistung_Prozent",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_PF * ACMETER_PF_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wh_Gesamt_Faktor",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_TotWh_SF"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "AC_Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "ACMETER_TotWhExp * ACMETER_TotWh_SF"
+    }
+  ],
+  "mqttFields": [
+  ]
+}

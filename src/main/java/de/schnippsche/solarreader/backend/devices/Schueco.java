@@ -1,6 +1,5 @@
 package de.schnippsche.solarreader.backend.devices;
 
-import com.fazecast.jSerialComm.SerialPort;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.connections.SimpleSerialConnection;
@@ -35,30 +34,30 @@ public class Schueco extends AbstractLockedDevice
     this.typeCommand = "#" + device + "9\r";
     this.sendCommand = "#" + device + "0\r";
     this.expectedResponseCode = "*" + device + "0";
-    this.simpleSerialConnection = new SimpleSerialConnection();
+    this.simpleSerialConnection = new SimpleSerialConnection(getConfigDevice());
   }
 
   @Override protected boolean readLockedDeviceValues()
   {
     String receive = null;
     String type = "";
-    SerialPort serialPort = null;
     try
     {
-      serialPort = SerialPort.getCommPort(usbDevice);
-      serialPort.flushIOBuffers();
-      simpleSerialConnection.open(serialPort);
-      simpleSerialConnection.sendCommand(serialPort, this.typeCommand);
+      if (!simpleSerialConnection.open())
+      {
+        return false;
+      }
+      simpleSerialConnection.send(this.typeCommand);
       // Dont use wait() because we want to hold locking
       Thread.sleep(500);
-      type = simpleSerialConnection.readCrStringLf(serialPort, 13);
+      type = simpleSerialConnection.readCrStringLf(13);
       // something received ?
       if (type.length() > 2)
       {
-        simpleSerialConnection.sendCommand(serialPort, this.sendCommand);
+        simpleSerialConnection.send(this.sendCommand);
         // Dont use wait() because we want to hold locking
         Thread.sleep(1000);
-        receive = simpleSerialConnection.readCrStringLf(serialPort, 57);
+        receive = simpleSerialConnection.readCrStringLf(57);
       } else
       {
         Logger.error("Not enough data");
@@ -73,7 +72,7 @@ public class Schueco extends AbstractLockedDevice
       return false;
     } finally
     {
-      simpleSerialConnection.close(serialPort);
+      simpleSerialConnection.close();
     }
 
     // Die zurückgelieferten Daten müssen 56 Zeichen haben! Könnte sich einmal ändern!
@@ -118,22 +117,12 @@ public class Schueco extends AbstractLockedDevice
     resultFields.add(new ResultField("modell", ResultFieldStatus.VALID, FieldType.STRING, type));
     for (DeviceField deviceField : this.specification.getDevicefields())
     {
-      String value = receive.substring(deviceField.getOffset(), deviceField.getOffset() + deviceField.getCount())
-                            .trim();
+      String value =
+        receive.substring(deviceField.getOffset(), deviceField.getOffset() + deviceField.getCount()).trim();
       resultFields.add(new ResultField(deviceField, ResultFieldStatus.VALID, value));
     }
 
     return true;
-  }
-
-  @Override protected void correctValues()
-  {
-    setWattTotalResultField("tagesenergie");
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }

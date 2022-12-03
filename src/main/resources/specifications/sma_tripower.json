@@ -1,0 +1,660 @@
+{
+  "description": "specs for SMA Sunny Tripower",
+  "devicefields": [
+    {
+      "register": 3,
+      "offset": 5,
+      "count": 2,
+      "name": "Seriennummer",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 7,
+      "count": 2,
+      "name": "LiveBit",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 51,
+      "count": 2,
+      "name": "Geraeteklasse",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 53,
+      "count": 2,
+      "name": "Geraetetype",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 59,
+      "count": 2,
+      "name": "Softwarepaket",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 201,
+      "count": 2,
+      "name": "Geraetestatus",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 233,
+      "count": 2,
+      "name": "NetzSchuetz",
+      "factor": null,
+      "unit": "W",
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 529,
+      "count": 2,
+      "name": "Wh_Gesamt",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 535,
+      "count": 2,
+      "name": "Wh_GesamtHeute",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 581,
+      "count": 2,
+      "name": "Bezug_Wh",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 583,
+      "count": 2,
+      "name": "Einspeisung_Wh",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 769,
+      "count": 2,
+      "name": "DC_Strom1",
+      "factor": 0.001,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 771,
+      "count": 2,
+      "name": "DC_Spannung1",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 773,
+      "count": 2,
+      "name": "DC_Leistung1",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 775,
+      "count": 2,
+      "name": "AC_Leistung",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 777,
+      "count": 2,
+      "name": "AC_Wirkleistung_R",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 779,
+      "count": 2,
+      "name": "AC_Wirkleistung_S",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 781,
+      "count": 2,
+      "name": "AC_Wirkleistung_T",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 783,
+      "count": 2,
+      "name": "AC_Spannung_R",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 785,
+      "count": 2,
+      "name": "AC_Spannung_S",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 787,
+      "count": 2,
+      "name": "AC_Spannung_T",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 803,
+      "count": 2,
+      "name": "AC_Frequenz",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 865,
+      "count": 2,
+      "name": "AC_Leistung_Bezug",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 867,
+      "count": 2,
+      "name": "AC_Leistung_Einspeisung",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 957,
+      "count": 2,
+      "name": "DC_Strom2",
+      "factor": 0.001,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 959,
+      "count": 2,
+      "name": "DC_Spannung2",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 961,
+      "count": 2,
+      "name": "DC_Leistung2",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "I32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 977,
+      "count": 2,
+      "name": "AC_Strom_R",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 979,
+      "count": 2,
+      "name": "AC_Strom_S",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 3,
+      "offset": 981,
+      "count": 2,
+      "name": "AC_Strom_T",
+      "factor": 0.01,
+      "unit": null,
+      "note": null,
+      "type": "U32_BIG_ENDIAN"
+    },
+    {
+      "register": 4,
+      "offset": 497,
+      "count": 16,
+      "name": "MAC",
+      "factor": null,
+      "unit": null,
+      "note": null,
+      "type": "STRING"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Geraeteklasse"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "SMA"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Softwarepaket"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Gesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute_Registerwert",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_GesamtHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt_Import",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bezug_Wh"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt_Export",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung_Wh"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Strom1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Strom1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Spannung1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Spannung1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "DC_Leistung1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Leistung1"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Frequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Bezug",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_Bezug"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Einspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_Einspeisung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Strom2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Spannung2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Leistung2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "DC_Leistung1 + DC_Leistung2"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "MPPT",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "MPPT"
+    },
+    {
+      "name": "Info",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Geraeteklasse"
+    },
+    {
+      "name": "Info",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "SMA"
+    },
+    {
+      "name": "Info",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Softwarepaket"
+    },
+    {
+      "name": "Info",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "name": "Summen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_Gesamt"
+    },
+    {
+      "name": "Summen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Wh_GesamtHeute"
+    },
+    {
+      "name": "Summen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bezug_Wh"
+    },
+    {
+      "name": "Summen",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung_Wh"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Strom1"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Spannung1"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Leistung1"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung_R"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung_S"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung_T"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_R"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_S"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Spannung_T"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Frequenz"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_Bezug"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Leistung_Einspeisung"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Strom2"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Spannung2"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DC_Leistung2"
+    },
+    {
+      "name": "PV",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "DC_Leistung1 + DC_Leistung2"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_R"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_S"
+    },
+    {
+      "name": "AC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Strom_T"
+    }
+  ]
+}

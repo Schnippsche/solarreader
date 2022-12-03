@@ -1,0 +1,524 @@
+{
+  "description": "specs for tasmota",
+  "devicefields": [
+    {
+      "name": "status_Module",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_ModuleName",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_DeviceName",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_FriendlyName",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_Topic",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_ButtonTopic",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_PowerOnState",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_LedState",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_LedMask",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_SwitchTopic",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "status_SaveData",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_SaveState",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_ButtonRetain",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_SwitchRetain",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_SensorRetain",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_PowerRetain",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_InfoRetain",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "status_stateRetain",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "fwr_Version",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "fwr_BuildDateTime",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "fwr_Boot",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "fwr_Core",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "fwr_Sdk",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "fwr_CpuFrequency",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "fwr_Hardware",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "fwr_Cr",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sts_Time",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sts_Uptime",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sts_UptimeSec",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sts_Heap",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sts_SleepMode",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sts_Sleep",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sts_LoadAvg",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sts_MqttCount",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sts_Power",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sns_Temperature",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sns_Humidity",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sns_Light",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sns_Noise",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sns_AirQuality",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sns_TempUnit",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sns_Switch1",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sns_Switch2",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sensor_Name",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sensor_Id",
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "name": "sensor_Temperature",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_Humidity",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_DewPoint",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_Total",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_TotalStartTime",
+      "note": "DateTime of calculation for Total",
+      "type": "STRING",
+      "unit": "Date"
+    },
+    {
+      "name": "sensor_Period",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_ApparentPower",
+      "note": "Power load on the cable",
+      "type": "NUMBER",
+      "unit": "W"
+    },
+    {
+      "name": "sensor_ReactivePower",
+      "note": "Reactive load",
+      "type": "NUMBER",
+      "unit": "W"
+    },
+    {
+      "name": "sensor_Yesterday",
+      "note": "Total Energy usage between 00:00 and 24:00 yesterday",
+      "type": "NUMBER",
+      "unit": "kWh"
+    },
+    {
+      "name": "sensor_Today",
+      "note": "Total Energy usage today from 00:00 until now",
+      "type": "NUMBER",
+      "unit": "kWh"
+    },
+    {
+      "name": "sensor_Power",
+      "note": "Current effective power load",
+      "type": "NUMBER",
+      "unit": "W"
+    },
+    {
+      "name": "sensor_Factor",
+      "note": "The ratio of the real power flowing to the load to the apparent power in the circuit",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_Voltage",
+      "note": "Current line voltage",
+      "type": "NUMBER",
+      "unit": "V"
+    },
+    {
+      "name": "sensor_Current",
+      "note": "Current line current",
+      "type": "NUMBER",
+      "unit": "A"
+    },
+    {
+      "name": "sensor_CF1",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_CF25",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_CF10",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PM1",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PM25",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PM10",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PB03",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PB05",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PB1",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PB25",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PB5",
+      "note": "",
+      "type": "NUMBER"
+    },
+    {
+      "name": "sensor_PB10",
+      "note": "",
+      "type": "NUMBER"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "status_ModuleName"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "status_Topic"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Voltage"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Current"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Power"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_ApparentPower"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_ReactivePower"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sns_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Luftfeuchte",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sns_Humidity"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Licht",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sns_Light"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "SensorID",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Id"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Temperature"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "SensorName",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Name"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "Masseinheit",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sns_TempUnit"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "Luftfeuchte",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Humidity"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "Taupunkt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_DewPoint"
+    },
+    {
+      "tablename": "Sensor",
+      "columnname": "Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Today"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "sensor_Today"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "sensor_Today * 1000"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "sensor_Total * 1000"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gestern",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "sensor_Yesterday * 1000"
+    }
+  ]
+}

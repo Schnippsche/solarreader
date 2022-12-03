@@ -1,0 +1,373 @@
+{
+  "description": "specs for mpp p30",
+  "devicefields": [
+    {
+      "name": "b",
+      "unit": "V",
+      "offset": 0,
+      "count": 5,
+      "note": "Grid voltage",
+      "type": "STRING"
+    },
+    {
+      "name": "C",
+      "unit": "Hz",
+      "offset": 6,
+      "count": 4,
+      "note": "Grid frequency",
+      "type": "STRING"
+    },
+    {
+      "name": "D",
+      "unit": "V",
+      "offset": 11,
+      "count": 5,
+      "note": "AC output voltage",
+      "type": "STRING"
+    },
+    {
+      "name": "E",
+      "unit": "Hz",
+      "offset": 17,
+      "count": 4,
+      "note": "AC output frequency",
+      "type": "STRING"
+    },
+    {
+      "name": "F",
+      "unit": "VA",
+      "offset": 22,
+      "count": 4,
+      "note": "AC output apparent power",
+      "type": "STRING"
+    },
+    {
+      "name": "G",
+      "unit": "W",
+      "offset": 27,
+      "count": 4,
+      "note": "AC output active power",
+      "type": "STRING"
+    },
+    {
+      "name": "H",
+      "unit": "%",
+      "offset": 32,
+      "count": 3,
+      "note": "Output load percent",
+      "type": "STRING"
+    },
+    {
+      "name": "I",
+      "unit": "V",
+      "offset": 36,
+      "count": 3,
+      "note": "BUS voltage",
+      "type": "STRING"
+    },
+    {
+      "name": "J",
+      "unit": "V",
+      "offset": 40,
+      "count": 5,
+      "note": "Battery voltage",
+      "type": "STRING"
+    },
+    {
+      "name": "K",
+      "unit": "A",
+      "offset": 46,
+      "count": 3,
+      "note": "Battery charging current",
+      "type": "STRING"
+    },
+    {
+      "name": "O",
+      "unit": "%",
+      "offset": 50,
+      "count": 3,
+      "note": "Battery capacity",
+      "type": "STRING"
+    },
+    {
+      "name": "P",
+      "unit": "C",
+      "offset": 54,
+      "count": 4,
+      "note": "Inverter heat sink temperature",
+      "type": "STRING"
+    },
+    {
+      "name": "R",
+      "unit": "A",
+      "offset": 59,
+      "count": 4,
+      "note": "PV Input current for battery",
+      "type": "STRING"
+    },
+    {
+      "name": "T",
+      "unit": "V",
+      "offset": 64,
+      "count": 5,
+      "note": "PV Input voltage 1",
+      "type": "STRING"
+    },
+    {
+      "name": "U",
+      "unit": "V",
+      "offset": 70,
+      "count": 5,
+      "note": "Battery voltage from SCC",
+      "type": "STRING"
+    },
+    {
+      "name": "W",
+      "unit": "A",
+      "offset": 76,
+      "count": 5,
+      "note": "Battery discharge current",
+      "type": "STRING"
+    },
+    {
+      "name": "X",
+      "unit": "",
+      "offset": 82,
+      "count": 8,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "name": "Y",
+      "unit": "10mV",
+      "offset": 91,
+      "count": 2,
+      "note": "Battery voltage offset for fans on",
+      "type": "STRING"
+    },
+    {
+      "name": "Z",
+      "unit": "",
+      "offset": 94,
+      "count": 2,
+      "note": "EEPROM version",
+      "type": "STRING"
+    },
+    {
+      "name": "AA",
+      "unit": "",
+      "offset": 97,
+      "count": 5,
+      "note": "PV Charging power",
+      "type": "STRING"
+    },
+    {
+      "name": "AB",
+      "unit": "",
+      "offset": 103,
+      "count": 3,
+      "note": "Device status",
+      "type": "STRING"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Firmware"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Modell"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "objekt"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "netzspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "netzstrom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "wattleistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "solarleistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Device_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "status"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "geraetetemperatur"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Tagesenergie"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "b",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "b"
+    },
+    {
+      "name": "C",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "C"
+    },
+    {
+      "name": "D",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "D"
+    },
+    {
+      "name": "E",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "E"
+    },
+    {
+      "name": "F",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "F"
+    },
+    {
+      "name": "G",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "G"
+    },
+    {
+      "name": "H",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "H"
+    },
+    {
+      "name": "I",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "I"
+    },
+    {
+      "name": "J",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "J"
+    },
+    {
+      "name": "K",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "K"
+    },
+    {
+      "name": "O",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "O"
+    },
+    {
+      "name": "P",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "P"
+    },
+    {
+      "name": "R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "R"
+    },
+    {
+      "name": "T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "T"
+    },
+    {
+      "name": "U",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "U"
+    },
+    {
+      "name": "W",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "W"
+    },
+    {
+      "name": "X",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "X"
+    },
+    {
+      "name": "Y",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Y"
+    },
+    {
+      "name": "Z",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Z"
+    },
+    {
+      "name": "AA",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AA"
+    },
+    {
+      "name": "AB",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AB"
+    }
+  ]
+}

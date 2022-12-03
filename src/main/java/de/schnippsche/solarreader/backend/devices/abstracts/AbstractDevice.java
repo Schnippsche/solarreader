@@ -36,10 +36,11 @@ public abstract class AbstractDevice
   private LocalDateTime lastStatisticTableCall;
   private BigDecimal wattTotalToday;
 
-  // 1. read device values
-  // 2. correct values
-  // 3. Map fields to Tables
-
+  /**
+   * Abstract super class for all devices
+   *
+   * @param configDevice the configuration for the device
+   */
   protected AbstractDevice(ConfigDevice configDevice)
   {
     this.configDevice = configDevice;
@@ -56,24 +57,61 @@ public abstract class AbstractDevice
     wattTotalToday = BigDecimal.ZERO;
   }
 
+  /**
+   * method for initialize things, called only once after start
+   */
   protected abstract void initialize();
 
+  /**
+   * method for reading the device values
+   *
+   * @return true if okay or false if error occurs
+   */
   protected abstract boolean readDeviceValues();
 
-  protected abstract void correctValues();
+  /**
+   * this method is called after reading deivce values to fix or add some Resultfield values
+   * override it for special handling
+   */
+  protected void correctValues()
+  {
+    // can be overwritten
+  }
 
-  protected abstract void createTables();
+  /**
+   * this method add all Resultfields to List of Tables
+   * overwrite it for special handling
+   */
+  protected void createTables()
+  {
+    tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
+  }
 
+  /**
+   * get the current Specification of the device
+   *
+   * @return the current specification
+   */
   public Specification getSpecification()
   {
     return specification;
   }
 
+  /**
+   * set the Specification of the device
+   *
+   * @param specification the new Specification
+   */
   public void setSpecification(Specification specification)
   {
     this.specification = specification;
   }
 
+  /**
+   * method for doing the whole thing
+   *
+   * @return List of Tables for export
+   */
   public List<Table> doWork()
   {
     long ms = System.currentTimeMillis();
@@ -131,6 +169,11 @@ public abstract class AbstractDevice
     return this.tables;
   }
 
+  /**
+   * set the new initilaized state
+   *
+   * @param state the new state
+   */
   public void setInitializeState(boolean state)
   {
     initializeState = state;
@@ -165,6 +208,11 @@ public abstract class AbstractDevice
     return configDevice.getActivity();
   }
 
+  /**
+   * get a list of all valid result fields
+   *
+   * @return List of ResultFields
+   */
   public List<ResultField> getValidResultFields()
   {
     List<ResultField> list = new ArrayList<>();
@@ -178,6 +226,12 @@ public abstract class AbstractDevice
     return list;
   }
 
+  /**
+   * search all valid device fields and return the DeviceField with a specific fieldname
+   *
+   * @param fieldname the fieldname of the device field
+   * @return the valid DeviceField with the fieldname or null if nothing found
+   */
   protected ResultField getValidResultField(String fieldname)
   {
     for (ResultField f : resultFields)
@@ -190,6 +244,12 @@ public abstract class AbstractDevice
     return null;
   }
 
+  /**
+   * search all device fields and return the DeviceField with a specific fieldname
+   *
+   * @param fieldname the fieldname of the device field
+   * @return the DeviceField with the fieldname or null if nothing found
+   */
   protected DeviceField getDeviceField(String fieldname)
   {
     if (specification == null)

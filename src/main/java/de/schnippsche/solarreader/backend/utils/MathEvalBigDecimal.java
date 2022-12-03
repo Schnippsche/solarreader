@@ -275,7 +275,7 @@ public class MathEvalBigDecimal
           return evaluate(sourceValue);
         } catch (NumberFormatException | ArithmeticException e)
         {
-          Logger.error("can't resolve formula {}: {}", sourceValue, e);
+          Logger.warn("can't resolve formula {}: {}", sourceValue, e.getMessage());
         }
         break;
       default:

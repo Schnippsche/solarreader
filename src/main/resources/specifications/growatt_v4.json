@@ -2263,7 +2263,7 @@
       "columnname": "SOC",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": ""
+      "sourcevalue": "BatterySOC"
     },
     {
       "tablename": "Batterie",

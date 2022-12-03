@@ -1,0 +1,261 @@
+{
+  "description": "specs for nameplate (120) as float",
+  "devicefields": [
+    {
+      "name": "NAMEPLATE_ID",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "register": 3,
+      "note": "Well-known value. Uniquely identifies this as a sunspec model nameplate (120)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_L",
+      "unit": "Registers",
+      "offset": 1,
+      "count": 1,
+      "register": 3,
+      "note": "Length of sunspec model nameplate (120)",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_DERTyp",
+      "unit": "",
+      "offset": 2,
+      "count": 1,
+      "register": 3,
+      "note": "Type of DER device. Default value is 4 to indicate PV device.",
+      "type": "BINARY"
+    },
+    {
+      "name": "NAMEPLATE_WRtg",
+      "unit": "W",
+      "offset": 3,
+      "count": 1,
+      "register": 3,
+      "note": "Continuous power output capability of the inverter.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_WRtg_SF",
+      "unit": "",
+      "offset": 4,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VARtg",
+      "unit": "VA",
+      "offset": 5,
+      "count": 1,
+      "register": 3,
+      "note": "Continuous Volt-Ampere capability of the inverter.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VARtg_SF",
+      "unit": "",
+      "offset": 6,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VArRtgQ1",
+      "unit": "var",
+      "offset": 7,
+      "count": 1,
+      "register": 3,
+      "note": "Continuous VAR capability of the inverter in quadrant 1.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VArRtgQ2",
+      "unit": "var",
+      "offset": 8,
+      "count": 1,
+      "register": 3,
+      "note": "Continuous VAR capability of the inverter in quadrant 2.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VArRtgQ3",
+      "unit": "var",
+      "offset": 9,
+      "count": 1,
+      "register": 3,
+      "note": "Continuous VAR capability of the inverter in quadrant 3.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VArRtgQ4",
+      "unit": "var",
+      "offset": 10,
+      "count": 1,
+      "register": 3,
+      "note": "Continuous VAR capability of the inverter in quadrant 4.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_VArRtg_SF",
+      "unit": "",
+      "offset": 11,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_ARtg",
+      "unit": "A",
+      "offset": 12,
+      "count": 1,
+      "register": 3,
+      "note": "Maximum RMS AC current level capability of the inverter.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_ARtg_SF",
+      "unit": "",
+      "offset": 13,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_PFRtgQ1",
+      "unit": "cos()",
+      "offset": 14,
+      "count": 1,
+      "register": 3,
+      "note": "Minimum power factor capability of the inverter in quadrant 1.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_PFRtgQ2",
+      "unit": "cos()",
+      "offset": 15,
+      "count": 1,
+      "register": 3,
+      "note": "Minimum power factor capability of the inverter in quadrant 2.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_PFRtgQ3",
+      "unit": "cos()",
+      "offset": 16,
+      "count": 1,
+      "register": 3,
+      "note": "Minimum power factor capability of the inverter in quadrant 3.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_PFRtgQ4",
+      "unit": "cos()",
+      "offset": 17,
+      "count": 1,
+      "register": 3,
+      "note": "Minimum power factor capability of the inverter in quadrant 4.",
+      "type": "I16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_PFRtg_SF",
+      "unit": "",
+      "offset": 18,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_WHRtg",
+      "unit": "Wh",
+      "offset": 19,
+      "count": 1,
+      "register": 3,
+      "note": "Nominal energy rating of storage device.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_WHRtg_SF",
+      "unit": "",
+      "offset": 20,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_AhrRtg",
+      "unit": "AH",
+      "offset": 21,
+      "count": 1,
+      "register": 3,
+      "note": "The usable capacity of the battery.  Maximum charge minus minimum charge from a technology capability perspective (Amp-hour capacity rating).",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_AhrRtg_SF",
+      "unit": "",
+      "offset": 22,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor for amp-hour rating.",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_MaxChaRte",
+      "unit": "W",
+      "offset": 23,
+      "count": 1,
+      "register": 3,
+      "note": "Maximum rate of energy transfer into the storage device.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_MaxChaRte_SF",
+      "unit": "",
+      "offset": 24,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_MaxDisChaRte",
+      "unit": "W",
+      "offset": 25,
+      "count": 1,
+      "register": 3,
+      "note": "Maximum rate of energy transfer out of the storage device.",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_MaxDisChaRte_SF",
+      "unit": "",
+      "offset": 26,
+      "count": 1,
+      "register": 3,
+      "note": "Scale factor",
+      "type": "SCALEFACTOR_BIG_ENDIAN"
+    },
+    {
+      "name": "NAMEPLATE_Pad",
+      "unit": "",
+      "offset": 27,
+      "count": 1,
+      "register": 3,
+      "note": "Pad register.",
+      "type": "BINARY"
+    }
+  ],
+  "databasefields": [
+
+  ],"mqttFields": [
+]
+}

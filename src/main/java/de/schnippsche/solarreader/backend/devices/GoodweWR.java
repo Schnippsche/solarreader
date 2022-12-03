@@ -46,6 +46,10 @@ public class GoodweWR extends AbstractLockedDevice
       {
         Logger.debug(field);
       }
+    } catch (ModbusException e)
+    {
+      Logger.error("can't read from {}", modbusWrapper.getInfoText());
+      return false;
     } catch (Exception e)
     {
       Logger.error(e);
@@ -102,11 +106,6 @@ public class GoodweWR extends AbstractLockedDevice
         setWattTotalToday(bezug.getNumericValue().subtract(einspeisung.getNumericValue()));
       }
     }
-  }
-
-  @Override protected void createTables()
-  {
-    this.tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
   }
 
 }
