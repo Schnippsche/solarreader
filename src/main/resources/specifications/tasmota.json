@@ -2,367 +2,899 @@
   "description": "specs for tasmota",
   "devicefields": [
     {
-      "name": "status_Module",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusFWR_Boot",
+      "type": "NUMBER",
+      "note": ""
     },
     {
-      "name": "status_ModuleName",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_DeviceName",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_FriendlyName",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_Topic",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_ButtonTopic",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_PowerOnState",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_LedState",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_LedMask",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_SwitchTopic",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "status_SaveData",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_SaveState",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_ButtonRetain",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_SwitchRetain",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_SensorRetain",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_PowerRetain",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_InfoRetain",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "status_stateRetain",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "fwr_Version",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "fwr_BuildDateTime",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "fwr_Boot",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "fwr_Core",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "fwr_Sdk",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "fwr_CpuFrequency",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "fwr_Hardware",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "fwr_Cr",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sts_Time",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sts_Uptime",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sts_UptimeSec",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sts_Heap",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sts_SleepMode",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sts_Sleep",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sts_LoadAvg",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sts_MqttCount",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sts_Power",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sns_Temperature",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sns_Humidity",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sns_Light",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sns_Noise",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sns_AirQuality",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sns_TempUnit",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sns_Switch1",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sns_Switch2",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sensor_Name",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sensor_Id",
-      "note": "",
-      "type": "STRING"
-    },
-    {
-      "name": "sensor_Temperature",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sensor_Humidity",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sensor_DewPoint",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sensor_Total",
-      "note": "",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sensor_TotalStartTime",
-      "note": "DateTime of calculation for Total",
+      "name": "StatusFWR_BuildDateTime",
       "type": "STRING",
-      "unit": "Date"
+      "note": ""
     },
     {
-      "name": "sensor_Period",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusFWR_CR",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_ApparentPower",
-      "note": "Power load on the cable",
+      "name": "StatusFWR_Core",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusFWR_CpuFrequency",
       "type": "NUMBER",
-      "unit": "W"
+      "note": ""
     },
     {
-      "name": "sensor_ReactivePower",
-      "note": "Reactive load",
+      "name": "StatusFWR_Hardware",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusFWR_SDK",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusFWR_Version",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_LogHost",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_LogPort",
       "type": "NUMBER",
-      "unit": "W"
+      "note": ""
     },
     {
-      "name": "sensor_Yesterday",
-      "note": "Total Energy usage between 00:00 and 24:00 yesterday",
+      "name": "StatusLOG_MqttLog",
       "type": "NUMBER",
-      "unit": "kWh"
+      "note": ""
     },
     {
-      "name": "sensor_Today",
-      "note": "Total Energy usage today from 00:00 until now",
+      "name": "StatusLOG_Resolution",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SSId_0",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SSId_1",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SerialLog",
       "type": "NUMBER",
-      "unit": "kWh"
+      "note": ""
     },
     {
-      "name": "sensor_Power",
-      "note": "Current effective power load",
+      "name": "StatusLOG_SetOption_0",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SetOption_1",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SetOption_2",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SetOption_3",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SetOption_4",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusLOG_SysLog",
       "type": "NUMBER",
-      "unit": "W"
+      "note": ""
     },
     {
-      "name": "sensor_Factor",
-      "note": "The ratio of the real power flowing to the load to the apparent power in the circuit",
-      "type": "NUMBER"
-    },
-    {
-      "name": "sensor_Voltage",
-      "note": "Current line voltage",
+      "name": "StatusLOG_TelePeriod",
       "type": "NUMBER",
-      "unit": "V"
+      "note": ""
     },
     {
-      "name": "sensor_Current",
-      "note": "Current line current",
+      "name": "StatusLOG_WebLog",
       "type": "NUMBER",
-      "unit": "A"
+      "note": ""
     },
     {
-      "name": "sensor_CF1",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Drivers",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_CF25",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_0",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_CF10",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_1",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PM1",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_2",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PM25",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_3",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PM10",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_4",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PB03",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_5",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PB05",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_6",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PB1",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_7",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PB25",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_Features_8",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PB5",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_FlashChipId",
+      "type": "STRING",
+      "note": ""
     },
     {
-      "name": "sensor_PB10",
-      "note": "",
-      "type": "NUMBER"
+      "name": "StatusMEM_FlashFrequency",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_FlashMode",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_FlashSize",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_Free",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_Heap",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_ProgramFlashSize",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_ProgramSize",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMEM_Sensors",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_KEEPALIVE",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MAX_PACKET_SIZE",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MqttClient",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MqttClientMask",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MqttCount",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MqttHost",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MqttPort",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_MqttUser",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusMQT_SOCKET_TIMEOUT",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_DNSServer",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_Gateway",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_Hostname",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_IPAddress",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_Mac",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_Subnetmask",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_Webserver",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_WifiConfig",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusNET_WifiPower",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_BCResetTime",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_Baudrate",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_BootCount",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_CfgHolder",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_GroupTopic",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_OtaUrl",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_RestartReason",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_SaveAddress",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_SaveCount",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_SerialConfig",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_Sleep",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_StartupUTC",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusPRM_Uptime",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_AM2301_Humidity",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_AM2301_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_BMP280_Pressure",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_BMP280_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DHT11_Humidity",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DHT11_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_1_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_1_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_2_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_2_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_3_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_3_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_TotalStartTime",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Yesterday",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Today",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_ApparentPower",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_ReactivePower",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Factor",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Voltage",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ENERGY_Current",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_MT175_E_in",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_MT175_E_out",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_MT175_P",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_MT175_L1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_MT175_L2",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_MT175_L3",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_CF1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_CF2_5",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_CF10",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PM1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PM2_5",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PM10",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PB0_3",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PB0_5",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PB1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PB2_5",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PB5",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_PMS5003_PB10",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_SHT3X_Humidity",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_SHT3X_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_SI7021_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_SI7021_Humidity",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_SI7021_DewPoint",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_ANALOG_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_Humidity",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_Light",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_Noise",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_AirQuality",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_TempUnit",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_Time",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Heap",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_LoadAvg",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_MqttCount",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_POWER",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Sleep",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_SleepMode",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Time",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Uptime",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_UptimeSec",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_AP",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_BSSId",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_Channel",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_Downtime",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_LinkCount",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_Mode",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_RSSI",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_SSId",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSTS_Wifi_Signal",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_EndDST",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_Local",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_StartDST",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_Sunrise",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_Sunset",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_Timezone",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusTIM_UTC",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "Status_ButtonRetain",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_ButtonTopic",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "Status_DeviceName",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "Status_FriendlyName_0",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "Status_InfoRetain",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_LedMask",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "Status_LedState",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_Module",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_Power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_PowerOnState",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_PowerRetain",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SaveData",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SaveState",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SensorRetain",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_StateRetain",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_0",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_2",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_3",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_4",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_5",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_6",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchMode_7",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchRetain",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "Status_SwitchTopic",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "Status_Topic",
+      "type": "STRING",
+      "note": ""
     }
   ],
   "databasefields": [
@@ -371,14 +903,14 @@
       "columnname": "Produkt",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "status_ModuleName"
+      "sourcevalue": "StatusFWR_Version"
     },
     {
       "tablename": "Info",
       "columnname": "Objekt",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "status_Topic"
+      "sourcevalue": "Status_Topic"
     },
     {
       "tablename": "Info",
@@ -392,133 +924,168 @@
       "columnname": "Spannung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Voltage"
+      "sourcevalue": "StatusSNS_ENERGY_Voltage"
     },
     {
       "tablename": "AC",
       "columnname": "Strom",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Current"
+      "sourcevalue": "StatusSNS_ENERGY_Current"
     },
     {
       "tablename": "AC",
       "columnname": "Leistung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Power"
+      "sourcevalue": "StatusSNS_ENERGY_Power"
     },
     {
       "tablename": "AC",
       "columnname": "Scheinleistung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_ApparentPower"
+      "sourcevalue": "StatusSNS_ENERGY_ApparentPower"
     },
     {
       "tablename": "AC",
       "columnname": "Blindleistung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_ReactivePower"
+      "sourcevalue": "StatusSNS_ENERGY_ReactivePower"
     },
     {
-      "tablename": "Service",
-      "columnname": "Temperatur",
+      "tablename": "AC",
+      "columnname": "Leistung_R",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sns_Temperature"
+      "sourcevalue": "StatusSNS_MT175_L1"
     },
     {
-      "tablename": "Service",
-      "columnname": "Luftfeuchte",
+      "tablename": "AC",
+      "columnname": "Leistung_S",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sns_Humidity"
+      "sourcevalue": "StatusSNS_MT175_L2"
     },
     {
-      "tablename": "Service",
-      "columnname": "Licht",
+      "tablename": "AC",
+      "columnname": "Leistung_T",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sns_Light"
+      "sourcevalue": "StatusSNS_MT175_L3"
     },
     {
-      "tablename": "Sensor",
-      "columnname": "SensorID",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Id"
-    },
-    {
-      "tablename": "Sensor",
-      "columnname": "Temperatur",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Temperature"
-    },
-    {
-      "tablename": "Sensor",
-      "columnname": "SensorName",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Name"
-    },
-    {
-      "tablename": "Sensor",
-      "columnname": "Masseinheit",
-      "columntype": "STRING",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sns_TempUnit"
-    },
-    {
-      "tablename": "Sensor",
-      "columnname": "Luftfeuchte",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Humidity"
-    },
-    {
-      "tablename": "Sensor",
-      "columnname": "Taupunkt",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_DewPoint"
-    },
-    {
-      "tablename": "Sensor",
-      "columnname": "Heute",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Today"
-    },
-    {
-      "tablename": "Service",
-      "columnname": "Heute",
-      "columntype": "NUMBER",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sensor_Today"
-    },
-    {
-      "tablename": "Summen",
-      "columnname": "Wh_Heute",
+      "tablename": "AC",
+      "columnname": "Bezug",
       "columntype": "NUMBER",
       "sourcetype": "CALCULATED",
-      "sourcevalue": "sensor_Today * 1000"
+      "sourcevalue": "MAX(0, StatusSNS_MT175_P)"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Einspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "MIN(0, StatusSNS_MT175_P)"
     },
     {
       "tablename": "Summen",
       "columnname": "Wh_Gesamt",
       "columntype": "NUMBER",
       "sourcetype": "CALCULATED",
-      "sourcevalue": "sensor_Total * 1000"
+      "sourcevalue": "StatusSNS_ENERGY_Total * 1000"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "StatusSNS_ENERGY_Today * 1000"
     },
     {
       "tablename": "Summen",
       "columnname": "Wh_Gestern",
       "columntype": "NUMBER",
       "sourcetype": "CALCULATED",
-      "sourcevalue": "sensor_Yesterday * 1000"
+      "sourcevalue": "StatusSNS_ENERGY_Yesterday * 1000"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_1_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_2_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur3",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_3_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Luftfeuchte",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_Humidity"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Licht",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_Light"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Masseinheit",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_TempUnit"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Taupunkt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_SI7021_DewPoint"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Powerstatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSTS_POWER"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Powerstatus1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSTS_POWER1"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Powerstatus2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSTS_POWER2"
     }
   ]
 }

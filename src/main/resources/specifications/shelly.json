@@ -1,0 +1,667 @@
+{
+  "description": "specs for shelly with original firmware",
+  "devicefields": [
+    {
+      "name": "actions_stats_skipped",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "cfg_changed_cnt",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "cloud_connected",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "cloud_enabled",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_0_voltage",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_1_voltage",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_2_voltage",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_0_current",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_1_current",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_2_current",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_0_total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_1_total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_2_total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_0_pf",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_1_pf",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_2_pf",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_0_power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_1_power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_2_power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_0_total_returned",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_1_total_returned",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "emeters_2_total_returned",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "fs_free",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "fs_size",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "fw",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "has_update",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "inputs_0_event",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "inputs_0_event_cnt",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "inputs_0_input",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "inputs_1_event",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "inputs_1_event_cnt",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "inputs_1_input",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "mac",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "meters_0_counters_0",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_counters_1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_counters_2",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_is_valid",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_overpower",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_timestamp",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_0_total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_counters_0",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_counters_1",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_counters_2",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_is_valid",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_overpower",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_timestamp",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "meters_1_total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "mode",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "mqtt_connected",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "num_outputs",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "num_meters",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "num_rollers",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "overtemperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "ram_free",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "ram_total",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "relays_0_overpower",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "relays_0_ison",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "relays_0_is_valid",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_calibrating",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_current_pos",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_is_valid",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_last_direction",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_overtemperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_positioning",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_power",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_safety_switch",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_source",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_state",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "rollers_0_stop_reason",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "serial",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "temperature_status",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "time",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "tmp_is_valid",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "tmp_tC",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "tmp_tF",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "type",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "unixtime",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "update_has_update",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "update_new_version",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "update_old_version",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "update_status",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "uptime",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "voltage",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "wifi_sta_connected",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "wifi_sta_ip",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "wifi_sta_rssi",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "wifi_sta_ssid",
+      "type": "STRING",
+      "note": ""
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Shelly"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "type"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "fw"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Serial",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "serial"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_voltage"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_voltage"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_voltage"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_current"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_current"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_current"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_VerbrauchGesamt_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_total"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_VerbrauchGesamt_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_total"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_VerbrauchGesamt_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_total"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_EinspeisungGesamt_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_total_returned"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_EinspeisungGesamt_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_total_returned"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Leistung_EinspeisungGesamt_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_total_returned"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "PowerFactor_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_pf"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "PowerFactor_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_pf"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "PowerFactor_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_pf"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung_R",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_power"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung_S",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_power"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung_T",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_power"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Gesamtleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "emeters_0_power + emeters_1_power + emeters_2_power"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Relaisstatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "relays_0_ison"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Ueberlastung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "relays_0_overpower"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "temperatur"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt_Verbrauch",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "emeters_0_total + emeters_1_total + emeters_2_total"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt_Einspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "emeters_0_total_returned + emeters_1_total_returned + emeters_2_total_returned"
+    }
+  ]
+}

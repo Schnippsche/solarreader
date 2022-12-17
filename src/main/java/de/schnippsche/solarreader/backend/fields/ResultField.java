@@ -52,7 +52,8 @@ public class ResultField
 
   public ResultField(String name, ResultFieldStatus resultFieldStatus, Object readvalue)
   {
-    this(name, resultFieldStatus, FieldType.STRING, readvalue);
+    this(name, resultFieldStatus, (readvalue instanceof BigDecimal || readvalue instanceof Integer
+                                   || readvalue instanceof Long) ? FieldType.NUMBER : FieldType.STRING, readvalue);
   }
 
   public ResultField(String name, ResultFieldStatus resultFieldStatus, FieldType fieldType, Object readvalue)

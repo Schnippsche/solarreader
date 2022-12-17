@@ -1,4 +1,5 @@
 package de.schnippsche.solarreader.backend.utils;
+
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.connections.Connection;

@@ -4,3 +4,11 @@
 
 #### New:
 Add some Ehz Powermeter for IR Sensors with USB Cable
+
+### 2022-12-04 V1.2
+Add Fronius Symo
+Add Fronius Primo
+Add Fronius Smartmeter
+Add Powmr Pow-hvm1.5H-12v
+Add Tasmota Devices (SonOff, Shelly with Tasmota Firmware)
+Add Steca Solarix PLI 5000

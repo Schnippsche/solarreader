@@ -11,6 +11,9 @@ import de.schnippsche.solarreader.backend.utils.Pair;
 import de.schnippsche.solarreader.backend.utils.QCommand;
 import org.tinylog.Logger;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +24,7 @@ import java.util.List;
  */
 public class SimpleSerialConnection implements Connection<String, QCommand>
 {
+  private static final char CARRIAGE_RETURN = '\r';
   private final NumericHelper numericHelper;
   private final ConfigDevice configDevice;
   private SerialPort serialPort;
@@ -89,8 +93,14 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
       Logger.error("could not write, reason = {}", serialPort.getLastErrorCode());
       return null;
     }
-    String line = readString();
+    String line = readStringUntilCR();
     Logger.debug("read line {}", line);
+    if (line.length() > 2 && line.startsWith("("))
+    {
+      line = line.substring(1, line.length() - 2).trim(); // crc at the end
+    }
+    Logger.debug("normalized line {}", line);
+
     return line;
   }
 
@@ -120,7 +130,8 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
       Logger.error("can't open Port {} , error {}", serialPort.getSystemPortName(), serialPort.getLastErrorCode());
       return false;
     }
-    serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 3000, 1000);
+    serialPort.setComPortTimeouts(
+      SerialPort.TIMEOUT_READ_SEMI_BLOCKING | SerialPort.TIMEOUT_WRITE_BLOCKING, 5000, 1000);
     return true;
   }
 
@@ -146,34 +157,47 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
   }
 
   /**
-   * Read bytes
+   * Reads a line of text. A line is considered to be terminated by a carriage return ('\r') or by reaching the end-of-file (EOF).
    *
-   * @return the byte [ ]
+   * @return A String containing the contents of the line, not including line-termination characters,
+   * or null if the end of the stream has been reached without reading any characters
    */
-  public byte[] readBytes()
+  public String readStringUntilCR()
   {
-    return readBytes(1024);
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(serialPort.getInputStream(), StandardCharsets.ISO_8859_1)))
+    {
+      StringBuilder stringBuilder = new StringBuilder();
+      int singleChar;
+      while ((singleChar = reader.read()) != -1)
+      {
+        char character = (char) singleChar;
+        if (character == CARRIAGE_RETURN)
+        {
+          break;
+        }
+        stringBuilder.append(character);
+      }
+      return stringBuilder.toString();
+    } catch (IOException e)
+    {
+      Logger.error("couldn't read string from serial Port: {}", e.getMessage());
+    }
+    return null;
   }
 
   /**
-   * Read string .
+   * reads a String with beginning LF and CR at the end
    *
-   * @return the string
-   */
-  public String readString()
-  {
-    return new String(readBytes(), StandardCharsets.ISO_8859_1).trim();
-  }
-
-  /**
-   * reads a String with beginning CR and LF at the end
-   *
-   * @param maxStringLength the maximum String length
    * @return String without CR and LF
    */
-  public String readCrStringLf(int maxStringLength)
+  public String readCrStringLf()
   {
-    return new String(readBytes(maxStringLength + 2), StandardCharsets.ISO_8859_1).trim();
+    String result = readStringUntilCR();
+    if (result == null)
+    {
+      return "";
+    }
+    return result.startsWith("\n") ? result.substring(1) : result;
   }
 
   /**

@@ -40,7 +40,8 @@ public class Data
 
   @Override public String toString()
   {
-    return "Data{" + "startTimestamp=" + startTimestamp + ", endTimestamp=" + endTimestamp + ", marketprice=" + marketprice + ", unit='" + unit + '\'' + '}';
+    return "Data{" + "startTimestamp=" + startTimestamp + ", endTimestamp=" + endTimestamp + ", marketprice="
+           + marketprice + ", unit='" + unit + '\'' + '}';
   }
 
 }

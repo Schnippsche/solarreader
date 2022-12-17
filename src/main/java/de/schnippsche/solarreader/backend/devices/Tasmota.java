@@ -3,20 +3,14 @@ package de.schnippsche.solarreader.backend.devices;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractDevice;
-import de.schnippsche.solarreader.backend.fields.DeviceField;
 import de.schnippsche.solarreader.backend.fields.ResultField;
-import de.schnippsche.solarreader.backend.serializes.sonoff.SensorValue;
-import de.schnippsche.solarreader.backend.serializes.sonoff.SonOffWrapper;
 import org.tinylog.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
 
 public class Tasmota extends AbstractDevice
 {
   private String url;
-  private SonOffWrapper sonOffWrapper;
 
   public Tasmota(ConfigDevice configDevice)
   {
@@ -33,40 +27,23 @@ public class Tasmota extends AbstractDevice
   @Override protected boolean readDeviceValues()
   {
     Logger.info("try to connect to " + url);
-    sonOffWrapper = jsonTool.getObjectFromUrl(url, SonOffWrapper.class);
-    if (sonOffWrapper == null)
-    {
-      Logger.error("couldn't read Tasmota status from url {}", url);
-      return false;
-    }
-
-    resultFields.addAll(sonOffWrapper.getResultFields(specification.getDevicefields()));
-    return true;
+    resultFields.clear();
+    resultFields.addAll(jsonTool.getResultFieldsFromUrl(url));
+    return !resultFields.isEmpty();
   }
 
-  @Override protected void createTables()
+  @Override protected void correctValues()
   {
-    tables.addAll(exportTables.convert(resultFields, specification.getDatabasefields()));
-    // there can be multiple sensor datas; extract each sensor data into own table entry
-    if (sonOffWrapper != null && sonOffWrapper.statusSNS != null)
+    setBooleanToNumber(getValidResultField("StatusSTS_POWER"));
+    setBooleanToNumber(getValidResultField("StatusSTS_POWER1"));
+    setBooleanToNumber(getValidResultField("StatusSTS_POWER2"));
+  }
+
+  private void setBooleanToNumber(ResultField resultField)
+  {
+    if (resultField != null)
     {
-      for (Map.Entry<String, SensorValue> map : sonOffWrapper.statusSNS.sensors.entrySet())
-      {
-        List<ResultField> sensorResultField = new ArrayList<>();
-        SensorValue sensorValue = map.getValue();
-        for (DeviceField deviceField : specification.getDevicefields())
-        {
-          ResultField field = sensorValue.getResultField(deviceField);
-          if (field != null)
-          {
-            sensorResultField.add(field);
-          }
-        }
-        if (!sensorResultField.isEmpty())
-        {
-          tables.addAll(exportTables.convert(sensorResultField, specification.getDatabasefields()));
-        }
-      }
+      resultField.setValue("ON".equals(resultField.getValue()) ? BigDecimal.ONE : BigDecimal.ZERO);
     }
   }
 

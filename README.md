@@ -79,6 +79,10 @@ To show the GUI type "locahost:8080" in your browser (or the ip of your computer
 - Goodwe inverter
 - Phocos inverter
 - Hichi IR Reader for eHZ Energiemeter and other compatible
+- Fronius Primo, Fronius Symo and Fronius Smartmeter
+- Steca Solarix PLI 5000
+- Powmr Pow-hvm1.5H-12v
+- Tasmota Devices (SonOff, Shelly with Tasmota Firmware)
 - many more planned and in progress... Feel free to contribute and share it with the community!
 
 ### Using the precompiled binaries

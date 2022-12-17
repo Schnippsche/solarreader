@@ -48,24 +48,17 @@ public class Schueco extends AbstractLockedDevice
         return false;
       }
       simpleSerialConnection.send(this.typeCommand);
-      // Dont use wait() because we want to hold locking
-      Thread.sleep(500);
-      type = simpleSerialConnection.readCrStringLf(13);
+     type = simpleSerialConnection.readCrStringLf();
       // something received ?
       if (type.length() > 2)
       {
         simpleSerialConnection.send(this.sendCommand);
-        // Dont use wait() because we want to hold locking
-        Thread.sleep(1000);
-        receive = simpleSerialConnection.readCrStringLf(57);
+        receive = simpleSerialConnection.readCrStringLf();
       } else
       {
         Logger.error("Not enough data");
         return false;
       }
-    } catch (InterruptedException e)
-    {
-      Thread.currentThread().interrupt();
     } catch (Exception e)
     {
       Logger.error("error while reading {}: {}", usbDevice, e);

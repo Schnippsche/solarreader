@@ -206,7 +206,7 @@
       "defaults": {
         "DEVICE_PORT": "80"
       },
-      "deviceName": "Tasmota Geräte (z.B. SonOff, Shelly)",
+      "deviceName": "Tasmota Geräte (z.B. SonOff, Shelly) mit aktivierter HTTP Api",
       "deviceClass": "Tasmota",
       "deviceSpecification": "tasmota"
     },
@@ -286,7 +286,7 @@
       },
       "deviceName": "InfiniSolar PIP Serie 3k",
       "deviceClass": "Steca",
-      "deviceSpecification": "powermeter"
+      "deviceSpecification": "infinisolar"
     },
     {
       "uuid": "118039ca-8e39-410c-a484-fe375d16b826",
@@ -297,7 +297,7 @@
       },
       "deviceName": "Voltronic Axpert Serie",
       "deviceClass": "Steca",
-      "deviceSpecification": "powermeter"
+      "deviceSpecification": "voltronic_axpert.json"
     },
     {
       "uuid": "28313f09-964c-4a75-98fc-20daac4e4134",
@@ -360,8 +360,20 @@
         "DATABITS": "8"
       },
       "deviceName": "Powmr Pow-hvm1.5H-12v",
-      "deviceClass": "Steca",
-      "deviceSpecification": "powmrpowhvm"
+      "deviceClass": "Powmr",
+      "deviceSpecification": "qpip30"
+    },
+    {
+      "uuid": "7855931b-ac95-4b71-bea1-e9f9f1c2ef22",
+      "prompts": [
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_PORT": "80"
+      },
+      "deviceName": "Shelly Gerät mit Original Software",
+      "deviceClass": "Shelly",
+      "deviceSpecification": "shelly"
     }
   ]
 }

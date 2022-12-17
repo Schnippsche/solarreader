@@ -1,0 +1,1588 @@
+{
+  "description": "specs for powmr_pow_hvm1_5H_12v",
+  "devicefields": [
+    {
+      "command": "QMOD",
+      "name": "Modus",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "note": "modus",
+      "type": "STRING"
+    },
+    {
+      "command": "QMD",
+      "name": "modell",
+      "unit": "",
+      "offset": 0,
+      "count": 15,
+      "note": "model name if supported",
+      "type": "STRING"
+    },
+    {
+      "command": "QMN",
+      "name": "modell",
+      "unit": "",
+      "offset": 0,
+      "count": 5,
+      "note": "model name if supported",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Netzspannung",
+      "unit": "V",
+      "offset": 0,
+      "count": 5,
+      "note": "Grid voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Netzfrequenz",
+      "unit": "Hz",
+      "offset": 6,
+      "count": 4,
+      "note": "Grid frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Ausgangsspannung",
+      "unit": "V",
+      "offset": 11,
+      "count": 5,
+      "note": "AC output voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Ausgangsfrequenz",
+      "unit": "Hz",
+      "offset": 17,
+      "count": 4,
+      "note": "AC output frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Scheinleistung",
+      "unit": "VA",
+      "offset": 22,
+      "count": 4,
+      "note": "AC output apparent power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Wirkleistung",
+      "unit": "W",
+      "offset": 27,
+      "count": 4,
+      "note": "AC output active power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Ausgangslast",
+      "unit": "%",
+      "offset": 32,
+      "count": 3,
+      "note": "Output load percent",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Busspannung",
+      "unit": "V",
+      "offset": 36,
+      "count": 3,
+      "note": "BUS voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batteriespannung",
+      "unit": "V",
+      "offset": 40,
+      "count": 5,
+      "note": "Battery voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batterieladestrom",
+      "unit": "A",
+      "offset": 46,
+      "count": 3,
+      "note": "Battery charging current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batteriekapazitaet",
+      "unit": "%",
+      "offset": 50,
+      "count": 3,
+      "note": "Battery capacity",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Temperatur",
+      "unit": "C",
+      "offset": 54,
+      "count": 3,
+      "note": "Inverter heat sink temperature",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solarstrom",
+      "unit": "A",
+      "offset": 58,
+      "count": 4,
+      "note": "PV Input current for battery",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solarspannung",
+      "unit": "V",
+      "offset": 63,
+      "count": 5,
+      "note": "PV Input voltage 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "BatteriespannungWR",
+      "unit": "V",
+      "offset": 69,
+      "count": 5,
+      "note": "Battery voltage from SCC",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batterieentladestrom",
+      "unit": "A",
+      "offset": 75,
+      "count": 5,
+      "note": "Battery discharge current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Prioritaetsstatus",
+      "unit": "",
+      "offset": 81,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Laststatus",
+      "unit": "",
+      "offset": 82,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Ladestatus",
+      "unit": "",
+      "offset": 84,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solarladestatus",
+      "unit": "",
+      "offset": 86,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Reserviert",
+      "unit": "",
+      "offset": 87,
+      "count": 2,
+      "note": "",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "AC_Ladestatus",
+      "unit": "",
+      "offset": 88,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Batterie_Voltage_Offset",
+      "unit": "",
+      "offset": 90,
+      "count": 2,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Eeprom_Version",
+      "unit": "",
+      "offset": 93,
+      "count": 2,
+      "note": "EEPROM version",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "PV_Ladeleistung",
+      "unit": "W",
+      "offset": 96,
+      "count": 5,
+      "note": "PV Charging power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Ladezielkennzeichen",
+      "unit": "",
+      "offset": 102,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Eingeschaltet",
+      "unit": "",
+      "offset": 103,
+      "count": 1,
+      "note": "Device status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS2",
+      "name": "pv2_input_current",
+      "unit": "A",
+      "offset": 0,
+      "count": 4,
+      "note": "PV2 Input current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS2",
+      "name": "pv2_input_voltage",
+      "unit": "V",
+      "offset": 5,
+      "count": 5,
+      "note": "PV2 Input voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS2",
+      "name": "pv2_charging_power",
+      "unit": "W",
+      "offset": 11,
+      "count": 5,
+      "note": "PV2 Charging power",
+      "type": "STRING"
+    },
+    {
+      "command": "QID",
+      "name": "device_id",
+      "unit": "",
+      "offset": 0,
+      "count": 14,
+      "note": "device id",
+      "type": "STRING"
+    },
+    {
+      "command": "QSID",
+      "name": "seriallong",
+      "unit": "",
+      "offset": 2,
+      "count": 20,
+      "note": "long device serial number",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "grid_rating_voltage",
+      "unit": "V",
+      "offset": 0,
+      "count": 5,
+      "note": "Grid rating voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "grid_rating_current",
+      "unit": "A",
+      "offset": 6,
+      "count": 4,
+      "note": "Grid rating current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "ac_output_rating_voltage",
+      "unit": "V",
+      "offset": 11,
+      "count": 5,
+      "note": "AC output rating voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "ac_output_rating_frequency",
+      "unit": "Hz",
+      "offset": 17,
+      "count": 4,
+      "note": "AC output rating frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "ac_output_rating_current",
+      "unit": "A",
+      "offset": 22,
+      "count": 4,
+      "note": "AC output rating current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "ac_output_rating_apparent_power",
+      "unit": "VA",
+      "offset": 27,
+      "count": 4,
+      "note": "AC output rating apparent power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "ac_output_rating_active_power",
+      "unit": "W",
+      "offset": 32,
+      "count": 4,
+      "note": "AC output rating active power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_rating_voltage",
+      "unit": "V",
+      "offset": 37,
+      "count": 4,
+      "note": "Battery rating voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_recharge_voltage",
+      "unit": "V",
+      "offset": 42,
+      "count": 4,
+      "note": "Battery re-charge voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_under_voltage",
+      "unit": "V",
+      "offset": 47,
+      "count": 4,
+      "note": "Battery under voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_bulk_voltage",
+      "unit": "V",
+      "offset": 52,
+      "count": 4,
+      "note": "Battery under voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_float_voltage",
+      "unit": "V",
+      "offset": 57,
+      "count": 4,
+      "note": "Battery float voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_type",
+      "unit": "",
+      "offset": 62,
+      "count": 1,
+      "note": "Battery type",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "current_max_ac_charging",
+      "unit": "A",
+      "offset": 64,
+      "count": 2,
+      "note": "Current max AC charging",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "current_max_charging",
+      "unit": "A",
+      "offset": 67,
+      "count": 3,
+      "note": "Current max charging",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "input_voltage_range",
+      "unit": "",
+      "offset": 71,
+      "count": 1,
+      "note": "Input voltage range",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "output_source_priority",
+      "unit": "",
+      "offset": 73,
+      "count": 1,
+      "note": "Output source priority",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "charger_source_priority",
+      "unit": "",
+      "offset": 75,
+      "count": 1,
+      "note": "charger source priority",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "parallel_max_num",
+      "unit": "",
+      "offset": 77,
+      "count": 1,
+      "note": "Parallel max num",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "machine_type",
+      "unit": "",
+      "offset": 79,
+      "count": 2,
+      "note": "Machine type",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "topology",
+      "unit": "",
+      "offset": 82,
+      "count": 1,
+      "note": "Topology",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "output_mode",
+      "unit": "",
+      "offset": 84,
+      "count": 1,
+      "note": "Output mode",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "battery_redischarge_voltage",
+      "unit": "%",
+      "offset": 86,
+      "count": 4,
+      "note": "Battery re-discharge voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "pv_ok_condition",
+      "unit": "",
+      "offset": 91,
+      "count": 1,
+      "note": "PV OK condition for parallel",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIRI",
+      "name": "pv_power_balance",
+      "unit": "",
+      "offset": 93,
+      "count": 1,
+      "note": "PV power balance",
+      "type": "STRING"
+    },
+    {
+      "command": "QVFW",
+      "name": "inverter_cpu_firmware_version_inquiry",
+      "unit": "",
+      "offset": 6,
+      "count": 8,
+      "note": "Inverter CPU Firmware version inquiry",
+      "type": "STRING"
+    },
+    {
+      "command": "QVFW2",
+      "name": "scci_cpu_firmware_version_inquiry",
+      "unit": "",
+      "offset": 7,
+      "count": 8,
+      "note": "SCCI CPU Firmware version inquiry",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "grid_voltage",
+      "unit": "V",
+      "offset": 0,
+      "count": 5,
+      "note": "Grid voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "grid_frequency",
+      "unit": "Hz",
+      "offset": 6,
+      "count": 4,
+      "note": "Grid frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "ac_output_voltage",
+      "unit": "V",
+      "offset": 11,
+      "count": 5,
+      "note": "AC output voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "ac_output_frequency",
+      "unit": "Hz",
+      "offset": 17,
+      "count": 4,
+      "note": "AC output frequency",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "ac_output_apparent_power",
+      "unit": "VA",
+      "offset": 22,
+      "count": 4,
+      "note": "AC output apparent power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "ac_output_active_power",
+      "unit": "W",
+      "offset": 27,
+      "count": 4,
+      "note": "AC output active power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "output_load_percent",
+      "unit": "%",
+      "offset": 32,
+      "count": 3,
+      "note": "Output load percent",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "bus_voltage",
+      "unit": "V",
+      "offset": 36,
+      "count": 3,
+      "note": "BUS voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "battery_voltage",
+      "unit": "V",
+      "offset": 40,
+      "count": 5,
+      "note": "Battery voltage",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "battery_charging_current",
+      "unit": "A",
+      "offset": 46,
+      "count": 3,
+      "note": "Battery charging current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "battery_capacity",
+      "unit": "%",
+      "offset": 50,
+      "count": 3,
+      "note": "Battery capacity",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "inverter_temperature",
+      "unit": "C",
+      "offset": 54,
+      "count": 4,
+      "note": "Inverter heat sink temperature",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "pv_input_current_batterie",
+      "unit": "A",
+      "offset": 59,
+      "count": 4,
+      "note": "PV Input current for battery",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "pv_input_voltage1",
+      "unit": "V",
+      "offset": 64,
+      "count": 5,
+      "note": "PV Input voltage 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "battery_voltage_scc",
+      "unit": "V",
+      "offset": 70,
+      "count": 5,
+      "note": "Battery voltage from SCC",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "battery_discharge_current",
+      "unit": "A",
+      "offset": 76,
+      "count": 5,
+      "note": "Battery discharge current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "priority_version",
+      "unit": "",
+      "offset": 82,
+      "count": 1,
+      "note": "SBU priority version, 1: yes,0: no",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "configuration_status",
+      "unit": "",
+      "offset": 83,
+      "count": 1,
+      "note": "configuration status, 1: Change 0:unchanged",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "scc_firmware_version",
+      "unit": "",
+      "offset": 84,
+      "count": 1,
+      "note": "SCC firmware version, 1: Updated 0:unchanged",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "load_status",
+      "unit": "",
+      "offset": 85,
+      "count": 1,
+      "note": "Load status: 0: Load off 1:Load on",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "battery_voltage_charging_status",
+      "unit": "",
+      "offset": 86,
+      "count": 1,
+      "note": "battery voltage to steady while charging",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "charging_status",
+      "unit": "",
+      "offset": 87,
+      "count": 1,
+      "note": "Charging status",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "scc_charging_status",
+      "unit": "",
+      "offset": 88,
+      "count": 1,
+      "note": "charging status(SCC charging on/off)",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "ac_charging_status",
+      "unit": "",
+      "offset": 89,
+      "count": 1,
+      "note": "Charging status(AC charging on/off)",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "fan_battery_voltage_offset",
+      "unit": "10mV",
+      "offset": 91,
+      "count": 2,
+      "note": "Battery voltage offset for fans on",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Eeprom_Version",
+      "unit": "",
+      "offset": 94,
+      "count": 2,
+      "note": "EEPROM version",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "pv1_charging_power",
+      "unit": "W",
+      "offset": 97,
+      "count": 5,
+      "note": "PV1 Charging power",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "charging_to_floating_mode",
+      "unit": "",
+      "offset": 103,
+      "count": 1,
+      "note": "flag for charging to floating mode",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "switch_on",
+      "unit": "",
+      "offset": 104,
+      "count": 1,
+      "note": "Switch On",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "dustproof_installed",
+      "unit": "",
+      "offset": 105,
+      "count": 1,
+      "note": "flag for dustproof installed(1-dustproof installed,0-no dustproof, only available for Axpert V series",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solar_feed_grid_status",
+      "unit": "",
+      "offset": 107,
+      "count": 1,
+      "note": "Solar feed to grid status, 0: normal 1: solar feed to grid",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIGS",
+      "name": "Solar_feed_grid_status",
+      "unit": "",
+      "offset": 109,
+      "count": 2,
+      "note": "Set country customized regulation, Solar feed to grid status, 0: normal 1: solar feed to grid",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_all",
+      "unit": "",
+      "offset": 0,
+      "count": 38,
+      "note": "PV loss",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_pv_loss",
+      "unit": "",
+      "offset": 0,
+      "count": 1,
+      "note": "PV loss",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_inverter_fault",
+      "unit": "",
+      "offset": 1,
+      "count": 1,
+      "note": "Inverter fault",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_bus_over",
+      "unit": "",
+      "offset": 2,
+      "count": 1,
+      "note": "Bus over",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_bus_under",
+      "unit": "",
+      "offset": 3,
+      "count": 1,
+      "note": "Bus Under",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_bus_softfail",
+      "unit": "",
+      "offset": 4,
+      "count": 1,
+      "note": "Bus Soft fail",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_line_fail",
+      "unit": "",
+      "offset": 5,
+      "count": 1,
+      "note": "Line fail",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_opv_short",
+      "unit": "",
+      "offset": 6,
+      "count": 1,
+      "note": "OPVShort",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_inverter_voltage_too_low",
+      "unit": "",
+      "offset": 7,
+      "count": 1,
+      "note": "Inverter voltage too low",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_inverter_voltage_too_high",
+      "unit": "",
+      "offset": 8,
+      "count": 1,
+      "note": "Inverter voltage too high",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_over_temperature",
+      "unit": "",
+      "offset": 9,
+      "count": 1,
+      "note": "Over temperature",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_fan_locked",
+      "unit": "",
+      "offset": 10,
+      "count": 1,
+      "note": "Fan locked",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_voltage_high",
+      "unit": "",
+      "offset": 11,
+      "count": 1,
+      "note": "Battery voltage high",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_low_alarm",
+      "unit": "",
+      "offset": 12,
+      "count": 1,
+      "note": "Battery low alarm",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_reserved13",
+      "unit": "",
+      "offset": 13,
+      "count": 1,
+      "note": "Reserved",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_under_shutdown",
+      "unit": "",
+      "offset": 14,
+      "count": 1,
+      "note": "Battery under shutdown",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_derating",
+      "unit": "",
+      "offset": 15,
+      "count": 1,
+      "note": "Battery derating",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_over_load",
+      "unit": "",
+      "offset": 16,
+      "count": 1,
+      "note": "Over load",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_eeprom_fault",
+      "unit": "",
+      "offset": 17,
+      "count": 1,
+      "note": "Eeprom fault",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_inverter_over_current",
+      "unit": "",
+      "offset": 18,
+      "count": 1,
+      "note": "Inverter Over Current",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_inverter_soft_fail",
+      "unit": "",
+      "offset": 19,
+      "count": 1,
+      "note": "Inverter Soft Fail",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_self_test_fail",
+      "unit": "",
+      "offset": 20,
+      "count": 1,
+      "note": "Self Test Fail",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_opdc_voltage_over",
+      "unit": "",
+      "offset": 21,
+      "count": 1,
+      "note": "OP DC Voltage Over",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_bat_open",
+      "unit": "",
+      "offset": 22,
+      "count": 1,
+      "note": "Bat open",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_current_sensor_fail",
+      "unit": "",
+      "offset": 23,
+      "count": 1,
+      "note": "Current Sensor Fail",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_batterie_short",
+      "unit": "",
+      "offset": 24,
+      "count": 1,
+      "note": "Batterie Short",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_power_limit",
+      "unit": "",
+      "offset": 25,
+      "count": 1,
+      "note": "Power limit",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_pv_voltage_high1",
+      "unit": "",
+      "offset": 26,
+      "count": 1,
+      "note": "PV voltage high 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_mppt_overload_fault1",
+      "unit": "",
+      "offset": 27,
+      "count": 1,
+      "note": "MPPT overload fault 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_mppt_overload_warning1",
+      "unit": "",
+      "offset": 28,
+      "count": 1,
+      "note": "MPPT overload warning 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_too_low_to_charge1",
+      "unit": "",
+      "offset": 29,
+      "count": 1,
+      "note": "Battery too low to charge 1",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_pv_voltage_high2",
+      "unit": "",
+      "offset": 30,
+      "count": 1,
+      "note": "PV voltage high 2",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_mppt_overload_fault2",
+      "unit": "",
+      "offset": 31,
+      "count": 1,
+      "note": "MPPT overload fault 2",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_mppt_overload_warning2",
+      "unit": "",
+      "offset": 32,
+      "count": 1,
+      "note": "MPPT overload warning 2",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_too_low_to_charge2",
+      "unit": "",
+      "offset": 33,
+      "count": 1,
+      "note": "Battery too low to charge 2",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_pv_voltage_high3",
+      "unit": "",
+      "offset": 34,
+      "count": 1,
+      "note": "PV voltage high 3",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_mppt_overload_fault3",
+      "unit": "",
+      "offset": 35,
+      "count": 1,
+      "note": "MPPT overload fault 3",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_mppt_overload_warning3",
+      "unit": "",
+      "offset": 36,
+      "count": 1,
+      "note": "MPPT overload warning 3",
+      "type": "STRING"
+    },
+    {
+      "command": "QPIWS",
+      "name": "status_battery_too_low_to_charge3",
+      "unit": "",
+      "offset": 37,
+      "count": 1,
+      "note": "Battery too low to charge 3",
+      "type": "STRING"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "13"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "modell"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "inverter_cpu_firmware_version_inquiry"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Firmware1",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "scci_cpu_firmware_version_inquiry"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Serial",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "device_id"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "SerialLong",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "seriallong"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Max_AC_Wirkleistung",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ac_output_rating_active_power"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Max_AC_Ladung",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "current_max_ac_charging"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Max_PV_Ladung",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "current_max_charging"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "tablename": "Netz",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Scheinleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Ausgangslast",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ausgangslast"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv2_input_current"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv2_input_voltage"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "pv2_charging_power"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Prioritaetsstatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Prioritaetsstatus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Ladestatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "charger_source_priority"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Solarladestatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarladestatus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Ladeleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Fehlercode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Fehlercode"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Fehlermeldung",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Fehlermeldung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Device_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Device_Status"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Modus",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Modus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Output",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "output_source_priority"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Tagesenergie"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung_WR",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BatteriespannungWR"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Ladestrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterieladestrom"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Kapazitaet",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriekapazitaet"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Entladestrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterieentladestrom"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung_BUS",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Busspannung"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzspannung"
+    },
+    {
+      "name": "Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Netzfrequenz"
+    },
+    {
+      "name": "Datum",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "name": "Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "name": "Scheinleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Scheinleistung"
+    },
+    {
+      "name": "Wirkleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung"
+    },
+    {
+      "name": "Ausgangslast",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ausgangslast"
+    },
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "name": "Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "name": "Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung"
+    },
+    {
+      "name": "Prioritaetsstatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Prioritaetsstatus"
+    },
+    {
+      "name": "Ladestatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ladestatus"
+    },
+    {
+      "name": "Solarladestatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarladestatus"
+    },
+    {
+      "name": "Ladeleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_Ladeleistung"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    }
+  ]
+}
+

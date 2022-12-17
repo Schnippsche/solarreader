@@ -2,7 +2,7 @@
   "description": "specs for openweather",
   "devicefields": [
     {
-      "name": "longitude",
+      "name": "coord_lon",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -10,7 +10,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "latitude",
+      "name": "coord_lat",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -18,7 +18,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "weatherid",
+      "name": "weather_0_id",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -26,7 +26,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "weathermain",
+      "name": "weather_0_main",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -34,7 +34,7 @@
       "type": "STRING"
     },
     {
-      "name": "weatherdescription",
+      "name": " weather_0_description",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -42,7 +42,7 @@
       "type": "STRING"
     },
     {
-      "name": "weathericon",
+      "name": "weather_0_icon",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -50,7 +50,7 @@
       "type": "STRING"
     },
     {
-      "name": "temperature",
+      "name": "main_temp",
       "unit": "Celsius",
       "offset": 0,
       "count": 1,
@@ -58,7 +58,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "feelslike",
+      "name": "main_feels_like",
       "unit": "Celsius",
       "offset": 0,
       "count": 1,
@@ -66,7 +66,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "pressure",
+      "name": "main_pressure",
       "unit": "hPa",
       "offset": 0,
       "count": 1,
@@ -74,7 +74,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "humidity",
+      "name": "main_humidity",
       "unit": "%",
       "offset": 0,
       "count": 1,
@@ -82,7 +82,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "tempmin",
+      "name": "main_temp_min",
       "unit": "Celsius",
       "offset": 0,
       "count": 1,
@@ -90,7 +90,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "tempmax",
+      "name": "main_temp_max",
       "unit": "Celsius",
       "offset": 0,
       "count": 1,
@@ -98,7 +98,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "sealevel",
+      "name": "main_sealevel",
       "unit": "hPa",
       "offset": 0,
       "count": 1,
@@ -106,7 +106,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "groundlevel",
+      "name": "main_grnd_level",
       "unit": "hPa",
       "offset": 0,
       "count": 1,
@@ -122,7 +122,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "windspeed",
+      "name": "wind_speed",
       "unit": "meter/sec",
       "offset": 0,
       "count": 1,
@@ -130,7 +130,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "winddirection",
+      "name": "wind_deg",
       "unit": "degrees",
       "offset": 0,
       "count": 1,
@@ -138,7 +138,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "windgust",
+      "name": "wind_gust",
       "unit": "meter/sec",
       "offset": 0,
       "count": 1,
@@ -146,7 +146,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "cloudiness",
+      "name": "clouds_all",
       "unit": "%",
       "offset": 0,
       "count": 1,
@@ -154,7 +154,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "rainonehour",
+      "name": "rain_1h",
       "unit": "mm",
       "offset": 0,
       "count": 1,
@@ -162,7 +162,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "rainthreehour",
+      "name": "rain_3h",
       "unit": "mm",
       "offset": 0,
       "count": 1,
@@ -170,7 +170,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "snowonehour",
+      "name": "snow_1h",
       "unit": "mm",
       "offset": 0,
       "count": 1,
@@ -178,7 +178,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "snowthreehour",
+      "name": "snow_3h",
       "unit": "mm",
       "offset": 0,
       "count": 1,
@@ -186,7 +186,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "calculationtime",
+      "name": "dt",
       "unit": "UTC",
       "offset": 0,
       "count": 1,
@@ -194,7 +194,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "country",
+      "name": "sys_country",
       "unit": "country code (GB, DE etc)",
       "offset": 0,
       "count": 1,
@@ -202,7 +202,7 @@
       "type": "STRING"
     },
     {
-      "name": "sunrise",
+      "name": "sys_sunrise",
       "unit": "UTC",
       "offset": 0,
       "count": 1,
@@ -210,15 +210,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "sunrisetime",
-      "unit": "hh:mm",
-      "offset": 0,
-      "count": 1,
-      "note": "sunrise hour and minutes",
-      "type": "STRING"
-    },
-    {
-      "name": "sunset",
+      "name": "sys_sunset",
       "unit": "UTC",
       "offset": 0,
       "count": 1,
@@ -226,15 +218,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "sunsettime",
-      "unit": "hh:mm",
-      "offset": 0,
-      "count": 1,
-      "note": "sunset hour and minutes",
-      "type": "STRING"
-    },
-    {
-      "name": "timezoneshift",
+      "name": "timezone",
       "unit": "seconds",
       "offset": 0,
       "count": 1,
@@ -242,7 +226,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "cityid",
+      "name": "id",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -250,7 +234,7 @@
       "type": "NUMBER"
     },
     {
-      "name": "cityname",
+      "name": "name",
       "unit": "",
       "offset": 0,
       "count": 1,
@@ -271,156 +255,156 @@
       "columnname": "Wolkendichte",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "cloudiness"
+      "sourcevalue": "clouds_all"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Temperatur",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "temperature"
+      "sourcevalue": "main_temp"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Luftdruck",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "pressure"
+      "sourcevalue": "main_pressure"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Luftfeuchte",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "humidity"
+      "sourcevalue": "main_humidity"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Himmel",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "weatherdescription"
+      "sourcevalue": "weather_0_description"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Wind",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "windspeed"
+      "sourcevalue": "wind_speed"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Windrichtung",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "winddirection"
+      "sourcevalue": "wind_deg"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Sonnenaufgang",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sunrisetime"
+      "sourcevalue": "sunrise_time"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Sonnenuntergang",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sunsettime"
+      "sourcevalue": "sunset_time"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Ort",
       "columntype": "STRING",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "cityname"
+      "sourcevalue": "name"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Regenmenge",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "rainonehour"
+      "sourcevalue": "rain"
     },
     {
       "tablename": "aktuellesWetter",
       "columnname": "Schnee",
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "snowonehour"
+      "sourcevalue": "snow"
     }
   ],
   "mqttFields": [
     {
-      "name": "longitude",
+      "name": "longitute",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "longitude"
+      "sourcevalue": "coord_lon"
     },
     {
-      "name": "latitude",
+      "name": "latitute",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "latitude"
+      "sourcevalue": "coord_lat"
     },
     {
       "name": "weatherid",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "weatherid"
+      "sourcevalue": "weather_0_id"
     },
     {
       "name": "weathermain",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "weathermain"
+      "sourcevalue": "weather_0_main"
     },
     {
       "name": "weatherdescription",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "weatherdescription"
+      "sourcevalue": "weather_0_description"
     },
     {
       "name": "weathericon",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "weathericon"
+      "sourcevalue": "weather_0_icon"
     },
     {
       "name": "temperature",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "temperature"
+      "sourcevalue": "main_temp"
     },
     {
       "name": "feelslike",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "feelslike"
+      "sourcevalue": "main_feels_like"
     },
     {
       "name": "pressure",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "pressure"
+      "sourcevalue": "main_pressure"
     },
     {
-      "name": "humidity",
+      "name": "main_humidity",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "humidity"
+      "sourcevalue": "main_humidity"
     },
     {
       "name": "tempmin",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "tempmin"
+      "sourcevalue": "main_temp_min"
     },
     {
       "name": "tempmax",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "tempmax"
+      "sourcevalue": "main_temp_max"
     },
     {
       "name": "sealevel",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sealevel"
+      "sourcevalue": "main_sealevel"
     },
     {
       "name": "groundlevel",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "groundlevel"
+      "sourcevalue": "main_grnd_level"
     },
     {
       "name": "visibility",
@@ -428,89 +412,89 @@
       "sourcevalue": "visibility"
     },
     {
-      "name": "windspeed",
+      "name": "wind_speed",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "windspeed"
+      "sourcevalue": "wind_speed"
     },
     {
-      "name": "winddirection",
+      "name": "wind_direction",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "winddirection"
+      "sourcevalue": "wind_deg"
     },
     {
-      "name": "windgust",
+      "name": "wind_gust",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "windgust"
+      "sourcevalue": "wind_gust"
     },
     {
       "name": "cloudiness",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "cloudiness"
+      "sourcevalue": "clouds_all"
     },
     {
-      "name": "rainonehour",
+      "name": "rain_1h",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "rainonehour"
+      "sourcevalue": "rain_1h"
     },
     {
-      "name": "rainthreehour",
+      "name": "rain_3h",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "rainthreehour"
+      "sourcevalue": "rain_3h"
     },
     {
-      "name": "snowonehour",
+      "name": "rain",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "snowonehour"
+      "sourcevalue": "rain"
     },
     {
-      "name": "snowthreehour",
+      "name": "snow_1h",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "snowthreehour"
+      "sourcevalue": "snow_1h"
     },
     {
-      "name": "calculationtime",
+      "name": "snow_3h",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "calculationtime"
+      "sourcevalue": "snow_3h"
+    },
+    {
+      "name": "snow",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "snow"
+    },
+    {
+      "name": "datetime",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "dt"
     },
     {
       "name": "country",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "country"
+      "sourcevalue": "sys_country"
     },
     {
       "name": "sunrise",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sunrise"
-    },
-    {
-      "name": "sunrisetime",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sunrisetime"
+      "sourcevalue": "sys_sunrise"
     },
     {
       "name": "sunset",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sunset"
-    },
-    {
-      "name": "sunsettime",
-      "sourcetype": "RESULTFIELD",
-      "sourcevalue": "sunsettime"
+      "sourcevalue": "sys_sunset"
     },
     {
       "name": "timezoneshift",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "timezoneshift"
+      "sourcevalue": "timezone"
     },
     {
       "name": "cityid",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "cityid"
+      "sourcevalue": "id"
     },
     {
       "name": "cityname",
       "sourcetype": "RESULTFIELD",
-      "sourcevalue": "cityname"
+      "sourcevalue": "name"
     }
   ]
 }

@@ -99,7 +99,7 @@ public class Activity
     boolean execute = enabled && currentTime.isAfter(startTime) && currentTime.isBefore(endTime) && timeDiff >= timeUnit.toMillis(interval);
     if (execute && active)
     {
-      Logger.warn("Process is currently running.... {}", toString());
+      Logger.warn("Process is currently running since {} seconds .... {}", timeDiff/1000, toString());
       return false;
     }
     return execute;

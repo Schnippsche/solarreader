@@ -1,4 +1,4 @@
-package de.schnippsche.solarreader.backend.serializes.openweather;
+package de.schnippsche.solarreader.backend.serializes;
 
 import de.schnippsche.solarreader.backend.fields.DeviceField;
 import de.schnippsche.solarreader.backend.fields.ResultField;

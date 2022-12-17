@@ -7,8 +7,6 @@ import de.schnippsche.solarreader.backend.serializes.gson.LocalDateSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalDateTimeSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalTimeSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.TimeUnitSerializer;
-import de.schnippsche.solarreader.backend.serializes.sonoff.StatusSNS;
-import de.schnippsche.solarreader.backend.serializes.sonoff.StatusSNSDeserializer;
 import de.schnippsche.solarreader.backend.utils.JsonTools;
 import de.schnippsche.solarreader.backend.worker.ThreadHelper;
 import org.tinylog.Logger;
@@ -99,7 +97,6 @@ public class Config
       builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
       builder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
       builder.registerTypeAdapter(TimeUnit.class, new TimeUnitSerializer());
-      builder.registerTypeAdapter(StatusSNS.class, new StatusSNSDeserializer()); // Test
       gson = builder.create();
     }
     return gson;
@@ -142,10 +139,10 @@ public class Config
       if (device != null)
       {
         devices.add(device);
-        String comPort = configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
-        if (!comPort.isEmpty())
+        String lockObjectString = getLockObjectIdentifier(configDevice);
+        if (!lockObjectString.isEmpty())
         {
-          lockObjects.put(comPort, new Object());
+          lockObjects.put(lockObjectString, new Object());
         }
       }
     }
@@ -186,9 +183,9 @@ public class Config
   {
     try
     {
-      final Object clazz = Class.forName("de.schnippsche.solarreader.backend.devices." + className)
-                                .getConstructor(ConfigDevice.class)
-                                .newInstance(configDevice);
+      final Object clazz =
+        Class.forName("de.schnippsche.solarreader.backend.devices." + className).getConstructor(ConfigDevice.class)
+             .newInstance(configDevice);
       return (AbstractDevice) clazz;
     } catch (Exception e)
     {
@@ -209,12 +206,22 @@ public class Config
 
   public Object getLockObject(ConfigDevice configDevice)
   {
-    String lockObject = configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
-    if (lockObject.isEmpty())
-    {
-      lockObject = configDevice.getParamOrDefault(ConfigDeviceField.HIDRAW_PATH, "");
-    }
+    String lockObject = getLockObjectIdentifier(configDevice);
     return lockObjects.getOrDefault(lockObject, new Object());
+  }
+
+  private String getLockObjectIdentifier(ConfigDevice configDevice)
+  {
+
+    if (configDevice.containsField(ConfigDeviceField.COM_PORT))
+    {
+      return configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
+    }
+    if (configDevice.containsField(ConfigDeviceField.HIDRAW_PATH))
+    {
+      return configDevice.getParamOrDefault(ConfigDeviceField.HIDRAW_PATH, "");
+    }
+    return "";
   }
 
   public void writeConfiguration() throws IOException
