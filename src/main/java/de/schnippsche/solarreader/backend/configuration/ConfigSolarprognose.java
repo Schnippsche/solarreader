@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ConfigSolarprognose
 {
-  private static final String SOLARPROGNOSE_URL = "http://www.solarprognose.de/web/solarprediction/api/v1?access-token=%s&item=%s&id=%s&type=hourly&_format=json&algorithm=%s&project=solarreader&START_EPOCH_TIME=%s&END_EPOCH_TIME=%s";
+  private static final String SOLARPROGNOSE_URL = "http://www.solarprognose.de/web/solarprediction/api/v1?access-token=%s&item=%s&id=%s&type=hourly&_format=json&algorithm=%s&project=solarreader&start_epoch_time=%s&end_epoch_time=%s";
   private ConfigExport configExport;
   private Activity activity;
   private String accessToken;

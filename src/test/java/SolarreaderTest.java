@@ -1,13 +1,15 @@
 import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.StandardValues;
-import de.schnippsche.solarreader.backend.fields.*;
+import de.schnippsche.solarreader.backend.fields.DeviceField;
+import de.schnippsche.solarreader.backend.fields.FieldType;
+import de.schnippsche.solarreader.backend.fields.TableField;
+import de.schnippsche.solarreader.backend.fields.TableFieldType;
 import de.schnippsche.solarreader.backend.utils.JsonTools;
 import de.schnippsche.solarreader.backend.utils.Specification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +19,6 @@ import java.util.stream.Collectors;
 
 public class SolarreaderTest
 {
-
   @Test void testSpecifications()
   {
     Pattern pattern = Pattern.compile("[a-zA-z]+[\\w]+");

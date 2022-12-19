@@ -41,4 +41,9 @@ public class DeviceWorker extends AbstractExportWorker
     return device.getActivity();
   }
 
+  public AbstractDevice getDevice()
+  {
+    return device;
+  }
+
 }

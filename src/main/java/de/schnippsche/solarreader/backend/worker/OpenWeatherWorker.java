@@ -82,16 +82,18 @@ public class OpenWeatherWorker extends AbstractExportWorker
     {
       long ts = sunrise.get().getNumericValue().longValue();
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-      LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
-      resultFields.add(new ResultField("sunrise_time", ResultFieldStatus.VALID, FieldType.STRING, ldt.format(formatter)));
+      LocalDateTime utcDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
+      LocalDateTime localDateTime = utcDateTime.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+      resultFields.add(new ResultField("sunrise_time", ResultFieldStatus.VALID, FieldType.STRING, localDateTime.format(formatter)));
     }
     Optional<ResultField> sunset = resultFields.stream().filter(rf -> rf.getName().equals("sys_sunset")).findFirst();
     if (sunset.isPresent())
     {
       long ts = sunset.get().getNumericValue().longValue();
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-      LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
-      resultFields.add(new ResultField("sunset_time", ResultFieldStatus.VALID, FieldType.STRING, ldt.format(formatter)));
+      LocalDateTime utcDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
+      LocalDateTime localDateTime = utcDateTime.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+      resultFields.add(new ResultField("sunset_time", ResultFieldStatus.VALID, FieldType.STRING, localDateTime.format(formatter)));
     }
     //
 

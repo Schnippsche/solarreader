@@ -8,9 +8,7 @@ import org.tinylog.Logger;
 
 import java.time.LocalTime;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class MainWorker implements Runnable
 {
@@ -41,9 +39,8 @@ public class MainWorker implements Runnable
     // process all devices
     if (!deviceWorkers.isEmpty())
     {
-      deviceWorkers.stream()
-                   .filter(deviceWorker -> deviceWorker.getActivity().mustExecute(time))
-                   .forEach(fixedSizeThreadPool::execute);
+      deviceWorkers.stream().filter(deviceWorker -> deviceWorker.getActivity().mustExecute(time))
+                   .forEach(this::startThread);
     }
     if (solarprognoseWorker != null && solarprognoseWorker.getActivity().mustExecute(time))
     {
@@ -82,6 +79,27 @@ public class MainWorker implements Runnable
     {
       fixedSizeThreadPool.shutdownNow();
       Thread.currentThread().interrupt();
+    }
+  }
+
+  private void startThread(DeviceWorker deviceWorker)
+  {
+    Future<?> submit = fixedSizeThreadPool.submit(deviceWorker);
+    try
+    {
+      submit.get(1, TimeUnit.MINUTES);
+    } catch (ExecutionException e)
+    {
+      Logger.error("execution exception {}", e.getMessage(), e);
+    } catch (InterruptedException e)
+    {
+      Logger.error("thread interrupted {}", e.getMessage());
+      Thread.currentThread().interrupt();
+    } catch (TimeoutException e)
+    {
+      Logger.error("Thread timed out, cancel {}", deviceWorker.getDevice().getConfigDevice().getDescription(), e);
+      deviceWorker.getActivity().setActive(false);
+      submit.cancel(true); //cancel the task
     }
   }
 

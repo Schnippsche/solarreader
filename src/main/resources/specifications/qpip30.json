@@ -24,7 +24,7 @@
       "name": "modell",
       "unit": "",
       "offset": 0,
-      "count": 5,
+      "count": 10,
       "note": "model name if supported",
       "type": "STRING"
     },
@@ -1205,7 +1205,7 @@
       "columnname": "Objekt",
       "columntype": "STRING",
       "sourcetype": "CONSTANT",
-      "sourcevalue": "13"
+      "sourcevalue": "objekt"
     },
     {
       "tablename": "Info",
@@ -1547,6 +1547,36 @@
       "name": "Spannung",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Solarspannung"
+    },
+    {
+      "name": "Batteriespannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriespannung"
+    },
+    {
+      "name": "BatteriespannungWR",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "BatteriespannungWR"
+    },
+    {
+      "name": "Batterieladestrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterieladestrom"
+    },
+    {
+      "name": "Batteriekapazitaet",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batteriekapazitaet"
+    },
+    {
+      "name": "Batterieentladestrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterieentladestrom"
+    },
+    {
+      "name": "Busspannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Busspannung"
     },
     {
       "name": "Strom",
