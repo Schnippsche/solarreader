@@ -5,7 +5,7 @@
 #### New:
 Add some Ehz Powermeter for IR Sensors with USB Cable
 
-### 2022-12-04 V1.2
+### 2022-12-19 V1.2
 Add Fronius Symo
 Add Fronius Primo
 Add Fronius Smartmeter
