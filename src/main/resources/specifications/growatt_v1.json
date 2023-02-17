@@ -603,5 +603,9 @@
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Warnungen"
     }
-  ]
+  ],
+  "additionalParameters": {
+    "BLOCK_SIZE": "32",
+    "SLEEP_MILLISECONDS": "200"
+  }
 }

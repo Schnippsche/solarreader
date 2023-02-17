@@ -9,9 +9,9 @@
           [comportoptions]
         </select>
         <label for="id_devicesetup_com_port">{devicesetup.serialport.title}</label>
-        <button type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="{devicesetup.serial.buttonreload.tooltip}" id="id_btn_serialreload"
-                class="btn btn-primary input-group-append">&nbsp;<em
+        <button class="btn btn-primary input-group-append" data-bs-placement="top" data-bs-toggle="tooltip"
+                id="id_btn_serialreload" title="{devicesetup.serial.buttonreload.tooltip}"
+                type="button">&nbsp;<em
           class="bi bi-arrow-clockwise">&nbsp;</em>&nbsp;
         </button>
       </div>
@@ -23,12 +23,12 @@
     </div>
     <div class="col-md-12">
       <div class="form-floating">
-        <input type="text" class="form-control" id="id_devicesetup_comportalternativ"
+        <input class="form-control" data-bs-placement="bottom" data-bs-toggle="tooltip"
+               id="id_devicesetup_comportalternativ"
                name="comportalternativ"
-               value="[COMPORTALTERNATIV]"
                placeholder="{devicesetup.serial.alternativ.text}"
-               data-bs-toggle="tooltip" data-bs-placement="bottom"
-               title="{devicesetup.serial.alternativ.tooltip}"/>
+               title="{devicesetup.serial.alternativ.tooltip}" type="text"
+               value="[COMPORTALTERNATIV]"/>
         <label for="id_devicesetup_comportalternativ">{devicesetup.serial.alternativ.text}</label>
       </div>
     </div>

@@ -2,9 +2,9 @@ package de.schnippsche.solarreader.backend.utils;
 
 import org.tinylog.Logger;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 public class Activity
@@ -26,6 +26,26 @@ public class Activity
     endTime = LocalTime.of(23, 0, 0);
     lastCall = null;
     active = false;
+  }
+
+  public Activity(Activity other)
+  {
+    this.enabled = other.enabled;
+    this.interval = other.interval;
+    this.timeUnit = other.timeUnit;
+    this.startTime = other.startTime;
+    this.endTime = other.endTime;
+    this.lastCall = other.lastCall;
+    this.active = other.active;
+  }
+
+  public void changeValues(Activity newActivity)
+  {
+    setEnabled(newActivity.isEnabled());
+    setInterval(newActivity.getInterval());
+    setTimeUnit(newActivity.getTimeUnit());
+    setStartTime(newActivity.getStartTime());
+    setEndTime(newActivity.getEndTime());
   }
 
   public int getInterval()
@@ -83,23 +103,31 @@ public class Activity
     return lastCall;
   }
 
+  public boolean isActive()
+  {
+    return active;
+  }
+
   public void setActive(boolean active)
   {
     this.active = active;
-    if (active)
-    {
-      lastCall = LocalDateTime.now();
-    }
   }
 
-  public boolean mustExecute(LocalTime currentTime)
+  public void setLastCall()
   {
-    LocalTime lastCallTime = (lastCall == null) ? LocalTime.MIDNIGHT : lastCall.toLocalTime();
-    long timeDiff = Math.abs(Duration.between(currentTime, lastCallTime).toMillis());
-    boolean execute = enabled && currentTime.isAfter(startTime) && currentTime.isBefore(endTime) && timeDiff >= timeUnit.toMillis(interval);
+    lastCall = LocalDateTime.now();
+  }
+
+  public boolean mustExecute(LocalDateTime currentTime)
+  {
+    LocalDateTime lastCallTime = (lastCall == null) ? LocalDateTime.now().minusHours(24) : lastCall;
+    long timeDiff = Math.abs(lastCallTime.until(currentTime, ChronoUnit.SECONDS));
+    LocalTime localTime = currentTime.toLocalTime();
+    boolean execute = enabled && localTime.isAfter(startTime) && localTime.isBefore(endTime)
+                      && timeDiff >= timeUnit.toSeconds(interval);
     if (execute && active)
     {
-      Logger.warn("Process is currently running since {} seconds .... {}", timeDiff/1000, toString());
+      Logger.warn("Process is currently running since {} seconds .... {}", timeDiff, toString());
       return false;
     }
     return execute;
@@ -107,7 +135,7 @@ public class Activity
 
   public void finish()
   {
-    lastCall = LocalDateTime.now();
+    setLastCall();
     active = false;
   }
 

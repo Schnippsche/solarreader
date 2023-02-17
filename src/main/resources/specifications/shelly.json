@@ -663,5 +663,147 @@
       "sourcetype": "CALCULATED",
       "sourcevalue": "emeters_0_total_returned + emeters_1_total_returned + emeters_2_total_returned"
     }
+  ],
+  "mqttFields": [
+    {
+      "name": "Objekt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "type"
+    },
+    {
+      "name": "Firmware",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "fw"
+    },
+    {
+      "name": "Serial",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "serial"
+    },
+    {
+      "name": "Spannung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_voltage"
+    },
+    {
+      "name": "Spannung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_voltage"
+    },
+    {
+      "name": "Spannung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_voltage"
+    },
+    {
+      "name": "Strom_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_current"
+    },
+    {
+      "name": "Strom_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_current"
+    },
+    {
+      "name": "Strom_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_current"
+    },
+    {
+      "name": "Leistung_VerbrauchGesamt_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_total"
+    },
+    {
+      "name": "Leistung_VerbrauchGesamt_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_total"
+    },
+    {
+      "name": "Leistung_VerbrauchGesamt_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_total"
+    },
+    {
+      "name": "Leistung_EinspeisungGesamt_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_total_returned"
+    },
+    {
+      "name": "Leistung_EinspeisungGesamt_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_total_returned"
+    },
+    {
+      "name": "Leistung_EinspeisungGesamt_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_total_returned"
+    },
+    {
+      "name": "PowerFactor_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_pf"
+    },
+    {
+      "name": "PowerFactor_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_pf"
+    },
+    {
+      "name": "PowerFactor_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_pf"
+    },
+    {
+      "name": "Wirkleistung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_0_power"
+    },
+    {
+      "name": "Wirkleistung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_1_power"
+    },
+    {
+      "name": "Wirkleistung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "emeters_2_power"
+    },
+    {
+      "name": "Gesamtleistung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "emeters_0_power + emeters_1_power + emeters_2_power"
+    },
+    {
+      "name": "Relaisstatus",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "relays_0_ison"
+    },
+    {
+      "name": "Ueberlastung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "relays_0_overpower"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "temperatur"
+    },
+    {
+      "name": "Wh_Heute",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "name": "Wh_Gesamt_Verbrauch",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "emeters_0_total + emeters_1_total + emeters_2_total"
+    },
+    {
+      "name": "Wh_Gesamt_Einspeisung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "emeters_0_total_returned + emeters_1_total_returned + emeters_2_total_returned"
+    }
   ]
 }

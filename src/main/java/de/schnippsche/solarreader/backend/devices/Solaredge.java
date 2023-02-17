@@ -5,6 +5,7 @@ import com.ghgande.j2mod.modbus.facade.AbstractModbusMaster;
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractLockedDevice;
 import de.schnippsche.solarreader.backend.fields.ResultField;
+import de.schnippsche.solarreader.backend.fields.TableField;
 import de.schnippsche.solarreader.backend.fields.TableFieldType;
 import de.schnippsche.solarreader.backend.utils.ModbusWrapper;
 import de.schnippsche.solarreader.backend.utils.Specification;
@@ -30,6 +31,7 @@ public class Solaredge extends AbstractLockedDevice
     modbusWrapper = new ModbusWrapper(getConfigDevice());
     offset = null;
   }
+
   //  Solaredge Sunspec
   //  @Override
   protected boolean readLockedDeviceValues()
@@ -77,6 +79,11 @@ public class Solaredge extends AbstractLockedDevice
     return true;
   }
 
+  @Override public boolean checkConnection()
+  {
+    return modbusWrapper.checkConnection();
+  }
+
   private Integer checkOffsetOnFirstRun() throws ModbusException
   {
     if (offset != null)
@@ -97,7 +104,7 @@ public class Solaredge extends AbstractLockedDevice
     {
       Logger.error("No Sunspec ID found");
       offset = null;
-      return offset;
+      return null;
     }
     specification = jsonTool.readSpecification("solaredge");
     specification.getDevicefields().forEach(df -> df.setOffset(df.getOffset() + offset));
@@ -138,10 +145,13 @@ public class Solaredge extends AbstractLockedDevice
       df.setOffset(df.getOffset() + startOffset);
       df.setName(prefix + df.getName());
     });
-    oldSpecification.getDatabasefields()
-                    .stream()
-                    .filter(tf -> TableFieldType.RESULTFIELD == tf.getSourcetype())
-                    .forEach(tf -> tf.setSourcevalue(prefix + tf.getSourcevalue()));
+    for (TableField tf : oldSpecification.getDatabasefields())
+    {
+      if (TableFieldType.RESULTFIELD == tf.getSourcetype())
+      {
+        tf.setSourcevalue(prefix + tf.getSourcevalue());
+      }
+    }
   }
 
   private void readMppt()

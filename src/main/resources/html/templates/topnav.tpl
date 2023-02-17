@@ -1,50 +1,53 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" aria-label="main nav">
+<nav aria-label="main nav" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
   <!-- Navbar Brand-->
   <a class="navbar-brand ps-3" href="/">Solarreader [version]</a>
   <!-- Sidebar Toggle-->
   <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><em
-      class="bi bi-list"></em></button>
+    class="bi bi-list"></em></button>
   <!-- Navbar Search-->
-  <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></div>
+  <div class="ms-auto"><a class="link-info [newrelease] ms-lg-2" href="https://github.com/Schnippsche/solarreader/releases">{app.updateavailable}</a></div>
   <!-- Navbar-->
+  <form method="post"><input name="step" type="hidden" value="editprofile"/>
+    <button class="btn btn-dark" title="{app.profile.title}"><em class="bi bi-person"></em></button>
+  </form>
   <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-         aria-expanded="false"><em class="bi bi-flag"></em> {app.language.title}</a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarDropdown"
+         role="button"><em class="bi bi-flag"></em> {app.language.title}</a>
+      <ul aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end">
         <li>
-          <form method="post"><input type="hidden" name="language" value="de"/>
-            <button type="submit" class="dropdown-item"><img src="img/flag_german.png" class="me-1"/>{app.language.german}
+          <form method="post"><input name="language" type="hidden" value="de"/>
+            <button class="dropdown-item" type="submit"><img class="me-1" src="img/flag_german.png"/>{app.language.german}
             </button>
           </form>
         </li>
         <li>
-          <form method="post"><input type="hidden" name="language" value="en"/>
-            <button type="submit" class="dropdown-item"><img src="img/flag_english.png" class="me-1"/>{app.language.english}
+          <form method="post"><input name="language" type="hidden" value="en"/>
+            <button class="dropdown-item" type="submit"><img class="me-1" src="img/flag_english.png"/>{app.language.english}
             </button>
           </form>
         </li>
         <li>
-          <form method="post"><input type="hidden" name="language" value="fr"/>
-            <button type="submit" class="dropdown-item"><img src="img/flag_french.png" class="me-1"/>{app.language.french}
+          <form method="post"><input name="language" type="hidden" value="fr"/>
+            <button class="dropdown-item" type="submit"><img class="me-1" src="img/flag_french.png"/>{app.language.french}
             </button>
           </form>
         </li>
         <li>
-          <form method="post"><input type="hidden" name="language" value="es"/>
-            <button type="submit" class="dropdown-item"><img src="img/flag_spanish.png" class="me-1"/>{app.language.spanish}
+          <form method="post"><input name="language" type="hidden" value="es"/>
+            <button class="dropdown-item" type="submit"><img class="me-1" src="img/flag_spanish.png"/>{app.language.spanish}
             </button>
           </form>
         </li>
         <li>
-          <form method="post"><input type="hidden" name="language" value="it"/>
-            <button type="submit" class="dropdown-item"><img src="img/flag_italian.png" class="me-1"/>{app.language.italian}
+          <form method="post"><input name="language" type="hidden" value="it"/>
+            <button class="dropdown-item" type="submit"><img class="me-1" src="img/flag_italian.png"/>{app.language.italian}
             </button>
           </form>
         </li>
         <li>
-          <form method="post"><input type="hidden" name="language" value="pt"/>
-            <button type="submit" class="dropdown-item"><img src="img/flag_portugal.png" class="me-1"/>{app.language.portuguese}
+          <form method="post"><input name="language" type="hidden" value="pt"/>
+            <button class="dropdown-item" type="submit"><img class="me-1" src="img/flag_portugal.png"/>{app.language.portuguese}
             </button>
           </form>
         </li>

@@ -6,7 +6,6 @@ import org.takes.Take;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.RsHtml;
 import org.takes.rs.RsWithHeaders;
-import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +18,6 @@ public final class MainTkIndex implements Take
   @Override public org.takes.Response act(org.takes.Request req) throws IOException
   {
     // form parameter
-    long ti = System.currentTimeMillis();
     RqFormSmart formSmart = new RqFormSmart(req);
     formValues.clear();
     for (final String name : formSmart.names())
@@ -61,6 +59,14 @@ public final class MainTkIndex implements Take
     {
       modalContent = new TableFieldEdit(formValues).getModalCode();
     }
+    if (modalContent.isEmpty())
+    {
+      modalContent = new RuleSetup(formValues).getModalCode();
+    }
+    if (modalContent.isEmpty())
+    {
+      modalContent = new ProfileSetup(formValues).getModalCode();
+    }
 
     // Check for warnings
     String warnings = "";
@@ -81,7 +87,7 @@ public final class MainTkIndex implements Take
       warningMap.put("[warnings]", warnings);
       warningHtml = new HtmlElement(SolarMain.TEMPLATES_PATH + "warnings.tpl").getHtmlCode(warningMap);
     }
-
+    maps.put("[newrelease]", SolarMain.updateAvailable ? "" : "d-none");
     maps.put("[footer]", new HtmlFooter().getHtmlCode());
     maps.put("[head]", new HtmlHead().getHtmlCode());
     maps.put("[scripts]", new HtmlScripts().getHtmlCode());
@@ -92,10 +98,10 @@ public final class MainTkIndex implements Take
     maps.put("[modal]", modalContent);
     maps.put("[warnings]", warningHtml);
     maps.put("[main]", mainHtml);
+
     String html = completeHtmlElement.getHtmlCode(maps);
     // translate
     html = SolarMain.languageHelper.replacePlaceholder(html);
-    Logger.debug("Zeit:" + (System.currentTimeMillis() - ti));
     return new RsWithHeaders(new RsHtml(html), "Cache-Control: no-store, no-cache, must-revalidate");
   }
 

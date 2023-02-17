@@ -16,6 +16,7 @@
             [divserial]
           </div>
           [divusb]
+          [divauthentication]
           <div class="row">
             <div class="col-md-12">
               <div id="id_devicealert" class="alert alert-danger d-none"><p></p>

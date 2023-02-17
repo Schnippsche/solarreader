@@ -1,7 +1,6 @@
 package de.schnippsche.solarreader.backend.exporter;
 
 import de.schnippsche.solarreader.SolarMain;
-import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigDatabase;
 import de.schnippsche.solarreader.backend.connections.NetworkConnection;
 import de.schnippsche.solarreader.backend.pusher.PushValue;
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.StringJoiner;
 
 public class InfluxExporter implements Exporter
 {
@@ -26,19 +25,21 @@ public class InfluxExporter implements Exporter
   private final List<Table> tableList;
   private final String infoUrl;
   private final ConfigDatabase configDatabase;
+  private final long startTimestamp;
   private String url;
 
   public InfluxExporter(ConfigDatabase configDatabase)
   {
-    this(configDatabase, Collections.emptyList());
+    this(configDatabase, Collections.emptyList(), System.currentTimeMillis());
   }
 
-  public InfluxExporter(ConfigDatabase configDatabase, List<Table> tableList)
+  public InfluxExporter(ConfigDatabase configDatabase, List<Table> tableList, long startTimestamp)
   {
     this.tableList = new ArrayList<>();
     this.configDatabase = configDatabase;
     this.infoUrl = configDatabase.getHost();
     this.tableList.addAll(tableList);
+    this.startTimestamp = startTimestamp;
   }
 
   public String getInfluxVersion()
@@ -68,6 +69,11 @@ public class InfluxExporter implements Exporter
     {
       Logger.error("no connection");
       return faultPair;
+    }
+    // since Influx 2.1 the return value starts with a 'v' e.g. v2.1
+    if (version.toLowerCase().startsWith("v"))
+    {
+      version = version.substring(1);
     }
     if (version.startsWith("1") || version.startsWith("2"))
     {
@@ -104,12 +110,18 @@ public class InfluxExporter implements Exporter
     this.tableList.addAll(tableList);
   }
 
+  public void setTable(Table table)
+  {
+    this.tableList.clear();
+    this.tableList.add(table);
+  }
+
   @Override public synchronized void export()
   {
     Logger.debug("InfluxExporter export to {} at {} started...", configDatabase.getDescription(), infoUrl);
     configDatabase.setLastCall(LocalDateTime.now());
     StringBuilder builder = new StringBuilder();
-    long currentTimestamp = Config.getInstance().getStandardValues().getTimestampSeconds();
+    long currentTimestampSeconds = startTimestamp / 1000;
     boolean valid = false;
     // tables with same name must be summarized in rows
     for (int t1 = 0; t1 < tableList.size(); t1++)
@@ -135,7 +147,7 @@ public class InfluxExporter implements Exporter
         {
           builder.append(rowData).append(" ");
           TableColumn timestampColumn = getTimestampColumn(row);
-          builder.append((timestampColumn == null) ? currentTimestamp : timestampColumn.getValue());
+          builder.append((timestampColumn == null) ? currentTimestampSeconds : timestampColumn.getValue());
           // leave it to \n for influx
           builder.append("\n");
           valid = true;
@@ -174,11 +186,11 @@ public class InfluxExporter implements Exporter
       Logger.error("influx version is null");
       return null;
     }
-    if (version.startsWith("2"))
+    if (version.startsWith("2") || version.startsWith("v2"))
     {
       return buildInfluxV2Request(data);
     }
-    if (version.startsWith("1"))
+    if (version.startsWith("1") || version.startsWith("v1"))
     {
       return buildInfluxV1Request(data);
     }
@@ -216,13 +228,28 @@ public class InfluxExporter implements Exporter
 
   private String getColumnsWithoutTimestamp(TableRow tableRow)
   {
-    return tableRow.getColumns().stream().filter(c -> !TIMESTAMP.equalsIgnoreCase(c.getName()))
-                   .map(c -> c.getName() + "=" + c.getTypedValue()).collect(Collectors.joining(","));
+    StringJoiner joiner = new StringJoiner(",");
+    for (TableColumn c : tableRow.getColumns())
+    {
+      if (!TIMESTAMP.equalsIgnoreCase(c.getName()))
+      {
+        String s = c.getName() + "=" + c.getTypedValue();
+        joiner.add(s);
+      }
+    }
+    return joiner.toString();
   }
 
   private TableColumn getTimestampColumn(TableRow tableRow)
   {
-    return tableRow.getColumns().stream().filter(c -> TIMESTAMP.equalsIgnoreCase(c.getName())).findFirst().orElse(null);
+    for (TableColumn c : tableRow.getColumns())
+    {
+      if (TIMESTAMP.equalsIgnoreCase(c.getName()))
+      {
+        return c;
+      }
+    }
+    return null;
   }
 
 }

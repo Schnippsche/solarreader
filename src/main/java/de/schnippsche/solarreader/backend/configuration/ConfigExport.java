@@ -1,28 +1,43 @@
 package de.schnippsche.solarreader.backend.configuration;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ConfigExport
 {
   private final Set<String> databaseList;
   private final Set<String> mqttList;
+  private String mqttTopic;
 
   public ConfigExport()
   {
     databaseList = new HashSet<>();
     mqttList = new HashSet<>();
+    mqttTopic = "";
+  }
+
+  public ConfigExport(ConfigExport otherConfigExport)
+  {
+    databaseList = new HashSet<>(otherConfigExport.databaseList);
+    mqttList = new HashSet<>(otherConfigExport.mqttList);
+    mqttTopic = otherConfigExport.getMqttTopic();
   }
 
   public List<ConfigDatabase> getDatabaseList()
   {
 
-    return databaseList.stream()
-                       .map(uuid -> Config.getInstance().getDatabaseFromUuid(uuid))
-                       .filter(ConfigDatabase::isEnabled)
-                       .collect(Collectors.toList());
+    List<ConfigDatabase> list = new ArrayList<>();
+    for (String uuid : databaseList)
+    {
+      ConfigDatabase configDatabaseFromUuid = Config.getInstance().getConfigDatabaseFromUuid(uuid);
+      if (configDatabaseFromUuid.isEnabled())
+      {
+        list.add(configDatabaseFromUuid);
+      }
+    }
+    return list;
   }
 
   public void addDatabase(ConfigDatabase configDatabase)
@@ -37,10 +52,16 @@ public class ConfigExport
 
   public List<ConfigMqtt> getMqttList()
   {
-    return mqttList.stream()
-                   .map(uuid -> Config.getInstance().getMqttFromUuid(uuid))
-                   .filter(ConfigMqtt::isEnabled)
-                   .collect(Collectors.toList());
+    List<ConfigMqtt> list = new ArrayList<>();
+    for (String uuid : mqttList)
+    {
+      ConfigMqtt configMqttFromUuid = Config.getInstance().getConfigMqttFromUuid(uuid);
+      if (configMqttFromUuid.isEnabled())
+      {
+        list.add(configMqttFromUuid);
+      }
+    }
+    return list;
   }
 
   public void addMqtt(ConfigMqtt configMqtt)
@@ -51,6 +72,16 @@ public class ConfigExport
   public void addMqtt(String configMqttUuid)
   {
     mqttList.add(configMqttUuid);
+  }
+
+  public String getMqttTopic()
+  {
+    return mqttTopic;
+  }
+
+  public void setMqttTopic(String mqttTopic)
+  {
+    this.mqttTopic = mqttTopic;
   }
 
 }

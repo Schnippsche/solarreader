@@ -12,5 +12,6 @@ public enum DeviceInfoField
   HIDRAW,
   COMPORT,
   LAN_MODBUS,
-  LAN_MQTT
+  LAN_MQTT,
+  AUTHENTICATION
 }

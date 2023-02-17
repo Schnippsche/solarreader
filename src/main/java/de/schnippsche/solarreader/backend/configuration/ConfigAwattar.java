@@ -23,7 +23,7 @@ public class ConfigAwattar
     activity.setInterval(1);
     activity.setTimeUnit(TimeUnit.HOURS);
     activity.setStartTime(LocalTime.of(1, 0, 0));
-    activity.setEndTime(LocalTime.of(3, 0, 0));
+    activity.setEndTime(LocalTime.of(18, 0, 0));
     activity.setEnabled(false);
     priceCorrection = BigDecimal.ZERO;
     country = "de";

@@ -16,7 +16,7 @@
           <div class="row mb-3">
             <div class="col-md-12">
               <div class="form-floating">
-                <select class="form-select" id="id_device_selection" name="deviceselect">
+                <select class="form-select" id="id_device_selection" name="deviceselect" [disabledeviceselection]>
                   [deviceoptions]
                 </select>
                 <label for="id_device_selection">{devicesetup.deviceselect.title}</label>

@@ -437,6 +437,36 @@
       "note": ""
     },
     {
+      "name": "StatusSNS_DS18B20_4_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_4_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_5_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_5_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_6_Id",
+      "type": "STRING",
+      "note": ""
+    },
+    {
+      "name": "StatusSNS_DS18B20_6_Temperature",
+      "type": "NUMBER",
+      "note": ""
+    },
+    {
       "name": "StatusSNS_ENERGY_TotalStartTime",
       "type": "STRING",
       "note": ""
@@ -1037,6 +1067,27 @@
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "StatusSNS_DS18B20_3_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur4",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_4_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur5",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_5_Temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur6",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "StatusSNS_DS18B20_6_Temperature"
     },
     {
       "tablename": "Service",

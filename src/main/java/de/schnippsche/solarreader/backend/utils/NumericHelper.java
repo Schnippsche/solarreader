@@ -26,6 +26,7 @@ public class NumericHelper
    */
   public String getSafeSubstring(String line, int beginIndex, int length)
   {
+    Logger.debug("getSafeSubstring with beginIndex {}, length {}", beginIndex, length);
     if (beginIndex >= line.length())
     {
       return "";
@@ -61,6 +62,10 @@ public class NumericHelper
     {
       return null;
     }
+    if (value instanceof BigDecimal)
+    {
+      return ((BigDecimal) value).intValue();
+    }
     String v = value.toString().trim();
     if (v.isEmpty())
     {
@@ -68,9 +73,10 @@ public class NumericHelper
     }
     try
     {
-      return Integer.parseInt(v);
+      return new BigDecimal(v).intValue();
     } catch (NumberFormatException exception)
     {
+      Logger.error("no valid integer:{}", v);
       return null;
     }
   }
@@ -95,6 +101,19 @@ public class NumericHelper
       Logger.error("no valid number:{}", value);
     }
     return BigDecimal.ZERO;
+  }
+
+  public BigDecimal getBigDecimal(Object value)
+  {
+    if (value instanceof BigDecimal)
+    {
+      return (BigDecimal) value;
+    }
+    if (value == null)
+    {
+      return BigDecimal.ZERO;
+    }
+    return getBigDecimal(String.valueOf(value));
   }
 
   /**
@@ -186,7 +205,7 @@ public class NumericHelper
     switch (type)
     {
       case STRING:
-       for (byte aByte : bytes)
+        for (byte aByte : bytes)
         {
           if (aByte >= 32)
           {
@@ -233,6 +252,11 @@ public class NumericHelper
         checkMinimumByteCount(bytes, 4);
         return BigDecimal.valueOf(shiftUnsigned(bytes[0], 24) | shiftUnsigned(bytes[1], 16) | shiftUnsigned(bytes[2], 8)
                                   | shiftUnsigned(bytes[3], 0));
+      case U32_BIG_ENDIAN_LOW_HIGH:
+        checkMinimumByteCount(bytes, 4);
+        return BigDecimal.valueOf(shiftUnsigned(bytes[2], 24) | shiftUnsigned(bytes[3], 16) | shiftUnsigned(bytes[0], 8)
+                                  | shiftUnsigned(bytes[1], 0));
+
       case U32_MIXED_ENDIAN:
         checkMinimumByteCount(bytes, 4);
         return BigDecimal.valueOf(shiftUnsigned(bytes[1], 24) | shiftUnsigned(bytes[0], 16) | shiftUnsigned(bytes[3], 8)
@@ -309,6 +333,28 @@ public class NumericHelper
       r[i / 2 - 1] = (byte) (Character.digit(hex.charAt(i - 1), 16) | (Character.digit(hex.charAt(i - 2), 16) << 4));
     }
     return r;
+  }
+
+  /**
+   * sleep milliseconds
+   *
+   * @param ms milliseconds to sleppe
+   */
+  public void sleep(int ms)
+  {
+    if (ms <= 0)
+    {
+      return;
+    }
+    try
+    {
+      Logger.debug("wait {} milliseconds..", ms);
+      Thread.sleep(ms);
+    } catch (InterruptedException e)
+    {
+      throw new RuntimeException(e);
+    }
+
   }
 
   /**

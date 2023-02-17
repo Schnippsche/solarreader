@@ -19,6 +19,7 @@ public class SolarMain
   public static final String TEMPLATES_PATH = "html/templates/";
   public static LanguageHelper languageHelper;
   public static String softwareVersion;
+  public static boolean updateAvailable = false;
 
   public static void main(String[] args)
   {
@@ -43,10 +44,10 @@ public class SolarMain
       InputStream is = SolarMain.class.getClassLoader().getResourceAsStream("solarreader.properties");
       Properties properties = new Properties();
       properties.load(is);
-      softwareVersion = "V" + properties.getProperty("software.version", "?");
+      softwareVersion = properties.getProperty("software.version", "?");
     } catch (Exception e)
     {
-      Logger.error("could not deterine software version:", e.getMessage());
+      Logger.error("could not determine software version:", e.getMessage());
       softwareVersion = "?";
     }
   }

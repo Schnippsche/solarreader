@@ -1,15 +1,15 @@
 package de.schnippsche.solarreader.backend.configuration;
 
+import de.schnippsche.solarreader.backend.automation.Command;
+import de.schnippsche.solarreader.backend.fields.ResultField;
 import de.schnippsche.solarreader.backend.utils.Activity;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class ConfigDevice
 {
   private final String uuid;
+  private final transient List<ResultField> cachedResultFields;
   private ConfigExport configExport;
   private HashMap<ConfigDeviceField, String> params;
   private String deviceInfoId;
@@ -18,6 +18,7 @@ public class ConfigDevice
   private String deviceSpecification;
   private String description;
   private Activity activity;
+  private transient List<Command> automationCommands;
 
   public ConfigDevice()
   {
@@ -30,6 +31,8 @@ public class ConfigDevice
     activity = new Activity();
     params = new HashMap<>(); // // do not use enum map because converting to json sucks!
     configExport = new ConfigExport();
+    automationCommands = null;
+    cachedResultFields = new ArrayList<>();
   }
 
   public ConfigDevice(DeviceInfo deviceInfo)
@@ -41,6 +44,28 @@ public class ConfigDevice
     deviceInfoId = deviceInfo.getUuid();
     configExport = new ConfigExport();
     deviceSpecification = deviceInfo.getDeviceSpecification();
+    cachedResultFields = new ArrayList<>();
+  }
+
+  public ConfigDevice(ConfigDevice other)
+  {
+    uuid = other.uuid;
+    deviceName = other.deviceName;
+    deviceClass = other.deviceClass;
+    deviceInfoId = other.deviceInfoId;
+    description = other.description;
+    activity = new Activity(other.activity);
+    configExport = new ConfigExport(other.getConfigExport());
+    deviceSpecification = other.deviceSpecification;
+    setParams(other.params);
+    cachedResultFields = other.cachedResultFields;
+  }
+
+  public void changeValues(ConfigDevice newConfigDevice)
+  {
+    setParams(newConfigDevice.getParams());
+    setDescription(newConfigDevice.getDescription());
+    setConfigExport(newConfigDevice.getConfigExport());
   }
 
   public boolean containsField(ConfigDeviceField configDeviceField)
@@ -75,6 +100,23 @@ public class ConfigDevice
   public String getParamOrDefault(ConfigDeviceField configDeviceField, String defaultValue)
   {
     return params.getOrDefault(configDeviceField, defaultValue);
+  }
+
+  public List<ResultField> getCachedResultFields()
+  {
+    return cachedResultFields;
+  }
+
+  public ResultField getCachedResultField(String fieldName)
+  {
+    for (ResultField resultField : cachedResultFields)
+    {
+      if (resultField.getName().equals(fieldName))
+      {
+        return resultField;
+      }
+    }
+    return null;
   }
 
   public int getIntParamOrDefault(ConfigDeviceField configDeviceField, int defaultValue)
@@ -147,14 +189,17 @@ public class ConfigDevice
   {
     this.deviceInfoId = deviceInfoId;
   }
+
   public String getDeviceSpecification()
   {
     return deviceSpecification;
   }
+
   public void setDeviceSpecification(String deviceSpecification)
   {
     this.deviceSpecification = deviceSpecification;
   }
+
   @Override public boolean equals(Object o)
   {
     if (this == o)
@@ -167,6 +212,16 @@ public class ConfigDevice
     }
     final ConfigDevice that = (ConfigDevice) o;
     return uuid.equals(that.uuid);
+  }
+
+  public List<Command> getAutomationCommands()
+  {
+    return automationCommands;
+  }
+
+  public void setAutomationCommands(List<Command> automationCommands)
+  {
+    this.automationCommands = automationCommands;
   }
 
   public ConfigExport getConfigExport()

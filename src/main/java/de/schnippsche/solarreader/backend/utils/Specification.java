@@ -5,10 +5,13 @@ import de.schnippsche.solarreader.backend.fields.MqttField;
 import de.schnippsche.solarreader.backend.fields.TableField;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Specification
 {
+  private final HashMap<AdditionalParameter, Object> additionalParameters;
   private String description;
   private List<DeviceField> devicefields;
   private List<TableField> databasefields;
@@ -20,6 +23,7 @@ public class Specification
     this.devicefields = new ArrayList<>();
     this.databasefields = new ArrayList<>();
     this.mqttFields = new ArrayList<>();
+    this.additionalParameters = new HashMap<>();
   }
 
   public String getDescription()
@@ -60,6 +64,28 @@ public class Specification
   public void setMqttFields(List<MqttField> mqttFields)
   {
     this.mqttFields = mqttFields;
+  }
+
+  public String getAllowedCommandsRegexp()
+  {
+    return getAdditionalParameterAsString(AdditionalParameter.ALLOWED_COMMANDS_REGEXP);
+  }
+
+  public Map<AdditionalParameter, Object> getAdditionalParameters()
+  {
+    return additionalParameters;
+  }
+
+  public String getAdditionalParameterAsString(AdditionalParameter parameter)
+  {
+    Object stringObject = additionalParameters.get(parameter);
+    return stringObject != null ? String.valueOf(stringObject) : null;
+  }
+
+  public int getAdditionalParameterAsInteger(AdditionalParameter parameter, int defaultValue)
+  {
+    Object intObject = additionalParameters.get(parameter);
+    return new NumericHelper().getInteger(intObject, defaultValue);
   }
 
   @Override public String toString()

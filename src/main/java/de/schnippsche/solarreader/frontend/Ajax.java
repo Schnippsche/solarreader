@@ -32,7 +32,8 @@ public class Ajax implements Take
   private final NumericHelper numericHelper = new NumericHelper();
   private final Gson gson = Config.getInstance().getGson();
 
-  @Override public Response act(Request req) throws IOException
+  @Override
+  public Response act(Request req) throws IOException
   {
     RqHref.Smart smart = new RqHref.Smart(req);
     String action = smart.single("action", "");
@@ -79,7 +80,11 @@ public class Ajax implements Take
     {
       return new RsText(gson.toJson(ajaxResult));
     }
-
+    ajaxResult = new RuleSetup(formValues).getAjaxCode(action, page);
+    if (ajaxResult != null)
+    {
+      return new RsText(gson.toJson(ajaxResult));
+    }
     // other ajax events
     switch (action)
     {
@@ -89,6 +94,8 @@ public class Ajax implements Take
         return downloadLog();
       case "getstatus":
         return new RsText(new StatusCollector().getAjax());
+      case "getrules":
+        return new RsText(new RulesCollector().getAjax());
       case "diskspacechart":
         return diskspaceChart();
       case "memoryspacechart":
@@ -148,13 +155,12 @@ public class Ajax implements Take
   {
     try
     {
-      String formattedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-      formattedDate = "solarreader_" + formattedDate + ".log";
-      Path path = Paths.get(formattedDate);
+      Path path = getCurrentLogPath();
       return new RsWithHeader(new RsWithBody(new ByteArrayInputStream(Files.readAllBytes(path))), "Content-Disposition", String.format("attachment; filename=\"%s\"", "solarreader.log"));
-    } catch (Exception e)
+    }
+    catch (Exception e)
     {
-      Logger.error(e);
+      Logger.debug(e.getMessage());
     }
 
     return new RsText("Error");
@@ -165,18 +171,28 @@ public class Ajax implements Take
     AjaxResult result;
     try
     {
-      String formattedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-      formattedDate = "solarreader_" + formattedDate + ".log";
-      Path path = Paths.get(formattedDate);
+      Path path = getCurrentLogPath();
       String logcontent = new FileOperation().lastLinesFromFile(path, numericHelper.getInteger(lineCount));
       result = new AjaxResult(true, logcontent);
-    } catch (Exception e)
+    }
+    catch (Exception e)
     {
-      Logger.error(e);
+      Logger.debug(e.getMessage());
       result = new AjaxResult(false, e.getMessage());
     }
 
     return new RsText(gson.toJson(result));
+  }
+
+  private Path getCurrentLogPath()
+  {
+    String log = System.getProperty("tinylog.writer.latest");
+    if (log == null)
+    {
+      String formattedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+      log = "solarreader_" + formattedDate + ".log";
+    }
+    return Paths.get(log);
   }
 
 }

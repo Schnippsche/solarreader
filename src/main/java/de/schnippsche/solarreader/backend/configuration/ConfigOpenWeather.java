@@ -7,7 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ConfigOpenWeather
 {
-  private static final String OPENWEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?id=%s&APPID=%s&lang=de&units=metric";
+  private static final String OPENWEATHER_URL =
+    "http://api.openweathermap.org/data/2.5/weather?id=%s&APPID=%s&lang=de&units=metric";
   private ConfigExport configExport;
   private Activity activity;
   private String applicationId;

@@ -3550,5 +3550,9 @@
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "BMS2_wGaugeFRVersion"
     }
-  ]
+  ],
+  "additionalParameters": {
+    "BLOCK_SIZE": "64",
+    "SLEEP_MILLISECONDS": "300"
+  }
 }

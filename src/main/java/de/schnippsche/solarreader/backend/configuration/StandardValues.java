@@ -43,6 +43,7 @@ public class StandardValues
   private final Map<String, Object> stdValues = new Hashtable<>(); // Synchronized table!
   private LocalDate oldDate;
   private LocalTime localTime;
+  private LocalDateTime localDateTime;
 
   public synchronized void putValue(String key, Object value)
   {
@@ -62,6 +63,7 @@ public class StandardValues
     }
     return stdValues.get(key);
   }
+
   /**
    * format the value depending on type and format pattern
    *
@@ -71,7 +73,6 @@ public class StandardValues
    */
   public Object getFormattedValue(String key, String format)
   {
-    Logger.debug("getFormattedValue key {} format {}", key, format);
     Object value = stdValues.get(key.trim());
     if (value == null)
     {
@@ -110,9 +111,14 @@ public class StandardValues
     return value;
   }
 
-  public LocalTime getLocalTime()
+  public void reload()
   {
-    return localTime;
+    this.oldDate = null;
+  }
+
+  public LocalDateTime getLocalDateTime()
+  {
+    return localDateTime;
   }
 
   public long getTimestampSeconds()
@@ -132,16 +138,16 @@ public class StandardValues
 
   public synchronized void setDateAndTimeValues()
   {
-    LocalDateTime dateTime = LocalDateTime.now();
-    localTime = dateTime.toLocalTime();
-    LocalDate date = dateTime.toLocalDate();
-    putValue(DATETIME, dateTime);
+    localDateTime = LocalDateTime.now();
+    localTime = localDateTime.toLocalTime();
+    LocalDate date = localDateTime.toLocalDate();
+    putValue(DATETIME, localDateTime);
     putValue(TIME, localTime);
     putValue(DATE, date);
-    putValue(HOUR, dateTime.getHour());
+    putValue(HOUR, localDateTime.getHour());
     long currentMS = System.currentTimeMillis();
     putValue(CURRENTTIMESTAMP, currentMS);
-    putValue(HOUR, dateTime.getHour());
+    putValue(HOUR, localDateTime.getHour());
     if (oldDate == null || !date.isEqual(oldDate))
     {
       ZoneId zoneId = ZoneId.systemDefault();
@@ -167,25 +173,16 @@ public class StandardValues
       putValue(THISYEARTIMESTAMP, ts);
       ts = date.with(DayOfWeek.MONDAY).atStartOfDay(zoneId).toInstant().toEpochMilli();
       putValue(THISWEEKTIMESTAMP, ts);
-      ts = date.with(TemporalAdjusters.firstDayOfMonth())
-               .minus(1L, ChronoUnit.MONTHS)
-               .atStartOfDay(zoneId)
-               .toInstant()
+      ts = date.with(TemporalAdjusters.firstDayOfMonth()).minus(1L, ChronoUnit.MONTHS).atStartOfDay(zoneId).toInstant()
                .toEpochMilli();
       putValue(LASTMONTHTIMESTAMP, ts);
       ts = LocalDate.of(year - 1, 1, 1).atStartOfDay(zoneId).toInstant().toEpochMilli();
       putValue(LASTYEARTIMESTAMP, ts);
       ts = date.with(DayOfWeek.MONDAY).minusDays(7L).atStartOfDay(zoneId).toInstant().toEpochMilli();
       putValue(LASTWEEKTIMESTAMP, ts);
-      SunTimes times = SunTimes.compute()
-                               .on(date)
-                               .at(Config.getInstance()
-                                         .getConfigGeneral()
-                                         .getLatitude()
-                                         .doubleValue(), Config.getInstance()
-                                                               .getConfigGeneral()
-                                                               .getLongitude()
-                                                               .doubleValue())
+      SunTimes times = SunTimes.compute().on(date).at(Config.getInstance().getConfigGeneral().getLatitude()
+                                                            .doubleValue(), Config.getInstance().getConfigGeneral()
+                                                                                  .getLongitude().doubleValue())
                                .execute();
       putValue(SUNRISE, Objects.requireNonNull(times.getRise()));
       putValue(SUNSET, Objects.requireNonNull(times.getSet()));

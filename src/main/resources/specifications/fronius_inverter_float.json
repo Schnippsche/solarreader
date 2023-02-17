@@ -463,5 +463,120 @@
     }
   ],
   "mqttFields": [
+    {
+      "name": "AC_Gesamtstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_A"
+    },
+    {
+      "name": "AC_Strom_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_AphA"
+    },
+    {
+      "name": "AC_Strom_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_AphB"
+    },
+    {
+      "name": "AC_Strom_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_AphC"
+    },
+    {
+      "name": "AC_Spannung_R-S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PPVphAB"
+    },
+    {
+      "name": "AC_Spannung_S-T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PPVphBC"
+    },
+    {
+      "name": "AC_Spannung_T-R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PPVphCA"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PhVphA"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PhVphB"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PhVphC"
+    },
+    {
+      "name": "AC_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_W"
+    },
+    {
+      "name": "AC_Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_Hz"
+    },
+    {
+      "name": "AC_Scheinleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_VA"
+    },
+    {
+      "name": "AC_Wirkleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_W"
+    },
+    {
+      "name": "AC_Blindleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_VAr"
+    },
+    {
+      "name": "AC_Leistung_Prozent",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PF"
+    },
+    {
+      "name": "AC_Wh_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_WH"
+    },
+    {
+      "name": "DC_Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCA"
+    },
+    {
+      "name": "DC_Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCV"
+    },
+    {
+      "name": "DC_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCW"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_TmpCab"
+    },
+    {
+      "name": "Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_St"
+    },
+    {
+      "name": "Status_Vendor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_StVnd"
+    }
   ]
 }

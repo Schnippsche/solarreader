@@ -47,7 +47,7 @@ public class MqttSetup
       case "savemqtt":
         return save();
       case "editmqtt":
-        currentMqtt = Config.getInstance().getMqttFromUuid(formValues.getOrDefault("id", "0"));
+        currentMqtt = Config.getInstance().getConfigMqttFromUuid(formValues.getOrDefault("id", "0"));
         return show();
       case "confirmdeletemqtt":
         return confirmDelete();
@@ -89,6 +89,7 @@ public class MqttSetup
     if (!Config.getInstance().getConfigMqtts().contains(currentMqtt))
     {
       Config.getInstance().getConfigMqtts().add(currentMqtt);
+      Config.getInstance().getMqttMaster().addClient(currentMqtt);
     }
     dialogHelper.saveConfiguration();
     return "";

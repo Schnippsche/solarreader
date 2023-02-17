@@ -12372,3 +12372,6 @@ body {
     white-space:pre;
     font-size:0.75em;
 }
+.minheight {
+    min-height:400px;
+}

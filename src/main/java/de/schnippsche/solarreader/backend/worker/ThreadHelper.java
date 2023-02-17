@@ -6,9 +6,10 @@ import de.schnippsche.solarreader.backend.configuration.ConfigOpenWeather;
 import de.schnippsche.solarreader.backend.configuration.ConfigSolarprognose;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractDevice;
 import de.schnippsche.solarreader.backend.pusher.InfluxPusher;
-import de.schnippsche.solarreader.backend.pusher.MqttPusher;
+import de.schnippsche.solarreader.backend.utils.ExpiringCommand;
 import org.tinylog.Logger;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -19,17 +20,9 @@ public class ThreadHelper
 {
 
   private static ScheduledExecutorService executor;
-  private static List<DeviceWorker> deviceWorkers;
-  private static SolarprognoseWorker solarprognoseWorker;
-  private static OpenWeatherWorker openWeatherWorker;
-  private static AwattarWorker awattarWorker;
   private static MainWorker mainWorker;
   private static InfluxPusher influxPusher;
-  private static MqttPusher mqttPusher;
-  private static boolean reloadDeviceConfigurations = true;
-  private static boolean reloadSolarprognoseConfiguration = true;
-  private static boolean reloadOpenWeatherConfiguration = true;
-  private static boolean reloadAwattarConfiguration = true;
+  private static UpdateWorker updateWorker;
 
   private ThreadHelper()
   {
@@ -38,83 +31,82 @@ public class ThreadHelper
 
   public static void startMainThreads()
   {
+    Logger.info("start main threads...");
     executor = Executors.newScheduledThreadPool(2);
     mainWorker = new MainWorker();
     influxPusher = new InfluxPusher();
-    mqttPusher = new MqttPusher();
-    executor.scheduleAtFixedRate(mainWorker, 0, 1, TimeUnit.SECONDS);
+    updateWorker = new UpdateWorker();
+    Config.getInstance().getMqttMaster().connectAllMqttClients();
+    Config.getInstance().initRules();
+    executor.scheduleAtFixedRate(mainWorker, 0, 250, TimeUnit.MILLISECONDS);
   }
 
   public static void stopThreads()
   {
+    Config.getInstance().getMqttMaster().disconnectAllMqttClients();
     if (executor != null)
     {
-      executor.shutdown();
+      shutdown();
     }
     if (mainWorker != null)
     {
       mainWorker.shutdown();
     }
+    System.out.println("exit Solarreader");
+  }
+
+  private static void shutdown()
+  {
+    executor.shutdown();
     try
     {
-      if (executor != null && !executor.awaitTermination(5, TimeUnit.SECONDS))
+      if (!executor.awaitTermination(1, TimeUnit.SECONDS))
       {
         executor.shutdownNow();
       }
-    } catch (InterruptedException e)
+    } catch (Exception e)
     {
       executor.shutdownNow();
-      Thread.currentThread().interrupt();
     }
   }
 
-  public static List<DeviceWorker> getDeviceWorkers()
+  public static List<DeviceWorker> getDeviceWorkers(LocalDateTime time)
   {
-    if (reloadDeviceConfigurations)
+    List<DeviceWorker> list = new ArrayList<>();
+    for (AbstractDevice device : Config.getInstance().getDevices())
     {
-      deviceWorkers = new ArrayList<>();
-      for (AbstractDevice device : Config.getInstance().getDevices())
+      // device must execute if:
+      // normal activity or devicecommands for sending are present!
+      List<ExpiringCommand> commands =
+        Config.getInstance().getExpiringCommandsForUuid(device.getConfigDevice().getUuid());
+      if (device.getActivity().mustExecute(time))
       {
-        deviceWorkers.add(new DeviceWorker(device));
+        list.add(new DeviceWorker(device));
+      } else if (!commands.isEmpty() && device.getActivity().isEnabled() && !device.getActivity().isActive())
+      {
+        list.add(new DeviceWorker(device, commands));
       }
-      Logger.debug("getDeviceWorkers with {} devices", deviceWorkers.size());
-      reloadDeviceConfigurations = false;
     }
-    return deviceWorkers;
+    return list;
   }
 
-  public static SolarprognoseWorker getSolarprognoseWorker()
+  public static SolarprognoseWorker getSolarprognoseWorker(LocalDateTime time)
   {
-    if (reloadSolarprognoseConfiguration)
-    {
-      ConfigSolarprognose configSolarprognose = Config.getInstance().getConfigSolarprognose();
-      solarprognoseWorker = new SolarprognoseWorker(configSolarprognose);
-      reloadSolarprognoseConfiguration = false;
-    }
-
-    return solarprognoseWorker;
+    ConfigSolarprognose configSolarprognose = Config.getInstance().getConfigSolarprognose();
+    return configSolarprognose.getActivity().mustExecute(time) ? new SolarprognoseWorker(configSolarprognose) : null;
   }
 
-  public static OpenWeatherWorker getOpenWeatherWorker()
+  public static OpenWeatherWorker getOpenWeatherWorker(LocalDateTime time)
   {
-    if (reloadOpenWeatherConfiguration)
-    {
-      ConfigOpenWeather configOpenWeather = Config.getInstance().getConfigOpenWeather();
-      openWeatherWorker = new OpenWeatherWorker(configOpenWeather);
-      reloadOpenWeatherConfiguration = false;
-    }
-    return openWeatherWorker;
+    ConfigOpenWeather configOpenWeather = Config.getInstance().getConfigOpenWeather();
+    return configOpenWeather.getActivity().mustExecute(time) ? new OpenWeatherWorker(configOpenWeather) : null;
+
   }
 
-  public static AwattarWorker getAwattarWorker()
+  public static AwattarWorker getAwattarWorker(LocalDateTime time)
   {
-    if (reloadAwattarConfiguration)
-    {
-      ConfigAwattar configAwattar = Config.getInstance().getConfigAwattar();
-      awattarWorker = new AwattarWorker(configAwattar);
-      reloadAwattarConfiguration = false;
-    }
-    return awattarWorker;
+    ConfigAwattar configAwattar = Config.getInstance().getConfigAwattar();
+    return configAwattar.getActivity().mustExecute(time) ? new AwattarWorker(configAwattar) : null;
   }
 
   public static InfluxPusher getInfluxPusher()
@@ -122,29 +114,9 @@ public class ThreadHelper
     return influxPusher;
   }
 
-  public static MqttPusher getMqttPusher()
+  public static UpdateWorker getUpdateWorker(LocalDateTime time)
   {
-    return mqttPusher;
-  }
-
-  public static void changedDeviceConfiguration()
-  {
-    reloadDeviceConfigurations = true;
-  }
-
-  public static void changedSolarprognoseConfiguration()
-  {
-    reloadSolarprognoseConfiguration = true;
-  }
-
-  public static void changedOpenWeatherConfiguration()
-  {
-    reloadOpenWeatherConfiguration = true;
-  }
-
-  public static void changedAwattarConfiguration()
-  {
-    reloadAwattarConfiguration = true;
+    return updateWorker.getActivity().mustExecute(time) ? updateWorker : null;
   }
 
 }

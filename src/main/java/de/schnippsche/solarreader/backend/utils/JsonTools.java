@@ -13,14 +13,16 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.tinylog.Logger;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.Writer;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class JsonTools
 {
@@ -36,14 +38,21 @@ public class JsonTools
    * @param <V>   clazz
    * @return instance of the clazz
    */
-  public <V> V getObjectFromUrl(String url, final Class<V> clazz)
+  public <V> V getObjectFromUrl(String url, String credentials, final Class<V> clazz)
   {
-    JsonElement element = getJsonFromUrl(url);
+    JsonElement element = getJsonFromUrl(url, credentials);
     if (element == null)
     {
       return null;
     }
-    return Config.getInstance().getGson().fromJson(element, clazz);
+    try
+    {
+      return Config.getInstance().getGson().fromJson(element, clazz);
+    } catch (Exception e)
+    {
+      Logger.error("can't parse json, {}", e.getMessage());
+      return null;
+    }
   }
 
   /**
@@ -52,9 +61,9 @@ public class JsonTools
    * @param url the url which returns json
    * @return Map with linked objects or empty Map
    */
-  public Map<String, Object> getLinkedMapFromUrl(String url)
+  public Map<String, Object> getLinkedMapFromUrl(String url, String credentials)
   {
-    JsonElement element = getJsonFromUrl(url);
+    JsonElement element = getJsonFromUrl(url, credentials);
     if (element == null)
     {
       return Collections.emptyMap();
@@ -62,15 +71,45 @@ public class JsonTools
     Type mapType = new TypeToken<Map<String, Object>>()
     {
     }.getType();
-    return Config.getInstance().getGson().fromJson(element, mapType);
+    try
+    {
+      return Config.getInstance().getGson().fromJson(element, mapType);
+    } catch (Exception e)
+    {
+      Logger.error("can't parse json, {}", e.getMessage());
+      return Collections.emptyMap();
+    }
+  }
+
+  /**
+   * convert a json string to a linked map for testing purpose
+   *
+   * @param data the string with valid json data
+   * @return Map with linked objects or empty Map
+   */
+  public Map<String, Object> getLinkedMapFromString(String data)
+  {
+    Type mapType = new TypeToken<Map<String, Object>>()
+    {
+    }.getType();
+    try
+    {
+      return Config.getInstance().getGson().fromJson(data, mapType);
+    } catch (Exception e)
+    {
+      Logger.error("can't parse json, {}", e.getMessage());
+      return Collections.emptyMap();
+    }
+
   }
 
   /**
    * read some json from an url and convert it into a simple map
-   * <p>- boolean values is converted from true/false into 1 / 0</p>
-   * <p>- double values is converted into BigDecimal</p>
-   * <p>- array[0], array[1] is converted into _0_ , _1_ and so on</p>
+   * <p>- boolean values are converted from true/false into 1 / 0</p>
+   * <p>- double values are converted into BigDecimal</p>
+   * <p>- array[0], array[1] are converted into _0_ , _1_ and so on</p>
    * json example:
+   * <pre>
    * {
    * "Status": {
    * "Module": 4,
@@ -79,8 +118,8 @@ public class JsonTools
    * "Tasmota"
    * ]
    * }
-   * }
-   * is converted into map with following keys:
+   * }</pre>
+   * will be converted into map with following keys:
    * Status_Module
    * Status_DeviceName
    * Status_FriendlyName_0
@@ -88,10 +127,18 @@ public class JsonTools
    * @param url the url which returns json
    * @return Map with simple objects or empty Map
    */
-  public Map<String, Object> getSimpleMapFromUrl(String url)
+  public Map<String, Object> getSimpleMapFromUrl(String url, String credentials)
   {
     HashMap<String, Object> simpleMap = new HashMap<>();
-    Map<String, Object> linkedMap = getLinkedMapFromUrl(url);
+    Map<String, Object> linkedMap = getLinkedMapFromUrl(url, credentials);
+    convertTree(simpleMap, null, linkedMap);
+    return simpleMap;
+  }
+
+  public Map<String, Object> getSimpleMapFromString(String data)
+  {
+    HashMap<String, Object> simpleMap = new HashMap<>();
+    Map<String, Object> linkedMap = getLinkedMapFromString(data);
     convertTree(simpleMap, null, linkedMap);
     return simpleMap;
   }
@@ -102,11 +149,55 @@ public class JsonTools
    * @param url the url which returns json
    * @return List with valid ResultField objects or empty List
    */
-  public List<ResultField> getResultFieldsFromUrl(String url)
+  public List<ResultField> getResultFieldsFromUrl(String url, String credentials)
   {
-    return getSimpleMapFromUrl(url).entrySet().stream().filter(e -> e.getValue() != null)
-                                   .map(e -> new ResultField(e.getKey(), ResultFieldStatus.VALID, e.getValue()))
-                                   .collect(Collectors.toList());
+    List<ResultField> list = new ArrayList<>();
+    for (Map.Entry<String, Object> e : getSimpleMapFromUrl(url, credentials).entrySet())
+    {
+      if (e.getValue() != null)
+      {
+        ResultField resultField = new ResultField(e.getKey(), ResultFieldStatus.VALID, e.getValue());
+        list.add(resultField);
+      }
+    }
+    return list;
+  }
+
+  public List<ResultField> getResultFieldsFromSimpleMap(Map<String, Object> map)
+  {
+    List<ResultField> list = new ArrayList<>();
+    for (Map.Entry<String, Object> e : map.entrySet())
+    {
+      if (e.getValue() != null)
+      {
+        ResultField resultField = new ResultField(e.getKey(), ResultFieldStatus.VALID, e.getValue());
+        list.add(resultField);
+      }
+    }
+    return list;
+  }
+
+  /**
+   * convert some json from a string and convert it into a ResultField List
+   *
+   * @param data the string with valid json
+   * @return List with valid ResultField objects or empty List
+   */
+  public List<ResultField> getResultFieldsFromString(String data)
+  {
+    HashMap<String, Object> simpleMap = new HashMap<>();
+    Map<String, Object> linkedMap = getLinkedMapFromString(data);
+    convertTree(simpleMap, null, linkedMap);
+    List<ResultField> list = new ArrayList<>();
+    for (Map.Entry<String, Object> e : simpleMap.entrySet())
+    {
+      if (e.getValue() != null)
+      {
+        ResultField resultField = new ResultField(e.getKey(), ResultFieldStatus.VALID, e.getValue());
+        list.add(resultField);
+      }
+    }
+    return list;
   }
 
   /**
@@ -126,7 +217,7 @@ public class JsonTools
         try (Reader reader = Files.newBufferedReader(path))
         {
           return Config.getInstance().getGson().fromJson(reader, clazz);
-        } catch (IOException e)
+        } catch (Exception e)
         {
           Logger.error("Can't read file {}:{}", path.getFileName(), e.getMessage());
         }
@@ -151,7 +242,7 @@ public class JsonTools
     {
       Config.getInstance().getGson().toJson(object, writer);
       return true;
-    } catch (IOException e)
+    } catch (Exception e)
     {
       Logger.error("couldn't write file {}:{}", path.getFileName(), e.getMessage());
     }
@@ -160,20 +251,34 @@ public class JsonTools
 
   /**
    * read a json string from url
+   *
    * @param url the url to connect
    * @return JsonElement or null if error occur
    */
-  public JsonElement getJsonFromUrl(String url)
+  public JsonElement getJsonFromUrl(String url, String credentials)
   {
-    Request request = new Request.Builder().url(url).build();
+    Request.Builder requestBuilder = new Request.Builder().url(url);
+    if (credentials != null)
+    {
+      requestBuilder.addHeader("Authorization", credentials);
+    }
+
+    Request request = requestBuilder.build();
     try (Response response = NetworkConnection.HTTPCLIENT.newCall(request).execute())
     {
+      if (response.code() == 401)
+      {
+        Logger.error("url {} gets unauthorized!", url);
+        return null;
+      }
       ResponseBody responseBody = response.body();
       if (responseBody != null)
       {
-        return JsonParser.parseString(responseBody.string());
+        String resp = responseBody.string();
+        Logger.debug("response:'{}'", resp);
+        return JsonParser.parseString(resp);
       }
-    } catch (IOException e)
+    } catch (Exception e)
     {
       Logger.error("couldn't read json from url {}, reason: {}", url, e.getMessage());
     }
@@ -199,7 +304,7 @@ public class JsonTools
         try (Reader reader = new InputStreamReader(inputStream))
         {
           specification = Config.getInstance().getGson().fromJson(reader, Specification.class);
-        } catch (IOException e)
+        } catch (Exception e)
         {
           Logger.error("couldn't load resource {}:{}", resource, e.getMessage());
         }

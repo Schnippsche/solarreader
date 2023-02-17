@@ -34,6 +34,26 @@
             </div>
           </div>
           <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <select class="form-select" id="id_devicesetup_algorithm"
+                        name="algorithm">
+                  [ALGORITHM]
+                </select>
+                <label for="id_devicesetup_algorithm">{solarprognosesetup.algorithm.title}</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating has-feedback">
+                <input type="text" class="form-control" id="id_item" name="item" value="[item]"
+                       placeholder="{solarprognosesetup.item.text}"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                       title="{solarprognosesetup.item.tooltip}"/>
+                <label for="id_item">{solarprognosesetup.item.text}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
             <div class="col-md-12">
               <fieldset class="form-group border p-3">
                 <div class="row mb-3">
@@ -111,6 +131,15 @@
             <div class="col-md-12">
               <div class="form-control">
                 {devicesetup.mqttreceiver.checkbox.title}
+                <div class="row g-2 align-items-center">
+                  <div class="col-auto">
+                    <label for="id_mqtttopic" class="col-form-label">{mqttsetup.name.text}</label>
+                  </div>
+                  <div class="col-auto">
+                    <input type="text" id="id_mqtttopic" class="form-control" name="mqtttopic" value="[mqtttopic]"
+                           title="{mqttsetup.name.tooltip}">
+                  </div>
+                </div>
                 [mqttcheckboxes]
               </div>
             </div>

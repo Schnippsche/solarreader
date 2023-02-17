@@ -70,7 +70,7 @@ public class GoodweWR extends AbstractLockedDevice
     {
       return;
     }
-    Logger.debug("chek Model");
+    Logger.debug("check Model");
     String model = modbusWrapper.readRegisterAsString(3, 528, 5);
     // XS Serie ?
     Logger.info("Goodwe Model {}", model);
@@ -106,6 +106,11 @@ public class GoodweWR extends AbstractLockedDevice
         setWattTotalToday(bezug.getNumericValue().subtract(einspeisung.getNumericValue()));
       }
     }
+  }
+
+  @Override public boolean checkConnection()
+  {
+    return modbusWrapper.checkConnection();
   }
 
 }

@@ -47,7 +47,7 @@ public class DatabaseSetup
       case "savedatabase":
         return saveDatabase();
       case "editdatabase":
-        currentDatabase = Config.getInstance().getDatabaseFromUuid(formValues.getOrDefault("id", "0"));
+        currentDatabase = Config.getInstance().getConfigDatabaseFromUuid(formValues.getOrDefault("id", "0"));
         return showDatabase();
       case "confirmdeletedatabase":
         return confirmDelete();
@@ -97,12 +97,15 @@ public class DatabaseSetup
   private AjaxResult checkDatabase()
   {
     final String newName = formValues.getOrDefault("dbtitle", "");
-    long present = Config.getInstance()
-                         .getConfigDatabases()
-                         .stream()
-                         .filter(cd -> cd.getDescription().equalsIgnoreCase(newName))
-                         .filter(cd -> !cd.getUuid().equals(currentDatabase.getUuid()))
-                         .count();
+    int present = 0;
+    for (ConfigDatabase cd : Config.getInstance().getConfigDatabases())
+    {
+      if (cd.getDescription().equalsIgnoreCase(newName) && !cd.getUuid().equals(currentDatabase.getUuid()))
+      {
+        present++;
+        break;
+      }
+    }
     if (present > 0)
     {
       return new AjaxResult(false, SolarMain.languageHelper.replacePlaceholder("{databasesetup.name.exists}"));

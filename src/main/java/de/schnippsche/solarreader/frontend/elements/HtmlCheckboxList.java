@@ -33,6 +33,7 @@ public class HtmlCheckboxList
     int i = 0;
     for (Pair pair : values)
     {
+      map.put("[type]", "checkbox");
       map.put("[id]", "id_" + groupname + i);
       map.put("[groupname]", groupname + i);
       map.put("[key]", pair.getKey());

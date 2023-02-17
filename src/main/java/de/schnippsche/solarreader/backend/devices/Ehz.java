@@ -6,6 +6,7 @@ import de.schnippsche.solarreader.backend.connections.SimpleSerialConnection;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractLockedDevice;
 import de.schnippsche.solarreader.backend.fields.DeviceField;
 import de.schnippsche.solarreader.backend.fields.ResultField;
+import de.schnippsche.solarreader.backend.utils.AdditionalParameter;
 import de.schnippsche.solarreader.backend.utils.MessageBeginListener;
 import org.tinylog.Logger;
 
@@ -17,6 +18,8 @@ public class Ehz extends AbstractLockedDevice
 {
   private String usbDevice;
   private SimpleSerialConnection simpleSerialConnection;
+  private int timeoutMillis;
+  private int sleepMilliseconds;
 
   public Ehz(ConfigDevice configDevice)
   {
@@ -26,25 +29,38 @@ public class Ehz extends AbstractLockedDevice
   @Override protected void initialize()
   {
     specification = jsonTool.readSpecification(getConfigDevice().getDeviceSpecification());
+    timeoutMillis = specification.getAdditionalParameterAsInteger(AdditionalParameter.TIMEOUT_MILLISECONDS, 6000);
+    sleepMilliseconds = specification.getAdditionalParameterAsInteger(AdditionalParameter.SLEEP_MILLISECONDS, 100);
     usbDevice = getConfigDevice().getParam(ConfigDeviceField.COM_PORT);
     this.simpleSerialConnection = new SimpleSerialConnection(getConfigDevice());
   }
 
+  @Override public boolean checkConnection()
+  {
+    initialize();
+    if (simpleSerialConnection.open())
+    {
+      simpleSerialConnection.close();
+      return true;
+    }
+    return false;
+  }
+
   @Override protected boolean readLockedDeviceValues()
   {
+    Logger.debug("usbDevice={}, timeout={} milliseconds", usbDevice, timeoutMillis);
+    if (!simpleSerialConnection.open())
+    {
+      return false;
+    }
     try
     {
-      Logger.debug("usbDevice:", usbDevice);
-      if (!simpleSerialConnection.open())
-      {
-        return false;
-      }
       MessageBeginListener beginListener = new MessageBeginListener();
       simpleSerialConnection.addDataListener(beginListener);
       long start = System.currentTimeMillis();
-      while (System.currentTimeMillis() - start < 5000 && !beginListener.isOk())
+      while (System.currentTimeMillis() - start < timeoutMillis && !beginListener.isOk())
       {
-        Thread.sleep(200);
+        numericHelper.sleep(sleepMilliseconds);
       }
       if (!beginListener.isOk())
       {
@@ -63,12 +79,8 @@ public class Ehz extends AbstractLockedDevice
         Logger.error("not enough data, only {} bytes read", receive.length());
         return false;
       }
-
       extractFields(receive);
       return true;
-    } catch (InterruptedException e)
-    {
-      Thread.currentThread().interrupt();
     } catch (Exception e)
     {
       Logger.error("error while reading {}: {}", usbDevice, e);
@@ -78,8 +90,6 @@ public class Ehz extends AbstractLockedDevice
       simpleSerialConnection.removeDataListener();
       simpleSerialConnection.close();
     }
-    return false;
-
   }
 
   private void extractFields(String receive)

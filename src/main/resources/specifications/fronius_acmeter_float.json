@@ -756,5 +756,90 @@
     }
   ],
   "mqttFields": [
+    {
+      "name": "AC_Gesamtstrom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_A"
+    },
+    {
+      "name": "AC_Strom_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_AphA"
+    },
+    {
+      "name": "AC_Strom_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_AphB"
+    },
+    {
+      "name": "AC_Strom_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_AphC"
+    },
+    {
+      "name": "AC_Spannung_R-S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PPVphAB"
+    },
+    {
+      "name": "AC_Spannung_S-T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PPVphBC"
+    },
+    {
+      "name": "AC_Spannung_T-R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PPVphCA"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PhVphA"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PhVphB"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PhVphC"
+    },
+    {
+      "name": "AC_Leistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_W"
+    },
+    {
+      "name": "AC_Frequenz",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_Hz"
+    },
+    {
+      "name": "AC_Scheinleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_VA"
+    },
+    {
+      "name": "AC_Wirkleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_W"
+    },
+    {
+      "name": "AC_Blindleistung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_VAR"
+    },
+    {
+      "name": "AC_Leistung_Prozent",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_PF"
+    },
+    {
+      "name": "AC_Wh_Gesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ACMETER_TotWhExp"
+    }
   ]
 }

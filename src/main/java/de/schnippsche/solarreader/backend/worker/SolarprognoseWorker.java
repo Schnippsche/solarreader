@@ -1,5 +1,6 @@
 package de.schnippsche.solarreader.backend.worker;
 
+import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigSolarprognose;
 import de.schnippsche.solarreader.backend.fields.DeviceField;
 import de.schnippsche.solarreader.backend.fields.MqttField;
@@ -19,6 +20,7 @@ import java.util.TimeZone;
 
 public class SolarprognoseWorker extends AbstractExportWorker
 {
+  public static final String SOLARPROGNOSE = "Solarprognose";
   private final ConfigSolarprognose configSolarprognose;
   private final List<DeviceField> deviceFields;
   private final List<MqttField> mqttFields;
@@ -27,7 +29,7 @@ public class SolarprognoseWorker extends AbstractExportWorker
   {
     super(configSolarprognose.getActivity());
     this.configSolarprognose = configSolarprognose;
-    Specification specs = jsonTool.readSpecification("solarprognose");
+    Specification specs = jsonTool.readSpecification(SOLARPROGNOSE.toLowerCase());
     deviceFields = specs.getDevicefields();
     mqttFields = specs.getMqttFields();
   }
@@ -36,7 +38,8 @@ public class SolarprognoseWorker extends AbstractExportWorker
   {
     Logger.info("Read Solarprognose");
     Logger.debug(configSolarprognose.getApiUrl());
-    SolarprognoseWrapper wrapper = jsonTool.getObjectFromUrl(configSolarprognose.getApiUrl(), SolarprognoseWrapper.class);
+    SolarprognoseWrapper wrapper =
+      jsonTool.getObjectFromUrl(configSolarprognose.getApiUrl(), null, SolarprognoseWrapper.class);
     if (wrapper == null)
     {
       Logger.error("solarprognose wrapper is null");
@@ -53,6 +56,7 @@ public class SolarprognoseWorker extends AbstractExportWorker
       return;
     }
     List<ResultField> resultFields = wrapper.getResultFields(deviceFields);
+    Config.getInstance().setCurrentResultFields(SOLARPROGNOSE, resultFields);
     final Map<Long, List<Double>> data = wrapper.getData();
     Table table = new Table("Wetterprognose");
     data.forEach((timestamp, detail) ->

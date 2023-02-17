@@ -21,8 +21,8 @@ public class InfluxPusher extends AbstractPushBuffer<Request>
     Call call = NetworkConnection.HTTPCLIENT.newCall(pushValue.getSource());
     try (Response response = call.execute())
     {
-      Logger.debug("Response: Code={}, Message={} {}", response.code(), response.message(), (response.body() != null ? response.body()
-                                                                                                                               .string() : ""));
+      Logger.debug("Response: Code={}, Message={} {}", response.code(), response.message(), (
+        response.body() != null ? response.body().string() : ""));
       switch (response.code())
       {
         case 200:

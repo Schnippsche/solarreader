@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 IBM Corporation and others.
- *
+ * <p>
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- *
+ * <p>
  * SPDX-License-Identifier: EPL-2.0
- *
+ * <p>
  * Contributors:
  *     Ferenc Hechler - initial API and implementation
  *     Ferenc Hechler, ferenc_hechler@users.sourceforge.net - 219530 [jar application] add Jar-in-Jar ClassLoader option
@@ -22,9 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
@@ -52,15 +50,17 @@ public class JarRsrcLoader
         rsrcUrls[i] = new URL(JIJConstants.INTERNAL_URL_PROTOCOL_WITH_COLON + rsrcPath);
       } else
       {
-        rsrcUrls[i] = new URL(JIJConstants.JAR_INTERNAL_URL_PROTOCOL_WITH_COLON + rsrcPath + JIJConstants.JAR_INTERNAL_SEPARATOR);
+        rsrcUrls[i] =
+          new URL(JIJConstants.JAR_INTERNAL_URL_PROTOCOL_WITH_COLON + rsrcPath + JIJConstants.JAR_INTERNAL_SEPARATOR);
       }
     }
     ClassLoader jceClassLoader = new URLClassLoader(rsrcUrls, getParentClassLoader());
     Thread.currentThread().setContextClassLoader(jceClassLoader);
-    Class c = Class.forName(mi.rsrcMainClass, true, jceClassLoader);
+    Class<?> c = Class.forName(mi.rsrcMainClass, true, jceClassLoader);
     Method main = c.getMethod(JIJConstants.MAIN_METHOD_NAME, args.getClass());
     main.invoke(null, new Object[]{args});
   }
+
   private static ClassLoader getParentClassLoader() throws InvocationTargetException, IllegalAccessException
   {
     // On Java8, it is ok to use a null parent class loader, but, starting with Java 9,
@@ -78,16 +78,14 @@ public class JarRsrcLoader
       return null;
     }
   }
+
   private static ManifestInfo getManifestInfo() throws IOException
   {
-    Enumeration resEnum;
-    resEnum = Thread.currentThread().getContextClassLoader().getResources(JarFile.MANIFEST_NAME);
+    Enumeration<URL> resEnum = Thread.currentThread().getContextClassLoader().getResources(JarFile.MANIFEST_NAME);
     while (resEnum.hasMoreElements())
     {
-      try
+      try (InputStream is = resEnum.nextElement().openStream())
       {
-        URL url = (URL) resEnum.nextElement();
-        InputStream is = url.openStream();
         if (is != null)
         {
           ManifestInfo result = new ManifestInfo();
@@ -110,38 +108,10 @@ public class JarRsrcLoader
         // Silently ignore wrong manifests on classpath?
       }
     }
-    System.err.println("Missing attributes for JarRsrcLoader in Manifest (" + JIJConstants.REDIRECTED_MAIN_CLASS_MANIFEST_NAME + ", " + JIJConstants.REDIRECTED_CLASS_PATH_MANIFEST_NAME + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    System.err.println(
+      "Missing attributes for JarRsrcLoader in Manifest (" + JIJConstants.REDIRECTED_MAIN_CLASS_MANIFEST_NAME + ", "
+      + JIJConstants.REDIRECTED_CLASS_PATH_MANIFEST_NAME + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     return null;
-  }
-  /**
-   * JDK 1.3.1 does not support String.split(), so we have to do it manually. Skip all spaces
-   * (tabs are not handled)
-   *
-   * @param line the line to split
-   * @return array of strings
-   */
-  private static String[] splitSpaces(String line)
-  {
-    if (line == null)
-    {
-      return null;
-    }
-    List<String> result = new ArrayList<>();
-    int firstPos = 0;
-    while (firstPos < line.length())
-    {
-      int lastPos = line.indexOf(' ', firstPos);
-      if (lastPos == -1)
-      {
-        lastPos = line.length();
-      }
-      if (lastPos > firstPos)
-      {
-        result.add(line.substring(firstPos, lastPos));
-      }
-      firstPos = lastPos + 1;
-    }
-    return result.toArray(new String[0]);
   }
 
   private static class ManifestInfo

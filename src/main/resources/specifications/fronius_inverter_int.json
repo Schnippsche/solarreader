@@ -648,5 +648,175 @@
     }
   ],
   "mqttFields": [
+    {
+      "name": "AC_Gesamtstrom",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_A * INVERTER_A_SF"
+    },
+    {
+      "name": "AC_Strom_R",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_AphA * INVERTER_A_SF"
+    },
+    {
+      "name": "AC_Strom_S",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_AphB * INVERTER_A_SF"
+    },
+    {
+      "name": "AC_Strom_T",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_AphC * INVERTER_A_SF"
+    },
+    {
+      "name": "AC_Spannung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Spannung_R-S",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PPVphAB * INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Spannung_S-T",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PPVphBC * INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Spannung_T-R",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PPVphCA * INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Spannung_R",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PhVphA * INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Spannung_S",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PhVphB * INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Spannung_T",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PhVphC * INVERTER_V_SF"
+    },
+    {
+      "name": "AC_Leistung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_W_SF"
+    },
+    {
+      "name": "AC_Leistung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_W * INVERTER_W_SF"
+    },
+    {
+      "name": "AC_Frequenz_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_Hz_SF"
+    },
+    {
+      "name": "AC_Frequenz",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_Hz * INVERTER_Hz_SF"
+    },
+    {
+      "name": "AC_Scheinleistung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_VA_SF"
+    },
+    {
+      "name": "AC_Scheinleistung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_VA * INVERTER_VA_SF"
+    },
+    {
+      "name": "AC_Wirkleistung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_W * INVERTER_W_SF"
+    },
+    {
+      "name": "AC_Blindleistung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_VAr_SF"
+    },
+    {
+      "name": "AC_Blindleistung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_VAr * INVERTER_VAr_SF"
+    },
+    {
+      "name": "AC_WR_Leistung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_PF_SF"
+    },
+    {
+      "name": "AC_Leistung_Prozent",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_PF * INVERTER_PF_SF"
+    },
+    {
+      "name": "AC_Wh_Gesamt_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_WH_SF"
+    },
+    {
+      "name": "AC_Wh_Gesamt",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_WH * INVERTER_WH_SF"
+    },
+    {
+      "name": "DC_Strom_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCA_SF"
+    },
+    {
+      "name": "DC_Strom",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_DCA * INVERTER_DCA_SF"
+    },
+    {
+      "name": "DC_Spannung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCV_SF"
+    },
+    {
+      "name": "DC_Spannung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_DCV * INVERTER_DCV_SF"
+    },
+    {
+      "name": "DC_Leistung_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_DCW_SF"
+    },
+    {
+      "name": "DC_Leistung",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_DCW * INVERTER_DCW_SF"
+    },
+    {
+      "name": "Temperatur_Faktor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_Tmp_SF"
+    },
+    {
+      "name": "Temperatur",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "INVERTER_TmpCab * INVERTER_Tmp_SF"
+    },
+    {
+      "name": "Status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_St"
+    },
+    {
+      "name": "Status_Vendor",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "INVERTER_StVnd"
+    }
   ]
 }

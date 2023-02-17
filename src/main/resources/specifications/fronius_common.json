@@ -112,5 +112,25 @@
     }
   ],
   "mqttFields": [
+    {
+      "name": "Produkt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_Mn"
+    },
+    {
+      "name": "Modell",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_Md"
+    },
+    {
+      "name": "Seriennummer",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_SN"
+    },
+    {
+      "name": "Firmware",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "COMMON_Vr"
+    }
   ]
 }

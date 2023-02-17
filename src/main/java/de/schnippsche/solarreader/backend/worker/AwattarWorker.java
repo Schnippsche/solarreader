@@ -1,5 +1,6 @@
 package de.schnippsche.solarreader.backend.worker;
 
+import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigAwattar;
 import de.schnippsche.solarreader.backend.fields.DeviceField;
 import de.schnippsche.solarreader.backend.fields.MqttField;
@@ -22,6 +23,7 @@ import java.util.List;
 public class AwattarWorker extends AbstractExportWorker
 {
 
+  public static final String AWATTAR = "Awattar";
   private final ConfigAwattar configAwattar;
   private final List<DeviceField> deviceFields;
   private final List<MqttField> mqttFields;
@@ -30,7 +32,7 @@ public class AwattarWorker extends AbstractExportWorker
   {
     super(configAwattar.getActivity());
     this.configAwattar = configAwattar;
-    Specification specs = jsonTool.readSpecification("awattar");
+    Specification specs = jsonTool.readSpecification(AWATTAR.toLowerCase());
     deviceFields = specs.getDevicefields();
     mqttFields = specs.getMqttFields();
   }
@@ -38,13 +40,15 @@ public class AwattarWorker extends AbstractExportWorker
   @Override protected void doWork()
   {
     Logger.info("Read Awattar");
-    AwattarWrapper wrapper = jsonTool.getObjectFromUrl(configAwattar.getApiUrl(), AwattarWrapper.class);
+    AwattarWrapper wrapper = jsonTool.getObjectFromUrl(configAwattar.getApiUrl(), null, AwattarWrapper.class);
     if (wrapper == null)
     {
       Logger.error("awattar wrapper is null");
       return;
     }
     List<ResultField> resultFields = wrapper.getResultFields(deviceFields);
+    // cache valid result fields
+    Config.getInstance().setCurrentResultFields(AWATTAR, resultFields);
     Logger.info("Awattar successful, {}", wrapper);
     Table table = new Table("awattarPreise");
     for (int i = 0; i < wrapper.getData().size(); i++)

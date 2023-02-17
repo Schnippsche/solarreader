@@ -144,5 +144,56 @@
       "sourcetype": "CALCULATED",
       "sourcevalue": "OBIS1670 - OBIS181"
     }
-  ]
+  ],
+  "mqttFields": [
+    {
+      "name": "Zaehlernummer",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ZAEHLERNUMMER"
+    },
+    {
+      "name": "BezugszaehlerGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS180"
+    },
+    {
+      "name": "Bezugszaehler1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS181"
+    },
+    {
+      "name": "Bezugszaehler2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS182"
+    },
+    {
+      "name": "LieferzaehlerGesamt",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS280"
+    },
+    {
+      "name": "Lieferzaehler1",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS281"
+    },
+    {
+      "name": "Lieferzaehler2",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS282"
+    },
+    {
+      "name": "LeistungMomentan",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "OBIS1670"
+    },
+    {
+      "name": "Verbrauch",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "OBIS1670 - OBIS181"
+    }
+  ],
+  "additionalParameters": {
+    "TIMEOUT_MILLISECONDS": "6000",
+    "SLEEP_MILLISECONDS": "500"
+  }
 }

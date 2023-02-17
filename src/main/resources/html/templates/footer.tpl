@@ -1,7 +1,8 @@
- <footer class="py-4 bg-light mt-auto">
-      <div class="container-fluid px-4">
-        <div class="d-flex align-items-center justify-content-between small">
-          <div class="text-muted">solarreader is an open source project, hostet at <a href="https://github.com/Schnippsche/solarreader">Github</a></div>
-        </div>
-      </div>
- </footer>
+<footer class="py-4 bg-light mt-auto">
+  <div class="container-fluid px-4">
+    <div class="d-flex align-items-center justify-content-between small">
+      <div class="text-muted">solarreader is an open source project, hostet at <a
+        href="https://github.com/Schnippsche/solarreader">Github</a></div>
+    </div>
+  </div>
+</footer>

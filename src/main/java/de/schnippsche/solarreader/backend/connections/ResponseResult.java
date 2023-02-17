@@ -83,7 +83,8 @@ public class ResponseResult
 
   @Override public String toString()
   {
-    return "ResponseResult{" + "code=" + this.code + ", statusMessage='" + this.statusMessage + '\'' + ", body='" + this.body + '\'' + '}';
+    return "ResponseResult{" + "code=" + this.code + ", statusMessage='" + this.statusMessage + '\'' + ", body='"
+           + this.body + '\'' + '}';
   }
 
 }

@@ -2,13 +2,20 @@ package de.schnippsche.solarreader.backend.configuration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+import de.schnippsche.solarreader.backend.automation.Rule;
+import de.schnippsche.solarreader.backend.automation.RuleList;
+import de.schnippsche.solarreader.backend.automation.actions.*;
+import de.schnippsche.solarreader.backend.automation.expressions.*;
 import de.schnippsche.solarreader.backend.devices.abstracts.AbstractDevice;
+import de.schnippsche.solarreader.backend.fields.ResultField;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalDateSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalDateTimeSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.LocalTimeSerializer;
 import de.schnippsche.solarreader.backend.serializes.gson.TimeUnitSerializer;
+import de.schnippsche.solarreader.backend.utils.ExpiringCommand;
 import de.schnippsche.solarreader.backend.utils.JsonTools;
-import de.schnippsche.solarreader.backend.worker.ThreadHelper;
+import de.schnippsche.solarreader.backend.utils.MqttMaster;
 import org.tinylog.Logger;
 
 import java.io.*;
@@ -18,9 +25,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Config
@@ -29,12 +35,18 @@ public class Config
   private static final Config instance = new Config();
   private final transient StandardValues standardValues;
   private final transient Hashtable<String, Object> lockObjects; // Synchronized
+  private final transient Hashtable<String, List<ResultField>> cachedResultFields; // Synchronized
+  private final transient Deque<ExpiringCommand> expiringCommands;
   private final transient AppInfo appInfo;
+  private final transient MqttMaster mqttMaster;
+  private final transient RuleList ruleList;
   private transient List<AbstractDevice> devices;
   private List<ConfigDatabase> configDatabases;
   private List<ConfigMqtt> configMqtts;
   private ConfigGeneral configGeneral;
   private List<ConfigDevice> configDevices;
+  private List<ConfigRule> configRules;
+
   // Solarprognose
   private ConfigSolarprognose configSolarprognose;
   // OpenWeather
@@ -44,11 +56,10 @@ public class Config
   // Messenger
   private ConfigMessenger configMessenger;
   private transient Gson gson;
-  private transient boolean mustReloadDevices;
 
   private Config()
   {
-    configDevices = new ArrayList<>();
+    configDevices = Collections.synchronizedList(new ArrayList<>());
     configDatabases = new ArrayList<>();
     configMqtts = new ArrayList<>();
     configOpenWeather = new ConfigOpenWeather();
@@ -58,9 +69,14 @@ public class Config
     configMessenger = new ConfigMessenger();
     standardValues = new StandardValues();
     lockObjects = new Hashtable<>();
-    devices = new ArrayList<>();
+    cachedResultFields = new Hashtable<>();
+    expiringCommands = new LinkedList<>();  // Thread safe
+    devices = Collections.synchronizedList(new ArrayList<>());
     gson = getGson();
     appInfo = readAppInfo();
+    mqttMaster = new MqttMaster();
+    configRules = new ArrayList<>();
+    ruleList = new RuleList();
   }
 
   public static Config getInstance()
@@ -81,10 +97,11 @@ public class Config
       configMessenger = tmpConfig.configMessenger;
       configDatabases = tmpConfig.getConfigDatabases();
       configMqtts = tmpConfig.getConfigMqtts();
+      configRules = tmpConfig.getConfigRules();
       initDevices();
     } catch (Exception e)
     {
-      e.printStackTrace();
+      Logger.error(e.getMessage());
     }
   }
 
@@ -97,12 +114,27 @@ public class Config
       builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
       builder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
       builder.registerTypeAdapter(TimeUnit.class, new TimeUnitSerializer());
+      RuntimeTypeAdapterFactory<Action> runtimeTypeAdapterFactory =
+        RuntimeTypeAdapterFactory.of(Action.class).registerSubtype(DeviceAction.class)
+                                 .registerSubtype(DatabaseAction.class).registerSubtype(MqttAction.class)
+                                 .registerSubtype(RelaisAction.class).registerSubtype(UrlAction.class);
+      builder.registerTypeAdapterFactory(runtimeTypeAdapterFactory);
+      RuntimeTypeAdapterFactory<Expression> exprTypeAdapterFactory =
+        RuntimeTypeAdapterFactory.of(Expression.class).registerSubtype(DeviceValueExpression.class)
+                                 .registerSubtype(DayExpression.class).registerSubtype(MqttTopicExpression.class)
+                                 .registerSubtype(NightExpression.class).registerSubtype(PeriodExpression.class);
+      builder.registerTypeAdapterFactory(exprTypeAdapterFactory);
       gson = builder.create();
     }
     return gson;
   }
 
-  public List<AbstractDevice> getDevices()
+  public MqttMaster getMqttMaster()
+  {
+    return mqttMaster;
+  }
+
+  public synchronized List<AbstractDevice> getDevices()
   {
     return devices;
   }
@@ -110,9 +142,9 @@ public class Config
   public synchronized void removeDevice(ConfigDevice device)
   {
     Logger.info("remove device {}", device.getDescription());
+    devices.removeIf(abstractDevice -> abstractDevice.getConfigDevice().equals(device));
     configDevices.remove(device);
     saveConfiguration();
-    setDeviceConfigurationChanged();
   }
 
   public synchronized void removeDatabase(ConfigDatabase database)
@@ -126,27 +158,87 @@ public class Config
   {
     Logger.info("remove mqtt {}", mqtt.getDescription());
     configMqtts.remove(mqtt);
+    mqttMaster.removeClient(mqtt);
     saveConfiguration();
+  }
+
+  public synchronized void removeRule(ConfigRule configRule)
+  {
+    configRule.setEnabled(false);
+    Logger.info("remove rule {}", configRule.getTitle());
+    ruleList.remove(configRule);
+    configRules.remove(configRule);
+    saveConfiguration();
+  }
+
+  private void updateLockObjects(ConfigDevice configDevice)
+  {
+    String lockObjectString = getLockObjectIdentifier(configDevice);
+    if (!lockObjectString.isEmpty())
+    {
+      lockObjects.computeIfAbsent(lockObjectString, k -> new Object());
+    }
   }
 
   private synchronized void initDevices()
   {
+    Logger.debug("init devices...");
     devices = new ArrayList<>();
     for (ConfigDevice configDevice : configDevices)
     {
-      String className = configDevice.getDeviceClass();
-      AbstractDevice device = getDeviceFromClassName(configDevice, className);
+      AbstractDevice device = getDeviceFromClassName(configDevice);
+      updateLockObjects(configDevice);
       if (device != null)
       {
         devices.add(device);
-        String lockObjectString = getLockObjectIdentifier(configDevice);
-        if (!lockObjectString.isEmpty())
-        {
-          lockObjects.put(lockObjectString, new Object());
-        }
       }
     }
-    mustReloadDevices = false;
+    Logger.debug("lock objects size={}, {}", lockObjects.size(), lockObjects);
+  }
+
+  public synchronized void initRules()
+  {
+    Logger.debug("init rules...");
+    for (ConfigRule configRule : configRules)
+    {
+      Rule rule = new Rule(configRule);
+      ruleList.addRule(rule);
+      rule.initialize();
+    }
+  }
+
+  public synchronized void addOrReplaceDevice(ConfigDevice updatedConfigDevice)
+  {
+    updateLockObjects(updatedConfigDevice);
+    for (AbstractDevice device : devices)
+    {
+      if (device.getConfigDevice().getUuid().equals(updatedConfigDevice.getUuid()))
+      {
+        device.changeConfiguration(updatedConfigDevice);
+        saveConfiguration();
+        return;
+      }
+    }
+    // Nothing found, add new class
+    AbstractDevice device = getDeviceFromClassName(updatedConfigDevice);
+    if (device != null)
+    {
+      devices.add(device);
+      configDevices.add(updatedConfigDevice);
+      saveConfiguration();
+    }
+  }
+
+  public AbstractDevice getDeviceFromUuid(String uuid)
+  {
+    for (AbstractDevice device : devices)
+    {
+      if (device.getConfigDevice().getUuid().equals(uuid))
+      {
+        return device;
+      }
+    }
+    return null;
   }
 
   private AppInfo readAppInfo()
@@ -165,33 +257,23 @@ public class Config
     return new AppInfo();
   }
 
-  public void checkDeviceConfigurationForUpdates()
-  {
-    if (mustReloadDevices)
-    {
-      initDevices();
-      ThreadHelper.changedDeviceConfiguration();
-    }
-  }
-
-  public void setDeviceConfigurationChanged()
-  {
-    mustReloadDevices = true;
-  }
-
-  public AbstractDevice getDeviceFromClassName(ConfigDevice configDevice, String className)
+  public AbstractDevice getDeviceFromClassName(ConfigDevice configDevice)
   {
     try
     {
-      final Object clazz =
-        Class.forName("de.schnippsche.solarreader.backend.devices." + className).getConstructor(ConfigDevice.class)
-             .newInstance(configDevice);
+      final Object clazz = Class.forName("de.schnippsche.solarreader.backend.devices." + configDevice.getDeviceClass())
+                                .getConstructor(ConfigDevice.class).newInstance(configDevice);
       return (AbstractDevice) clazz;
     } catch (Exception e)
     {
       Logger.error(e.getMessage());
     }
     return null;
+  }
+
+  public RuleList getRuleList()
+  {
+    return this.ruleList;
   }
 
   public AppInfo getAppInfo()
@@ -204,9 +286,10 @@ public class Config
     return standardValues;
   }
 
-  public Object getLockObject(ConfigDevice configDevice)
+  public synchronized Object getLockObject(ConfigDevice configDevice)
   {
     String lockObject = getLockObjectIdentifier(configDevice);
+    Logger.debug("get lock object for {} = {}", lockObject, lockObjects.getOrDefault(lockObject, new Object()));
     return lockObjects.getOrDefault(lockObject, new Object());
   }
 
@@ -215,11 +298,11 @@ public class Config
 
     if (configDevice.containsField(ConfigDeviceField.COM_PORT))
     {
-      return configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "");
+      return configDevice.getParamOrDefault(ConfigDeviceField.COM_PORT, "").trim().toUpperCase();
     }
     if (configDevice.containsField(ConfigDeviceField.HIDRAW_PATH))
     {
-      return configDevice.getParamOrDefault(ConfigDeviceField.HIDRAW_PATH, "");
+      return configDevice.getParamOrDefault(ConfigDeviceField.HIDRAW_PATH, "").trim().toUpperCase();
     }
     return "";
   }
@@ -232,14 +315,14 @@ public class Config
     }
   }
 
-  private void saveConfiguration()
+  private synchronized void saveConfiguration()
   {
     try
     {
       writeConfiguration();
     } catch (IOException e)
     {
-      Logger.error(e);
+      Logger.error(e.getMessage());
     }
   }
 
@@ -283,7 +366,12 @@ public class Config
     return configMqtts;
   }
 
-  public ConfigDatabase getDatabaseFromUuid(String uuid)
+  public List<ConfigRule> getConfigRules()
+  {
+    return configRules;
+  }
+
+  public ConfigDatabase getConfigDatabaseFromUuid(String uuid)
   {
     for (ConfigDatabase configDatabase : configDatabases)
     {
@@ -295,7 +383,7 @@ public class Config
     return new ConfigDatabase();
   }
 
-  public ConfigDevice getDeviceFromUuid(String uuid)
+  public ConfigDevice getConfigDeviceFromUuid(String uuid)
   {
     for (ConfigDevice configDevice : configDevices)
     {
@@ -307,7 +395,7 @@ public class Config
     return new ConfigDevice();
   }
 
-  public ConfigMqtt getMqttFromUuid(String uuid)
+  public ConfigMqtt getConfigMqttFromUuid(String uuid)
   {
     for (ConfigMqtt configMqtt : configMqtts)
     {
@@ -317,6 +405,78 @@ public class Config
       }
     }
     return new ConfigMqtt();
+  }
+
+  public ConfigRule getConfigRuleFromUuid(String uuid)
+  {
+    for (ConfigRule configRule : configRules)
+    {
+      if (configRule.getUuid().equals(uuid))
+      {
+        return configRule;
+      }
+    }
+    return new ConfigRule();
+  }
+
+  public List<ResultField> getCurrentResultFieldsForUuid(String uuid)
+  {
+    List<ResultField> result = null;
+    if (uuid != null)
+    {
+      result = cachedResultFields.get(uuid);
+    }
+    return (result != null ? result : Collections.emptyList());
+  }
+
+  public synchronized void setCurrentResultFields(String uuid, List<ResultField> resultFields)
+  {
+    Logger.debug("set cached resultfields for uuid {}:{}", uuid, resultFields);
+    if (uuid != null && resultFields != null)
+    {
+      this.cachedResultFields.put(uuid, resultFields);
+    }
+  }
+
+  /**
+   * removes all commands which expires 5 minutes
+   */
+  public void removeExpiredCommands()
+  {
+    final Iterator<ExpiringCommand> each = expiringCommands.iterator();
+    while (each.hasNext())
+    {
+      ExpiringCommand cmd = each.next();
+      if (ChronoUnit.MINUTES.between(cmd.getCommandTime(), LocalDateTime.now()) > 5)
+      {
+        Logger.info("remove expired command {}", cmd);
+        each.remove();
+      }
+    }
+  }
+
+  public List<ExpiringCommand> getExpiringCommandsForUuid(String uuid)
+  {
+    removeExpiredCommands();
+    List<ExpiringCommand> list = new ArrayList<>();
+    for (ExpiringCommand cmd : this.expiringCommands)
+    {
+      if (cmd.getUuid().equals(uuid))
+      {
+        list.add(cmd);
+      }
+    }
+    return list;
+  }
+
+  public void addExpiringCommand(ExpiringCommand expiringCommand)
+  {
+    expiringCommands.add(expiringCommand);
+  }
+
+  public void removeExpiringCommand(ExpiringCommand expiringCommand)
+  {
+    expiringCommands.remove(expiringCommand);
   }
 
 }

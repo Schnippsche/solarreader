@@ -1,9 +1,6 @@
 import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.StandardValues;
-import de.schnippsche.solarreader.backend.fields.DeviceField;
-import de.schnippsche.solarreader.backend.fields.FieldType;
-import de.schnippsche.solarreader.backend.fields.TableField;
-import de.schnippsche.solarreader.backend.fields.TableFieldType;
+import de.schnippsche.solarreader.backend.fields.*;
 import de.schnippsche.solarreader.backend.utils.JsonTools;
 import de.schnippsche.solarreader.backend.utils.Specification;
 import org.junit.jupiter.api.Assertions;
@@ -19,6 +16,7 @@ import java.util.stream.Collectors;
 
 public class SolarreaderTest
 {
+
   @Test void testSpecifications()
   {
     Pattern pattern = Pattern.compile("[a-zA-z]+[\\w]+");
@@ -157,6 +155,81 @@ public class SolarreaderTest
                 {
                   System.out.println(
                     "Warning:Table Field Variable does not exist in device fields in resource " + resource + ":"
+                    + variable);
+                }
+              }
+            }
+          }
+        }
+
+        for (MqttField mqttField : specification.getMqttFields())
+        {
+          Set<MqttField> mitems = new HashSet<>();
+          Set<MqttField> mduplikate = specification.getMqttFields().stream()
+                                                   .filter(n -> !mitems.add(n)) // Set.add() returns false if the element was already in the set.
+                                                   .collect(Collectors.toSet());
+          if (!duplikate.isEmpty())
+          {
+
+            for (MqttField field : mduplikate)
+            {
+              System.err.println("duplicate tablefield in resource " + resource + ":" + field);
+            }
+
+            result = false;
+          }
+        }
+        for (MqttField mqttField1 : specification.getMqttFields())
+        {
+
+          // is table field in device field ( only if devicelist is not empty! )
+          if (!deviceFields.isEmpty())
+          {
+            if (mqttField1.getSourcetype() == TableFieldType.RESULTFIELD)
+            {
+              String resultfieldname = mqttField1.getSourcevalue();
+              long count = deviceFields.stream().filter(df -> df.getName().equals(mqttField1.getSourcevalue())).count();
+              if (count == 0)
+              {
+                System.out.println(
+                  "Warning:Mqtt Field ist not in devicefield declarations in resource " + resource + ":"
+                  + mqttField1.getSourcevalue());
+              }
+            }
+            if (mqttField1.getSourcetype() == TableFieldType.STANDARDFIELD)
+            {
+              if (standardValues.getValue(mqttField1.getSourcevalue()) == null)
+              {
+
+                System.err.println(
+                  "Error:Mqtt Field does not exist in standard values " + resource + ":" + mqttField1.getSourcevalue());
+                result = false;
+              }
+            }
+            if (mqttField1.getSourcetype() == TableFieldType.CALCULATED)
+            {
+              String source = mqttField1.getSourcevalue();
+              Matcher m = pattern.matcher(source);
+              while (m.find())
+              {
+                String variable = m.group();
+                int idx = variable.indexOf("_UBYTE");
+                if (idx > 0)
+                {
+                  variable = variable.substring(0, idx);
+                }
+                idx = variable.indexOf("_IBYTE");
+                if (idx > 0)
+                {
+                  variable = variable.substring(0, idx);
+                }
+                //
+                String finalVariable = variable;
+                long count = deviceFields.stream().filter(df -> df.getName().equals(finalVariable)).count();
+                if (count == 0)
+                {
+                  System.out.println(
+                    "Warning:Mqtt Field Variable does not exist in device fields in resource " + resource + ":"
                     + variable);
                 }
               }

@@ -16,10 +16,9 @@ public class NetworkConnection
 {
   // These are the default values
   public static final MediaType MEDIA_TYPE_STRING = MediaType.parse("text/plain");
-  public static final OkHttpClient HTTPCLIENT = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
-                                                                          .writeTimeout(6, TimeUnit.SECONDS)
-                                                                          .readTimeout(4, TimeUnit.SECONDS)
-                                                                          .build();
+  public static final OkHttpClient HTTPCLIENT =
+    new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).writeTimeout(6, TimeUnit.SECONDS)
+                              .readTimeout(4, TimeUnit.SECONDS).build();
   private String user;
   private String password;
 
@@ -150,8 +149,10 @@ public class NetworkConnection
 
   public Pair testUrl(String testUrl)
   {
-    Logger.debug("test url {}", testUrl);
-    Request request = new Request.Builder().url(testUrl).build();
+    Logger.debug("call url {}", testUrl);
+    Request.Builder requestBuilder = new Request.Builder().url(testUrl).addHeader("User-Agent", "Solarreader");
+    doAuthorization(requestBuilder);
+    Request request = requestBuilder.build();
     try (Response response = NetworkConnection.HTTPCLIENT.newCall(request).execute())
     {
       Logger.debug("url test gets response code {} and message {}", response.code(), response.message());

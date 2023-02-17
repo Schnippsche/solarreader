@@ -25,11 +25,13 @@ public class ModbusWrapper
   private final int unitId;
   private final String infoText;
   private final NumericHelper numericHelper;
+  private int sleepMs;
 
   public ModbusWrapper(ConfigDevice configDevice)
   {
     unitId = configDevice.getIntParamOrDefault(ConfigDeviceField.DEVICE_ADDRESS, 1);
     numericHelper = new NumericHelper();
+    sleepMs = 0;
     if (configDevice.isParamEnabled(ConfigDeviceField.HF2211_ENABLED))
     {
       String ip = configDevice.getParamOrDefault(ConfigDeviceField.HF2211_IP, "127.0.0.1");
@@ -58,7 +60,12 @@ public class ModbusWrapper
     }
   }
 
-  private SerialParameters createParameter(ConfigDevice configDevice)
+  public void setSleepMilliseconds(int sleepMilliseconds)
+  {
+    this.sleepMs = sleepMilliseconds;
+  }
+
+  public SerialParameters createParameter(ConfigDevice configDevice)
   {
     SerialParameters serialParameters = new SerialParameters();
     serialParameters.setBaudRate(configDevice.getIntParamOrDefault(ConfigDeviceField.BAUDRATE, 9600));
@@ -131,7 +138,7 @@ public class ModbusWrapper
     return new ResultField(deviceField, ResultFieldStatus.READERROR, null);
   }
 
-  public List<ResultField> readFieldBlocks(List<DeviceFieldBlock> deviceFieldBlockList)
+  public List<ResultField> readFieldBlocks(List<DeviceFieldBlock> deviceFieldBlockList) throws ModbusException
   {
     List<ResultField> resultFields = new ArrayList<>();
     for (DeviceFieldBlock deviceFieldBlock : deviceFieldBlockList)
@@ -141,23 +148,17 @@ public class ModbusWrapper
     return resultFields;
   }
 
-  public List<ResultField> readDeviceFieldBlock(DeviceFieldBlock deviceFieldBlock)
+  public List<ResultField> readDeviceFieldBlock(DeviceFieldBlock deviceFieldBlock) throws ModbusException
   {
-    List<ResultField> resultFields = new ArrayList<>();
     Logger.debug(" readDeviceFieldBlock with {} devicefields", deviceFieldBlock.getOriginalDeviceFields().size());
-    try
+    InputRegister[] register = readRegister(deviceFieldBlock.getBlockDeviceField());
+    if (register == null || register.length == 0)
     {
-      InputRegister[] register = readRegister(deviceFieldBlock.getBlockDeviceField());
-      if (register == null || register.length == 0)
-      {
-        throw new ModbusIOException("registerblock is empty");
-      }
-      resultFields = deviceFieldBlock.convertToResultFields(register, numericHelper);
-    } catch (Exception e)
-    {
-      Logger.error("Can't read device fieldblock : {}", e.getMessage());
+      throw new ModbusException("registerblock is empty");
     }
+    List<ResultField> resultFields = deviceFieldBlock.convertToResultFields(register, numericHelper);
     Logger.debug("end of readDevicefieldBlock with {} resultfields", resultFields.size());
+
     return resultFields;
   }
 
@@ -242,6 +243,24 @@ public class ModbusWrapper
     return resultFields;
   }
 
+  public boolean checkConnection()
+  {
+    if (modbusMaster == null)
+    {
+      return false;
+    }
+    try
+    {
+      modbusMaster.connect();
+      modbusMaster.disconnect();
+      return true;
+    } catch (Exception e)
+    {
+      Logger.error("can't connect to {}", getInfoText());
+    }
+    return false;
+  }
+
   /**
    * convert an array of InputRegister into a string and trims all whitespaces und zero chars
    *
@@ -292,7 +311,8 @@ public class ModbusWrapper
 
   public InputRegister[] readRegister(int functionCode, int offset, int count) throws ModbusException
   {
-    Logger.debug("read Register, Funktion code {}, offset {}, count {}", functionCode, offset, count);
+    numericHelper.sleep(sleepMs);
+    Logger.debug("read register, function code {}, offset {}, count {}", functionCode, offset, count);
     if (functionCode == 3)
     {
       return modbusMaster.readMultipleRegisters(unitId, offset, count);

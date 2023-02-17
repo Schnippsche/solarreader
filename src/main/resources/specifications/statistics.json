@@ -142,5 +142,12 @@
       "sourcetype": "STANDARDFIELD",
       "sourcevalue": "CURRENTTIMESTAMP{SECONDS}"
     }
+  ],
+  "mqttFields":[
+    {
+      "name": "WattPerDay",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "wattperday"
+    }
   ]
 }

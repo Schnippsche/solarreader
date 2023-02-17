@@ -11,6 +11,8 @@ import java.util.HashMap;
 
 public class Powmr extends SimpleUsbQmod
 {
+  private static final String[] statusNames =
+    {"Keine Sonne", "Wechselrichterfehler", "BUS Überspannung", "BUS Unterspannung", "BUS Fehler", "Netzfehler", "OPVShort", "WR-Spannung zu niedrig", "WR-Spannung zu hoch", "Temperatur zu hoch", "Lüfter blockiert", "Batteriespannung zu hoch", "Batteriespannung zu niedrig", "unbekannt", "Battery under shutdown", "Batterie derating", "Over load", "EEPROM Fehler", "Inverter over current", "Wechselrichter Fehler", "Testfehler", "OP DC Voltage Over", "Batterie nicht angeschlossen", "Stromsensor Fehler", "Batterie Kurzschluss", "Power Limit", "PV Strom 1 zu hoch", "Mppt 1 überlastet Fehler", "MPPT1 überlastet Warnung", "Batterie 1 zu schwach zum Laden", "PV Strom 2 zu hoch", "Mppt 2 überlastet Fehler", "MPPT2 überlastet Warnung", "Batterie 2 zu schwach zum Laden", "PV Strom 3 zu hoch", "Mppt 3 überlastet Fehler", "MPPT3 überlastet Warnung", "Batterie 3 zu schwach zum Laden"};
   private final HashMap<String, Integer> modeMap;
   private final HashMap<Integer, String> statusMap;
 
@@ -34,44 +36,10 @@ public class Powmr extends SimpleUsbQmod
     modeMap.put("O", 12); // Standby + Charging Mode
     // Warnings
     statusMap = new HashMap<>();
-    statusMap.put(0, "Keine Sonne");
-    statusMap.put(1, "Wechselrichterfehler");
-    statusMap.put(2, "BUS Überspannung");
-    statusMap.put(3, "BUS Unterspannung");
-    statusMap.put(4, "BUS Fehler");
-    statusMap.put(5, "Netzfehler");
-    statusMap.put(6, "OPVShort");
-    statusMap.put(7, "WR-Spannung zu niedrig");
-    statusMap.put(8, "WR-Spannung zu hoch");
-    statusMap.put(9, "Temperatur zu hoch");
-    statusMap.put(10, "Lüfter blockiert");
-    statusMap.put(11, "Batteriespannung zu hoch");
-    statusMap.put(12, "Batteriespannung zu niedrig");
-    statusMap.put(13, "unbekannt");
-    statusMap.put(14, "Battery under shutdown");
-    statusMap.put(15, "Batterie derating");
-    statusMap.put(16, "Over load");
-    statusMap.put(17, "EEPROM Fehler");
-    statusMap.put(18, "Inverter over current");
-    statusMap.put(19, "Wechselrichter Fehler");
-    statusMap.put(20, "Testfehler");
-    statusMap.put(21, "OP DC Voltage Over");
-    statusMap.put(22, "Batterie nicht angeschlossen");
-    statusMap.put(23, "Stromsensor Fehler");
-    statusMap.put(24, "Batterie Kurzschluss");
-    statusMap.put(25, "Power Limit");
-    statusMap.put(26, "PV Strom 1 zu hoch");
-    statusMap.put(27, "Mppt 1 überlastet Fehler");
-    statusMap.put(28, "MPPT1 überlastet Warnung");
-    statusMap.put(29, "Batterie 1 zu schwach zum Laden");
-    statusMap.put(30, "PV Strom 2 zu hoch");
-    statusMap.put(31, "Mppt 2 überlastet Fehler");
-    statusMap.put(32, "MPPT2 überlastet Warnung");
-    statusMap.put(33, "Batterie 2 zu schwach zum Laden");
-    statusMap.put(34, "PV Strom 3 zu hoch");
-    statusMap.put(35, "Mppt 3 überlastet Fehler");
-    statusMap.put(36, "MPPT3 überlastet Warnung");
-    statusMap.put(37, "Batterie 3 zu schwach zum Laden");
+    for (int i = 0; i < statusNames.length; i++)
+    {
+      statusMap.put(i, statusNames[i]);
+    }
   }
 
   @Override protected void correctValues()
@@ -109,7 +77,6 @@ public class Powmr extends SimpleUsbQmod
     }
     resultFields.add(new ResultField("Fehlercode", ResultFieldStatus.VALID, FieldType.NUMBER, errorCode));
     resultFields.add(new ResultField("Fehlermeldung", ResultFieldStatus.VALID, FieldType.STRING, errorText));
-
   }
 
 }

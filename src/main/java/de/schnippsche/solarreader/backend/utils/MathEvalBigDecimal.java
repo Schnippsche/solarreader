@@ -14,7 +14,6 @@
 package de.schnippsche.solarreader.backend.utils;
 
 import de.schnippsche.solarreader.backend.configuration.Config;
-import de.schnippsche.solarreader.backend.fields.FieldType;
 import de.schnippsche.solarreader.backend.fields.ResultField;
 import de.schnippsche.solarreader.backend.fields.TableFieldType;
 import org.tinylog.Logger;
@@ -132,7 +131,8 @@ public class MathEvalBigDecimal
    */
   public static final FunctionHandler DFT_FUNCTION_HANDLER = DefaultImpl.INSTANCE;
 
-  private static final Operator OPERAND = new Operator('\0', 0, 0, NO_SIDE, false, null); // special "non-operator" representing an operand character
+  private static final Operator OPERAND = new Operator('\0', 0, 0, NO_SIDE, false, null);
+  // special "non-operator" representing an operand character
   private final SortedMap<String, BigDecimal> constants; // external constants
   private final SortedMap<String, BigDecimal> variables; // external variables
   private final SortedMap<String, FunctionHandler> pureFunctions; // external pureFunctions
@@ -193,21 +193,16 @@ public class MathEvalBigDecimal
     super();
 
     operators = oth.operators;
-
     constants = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     constants.putAll(oth.constants);
-
     variables = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     variables.putAll(oth.variables);
-
     pureFunctions = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     impureFunctions = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     pureFunctions.putAll(oth.pureFunctions);
     impureFunctions.putAll(oth.impureFunctions);
-
     relaxed = oth.relaxed;
     separators = oth.separators;
-
     offset = 0;
     isConstant = false;
   }
@@ -221,6 +216,7 @@ public class MathEvalBigDecimal
   public void setResultFieldsAsVariables(List<ResultField> resultFields)
   {
     clear();
+    NumericHelper numericHelper = new NumericHelper();
     if (resultFields == null || resultFields.isEmpty())
     {
       return;
@@ -228,21 +224,29 @@ public class MathEvalBigDecimal
     // fill all numeric result fields in math lib as variables
     for (ResultField resultField : resultFields)
     {
-      if (resultField.getType() == FieldType.NUMBER)
+      switch (resultField.getType())
       {
-        setVariable(resultField.getName(), resultField.getNumericValue());
-      } else if (resultField.getType() == FieldType.BINARY)
-      {
-        byte[] bytes = resultField.getBinaryValue();
-        if (bytes != null)
-        {
-          String variableName = resultField.getName() + "_";
-          for (int i = 0; i < bytes.length; i++)
+        case NUMBER:
+          setVariable(resultField.getName(), resultField.getNumericValue());
+          break;
+        case STRING:
+          if (numericHelper.isNumericValue(resultField.getValue()))
           {
-            setVariable(variableName + "IBYTE" + i, BigDecimal.valueOf(bytes[i]));
-            setVariable(variableName + "UBYTE" + i, BigDecimal.valueOf(0xFF & bytes[i]));
+            setVariable(resultField.getName(), numericHelper.getBigDecimal(String.valueOf(resultField.getValue())));
           }
-        }
+          break;
+        case BINARY:
+          byte[] bytes = resultField.getBinaryValue();
+          if (bytes != null)
+          {
+            String variableName = resultField.getName() + "_";
+            for (int i = 0; i < bytes.length; i++)
+            {
+              setVariable(variableName + "IBYTE" + i, BigDecimal.valueOf(bytes[i]));
+              setVariable(variableName + "UBYTE" + i, BigDecimal.valueOf(0xFF & bytes[i]));
+            }
+          }
+          break;
       }
     }
   }
@@ -294,6 +298,7 @@ public class MathEvalBigDecimal
 
     return (val == null ? BigDecimal.ZERO : val);
   }
+
   /**
    * Gets an unmodifiable iterable of the constants in this evaluator.
    */
@@ -301,6 +306,7 @@ public class MathEvalBigDecimal
   {
     return Collections.unmodifiableMap(constants).entrySet();
   }
+
   /**
    * Set a named constant (constants names are not case-sensitive). Constants are like variables but
    * are not cleared by clear(). Variables of the same name have precedence over constants.
@@ -309,6 +315,7 @@ public class MathEvalBigDecimal
   {
     return setConstant(nam, new BigDecimal(val));
   }
+
   /**
    * Set a named constant (constants names are not case-sensitive). Constants are like variables but
    * are not cleared by clear(). Variables of the same name have precedence over constants.
@@ -319,10 +326,13 @@ public class MathEvalBigDecimal
     {
       throw new IllegalArgumentException("Constants may not be redefined");
     }
-    validateName(nam);
-    constants.put(nam, val);
+    if (validateName(nam))
+    {
+      constants.put(nam, val);
+    }
     return this;
   }
+
   /**
    * Set a custom operator, replacing any existing operator with the same symbol. Operators cannot
    * be removed, only replaced.
@@ -338,6 +348,7 @@ public class MathEvalBigDecimal
     operators[opr.symbol] = opr;
     return this;
   }
+
   /**
    * Set a pure function handler for the specific named function, replacing any existing handler for
    * the given name; if the handler is null the function handler is removed.
@@ -349,6 +360,7 @@ public class MathEvalBigDecimal
   {
     return setFunctionHandler(nam, hdl, false);
   }
+
   /**
    * Set a function handler for the specific named function optionally tagging the function as
    * impure, replacing any existing handler for the given name; if the handler is null the function
@@ -359,22 +371,25 @@ public class MathEvalBigDecimal
    */
   public MathEvalBigDecimal setFunctionHandler(String nam, FunctionHandler hdl, boolean impure)
   {
-    validateName(nam);
-    if (hdl == null)
+    if (validateName(nam))
     {
-      pureFunctions.remove(nam);
-      impureFunctions.remove(nam);
-    } else if (impure)
-    {
-      pureFunctions.remove(nam);
-      impureFunctions.put(nam, hdl);
-    } else
-    {
-      pureFunctions.put(nam, hdl);
-      impureFunctions.remove(nam);
+      if (hdl == null)
+      {
+        pureFunctions.remove(nam);
+        impureFunctions.remove(nam);
+      } else if (impure)
+      {
+        pureFunctions.remove(nam);
+        impureFunctions.put(nam, hdl);
+      } else
+      {
+        pureFunctions.put(nam, hdl);
+        impureFunctions.remove(nam);
+      }
     }
     return this;
   }
+
   /**
    * Set a named variable (variables names are not case-sensitive).
    */
@@ -384,6 +399,7 @@ public class MathEvalBigDecimal
 
     return (val == null ? BigDecimal.ZERO : val);
   }
+
   /**
    * Gets an unmodifiable iterable of the variables in this evaluator.
    */
@@ -391,6 +407,7 @@ public class MathEvalBigDecimal
   {
     return Collections.unmodifiableMap(variables).entrySet();
   }
+
   /**
    * Set a named variable (variables names are not case-sensitive).
    */
@@ -402,22 +419,26 @@ public class MathEvalBigDecimal
   // *************************************************************************************************
   // INSTANCE METHODS - PUBLIC API
   // *************************************************************************************************
+
   /**
    * Set a named variable (variables names are not case-sensitive). If the value is null, the
    * variable is removed.
    */
   public MathEvalBigDecimal setVariable(String nam, BigDecimal val)
   {
-    validateName(nam);
-    if (val == null)
+    if (validateName(nam))
     {
-      variables.remove(nam);
-    } else
-    {
-      variables.put(nam, val);
+      if (val == null)
+      {
+        variables.remove(nam);
+      } else
+      {
+        variables.put(nam, val);
+      }
     }
     return this;
   }
+
   /**
    * Clear all variables (constants are not affected).
    */
@@ -426,6 +447,7 @@ public class MathEvalBigDecimal
     variables.clear();
     return this;
   }
+
   /**
    * Clear all variables prefixed by the supplied string followed by a dot, such that they match
    * "Prefix.xxx".
@@ -439,6 +461,7 @@ public class MathEvalBigDecimal
   // *************************************************************************************************
   // INSTANCE METHODS - PRIVATE IMPLEMENTATION
   // *************************************************************************************************
+
   /**
    * Get whether a variable which is used in an expression is required to be explicitly set. If not
    * explicitly set, the value 0.0 is assumed.
@@ -447,6 +470,7 @@ public class MathEvalBigDecimal
   {
     return relaxed;
   }
+
   /**
    * Set whether a variable which is used in an expression is required to be explicitly set. If not
    * explicitly set, the value 0.0 is assumed.
@@ -457,17 +481,23 @@ public class MathEvalBigDecimal
     return this;
   }
 
-  private void validateName(String nam)
+  private boolean validateName(String nam)
   {
     if (!Character.isLetter(nam.charAt(0)))
     {
-      throw new IllegalArgumentException("Names for constants, variables and functions must start with a letter");
+      //throw new IllegalArgumentException("Names for constants, variables and functions must start with a letter");
+      Logger.debug("ignore variable name '{}', must start with a letter", nam);
+      return false;
     }
     if (nam.indexOf('(') != -1 || nam.indexOf(')') != -1)
     {
-      throw new IllegalArgumentException("Names for constants, variables and functions may not contain a parenthesis");
+      Logger.debug("ignore variable name '{}', Names for constants, variables and functions may not contain a parenthesis", nam);
+      //throw new IllegalArgumentException("Names for constants, variables and functions may not contain a parenthesis");
+      return false;
     }
+    return true;
   }
+
   /**
    * Evaluate this expression.
    */
@@ -478,6 +508,7 @@ public class MathEvalBigDecimal
     offset = 0;
     return _evaluate(0, (exp.length() - 1));
   }
+
   /**
    * Return whether the previous expression evaluated was constant (i.e. contained no variables).
    * This is useful when optimizing to store the result instead of repeatedly evaluating a constant
@@ -487,6 +518,7 @@ public class MathEvalBigDecimal
   {
     return isConstant;
   }
+
   /**
    * Return a set of the variables in the supplied expression. Note: Substitutions which are in the
    * constant table are not included.
@@ -531,6 +563,7 @@ public class MathEvalBigDecimal
     }
     return all;
   }
+
   /**
    * Evaluate a complete (sub-)expression.
    *
@@ -541,6 +574,7 @@ public class MathEvalBigDecimal
   {
     return _evaluate(beg, end, BigDecimal.ZERO, OPERAND, getOperator('='));
   }
+
   /**
    * Evaluate the next operand of an expression.
    *
@@ -718,7 +752,8 @@ public class MathEvalBigDecimal
       {
         tmp--;
       } // set up for offset of the offending operator
-      throw exception(tmp, "Operator \"" + opr.symbol + "\" not handled by math engine (Programmer error: The list of operators is inconsistent within the engine)");
+      throw exception(tmp, "Operator \"" + opr.symbol
+                           + "\" not handled by math engine (Programmer error: The list of operators is inconsistent within the engine)");
     }
   }
 
@@ -821,7 +856,8 @@ public class MathEvalBigDecimal
   // *************************************************************************************************
   private ArithmeticException exception(int ofs, String txt, Throwable thr)
   {
-    return new ArithmeticException(txt + " at offset " + ofs + " in expression \"" + expression + "\"" + " (Cause: " + (thr.getMessage() != null ? thr.getMessage() : thr.toString()) + ")");
+    return new ArithmeticException(txt + " at offset " + ofs + " in expression \"" + expression + "\"" + " (Cause: " + (
+      thr.getMessage() != null ? thr.getMessage() : thr.toString()) + ")");
   }
 
   // *************************************************************************************************
@@ -930,18 +966,27 @@ public class MathEvalBigDecimal
   static class DefaultImpl implements OperatorHandler, FunctionHandler
   {
     static final DefaultImpl INSTANCE = new DefaultImpl();
-    private static final Operator OPR_EQU = new Operator('=', 99, 99, RIGHT_SIDE, true, DefaultImpl.INSTANCE); // simple assignment, used as the final operation, must be maximum
+    private static final Operator OPR_EQU = new Operator('=', 99, 99, RIGHT_SIDE, true, DefaultImpl.INSTANCE);
+    // simple assignment, used as the final operation, must be maximum
     // precedence
     private static final Operator OPR_PWR = new Operator('^', 80, 81, NO_SIDE, false, DefaultImpl.INSTANCE); // power
-    private static final Operator OPR_AND = new Operator('&', 80, 81, NO_SIDE, false, DefaultImpl.INSTANCE); // bitwise and
-    private static final Operator OPR_OR = new Operator('|', 80, 81, NO_SIDE, false, DefaultImpl.INSTANCE); // bitwise or
-    private static final Operator OPR_NEG = new Operator('±', 60, 60, RIGHT_SIDE, true, DefaultImpl.INSTANCE); // unary negation
+    private static final Operator OPR_AND = new Operator('&', 80, 81, NO_SIDE, false, DefaultImpl.INSTANCE);
+    // bitwise and
+    private static final Operator OPR_OR = new Operator('|', 80, 81, NO_SIDE, false, DefaultImpl.INSTANCE);
+    // bitwise or
+    private static final Operator OPR_NEG = new Operator('±', 60, 60, RIGHT_SIDE, true, DefaultImpl.INSTANCE);
+    // unary negation
     private static final Operator OPR_MLT1 = new Operator('*', 40, DefaultImpl.INSTANCE); // multiply (classical)
-    private static final Operator OPR_MLT2 = new Operator('×', 40, DefaultImpl.INSTANCE); // multiply (because it's a Unicode world out there)
-    private static final Operator OPR_MLT3 = new Operator('·', 40, DefaultImpl.INSTANCE); // multiply (because it's a Unicode world out there)
-    private static final Operator OPR_BKT = new Operator('(', 40, DefaultImpl.INSTANCE); // multiply (implicit due to brackets, e.g "(a)(b)")
-    private static final Operator OPR_DIV1 = new Operator('/', 40, DefaultImpl.INSTANCE); // divide (classical computing)
-    private static final Operator OPR_DIV2 = new Operator('÷', 40, DefaultImpl.INSTANCE); // divide (because it's a Unicode world out there)
+    private static final Operator OPR_MLT2 = new Operator('×', 40, DefaultImpl.INSTANCE);
+    // multiply (because it's a Unicode world out there)
+    private static final Operator OPR_MLT3 = new Operator('·', 40, DefaultImpl.INSTANCE);
+    // multiply (because it's a Unicode world out there)
+    private static final Operator OPR_BKT = new Operator('(', 40, DefaultImpl.INSTANCE);
+    // multiply (implicit due to brackets, e.g "(a)(b)")
+    private static final Operator OPR_DIV1 = new Operator('/', 40, DefaultImpl.INSTANCE);
+    // divide (classical computing)
+    private static final Operator OPR_DIV2 = new Operator('÷', 40, DefaultImpl.INSTANCE);
+    // divide (because it's a Unicode world out there)
     private static final Operator OPR_MOD = new Operator('%', 40, DefaultImpl.INSTANCE); // remainder
     private static final Operator OPR_ADD = new Operator('+', 20, DefaultImpl.INSTANCE); // add/unary-positive
     private static final Operator OPR_SUB = new Operator('-', 20, DefaultImpl.INSTANCE); // subtract/unary-negative
@@ -949,6 +994,7 @@ public class MathEvalBigDecimal
     private DefaultImpl()
     {
     }
+
     // To add/remove operators change evaluateOperator() and registration
     static void registerOperators(MathEvalBigDecimal tgt)
     {
@@ -967,6 +1013,7 @@ public class MathEvalBigDecimal
       tgt.setOperator(OPR_ADD);
       tgt.setOperator(OPR_SUB);
     }
+
     // To add/remove functions change evaluateOperator() and registration
     static void registerFunctions(MathEvalBigDecimal tgt)
     {
@@ -1001,6 +1048,7 @@ public class MathEvalBigDecimal
       tgt.setFunctionHandler("toRadians", INSTANCE);
       tgt.setFunctionHandler("ulp", INSTANCE);
     }
+
     // To add/remove operators change evaluateOperator() and registration
     public BigDecimal evaluateOperator(BigDecimal lft, char opr, BigDecimal rgt)
     {
@@ -1031,9 +1079,11 @@ public class MathEvalBigDecimal
         case '-':
           return lft.subtract(rgt); // subtract/unary-negative
         default:
-          throw new UnsupportedOperationException("MathEval internal operator setup is incorrect - internal operator \"" + opr + "\" not handled");
+          throw new UnsupportedOperationException(
+            "MathEval internal operator setup is incorrect - internal operator \"" + opr + "\" not handled");
       }
     }
+
     // To add/remove functions change evaluateOperator() and registration
     public BigDecimal evaluateFunction(String fncnam, ArgParser fncargs) throws ArithmeticException
     {
@@ -1209,7 +1259,8 @@ public class MathEvalBigDecimal
         break;
         // no default
       }
-      throw new UnsupportedOperationException("MathEval internal function setup is incorrect - internal function \"" + fncnam + "\" not handled");
+      throw new UnsupportedOperationException(
+        "MathEval internal function setup is incorrect - internal function \"" + fncnam + "\" not handled");
     }
 
   }

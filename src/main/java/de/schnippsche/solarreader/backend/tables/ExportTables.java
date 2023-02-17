@@ -22,12 +22,12 @@ public class ExportTables
     final List<Table> resultTables = new ArrayList<>();
     if (resultFields == null)
     {
-      Logger.warn("no valid result fields!");
+      Logger.debug("no valid result fields!");
       return resultTables;
     }
     if (tableFields == null || tableFields.isEmpty())
     {
-      Logger.warn("empty table fields, skip converting...");
+      Logger.debug("empty table fields, skip converting...");
       return resultTables;
     }
     mathEval.setResultFieldsAsVariables(resultFields);
@@ -41,7 +41,6 @@ public class ExportTables
     for (Map.Entry<String, Set<TableField>> entry : newTableMap.entrySet())
     {
       Table table = new Table(entry.getKey());
-      resultTables.add(table);
       TableRow tableRow = new TableRow();
       // create TableColumn from field and value
       for (TableField tableField : entry.getValue())
@@ -53,11 +52,12 @@ public class ExportTables
           tableRow.putColumn(tableColumn);
         } else
         {
-          Logger.warn("field '{}' with type '{}' is null or invalid!", tableField.getSourcevalue(), tableField.getSourcetype());
+          Logger.debug("field '{}' with type '{}' is null or invalid!", tableField.getSourcevalue(), tableField.getSourcetype());
         }
       }
       if (!tableRow.getColumns().isEmpty())
       {
+        resultTables.add(table);
         table.addTableRow(tableRow);
       }
     }

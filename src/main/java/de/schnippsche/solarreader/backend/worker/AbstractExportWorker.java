@@ -14,7 +14,7 @@ import de.schnippsche.solarreader.backend.utils.DateTimeHelper;
 import de.schnippsche.solarreader.backend.utils.JsonTools;
 import org.tinylog.Logger;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public abstract class AbstractExportWorker implements Runnable
 
   protected AbstractExportWorker(Activity activity)
   {
-    Logger.info("ExportWorker created with Activity {}", activity);
+    Logger.debug("ExportWorker created with Activity {}", activity);
     this.jsonTool = new JsonTools();
     this.dateTimeHelper = new DateTimeHelper();
     this.exporterList = new ArrayList<>();
@@ -40,7 +40,7 @@ public abstract class AbstractExportWorker implements Runnable
     this.exporterList.add(exporter);
   }
 
-  protected synchronized void addDatabaseExporter(ConfigExport configExport, List<Table> tables)
+  protected synchronized void addDatabaseExporter(ConfigExport configExport, List<Table> tables, long startTimestamp)
   {
     if (configExport.getDatabaseList() != null && tables != null)
     {
@@ -48,7 +48,7 @@ public abstract class AbstractExportWorker implements Runnable
       {
         if (database.isEnabled())
         {
-          addExporter(new InfluxExporter(database, tables));
+          addExporter(new InfluxExporter(database, tables, startTimestamp));
         }
       }
     }
@@ -62,7 +62,7 @@ public abstract class AbstractExportWorker implements Runnable
       {
         if (configMqtt.isEnabled())
         {
-          addExporter(new MqttExporter(configMqtt, resultFields, mqttFields));
+          addExporter(new MqttExporter(configMqtt, resultFields, mqttFields, configExport.getMqttTopic().trim()));
         }
       }
     }
@@ -80,7 +80,7 @@ public abstract class AbstractExportWorker implements Runnable
   {
     List<Table> tables = new ArrayList<>();
     tables.add(table);
-    addDatabaseExporter(configExport, tables);
+    addDatabaseExporter(configExport, tables, System.currentTimeMillis());
     addMqttExporter(configExport, resultFields, mqttFields);
     exportAll();
   }
@@ -93,9 +93,10 @@ public abstract class AbstractExportWorker implements Runnable
   @Override public void run()
   {
     exporterList.clear();
-    if (activity.mustExecute(LocalTime.now()))
+    if (activity.mustExecute(LocalDateTime.now()))
     {
       activity.setActive(true);
+      activity.setLastCall();
       try
       {
         doWork();
@@ -104,7 +105,6 @@ public abstract class AbstractExportWorker implements Runnable
         // catch all exceptions to prevent aborting the main thread
         Logger.error(e);
       }
-      activity.setActive(false);
       activity.finish();
     } else
     {

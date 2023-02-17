@@ -24,5 +24,6 @@ public enum FieldType
   DOUBLE_LITTLE_ENDIAN, // Float 64 IEEE754 Little Endian
   SCALEFACTOR_BIG_ENDIAN, // like I16_BIG_ENDIAN but automatically calculated from 10 ^ value,
   U64_BIG_ENDIAN, // Unsigned 64 bit, MSB 0, LSB = 7 BIG ENDIAN 1 2 3 4 5 6 7 8
-  I64_BIG_ENDIAN // Signed 64 bit, MSB 0, LSB = 7 BIG ENDIAN 1 2 3 4 5 6 7 8
+  I64_BIG_ENDIAN,  // Signed 64 bit, MSB 0, LSB = 7 BIG ENDIAN 1 2 3 4 5 6 7 8
+  U32_BIG_ENDIAN_LOW_HIGH // two U16 Big Endian, first is Low, second is high 3 4 2 1
 }

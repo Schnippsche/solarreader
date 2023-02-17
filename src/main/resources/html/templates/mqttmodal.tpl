@@ -22,10 +22,10 @@
             <div class="col-md-6">
               <div class="form-floating has-validation has-feedback">
                 <input type="text" class="form-control" id="id_mqttname" name="mqttname" value="[mqttname]"
-                       placeholder="{mqttsetup.name.text}" required
+                       placeholder="{mqttsetup.maintopic.text}" required
                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                       title="{mqttsetup.name.tooltip}"/>
-                <label for="id_mqttname">{mqttsetup.name.text}</label>
+                       title="{mqttsetup.maintopic.tooltip}"/>
+                <label for="id_mqttname">{mqttsetup.maintopic.text}</label>
                 <div class="invalid-feedback">{field.required.value}</div>
               </div>
             </div>
@@ -119,7 +119,8 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{button.abort}</button>
           <button type="submit" class="btn btn-primary">
             <span id="loader" class="spinner-border spinner-border-sm d-none"></span>
-            {button.save}</button>
+            {button.save}
+          </button>
         </div>
       </div>
     </div>

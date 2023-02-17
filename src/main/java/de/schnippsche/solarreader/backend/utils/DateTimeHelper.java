@@ -9,8 +9,8 @@ public class DateTimeHelper
 {
   public String convertTimestamp(long timestampSeconds, String format)
   {
-    LocalDateTime ldt = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestampSeconds), TimeZone.getDefault()
-                                                                                                 .toZoneId());
+    LocalDateTime ldt =
+      LocalDateTime.ofInstant(Instant.ofEpochSecond(timestampSeconds), TimeZone.getDefault().toZoneId());
     return ldt.format(DateTimeFormatter.ofPattern(format));
   }
 

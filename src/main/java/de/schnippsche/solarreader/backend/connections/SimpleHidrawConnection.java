@@ -1,4 +1,5 @@
 package de.schnippsche.solarreader.backend.connections;
+
 import de.schnippsche.solarreader.backend.configuration.ConfigDevice;
 import de.schnippsche.solarreader.backend.configuration.ConfigDeviceField;
 import de.schnippsche.solarreader.backend.utils.Pair;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class SimpleHidrawConnection implements Connection<String, QCommand>
 {
@@ -152,10 +152,15 @@ public class SimpleHidrawConnection implements Connection<String, QCommand>
     final int productId = configDevice.getIntParamOrDefault(ConfigDeviceField.HIDRAW_PRODUCT_ID, 0);
     final String serial = configDevice.getParam(ConfigDeviceField.HIDRAW_SERIAL);
     // iterate over all connected hidraw deices
-    List<HidDevice> candidates =
-      hidServices.getAttachedHidDevices().stream().filter(d -> Objects.equals(d.getProductId(), productId))
-                 .filter(d -> Objects.equals(d.getVendorId(), vendorId))
-                 .filter(d -> Objects.equals(d.getSerialNumber(), serial)).collect(Collectors.toList());
+    List<HidDevice> candidates = new ArrayList<>();
+    for (HidDevice device : hidServices.getAttachedHidDevices())
+    {
+      if (Objects.equals(device.getProductId(), productId) && Objects.equals(device.getVendorId(), vendorId)
+          && Objects.equals(device.getSerialNumber(), serial))
+      {
+        candidates.add(device);
+      }
+    }
     if (candidates.isEmpty())
     {
       Logger.error("device not attached or found, productId={}, vendorId={}, serial={}", productId, vendorId, serial);
@@ -167,10 +172,16 @@ public class SimpleHidrawConnection implements Connection<String, QCommand>
       return candidates.get(0);
     }
     // some devices are not unique, so we need the path too
-    candidates = hidServices.getAttachedHidDevices().stream().filter(d -> Objects.equals(d.getProductId(), productId))
-                            .filter(d -> Objects.equals(d.getVendorId(), vendorId))
-                            .filter(d -> Objects.equals(d.getSerialNumber(), serial))
-                            .filter(d -> Objects.equals(d.getPath(), usbPath)).collect(Collectors.toList());
+    List<HidDevice> list = new ArrayList<>();
+    for (HidDevice d : hidServices.getAttachedHidDevices())
+    {
+      if (Objects.equals(d.getProductId(), productId) && Objects.equals(d.getVendorId(), vendorId)
+          && Objects.equals(d.getSerialNumber(), serial) && Objects.equals(d.getPath(), usbPath))
+      {
+        list.add(d);
+      }
+    }
+    candidates = list;
     if (candidates.size() == 1)
     {
       return candidates.get(0);

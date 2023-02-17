@@ -201,7 +201,8 @@
     {
       "uuid": "29d87b4b-2a37-4aa4-8504-1bb97f43cab0",
       "prompts": [
-        "LAN"
+        "LAN",
+        "AUTHENTICATION"
       ],
       "defaults": {
         "DEVICE_PORT": "80"
@@ -209,20 +210,6 @@
       "deviceName": "Tasmota Geräte (z.B. SonOff, Shelly) mit aktivierter HTTP Api",
       "deviceClass": "Tasmota",
       "deviceSpecification": "tasmota"
-    },
-    {
-      "uuid": "9d2de25c-161c-4e5d-bd28-1622007a4bb5",
-      "prompts": [
-        "ADDRESS",
-        "LAN"
-      ],
-      "defaults": {
-        "DEVICE_ADDRESS": "1",
-        "DEVICE_PORT": "502"
-      },
-      "deviceName": "Huawei Wechselrichter mit sDongle [ -M0, -M1, -M2 Modelle]",
-      "deviceClass": "Huawei_M012",
-      "deviceSpecification": "huawei_m012"
     },
     {
       "uuid": "ffcba860-7a94-4819-8a40-3b6edf401f6a",
@@ -335,7 +322,7 @@
         "DEVICE_ADDRESS": "240",
         "DEVICE_PORT": "502"
       },
-      "deviceName": "Fronius Inverter / Smartmeter",
+      "deviceName": "Fronius Inverter / Smartmeter per Modbus",
       "deviceClass": "Fronius",
       "deviceSpecification": "fronius"
     },
@@ -361,19 +348,81 @@
       },
       "deviceName": "Powmr Pow-hvm1.5H-12v",
       "deviceClass": "Powmr",
-      "deviceSpecification": "qpip30"
+      "deviceSpecification": "powmr"
     },
     {
       "uuid": "7855931b-ac95-4b71-bea1-e9f9f1c2ef22",
       "prompts": [
-        "LAN"
+        "LAN",
+        "AUTHENTICATION"
       ],
       "defaults": {
         "DEVICE_PORT": "80"
       },
-      "deviceName": "Shelly Gerät mit Original Software",
+      "deviceName": "Shelly Gerät mit Original Software Gen1",
       "deviceClass": "Shelly",
       "deviceSpecification": "shelly"
+    },
+    {
+      "uuid": "3feec874-324c-4ed3-b96e-7bcf4f1797ad",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "HF2211",
+        "COMPORT"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "115200",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "1",
+        "DATABITS": "8"
+      },
+      "deviceName": "Tracer Serie sowie baugleiche (Fa. Rover, Fa. Wattstunde, EPEVER XTRA 4415N)",
+      "deviceClass": "SimpleModbus",
+      "deviceSpecification": "tracer"
+    },
+    {
+      "uuid": "d93ea830-48b7-4c12-aa7c-5a56ac227b62",
+      "prompts": [
+        "ADDRESS",
+        "LAN"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "DEVICE_PORT": "80"
+      },
+      "deviceName": "Fronius Inverter / Smartmeter per API v1",
+      "deviceClass": "FroniusApi",
+      "deviceSpecification": "fronius_api"
+    },
+    {
+      "uuid": "9694be9e-0129-4c5c-be60-90aab0baddcc",
+      "prompts": [
+        "SERIELL",
+        "ADDRESS",
+        "COMPORT"
+      ],
+      "defaults": {
+        "DEVICE_ADDRESS": "1",
+        "ENCODING": "rtu",
+        "OPENDELAY": "0",
+        "ECHO": "FALSE",
+        "PARITY": "0",
+        "FLOWCONTROLIN": "0",
+        "BAUDRATE": "9600",
+        "FLOWCONTROLOUT": "0",
+        "STOPBITS": "2",
+        "DATABITS": "8"
+      },
+      "deviceName": "Peacefair PCEM",
+      "deviceClass": "Peacefair",
+      "deviceSpecification": "peacefair"
     }
   ]
 }

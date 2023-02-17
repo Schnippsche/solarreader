@@ -31,6 +31,7 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
 
   public SimpleSerialConnection(ConfigDevice configDevice)
   {
+    Logger.debug("init... {}", configDevice);
     this.configDevice = configDevice;
     numericHelper = new NumericHelper();
   }
@@ -43,7 +44,7 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
     for (final SerialPort port : ports)
     {
       comports.add(new Pair(port.getSystemPortName(), port.getSystemPortName() + " " + port.getDescriptivePortName()));
-      Logger.info("port found: {}", port.getSystemPortName() + " " + port.getDescriptivePortName());
+      Logger.debug("port found: {}", port.getSystemPortName() + " " + port.getDescriptivePortName());
     }
     return comports;
   }
@@ -95,6 +96,10 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
     }
     String line = readStringUntilCR();
     Logger.debug("read line {}", line);
+    if (line == null)
+    {
+      return null;
+    }
     if (line.length() > 2 && line.startsWith("("))
     {
       line = line.substring(1, line.length() - 2).trim(); // crc at the end
@@ -210,6 +215,16 @@ public class SimpleSerialConnection implements Connection<String, QCommand>
       Logger.debug("close port from {}", serialPort.getSystemPortName());
       serialPort.closePort();
     }
+  }
+
+  public boolean checkConnection()
+  {
+    if (open())
+    {
+      close();
+      return true;
+    }
+    return false;
   }
 
 }

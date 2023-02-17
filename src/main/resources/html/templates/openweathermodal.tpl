@@ -111,6 +111,15 @@
             <div class="col-md-12">
               <div class="form-control">
                 {devicesetup.mqttreceiver.checkbox.title}
+                <div class="row g-2 align-items-center">
+                  <div class="col-auto">
+                    <label for="id_mqtttopic" class="col-form-label">{mqttsetup.name.text}</label>
+                  </div>
+                  <div class="col-auto">
+                    <input type="text" id="id_mqtttopic" class="form-control" name="mqtttopic" value="[mqtttopic]"
+                           title="{mqttsetup.name.tooltip}">
+                  </div>
+                </div>
                 [mqttcheckboxes]
               </div>
             </div>

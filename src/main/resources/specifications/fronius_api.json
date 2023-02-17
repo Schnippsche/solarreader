@@ -1,0 +1,499 @@
+{
+  "description": "specs for fronius api v1",
+  "devicefields": [
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Firmware",
+      "columntype": "NUMBER",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "1"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Produkt"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Objekt",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "objekt"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsspannung"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsstrom"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Frequenz",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Ausgangsfrequenz"
+    },
+    {
+      "tablename": "AC",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "AC_Wirkleistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung_String_1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung_String_1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom_String_1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom_String_1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung_String_1",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung_String_1"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung_String_2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarspannung_String_2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom_String_2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarstrom_String_2"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung_String_2",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung_String_2"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Max_Kapazitaet",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Max_Kapazitaet"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Strom_DC"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Spannung_DC"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Status_Zellen",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Status_Batteriezellen"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Zellentemperatur"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_StateOfCharge_Relative"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Hersteller",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Hersteller"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Seriennummer",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_Seriennummer"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "LadestatusProzent",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Batterie_StateOfCharge_Relative"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Device_Status",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Geraetestatus"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Temperatur"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Fehlercode",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ErrorCodes"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "ModulPVLeistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "ModulPVLeistung"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Meter_Location",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter_Location"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Mode",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Mode"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Autonomie",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Rel_Autonomy"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Eigenverbrauch",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Rel_SelfConsumption"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Akkustand_SOC",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Akkustand_SOC"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Gen24Status",
+      "columntype": "STRING",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Gen24Status"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamtHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "WattstundenGesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt_Jahr",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "DAY_ENERGY_Value"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummeWattstundenGesamtHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummeWattstundenGesamtHeute"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummeWattstundenGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummeWattstundenGesamt"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummeWattstundeGesamtJahr",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummeWattstundeGesamtJahr"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummePowerGrid",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummePowerGrid"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummePowerLoad",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummePowerLoad"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummePowerAkku",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummePowerAkku"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "SummePowerPV",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "SummePowerPV"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "PVLeistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter1_Wirkleistung"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter1_Scheinleistung"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter1_Blindleistung"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "EnergieProduziert",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter1_EnergieProduziert"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "EnergieVerbraucht",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter1_EnergieVerbraucht"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "Einspeisung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Einspeisung"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "Bezug",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Bezug"
+    },
+    {
+      "tablename": "Meter",
+      "columnname": "Verbrauch",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Verbrauch"
+    },
+    {
+      "tablename": "Meter2",
+      "columnname": "PVLeistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung"
+    },
+    {
+      "tablename": "Meter2",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter2_Wirkleistung"
+    },
+    {
+      "tablename": "Meter2",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter2_Scheinleistung"
+    },
+    {
+      "tablename": "Meter2",
+      "columnname": "Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter2_Blindleistung"
+    },
+    {
+      "tablename": "Meter2",
+      "columnname": "EnergieProduziert",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter2_EnergieProduziert"
+    },
+    {
+      "tablename": "Meter2",
+      "columnname": "EnergieVerbraucht",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter2_EnergieVerbraucht"
+    },
+    {
+      "tablename": "Meter3",
+      "columnname": "PVLeistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Solarleistung"
+    },
+    {
+      "tablename": "Meter3",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter3_Wirkleistung"
+    },
+    {
+      "tablename": "Meter3",
+      "columnname": "Scheinleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter3_Scheinleistung"
+    },
+    {
+      "tablename": "Meter3",
+      "columnname": "Blindleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter3_Blindleistung"
+    },
+    {
+      "tablename": "Meter3",
+      "columnname": "EnergieProduziert",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter3_EnergieProduziert"
+    },
+    {
+      "tablename": "Meter3",
+      "columnname": "EnergieVerbraucht",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Meter3_EnergieVerbraucht"
+    },
+    {
+      "tablename": "Ohmpilot",
+      "columnname": "Wirkleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ohmpilot_Wirkleistung"
+    },
+    {
+      "tablename": "Ohmpilot",
+      "columnname": "EnergieGesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ohmpilot_EnergieGesamt"
+    },
+    {
+      "tablename": "Ohmpilot",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Ohmpilot_Temperatur"
+    }
+  ],
+  "mqttFields": [
+  ]
+}

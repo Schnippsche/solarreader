@@ -5,9 +5,11 @@ import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigSolarprognose;
 import de.schnippsche.solarreader.backend.connections.NetworkConnection;
 import de.schnippsche.solarreader.backend.utils.Pair;
-import de.schnippsche.solarreader.backend.worker.ThreadHelper;
+import de.schnippsche.solarreader.frontend.elements.HtmlOptionList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SolarprognoseSetup
@@ -51,9 +53,10 @@ public class SolarprognoseSetup
     configSolarprognose.setApiId(formValues.getOrDefault("elementid", ""));
     dialogHelper.getActivityFromForm(formValues);
     configSolarprognose.setActivity(dialogHelper.getActivityFromForm(formValues));
+    configSolarprognose.setApiAlgorythm(formValues.getOrDefault("algorithm", ""));
+    configSolarprognose.setApiItem(formValues.getOrDefault("item", "plant"));
     configSolarprognose.setConfigExport(dialogHelper.getDataExporterFromForm(formValues));
     dialogHelper.saveConfiguration();
-    ThreadHelper.changedSolarprognoseConfiguration();
     return "";
   }
 
@@ -61,6 +64,8 @@ public class SolarprognoseSetup
   {
     configSolarprognose.setAccessToken(formValues.getOrDefault("token", ""));
     configSolarprognose.setApiId(formValues.getOrDefault("elementid", ""));
+    configSolarprognose.setApiAlgorythm(formValues.getOrDefault("algorithm", ""));
+    configSolarprognose.setApiItem(formValues.getOrDefault("item", "plant"));
     Pair pair = new NetworkConnection().testUrl(configSolarprognose.getApiUrl());
     return new AjaxResult("200".equals(pair.getKey()), pair.getValue());
   }
@@ -70,6 +75,12 @@ public class SolarprognoseSetup
     Map<String, String> map = new HashMap<>();
     map.put("[token]", configSolarprognose.getAccessToken());
     map.put("[elementid]", configSolarprognose.getApiId());
+    map.put("[item]", configSolarprognose.getApiItem());
+    List<Pair> algorithms = new ArrayList<>();
+    algorithms.add(new Pair("", ""));
+    algorithms.add(new Pair("own-v1", "own-v1"));
+    algorithms.add(new Pair("mosmix", "mosmix"));
+    map.put("[ALGORITHM]", new HtmlOptionList(algorithms).getOptions(configSolarprognose.getApiAlgorythm()));
     dialogHelper.setActivityValues(map, configSolarprognose.getActivity());
     dialogHelper.setDataExporter(map, configSolarprognose.getConfigExport());
     return new HtmlElement(SolarMain.TEMPLATES_PATH + "solarprognosemodal.tpl").getHtmlCode(map);

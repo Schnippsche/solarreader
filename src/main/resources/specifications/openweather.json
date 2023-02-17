@@ -207,7 +207,7 @@
       "offset": 0,
       "count": 1,
       "note": "sunrise time, unix, UTC",
-      "type": "NUMBER"
+      "type": "STRING"
     },
     {
       "name": "sys_sunset",
@@ -215,7 +215,7 @@
       "offset": 0,
       "count": 1,
       "note": "sunset time, unix, UTC",
-      "type": "NUMBER"
+      "type": "STRING"
     },
     {
       "name": "timezone",
@@ -333,16 +333,23 @@
       "columntype": "NUMBER",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "snow"
+    },
+    {
+      "tablename": "aktuellesWetter",
+      "columnname": "Sonnendauer",
+      "columntype": "NUMBER",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "(sys_sunset - sys_sunrise) / 60"
     }
   ],
   "mqttFields": [
     {
-      "name": "longitute",
+      "name": "longitude",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "coord_lon"
     },
     {
-      "name": "latitute",
+      "name": "latitude",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "coord_lat"
     },
@@ -495,6 +502,11 @@
       "name": "cityname",
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "name"
+    },
+    {
+      "name": "Sonnendauer",
+      "sourcetype": "CALCULATED",
+      "sourcevalue": "(sys_sunset - sys_sunrise) / 60"
     }
   ]
 }

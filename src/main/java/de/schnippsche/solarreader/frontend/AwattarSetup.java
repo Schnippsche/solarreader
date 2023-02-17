@@ -5,7 +5,6 @@ import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigAwattar;
 import de.schnippsche.solarreader.backend.connections.NetworkConnection;
 import de.schnippsche.solarreader.backend.utils.Pair;
-import de.schnippsche.solarreader.backend.worker.ThreadHelper;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -51,11 +50,9 @@ public class AwattarSetup
   {
     BigDecimal price = new BigDecimal(formValues.getOrDefault("price", "0"));
     configAwattar.setPriceCorrection(price);
-    dialogHelper.getActivityFromForm(formValues);
     configAwattar.setActivity(dialogHelper.getActivityFromForm(formValues));
     configAwattar.setConfigExport(dialogHelper.getDataExporterFromForm(formValues));
     dialogHelper.saveConfiguration();
-    ThreadHelper.changedAwattarConfiguration();
     return "";
   }
 

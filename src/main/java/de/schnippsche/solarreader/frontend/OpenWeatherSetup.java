@@ -5,7 +5,6 @@ import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigOpenWeather;
 import de.schnippsche.solarreader.backend.connections.NetworkConnection;
 import de.schnippsche.solarreader.backend.utils.Pair;
-import de.schnippsche.solarreader.backend.worker.ThreadHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +52,6 @@ public class OpenWeatherSetup
     configOpenWeather.setActivity(dialogHelper.getActivityFromForm(formValues));
     configOpenWeather.setConfigExport(dialogHelper.getDataExporterFromForm(formValues));
     dialogHelper.saveConfiguration();
-    ThreadHelper.changedOpenWeatherConfiguration();
     return "";
   }
 

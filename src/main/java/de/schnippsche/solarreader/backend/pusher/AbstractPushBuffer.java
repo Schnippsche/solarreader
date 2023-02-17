@@ -77,7 +77,8 @@ public abstract class AbstractPushBuffer<T> implements Runnable
             long seconds = (start - pushValue.getStartMillis()) / 1000;
             if (seconds < maxSeconds)
             {
-              Logger.debug("fails, must retry, {} seconds gone, {} seconds before throwing...", seconds, maxSeconds - seconds);
+              Logger.debug("fails, must retry, {} seconds gone, {} seconds before throwing...", seconds,
+                maxSeconds - seconds);
               retryEntries.add(pushValue);
             } else
             {
@@ -88,7 +89,7 @@ public abstract class AbstractPushBuffer<T> implements Runnable
       start = System.currentTimeMillis();
     }
     close();
-    Logger.info("packet finished, {} success and {} faults, retry packet size = {}", success, faults, retryEntries.size());
+    Logger.debug("packet finished, {} success and {} faults, retry packet size = {}", success, faults, retryEntries.size());
 
     // Take retry entries back to the loop
     if (!retryEntries.isEmpty())

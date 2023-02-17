@@ -1811,5 +1811,9 @@
       "sourcetype": "RESULTFIELD",
       "sourcevalue": "Zellenspannung16"
     }
-  ]
+  ],
+  "additionalParameters": {
+    "BLOCK_SIZE": "64",
+    "SLEEP_MILLISECONDS": "300"
+  }
 }

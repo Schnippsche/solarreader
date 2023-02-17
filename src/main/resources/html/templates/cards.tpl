@@ -136,6 +136,55 @@
 </div>
 
 <div class="col-md-12 mb-2 mt-2">
+  <div class="accordion" id="ruleaccordion">
+    <div class="accordion-item">
+      <div class="accordion-header" id="ruleheading">
+        <button aria-controls="rulecollapse" aria-expanded="true" class="accordion-button"
+                data-bs-target="#rulecollapse"
+                data-bs-toggle="collapse" type="button">
+          {card.rules.header}
+        </button>
+      </div>
+      <div aria-labelledby="ruleheading" class="accordion-collapse collapse show" data-bs-parent="#rulecaccordion"
+           id="rulecollapse">
+        <div class="accordion-body">
+          <h5 class="card-title">{card.rules.title}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="d-flex flex-row">
+              <div class="p-1 align-self-center"><img alt="" src="img/rules.png"/></div>
+              <div class="p-1 flex-fill align-self-center">
+                <div class="text-secondary">{card.rules.text}</div>
+              </div>
+              <div class="p-1 align-self-center">
+                <form method="post">
+                  <input name="step" type="hidden" value="newrule"/>
+                  <button class="btn btn-link" type="submit">{card.rules.config}</button>
+                </form>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <table class="table" id="id_rules_table">
+              <thead>
+              <tr>
+                <td class="w-100">{card.rules.table.rulescol.title}</td>
+                <td>{card.status.table.statuscol.title}</td>
+                <td>{card.status.table.activitycol.title}</td>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 mb-2 mt-2">
   <div class="accordion" id="statusaccordion">
     <div class="accordion-item">
       <div class="accordion-header" id="statusheading">

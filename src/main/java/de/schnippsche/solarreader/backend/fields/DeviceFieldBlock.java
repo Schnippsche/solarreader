@@ -36,8 +36,9 @@ public class DeviceFieldBlock
       return true;
     }
 
-    if (deviceField.getRegister()
-                   .equals(blockDeviceField.getRegister()) && deviceField.getOffset() == blockDeviceField.getOffset() + blockDeviceField.getCount() && blockDeviceField.getCount() + deviceField.getCount() <= maxBlockSize)
+    if (deviceField.getRegister().equals(blockDeviceField.getRegister())
+        && deviceField.getOffset() == blockDeviceField.getOffset() + blockDeviceField.getCount()
+        && blockDeviceField.getCount() + deviceField.getCount() <= maxBlockSize)
     {
       originalDeviceFields.add(deviceField);
       blockDeviceField.setCount(blockDeviceField.getCount() + deviceField.getCount());
@@ -56,6 +57,7 @@ public class DeviceFieldBlock
   {
     return blockDeviceField;
   }
+
   /**
    * converts the inputregister array from the block into the devicefields resultvalue
    *
@@ -84,8 +86,7 @@ public class DeviceFieldBlock
       {
         Object value = numericHelper.convertByteArray(bytes, deviceField.getType());
         result.add(deviceField.createResultField(value));
-      }
-      catch (NumberFormatException e)
+      } catch (NumberFormatException e)
       {
         result.add(new ResultField(deviceField, ResultFieldStatus.INVALIDNUMBER, null));
       }
@@ -96,7 +97,8 @@ public class DeviceFieldBlock
 
   @Override public String toString()
   {
-    return "DeviceFieldBlock{" + "maxBlockSize=" + maxBlockSize + ", size=" + sum + ", originalDeviceFields=" + originalDeviceFields + ", blockDeviceField=" + blockDeviceField + '}';
+    return "DeviceFieldBlock{" + "maxBlockSize=" + maxBlockSize + ", size=" + sum + ", originalDeviceFields="
+           + originalDeviceFields + ", blockDeviceField=" + blockDeviceField + '}';
   }
 
 }

@@ -1,13 +1,12 @@
 package de.schnippsche.solarreader.backend.exporter;
 
+import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigMqtt;
 import de.schnippsche.solarreader.backend.fields.MqttField;
 import de.schnippsche.solarreader.backend.fields.ResultField;
 import de.schnippsche.solarreader.backend.pusher.MqttPushValue;
-import de.schnippsche.solarreader.backend.pusher.PushValue;
 import de.schnippsche.solarreader.backend.utils.MathEvalBigDecimal;
 import de.schnippsche.solarreader.backend.utils.Pair;
-import de.schnippsche.solarreader.backend.worker.ThreadHelper;
 import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -28,37 +27,30 @@ public class MqttExporter implements Exporter
   private final ConfigMqtt configMqtt;
   private final List<ResultField> resultFields;
   private final String url;
-  private final String mainTopic;
   private final List<MqttField> mqttFields;
   private final MathEvalBigDecimal mathEval;
   private final MemoryPersistence persistence;
+  private String mainTopic;
 
   public MqttExporter(ConfigMqtt configMqtt)
   {
-    this(configMqtt, Collections.emptyList(), Collections.emptyList());
+    this(configMqtt, Collections.emptyList(), Collections.emptyList(), "");
   }
 
-  public MqttExporter(ConfigMqtt configMqtt, List<ResultField> resultFields, List<MqttField> mqttFields)
+  public MqttExporter(ConfigMqtt configMqtt, List<ResultField> resultFields, List<MqttField> mqttFields, String topic)
   {
     this.resultFields = new ArrayList<>(resultFields);
     persistence = new MemoryPersistence();
     this.configMqtt = configMqtt;
-    this.url = String.format("%s://%s:%s", configMqtt.isUseSsl() ? "ssl" : "tcp", configMqtt.getHost(), configMqtt.getPort());
-    mainTopic = "solarreader/" + configMqtt.getTopicName() + "/";
+    this.url =
+      String.format("%s://%s:%s", configMqtt.isUseSsl() ? "ssl" : "tcp", configMqtt.getHost(), configMqtt.getPort());
+    mainTopic = configMqtt.getMainTopic() + topic;
+    if (!mainTopic.endsWith("/"))
+    {
+      mainTopic += "/";
+    }
     this.mqttFields = new ArrayList<>(mqttFields);
     this.mathEval = new MathEvalBigDecimal();
-  }
-
-  public void setResultFields(List<ResultField> resultFields)
-  {
-    this.resultFields.clear();
-    this.resultFields.addAll(resultFields);
-  }
-
-  public void setMqttFields(List<MqttField> mqttFields)
-  {
-    this.mqttFields.clear();
-    this.mqttFields.addAll(mqttFields);
   }
 
   public Pair test()
@@ -86,25 +78,25 @@ public class MqttExporter implements Exporter
       return;
     }
     // New
+    List<MqttPushValue> pushValues = new ArrayList<>();
     for (MqttField mqttField : mqttFields)
     {
       if (mqttField.getValue() != null)
       {
         MqttMessage message = createMessage(mqttField);
         String topic = mainTopic + mqttField.getName();
-        Logger.debug("Topic: {}, payload: {}", topic, new String(message.getPayload()));
         MqttPushValue mqttPushValue = new MqttPushValue(configMqtt.getUuid(), topic, message);
-        PushValue<MqttPushValue> pushValue = new PushValue<>(mqttPushValue);
-        ThreadHelper.getMqttPusher().addPushValue(pushValue);
+        pushValues.add(mqttPushValue);
       }
     }
+    Config.getInstance().getMqttMaster().publishMessage(pushValues);
   }
 
   private MqttMessage createMessage(MqttField mqttField)
   {
     MqttMessage msg = new MqttMessage();
-    msg.setQos(0); // Subscribe!
-    msg.setRetained(true);
+    msg.setQos(0);
+    msg.setRetained(false);
     msg.setPayload(String.valueOf(mqttField.getValue()).getBytes(StandardCharsets.UTF_8));
     return msg;
   }
@@ -127,7 +119,8 @@ public class MqttExporter implements Exporter
         result = true;
       } else
       {
-        Logger.warn("mqtt field '{}' with type '{}' is null or invalid!", mqttField.getSourcevalue(), mqttField.getSourcetype());
+        Logger.debug("mqtt field '{}' with type '{}' is null or invalid!", mqttField.getSourcevalue(), mqttField.getSourcetype());
+        mqttField.setValue(null);
       }
     }
     return result;

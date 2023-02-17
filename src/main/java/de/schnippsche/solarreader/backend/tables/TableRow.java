@@ -35,11 +35,6 @@ public class TableRow
     return columns;
   }
 
-  public TableColumn getColumn(String columnName)
-  {
-    return columns.stream().filter(column -> column.getName().equals(columnName)).findFirst().orElse(null);
-  }
-
   public void clear()
   {
     this.columns.clear();

@@ -78,6 +78,11 @@ public class Fronius extends AbstractDevice
     return true;
   }
 
+  @Override public boolean checkConnection()
+  {
+    return modbusWrapper.checkConnection();
+  }
+
   private void checkOffsetAndModelOnFirstRun() throws ModbusException
   {
     // do it only once

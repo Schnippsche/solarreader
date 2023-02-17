@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ResultField
 {
 
-  private final String name;
+  private String name;
   private ResultFieldStatus status;
   private FieldType type;
   private Object value;
@@ -56,6 +56,13 @@ public class ResultField
                                    || readvalue instanceof Long) ? FieldType.NUMBER : FieldType.STRING, readvalue);
   }
 
+  public ResultField(String name, Object readvalue)
+  {
+    this(name, readvalue != null ? ResultFieldStatus.VALID : ResultFieldStatus.EMPTY, (readvalue instanceof BigDecimal
+                                                                                       || readvalue instanceof Integer
+                                                                                       || readvalue instanceof Long) ? FieldType.NUMBER : FieldType.STRING, readvalue);
+  }
+
   public ResultField(String name, ResultFieldStatus resultFieldStatus, FieldType fieldType, Object readvalue)
   {
     this.name = name;
@@ -67,6 +74,11 @@ public class ResultField
   public String getName()
   {
     return name;
+  }
+
+  public void setName(String name)
+  {
+    this.name = name;
   }
 
   public ResultFieldStatus getStatus()
@@ -98,6 +110,10 @@ public class ResultField
 
   public BigDecimal getNumericValue()
   {
+    if (value == null)
+    {
+      return BigDecimal.ZERO;
+    }
     if (value instanceof BigDecimal)
     {
       return (BigDecimal) value;
@@ -118,6 +134,11 @@ public class ResultField
       return new byte[0];
     }
     return (byte[]) getValue();
+  }
+
+  public String getStringValue()
+  {
+    return value == null ? "" : String.valueOf(value);
   }
 
   public boolean isValid()
@@ -171,7 +192,13 @@ public class ResultField
         newValue = "'" + value + "'";
         break;
       default:
-        newValue = String.valueOf(value);
+        if (value instanceof BigDecimal)
+        {
+          newValue = ((BigDecimal) value).toPlainString();
+        } else
+        {
+          newValue = String.valueOf(value);
+        }
     }
     return String.format("ResultField{name='%s', status=%s, type='%s', value=%s}", name, status, type, newValue);
   }

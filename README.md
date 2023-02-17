@@ -6,7 +6,7 @@
 configuration.
 All collected data can be exported to influx databases v1 / v2 and MQTT clients.
 A buffer for Influx and mqtt requests exists; it can hold the request for 30 minutes ore more in memory.
-So you didn't lost any information if influxdb is currently busy or unreachable.
+So you didn't loose any data if influxdb is currently busy or unreachable.
 
 Modbus communication is possible over RS485 connections as well as TCP sockets.
 
@@ -79,10 +79,15 @@ To show the GUI type "locahost:8080" in your browser (or the ip of your computer
 - Goodwe inverter
 - Phocos inverter
 - Hichi IR Reader for eHZ Energiemeter and other compatible
-- Fronius Primo, Fronius Symo and Fronius Smartmeter
+- Fronius Primo, Fronius Symo and Fronius Smartmeter via Modbus or API
 - Steca Solarix PLI 5000
 - Powmr Pow-hvm1.5H-12v
 - Tasmota Devices (SonOff, Shelly with Tasmota Firmware)
+- Shelly Gen1 with original Firmware
+- Easun SMG II
+- Infini Solar PIP serie 3k
+- Tracer serie and compatible (Fa. Rover, Fa. Wattstunde, EPEVER XTRA 4415N)
+- Peacefair PCEM
 - many more planned and in progress... Feel free to contribute and share it with the community!
 
 ### Using the precompiled binaries
@@ -92,7 +97,7 @@ the jar and optional the [start script](https://github.com/Schnippsche/solarread
 
 ### Building from source
 
-`solarreader` is written in java and requires jdk 8+. To build from source:
+`solarreader` is written in java and requires java 8 or higher. To build from source:
 
 - use `mvn clean package` to compile and build the jar file
 
@@ -113,3 +118,6 @@ You can build solarreader.jar with all tests with:
 ```bash
 mvn clean package
 ```
+
+Main Screenshot
+![Solarreader Screenshot](https://www.solarreader.de/solarreader-1.3.png)

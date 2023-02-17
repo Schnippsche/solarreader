@@ -1,0 +1,545 @@
+{
+  "description": "specs for tracer",
+  "devicefields": [
+    {
+      "name": "PV_array_input_voltage",
+      "offset": 12544,
+      "register": 4,
+      "count": 1,
+      "note": "Solar charge controller--PV array voltage",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "PV_array_input_current",
+      "offset": 12545,
+      "register": 4,
+      "count": 1,
+      "note": "Solar charge controller--PV array current",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "A",
+      "factor": 0.01
+    },
+    {
+      "name": "PV_array_input_power",
+      "offset": 12546,
+      "register": 4,
+      "count": 2,
+      "note": "Solar charge controller--PV array power",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "W",
+      "factor": 0.01
+    },
+    {
+      "name": "Load_voltage",
+      "offset": 12556,
+      "register": 4,
+      "count": 1,
+      "note": "Load voltage",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "Load_current",
+      "offset": 12557,
+      "register": 4,
+      "count": 1,
+      "note": "Load current",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "A",
+      "factor": 0.01
+    },
+    {
+      "name": "Load_power",
+      "offset": 12558,
+      "register": 4,
+      "count": 2,
+      "note": "Load power",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "W",
+      "factor": 0.01
+    },
+    {
+      "name": "Battery_temperature",
+      "offset": 12560,
+      "register": 4,
+      "count": 1,
+      "note": "Battery temperature",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "℃",
+      "factor": 0.01
+    },
+    {
+      "name": "Device_temperature",
+      "offset": 12561,
+      "register": 4,
+      "count": 1,
+      "note": "Device temperature",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "℃",
+      "factor": 0.01
+    },
+    {
+      "name": "Battery_SOC",
+      "offset": 12570,
+      "register": 4,
+      "count": 1,
+      "note": "The percentage of battery's remaining capacity",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "%",
+      "factor": 1
+    },
+    {
+      "name": "Battery_real_rated_voltage",
+      "offset": 12573,
+      "register": 4,
+      "count": 1,
+      "note": "Current system rated voltage. 1200, 2400, 3600, 4800 represent 12V， 24V，36V，48V",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "Battery_status",
+      "offset": 12800,
+      "register": 4,
+      "count": 1,
+      "note": "D15: 1-Wrong identification for rated voltage D8: Battery inner resistance abnormal 1, normal 0 D7-D4: 00H Normal, 01H Over Temp.(Higher than the warning settings), 02H Low Temp.(Lower than the warning settings), D3-D0: 00H Normal ,01H Over Voltage. , 02H Under Voltage, 03H Over discharge, 04H Fault",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "",
+      "factor": 1
+    },
+    {
+      "name": "Charging_equipment_status",
+      "offset": 12801,
+      "register": 4,
+      "count": 1,
+      "note": "D15-D14: Input voltage status. 00H normal, 01H No input power connected, 02H Higher input voltage , 03H Input voltage error. D13: Charging MOSFET is short circuit. D12: Charging or Anti-reverse MOSFET is open circuit. D11: Anti-reverse MOSFET is short circuit. D10: Input is over current. D9: The load is over current. D8: The load is short circuit. D7: Load MOSFET is short circuit. D6：Disequilibrium in three circuits.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "",
+      "factor": 1
+    },
+    {
+      "name": "Discharging_equipment_status",
+      "offset": 12802,
+      "register": 4,
+      "count": 1,
+      "note": "D15-D14: 00H Input voltage normal, 01H Input voltage low, 02H Input voltage high, 03H no access. D13-D12: Output power. 00H Light load, 01H Moderate, 02H rated, 03H overload D11: Short circuit D10: Unable to discharge D9: Unable to stop discharging D8: Output voltage abnormal D7: Input over voltage D6: Short circuit in high voltage side D5: Boost over voltage D4: Output over voltage D1: 0 Normal, 1 Fault. D0: 1 Running, 0 Standby.",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "",
+      "factor": 1
+    },
+    {
+      "name": "Maximum_solar_voltage_today",
+      "offset": 13056,
+      "register": 4,
+      "count": 1,
+      "note": "00: 00 Refresh every day",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "Maximum_battery_voltage_today",
+      "offset": 13058,
+      "register": 4,
+      "count": 1,
+      "note": "00: 00 Refresh every day",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "Minimum_battery_voltage_today",
+      "offset": 13059,
+      "register": 4,
+      "count": 1,
+      "note": "00: 00 Refresh every day",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "Consumed_energy_today",
+      "offset": 13060,
+      "register": 4,
+      "count": 2,
+      "note": "00: 00 Clear every day",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Consumed_energy_month",
+      "offset": 13062,
+      "register": 4,
+      "count": 2,
+      "note": "00: 00 Clear on the first day of month",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Consumed_energy_year",
+      "offset": 13064,
+      "register": 4,
+      "count": 2,
+      "note": "00: 00 Clear on 1, Jan",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Total_consumed_energy",
+      "offset": 13066,
+      "register": 4,
+      "count": 2,
+      "note": "",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Generated_energy_today",
+      "offset": 13068,
+      "register": 4,
+      "count": 2,
+      "note": "00: 00 Clear every day.",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Generated_energy_month",
+      "offset": 13070,
+      "register": 4,
+      "count": 2,
+      "note": "00: 00 Clear on the first day of month.",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Generated_energy_year",
+      "offset": 13072,
+      "register": 4,
+      "count": 2,
+      "note": "00: 00 Clear on 1, Jan.",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Total_generated_energy",
+      "offset": 13074,
+      "register": 4,
+      "count": 2,
+      "note": "",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "KWH",
+      "factor": 0.01
+    },
+    {
+      "name": "Battery_voltage",
+      "offset": 13082,
+      "register": 4,
+      "count": 1,
+      "note": "Battery voltage",
+      "type": "U16_BIG_ENDIAN",
+      "unit": "V",
+      "factor": 0.01
+    },
+    {
+      "name": "Battery_current",
+      "offset": 13083,
+      "register": 4,
+      "count": 2,
+      "note": "Battery current",
+      "type": "U32_BIG_ENDIAN_LOW_HIGH",
+      "unit": "A",
+      "factor": 0.01
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Tracer Serie"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Datum",
+      "columntype": "STRING",
+      "sourcetype": "STANDARDFIELD",
+      "sourcevalue": "DATETIME{dd.MM.yyyy}"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_voltage"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Ladestrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_current"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Entladestrom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Load_current"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Entladeleistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Load_power"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_temperature"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "SpannungMaxHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Maximum_battery_voltage_today"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "SpannungMinHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Minimum_battery_voltage_today"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "SOC",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_SOC"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_array_input_voltage"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_array_input_current"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "Leistung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_array_input_power"
+    },
+    {
+      "tablename": "PV",
+      "columnname": "maxVoltHeute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Maximum_solar_voltage_today"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Ladestatus",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Charging_equipment_status"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Temperatur",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Device_temperature"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Optionen",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Charging_equipment_status"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Generated_energy_today"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Total_generated_energy"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Verbrauch_Wh_Heute",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Consumed_energy_today"
+    },
+    {
+      "tablename": "Summen",
+      "columnname": "Verbrauch_Wh_Gesamt",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Total_consumed_energy"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "PV_array_input_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_array_input_voltage"
+    },
+    {
+      "name": "PV_array_input_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_array_input_current"
+    },
+    {
+      "name": "PV_array_input_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "PV_array_input_power"
+    },
+    {
+      "name": "Load_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Load_voltage"
+    },
+    {
+      "name": "Load_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Load_current"
+    },
+    {
+      "name": "Load_power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Load_power"
+    },
+    {
+      "name": "Battery_temperature",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_temperature"
+    },
+    {
+      "name": "Device_temperature",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Device_temperature"
+    },
+    {
+      "name": "Battery_SOC",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_SOC"
+    },
+    {
+      "name": "Battery_real_rated_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_real_rated_voltage"
+    },
+    {
+      "name": "Battery_status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_status"
+    },
+    {
+      "name": "Charging_equipment_status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Charging_equipment_status"
+    },
+    {
+      "name": "Discharging_equipment_status",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Discharging_equipment_status"
+    },
+    {
+      "name": "Maximum_battery_voltage_today",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Maximum_battery_voltage_today"
+    },
+    {
+      "name": "Minimum_battery_voltage_today",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Minimum_battery_voltage_today"
+    },
+    {
+      "name": "Consumed_energy_today",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Consumed_energy_today"
+    },
+    {
+      "name": "Consumed_energy_month",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Consumed_energy_month"
+    },
+    {
+      "name": "Consumed_energy_year",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Consumed_energy_year"
+    },
+    {
+      "name": "Total_consumed_energy",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Total_consumed_energy"
+    },
+    {
+      "name": "Generated_energy_today",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Generated_energy_today"
+    },
+    {
+      "name": "Generated_energy_month",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Generated_energy_month"
+    },
+    {
+      "name": "Generated_energy_year",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Generated_energy_year"
+    },
+    {
+      "name": "Total_generated_energy",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Total_generated_energy"
+    },
+    {
+      "name": "Battery_voltage",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_voltage"
+    },
+    {
+      "name": "Battery_current",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "Battery_current"
+    }
+  ],
+  "additionalParameters": {
+    "BLOCK_SIZE": "16",
+    "SLEEP_MILLISECONDS": "100"
+  }
+}

@@ -83,6 +83,7 @@ public class DeviceInfo
   {
     return deviceSpecification;
   }
+
   public void setDeviceSpecification(String deviceSpecification)
   {
     this.deviceSpecification = deviceSpecification;

@@ -7,6 +7,7 @@ public class QCommand
 {
   private final String command;
   private final byte[] byteCommand;
+
   public QCommand(String command)
   {
     this.command = command;
@@ -26,6 +27,7 @@ public class QCommand
   {
     return command;
   }
+
   public byte[] getByteCommand()
   {
     return byteCommand;
@@ -44,13 +46,16 @@ public class QCommand
     QCommand qCommand = (QCommand) o;
     return command.equals(qCommand.command);
   }
+
   @Override public int hashCode()
   {
     return command.hashCode();
   }
+
   @Override public String toString()
   {
-    return "QCommand{" + "command='" + command + '\'' + ", byteCommand=" + new NumericHelper().byteArrayToHexString(byteCommand) + '}';
+    return "QCommand{" + "command='" + command + '\'' + ", byteCommand="
+           + new NumericHelper().byteArrayToHexString(byteCommand) + '}';
   }
 
 }

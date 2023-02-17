@@ -1,0 +1,139 @@
+{
+  "description": "specs for Peacefair PCEM 017",
+  "devicefields": [
+    {
+      "name": "voltage",
+      "offset": 0,
+      "count": 1,
+      "unit": "V",
+      "factor": 0.01,
+      "register": 4,
+      "note": "0.01V",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "current",
+      "offset": 1,
+      "count": 1,
+      "unit": "A",
+      "factor": 0.01,
+      "register": 4,
+      "note": "0.01A",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "power",
+      "offset": 2,
+      "count": 2,
+      "unit": "W",
+      "register": 4,
+      "factor": 0.1,
+      "note": "0.1W",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "energy",
+      "offset": 4,
+      "count": 2,
+      "unit": "Wh",
+      "register": 4,
+      "note": "1Wh",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "highvoltagealarmstatus",
+      "offset": 6,
+      "count": 1,
+      "unit": "",
+      "register": 4,
+      "note": "0xFFFF is alarm, 0x0000 is not alarm",
+      "type": "U16_BIG_ENDIAN"
+    },
+    {
+      "name": "lowvoltagealarmstatus",
+      "offset": 7,
+      "count": 1,
+      "unit": "",
+      "register": 4,
+      "note": "0xFFFF is alarm, 0x0000 is not alarm",
+      "type": "U16_BIG_ENDIAN"
+    }
+  ],
+  "databasefields": [
+    {
+      "tablename": "Info",
+      "columnname": "Produkt",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "Peacefair"
+    },
+    {
+      "tablename": "Info",
+      "columnname": "Modell",
+      "columntype": "STRING",
+      "sourcetype": "CONSTANT",
+      "sourcevalue": "PCEM 017"
+    },
+    {
+      "tablename": "Service",
+      "columnname": "Fehler",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "highvoltagealarmstatus"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Spannung",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "voltage"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Strom",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "current"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Power",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "power"
+    },
+    {
+      "tablename": "Batterie",
+      "columnname": "Energie",
+      "columntype": "NUMBER",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "energy"
+    }
+  ],
+  "mqttFields": [
+    {
+      "name": "Spannung",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "voltage"
+    },
+    {
+      "name": "Strom",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "current"
+    },
+    {
+      "name": "Power",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "power"
+    },
+    {
+      "name": "Energie",
+      "sourcetype": "RESULTFIELD",
+      "sourcevalue": "energy"
+    }
+  ],
+  "additionalParameters": {
+    "BLOCK_SIZE": "32",
+    "ALLOWED_COMMANDS_REGEXP": "66"
+  }
+}

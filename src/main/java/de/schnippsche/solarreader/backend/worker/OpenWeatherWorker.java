@@ -1,5 +1,6 @@
 package de.schnippsche.solarreader.backend.worker;
 
+import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.configuration.ConfigOpenWeather;
 import de.schnippsche.solarreader.backend.fields.*;
 import de.schnippsche.solarreader.backend.tables.ExportTables;
@@ -10,98 +11,97 @@ import org.tinylog.Logger;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 public class OpenWeatherWorker extends AbstractExportWorker
 {
 
+  public static final String OPENWEATHER = "OpenWeather";
   private final List<TableField> tableFields;
   private final List<MqttField> mqttFields;
   private final ConfigOpenWeather configOpenWeather;
+  private final DateTimeFormatter formatter;
 
   public OpenWeatherWorker(ConfigOpenWeather configOpenWeather)
   {
     super(configOpenWeather.getActivity());
     this.configOpenWeather = configOpenWeather;
-    Specification specs = jsonTool.readSpecification("openweather");
+    Specification specs = jsonTool.readSpecification(OPENWEATHER.toLowerCase());
     this.tableFields = specs.getDatabasefields();
     this.mqttFields = specs.getMqttFields();
+    formatter = DateTimeFormatter.ofPattern("HH:mm");
   }
 
   @Override protected void doWork()
   {
     Logger.info("Read OpenWeather");
     Logger.debug(configOpenWeather.getApiUrl());
-    List<ResultField> resultFields = jsonTool.getResultFieldsFromUrl(configOpenWeather.getApiUrl());
+    List<ResultField> resultFields = jsonTool.getResultFieldsFromUrl(configOpenWeather.getApiUrl(), null);
     if (resultFields == null || resultFields.isEmpty())
     {
       return;
     }
     Logger.info("OpenWeather successfully read");
-    // Correct rain
-    BigDecimal rain = BigDecimal.ZERO;
-    Optional<ResultField> rain3h = resultFields.stream().filter(rf -> rf.getName().equals("rain_3h")).findFirst();
-    if (rain3h.isPresent())
-    {
-      rain = rain3h.get().getNumericValue();
-      Logger.debug("rain 3h present");
-    } else
-    {
-      Optional<ResultField> rain1h = resultFields.stream().filter(rf -> rf.getName().equals("rain_1h")).findFirst();
-      if (rain1h.isPresent())
-      {
-        rain = rain1h.get().getNumericValue();
-        Logger.debug("rain 1h present");
-      }
-    }
+    // correct rain
+    ResultField rain1hField = getResultField("rain_1h", resultFields);
+    ResultField rain3hField = getResultField("rain_3h", resultFields);
+    BigDecimal rain = rain3hField != null ? rain3hField.getNumericValue() : BigDecimal.ZERO;
+    rain = rain1hField != null ? rain1hField.getNumericValue() : rain;
     resultFields.add(new ResultField("rain", ResultFieldStatus.VALID, FieldType.NUMBER, rain));
+    //
     // correct snow
-    BigDecimal snow = BigDecimal.ZERO;
-    Optional<ResultField> snow3h = resultFields.stream().filter(rf -> rf.getName().equals("snow_3h")).findFirst();
-    if (snow3h.isPresent())
+    ResultField snow1hField = getResultField("snow_1h", resultFields);
+    ResultField snow3hField = getResultField("snow_3h", resultFields);
+    BigDecimal snow = snow3hField != null ? snow3hField.getNumericValue() : BigDecimal.ZERO;
+    snow = snow1hField != null ? snow1hField.getNumericValue() : snow;
+    resultFields.add(new ResultField("snow", ResultFieldStatus.VALID, FieldType.NUMBER, snow));
+    //
+    // timeshift
+    ResultField timezoneField = getResultField("timezone", resultFields);
+    BigDecimal timeshift = (timezoneField != null) ? timezoneField.getNumericValue() : BigDecimal.ZERO;
+    long timeshiftSeconds = timeshift.longValue();
+    // sunrise and sunset calculate from timestamp to datetime
+    ResultField sunriseField = getResultField("sys_sunrise", resultFields);
+    if (sunriseField != null)
     {
-      snow = snow3h.get().getNumericValue();
-      Logger.debug("snow 3h present");
+      BigDecimal sunrise = sunriseField.getNumericValue();
+      long ts = sunrise.longValue() + timeshiftSeconds;
+      LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
+      Logger.debug("sunrise ts={}, localdateTime={}", ts, localDateTime);
+      resultFields.add(new ResultField("sunrise_time", ResultFieldStatus.VALID, FieldType.STRING, localDateTime.format(formatter)));
     } else
     {
-      Optional<ResultField> snow1h = resultFields.stream().filter(rf -> rf.getName().equals("snow_1h")).findFirst();
-      if (snow1h.isPresent())
-      {
-        snow = snow1h.get().getNumericValue();
-        Logger.debug("snow 1h present");
-      }
+      Logger.debug("sunrise is null");
     }
-    resultFields.add(new ResultField("snow", ResultFieldStatus.VALID, FieldType.NUMBER, snow));
-    // sunrise and sunset calculate from timestamp to datetime
-    Optional<ResultField> sunrise = resultFields.stream().filter(rf -> rf.getName().equals("sys_sunrise")).findFirst();
-    if (sunrise.isPresent())
+    ResultField sunsetField = getResultField("sys_sunset", resultFields);
+    if (sunsetField != null)
     {
-      long ts = sunrise.get().getNumericValue().longValue();
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-      LocalDateTime utcDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
-      LocalDateTime localDateTime = utcDateTime.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
-      resultFields.add(new ResultField("sunrise_time", ResultFieldStatus.VALID, FieldType.STRING, localDateTime.format(formatter)));
-    }
-    Optional<ResultField> sunset = resultFields.stream().filter(rf -> rf.getName().equals("sys_sunset")).findFirst();
-    if (sunset.isPresent())
-    {
-      long ts = sunset.get().getNumericValue().longValue();
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-      LocalDateTime utcDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
-      LocalDateTime localDateTime = utcDateTime.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+      BigDecimal sunset = sunsetField.getNumericValue();
+      long ts = sunset.longValue() + timeshiftSeconds;
+      LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(ts), ZoneOffset.UTC);
       resultFields.add(new ResultField("sunset_time", ResultFieldStatus.VALID, FieldType.STRING, localDateTime.format(formatter)));
     }
+    Config.getInstance().setCurrentResultFields(OPENWEATHER, resultFields);
     //
-
     List<Table> tables = new ExportTables().convert(resultFields, tableFields);
-    addDatabaseExporter(configOpenWeather.getConfigExport(), tables);
+    addDatabaseExporter(configOpenWeather.getConfigExport(), tables, System.currentTimeMillis());
     addMqttExporter(configOpenWeather.getConfigExport(), resultFields, mqttFields);
     exportAll();
     tables.clear();
+  }
+
+  protected ResultField getResultField(String fieldname, List<ResultField> resultFields)
+  {
+    for (ResultField f : resultFields)
+    {
+      if (f.isName(fieldname))
+      {
+        return f;
+      }
+    }
+    return null;
   }
 
 }

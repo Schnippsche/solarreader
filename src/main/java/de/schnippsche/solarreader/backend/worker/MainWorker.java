@@ -2,13 +2,14 @@ package de.schnippsche.solarreader.backend.worker;
 
 import de.schnippsche.solarreader.backend.configuration.Config;
 import de.schnippsche.solarreader.backend.pusher.InfluxPusher;
-import de.schnippsche.solarreader.backend.pusher.MqttPusher;
 import de.schnippsche.solarreader.backend.utils.NumericHelper;
 import org.tinylog.Logger;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class MainWorker implements Runnable
 {
@@ -17,52 +18,51 @@ public class MainWorker implements Runnable
 
   public MainWorker()
   {
-
-    int maxThreads = new NumericHelper().getInteger(System.getProperty("solarreader.maxthreads"), 8);
+    int maxThreads = new NumericHelper().getInteger(System.getProperty("solarreader.maxthreads"), 10);
     fixedSizeThreadPool = Executors.newFixedThreadPool(maxThreads);
     Logger.info("MainWorker with max Threads = {}", maxThreads);
   }
 
   @Override public void run()
   {
-    // device configuration changed?
-    Config.getInstance().checkDeviceConfigurationForUpdates();
-    SolarprognoseWorker solarprognoseWorker = ThreadHelper.getSolarprognoseWorker();
-    OpenWeatherWorker openweatherWorker = ThreadHelper.getOpenWeatherWorker();
-    AwattarWorker awattarWorker = ThreadHelper.getAwattarWorker();
-    InfluxPusher influxPusher = ThreadHelper.getInfluxPusher();
-    MqttPusher mqttPusher = ThreadHelper.getMqttPusher();
-    List<DeviceWorker> deviceWorkers = ThreadHelper.getDeviceWorkers();
     Config.getInstance().getStandardValues().setDateAndTimeValues();
-    LocalTime time = Config.getInstance().getStandardValues().getLocalTime();
+    LocalDateTime time = Config.getInstance().getStandardValues().getLocalDateTime();
+    SolarprognoseWorker solarprognoseWorker = ThreadHelper.getSolarprognoseWorker(time);
+    OpenWeatherWorker openweatherWorker = ThreadHelper.getOpenWeatherWorker(time);
+    AwattarWorker awattarWorker = ThreadHelper.getAwattarWorker(time);
+    UpdateWorker updateWorker = ThreadHelper.getUpdateWorker(time);
+    InfluxPusher influxPusher = ThreadHelper.getInfluxPusher();
+    Config.getInstance().removeExpiredCommands();
+    // device configuration
+    List<DeviceWorker> deviceWorkers = ThreadHelper.getDeviceWorkers(time);
     Logger.trace("worker running on time {}, deviceWorkers: {} ", time, deviceWorkers.size());
     // process all devices
     if (!deviceWorkers.isEmpty())
     {
-      deviceWorkers.stream().filter(deviceWorker -> deviceWorker.getActivity().mustExecute(time))
-                   .forEach(this::startThread);
+      Logger.debug("starting {} device workers...", deviceWorkers.size());
+      deviceWorkers.forEach(fixedSizeThreadPool::execute);
     }
-    if (solarprognoseWorker != null && solarprognoseWorker.getActivity().mustExecute(time))
+    if (solarprognoseWorker != null)
     {
       fixedSizeThreadPool.execute(solarprognoseWorker);
     }
 
-    if (openweatherWorker != null && openweatherWorker.getActivity().mustExecute(time))
+    if (openweatherWorker != null)
     {
       fixedSizeThreadPool.execute(openweatherWorker);
     }
 
-    if (awattarWorker != null && awattarWorker.getActivity().mustExecute(time))
+    if (awattarWorker != null)
     {
       fixedSizeThreadPool.execute(awattarWorker);
-    }
-    if (!mqttPusher.isBusy())
-    {
-      fixedSizeThreadPool.execute(mqttPusher);
     }
     if (!influxPusher.isBusy())
     {
       fixedSizeThreadPool.execute(influxPusher);
+    }
+    if (updateWorker != null)
+    {
+      fixedSizeThreadPool.execute(updateWorker);
     }
   }
 
@@ -71,35 +71,13 @@ public class MainWorker implements Runnable
     fixedSizeThreadPool.shutdown();
     try
     {
-      if (!fixedSizeThreadPool.awaitTermination(5, TimeUnit.SECONDS))
+      if (!fixedSizeThreadPool.awaitTermination(3, TimeUnit.SECONDS))
       {
         fixedSizeThreadPool.shutdownNow();
       }
-    } catch (InterruptedException e)
+    } catch (Exception e)
     {
       fixedSizeThreadPool.shutdownNow();
-      Thread.currentThread().interrupt();
-    }
-  }
-
-  private void startThread(DeviceWorker deviceWorker)
-  {
-    Future<?> submit = fixedSizeThreadPool.submit(deviceWorker);
-    try
-    {
-      submit.get(1, TimeUnit.MINUTES);
-    } catch (ExecutionException e)
-    {
-      Logger.error("execution exception {}", e.getMessage(), e);
-    } catch (InterruptedException e)
-    {
-      Logger.error("thread interrupted {}", e.getMessage());
-      Thread.currentThread().interrupt();
-    } catch (TimeoutException e)
-    {
-      Logger.error("Thread timed out, cancel {}", deviceWorker.getDevice().getConfigDevice().getDescription(), e);
-      deviceWorker.getActivity().setActive(false);
-      submit.cancel(true); //cancel the task
     }
   }
 

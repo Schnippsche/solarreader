@@ -28,7 +28,7 @@ public class ConfigMqtt
     port = 1883;
     useSsl = false;
     keepAlive = 10;
-    topicName = "box1";
+    topicName = "solarreader";
   }
 
   public String getUrl()
@@ -38,7 +38,11 @@ public class ConfigMqtt
 
   public String getMainTopic()
   {
-    return "solarreader/" + topicName + "/";
+    if (topicName.endsWith("/"))
+    {
+      return topicName;
+    }
+    return topicName + "/";
   }
 
   public boolean isEnabled()
